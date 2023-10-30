@@ -1,75 +1,223 @@
 <pre class='metadata'>
-Title: UN/LOCODE Data Model Extension (Version 0.1.0-20230522)
-Shortname: locode-data-model-extension
+Title: SFC Data Model Technical Specifications (Version 0.1.0-20231030)
+Shortname: sfc-ileap-tech-specs
 Level: 1
 Status: LD
-URL: https://sine-fdn.github.io/locode-extension/
+URL: https://sine-fdn.github.io/ileap-extension/
 Editor:
 Mailing List: public-dev@pathfinder.sine.dev
-Repository: sine-fdn/locode-extension
-Abstract: This document specifies an extension to the [Pathfinder Data Model](https://wbcsd.github.io/data-exchange-protocol/v2/#data-model) allowing `ProductFootprint`s to include a UN/LOCODE.
+Repository: sine-fdn/ileap-extension
+Abstract: This document specifies the data exchange profile for the SFC iLEAP project which is based on the Pathfinder Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the Patfhinder Network. By implementing this specification, logistics actors can exchange logistics emission data. Likewise, shippers can request logistics emission data from their logistics service providers while also integrating the emission values at a per-product level.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
 </pre>
 
 # Introduction # {#introduction}
 
-This document contains the necessary technical foundation for the UN/LOCODE extension to the  [Pathfinder Framework Data
-Model](https://wbcsd.github.io/data-exchange-protocol/v2/#data-model).
+- Logistics emissions account for a significant share of global greenhouse gas emissions.
+- The SFC iLEAP project aims to develop a data exchange standard for logistics emissions data.
+- The standard is based on the Pathfinder Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the Patfhinder Network.
+- By implementing this specification, logistics actors can exchange logistics emission data at the level of individual consignments, at the level of [=TOCs=] and [=HOCs=]
+- The basic level of abstraction is the data exchange between 2 parties, called [=transaction=]
+- Transactions enables [=logistic actors=] and [=shippers=] to exchange logistics emissions data in an interoperable way. 
+- The data exchanged is based on the [[!GLEC]] Framework, the related ISO 14083, and the Data Exchange Project of [=SFC=].
 
-The Pathfinder Framework Data Model allows for the interoperable exchange of product footprint data. This includes the
-product's carbon footprint, represented in the Data Model as a [CarbonFootprint](https://wbcsd.github.io/data-exchange-protocol/v2/#dt-carbonfootprint).
-Each `CarbonFootprint` is scoped by Geography, specified (at maximum resolution) as a ISO 3166-2 country subdivision.
+## Definitions ## {#definitions}
 
-In some cases, the current resolution is insuficient and a more precise, hopefully plant-level, geographic specification
-would be recommended. The UN/LOCODE Data Model Extension aims at providing precisely the required level of granularity,
-using an international coding scheme that is public and can be integrated into solutions.
+: Transport Operation Category (<dfn>TOC</dfn> )
+:: A Tranport Operation Category as defined in the [[!GLEC]] Framework
 
-As its name suggests
-([United Nations Code for Trade and Transport Locations](https://unece.org/trade/uncefact/unlocode)), UN/LOCODE has the
-advantage of being maintained by the United Nations, ensuring maintenance and data quality. A list of all UN/LOCODEs can
-be found [here](https://unece.org/trade/cefact/unlocode-code-list-country-and-territory).
+: Hub Operation Category (<dfn>HOC</dfn> )
+:: A Hub Operation Category as defined in the GLEC Framework
 
-# Data Model Extension # {#data-model-extension}
+: Transport Chain (<dfn>TC</dfn> )
+:: A Transport Chain as defined in the GLEC Framework. This is a collection of Transport Operations and Hub Operations, consisting of 1 or more [=TCEs=]
 
-The UN/LOCODE data model extension adds four properties to the `ProductFootprint` (see [[#example]]):
-: `unlocode`
-: `coordinates`
-: `name`
-: `remarks`
+: Transport Chain Element (<dfn>TCE</dfn> )
+:: A Transport Chain Element as defined in the GLEC Framework.
 
-## Data Type: <dfn element>UNLOCODE</dfn> ## {#un-locode}
+: Transaction
+:: see [[#txns]]
 
-A `UN/LOCODE` is a string and MUST be composed by a 2-character country code and a 3-character location.
+: <dfn>Logistic Actor</dfn>
+:: Any party offering logistics services to [=shippers=]
 
-Country codes are exclusively constituted by capital letters from A to Z.
+: <dfn>Shipper</dfn>
+:: A party that is buying services from 1 or more [=Logistic Actors=]
 
-Locations are primarily composed by capital letters from A to Z but might, when the letter combinations have been
-exhausted, include numerals from 2 to 9.
+: Smart Freight Centre (<dfn>SFC</dfn> )
+:: The Smart Freight Centre Initiative
 
-An `UN/LOCODE` MUST NOT include whitespace.
+: Logistics Service Provider (<dfn>LSP</dfn> )
+:: A [=Logistic Actor=] that is offering logistics services to [=shippers=]
 
-<pre class=example>
-`"ZMCHZ"`
-</pre>
+: <dfn>Carrier</dfn>
+:: A party that is offering transport services
 
-## Data Type: <dfn element>Coordinates</dfn> ## {#coordinates}
+: <dfn>Warehouse Operator</dfn>
+:: A party that is offering warehousing services
 
-`Coordinates` is a string and MUST be composed by a [=latitude=] and a [=longitude=] separated by a whitespace.
+: <dfn>Data Owner</dfn>
+:: See Pathfinder Tech Specs for the definition
 
-: <dfn>latitude</dfn>
-:: Four numerals from 0 to 9 (two for degrees and two for minutes) followed by either the letter `N` (for North) or `S` (for South).
+: <dfn>Data Recipient</dfn>
+:: See Pathfinder Tech Specs for the definition
 
-: <dfn>longitude</dfn>
-:: Five numerals from 0 to 9 (three for degrees and two for minutes) followed by either the letter `W` (for West) or `E` (for East).
+: <dfn>Host System</dfn>
+:: See Pathfinder Tech Specs for the definition. 
+    Here, a host system additionally implements support for 1 or more transactions ([[#txns]]).
 
-<pre class=example>
-`"0917S 03220E"`
-</pre>
+: <dfn>shipment id</dfn>
+:: TODO: define this
 
-## Properties ## {#properties}
+: <dfn>consignment id</dfn>
+:: TODO: define this
 
-<figure id="pf-properties-table" dfn-type="element-attr" dfn-for="ProductFootprint">
+
+Issue: Link to the pathfinder tech specs in this section
+
+Issue: add a pathfinder tech specs normative reference to this document
+
+
+## Out of Scope ## {#out-of-scope}
+
+This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
+
+1. Exact calculation of Logistics-related emissions which is explained in the GLEC Framework and specified in ISO14083
+2. Black Carbon (Accounting)
+3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=]
+
+Issue: The GLEC Framework reference at the end of this file needs an update
+
+
+# Business Use Cases # {#business-cases}
+
+This specification covers the business needs for end-to-end business Carbon Accounting and Emissions Transparency conforming with the [[!GLEC]] Framework and ISO 14083.
+
+For this, this specification integrates information exchange between different kinds of [=logistic actors=] (such as [=LSPs=], [=Carriers=], or [=Warehouse Operators=]) as well as [=shippers=].
+
+The following business use cases are covered by this specification:
+
+: <dfn>Business Case #1</dfn>
+:: A [=shipper=] wants to gain logistics emissions transparency by collection emissions data from [=logistic actors=].
+    This business case is supported through [[#txn1]].
+: Business Case #2
+:: A [=shipper=] wants to give logistics emissions transparency to its customers.
+: <dfn>Business Case #3</dfn>
+:: an LSP wants to collect logistics emissions data from its subcontractors, 
+    for instance carriers and warehouse operators, to perform emissions calculations 
+    at the level of [=TCs=] or at a per-shipment level
+: Business Case #4
+:: a shipper procured low-emission logistics services from an LSP. 
+    The shipper needs reliable data to account for and to integrate the (reduced) carbon emissions into its own calculations
+: Business Case #5
+:: 
+    a [=logistic actor=] is utilizing book and claim schemes to reduce the carbon footprint of its logistics operations. 
+  
+Issue: business case #3 needs further refinement
+
+## Potential additional Business Transactions ## {#txns-appendix}
+
+Issue: this section needs to be first discussed between SFC and SINE 
+
+: Business Case #a1
+:: a Carrier shares activity data with an LSP to enable the LSP to calculate the emissions of a [=TOC=]
+
+: Business Case #a2
+:: a [=Warehouse Operator=] shares activity data with an LSP to enable the LSP to calculate the emissions of a [=HOC=]
+
+
+# Transactions # {#txns}
+
+A <dfn>transaction</dfn> is the process of a data exchange between 2 or more parties as defined in this section.
+
+Each Transaction is scoped by which party (a [=logistic actor=] or [=shipper=]) is interacting with a second party, and which kind of data is exchanged (see [[#data-model]]).
+
+Transactions are executed by [=host systems=] which implement this specification. 
+
+A single transaction, or sometimes the consecutive execution of business transactions, enable 1 or more business cases (see [[#business-cases]]).
+
+## Mapping Transactions to business cases
+
+Issue: write this section :)
+
+
+## Transaction 1: Shipment-level Data Exchange ## {#txn1}
+
+This transaction enables a [=logistic actor=] to exchange logistics emissions data with a [=shipper=] at the level of 1 or more shipments.
+
+For this, a [=logistic actor=] MUST
+
+1. first calculate the emissions of 1 or more transport chains ([=TCs=]), identified by the set of [=shipment ids=], in accordance with the [[!GLEC]] Framework
+1. make the resulting [=LSF=] available to the [=shipper=] through the Pathfinder Network API as a resulting `ProductFootprint`
+
+The [=shipper=] CAN then
+1. access the logistics emissions data for 1 or more shipments from the [=logistic actor=] 
+    through the Action `ListFootprints` of the Pathfinder Network API
+1. or if a [=logistic actor=] supports the Pathfinder Network Events API, a shipper CAN 
+    request the logistics emissions data for 1 or more shipments from the [=logistic actor=] 
+    through the Pathfinder Network Events API.
+
+Note: 
+    the number of shipments which are collated into a single transaction is not limited. 
+    A [=logistic actor=] can decide to offer transparency at the level of a single shipment, 
+    or by grouping more than 1 shipment into a single record exchanged.
+
+Note:
+    this transaction definition assumes that the logistic actor already has access to 
+    TCE-level emissions data to perform the calculation of the logistics emissions for the shipments!
+
+
+Note:
+    this transaction assumes the [=logistic actor=] is able to map a shipment id to 1 or more [=consignment ids=] in case it needs to 
+    fetch TCE-level data from other parties through [[#txn2]].
+
+Note: This exchange enables [=Business Case #1=].
+
+
+### Example ### {#txn1-example}
+
+Issue: create example for this transaction, including data exchanged
+
+
+## Transaction 2: TCE-level Data Exchange ## {#txn2}
+
+This transaction enables a [=logistic actor=] to make logistics emissions data available to a [=shipper=] or another [=logistic actor=] at the level of 1 or more [=TCEs=].
+
+For this, a [=logistic actor=] MUST
+
+1. first calculate the emissions of 1 or more transport [=TCEs=], identified by the set of [=consignment ids=], in accordance with the [[!GLEC]] Framework
+    1. This implies that each [=TCE=] is calculated using the same [=TOC=] (likewise [=HOC=])
+1. make the resulting [=TCEF=] available to the [=shipper=] through the Pathfinder Network API as a `ProductFootprint`
+
+Note: This enables [=Business Case #3=].
+
+Note: this transaction assumes the [=logistic actor=] is able to perform its own emissions calculations at the level of [=TCEs=].
+
+
+# End-to-End Examples # {#examples}
+
+Issue: create an end-to-end example combining Transction 1 and Transaction 2 to show how a shipper can gain transparency at the level of shipments and at the level of TCEs
+
+
+# Data Model # {#data-model}
+
+## Logistics Service Footprint ( <dfn>LSF</dfn> ) ## {#dt-lsf}
+
+- A logistics service footprint ([=LSF=]) is an application of the Pathfinder Data Model `ProductFootprint`
+- A logistics service footprint contains the logistics emissions for 1 or more shipments
+- The emissions are calculated in accordance with the [[!GLEC]] Framework, by
+    1. first applying the GLEC Framework to calculate the emissions for 1 or more [=TCs=]
+    1. adding up the ton kilometres of the shipments which are part of the logistics service footprint, and disclosing this value as the `unitaryProductAmount` of the CarbonFootprint
+    1. adding up the emissions of the [=TCs=] and disclosing this as the value of `pCfExcludingBiogenic` of the CarbonFootprint
+
+Issue: this section needs to additional refinement and specifications
+
+### Additional Attributes ### {#lsf-attributes}
+
+A logistics service footprint ([=LSF=]) contains the following additional attributes (<dfn element>LSFDME</dfn>), stored in the data model extension property `extensions` of the underlying `ProductFootprint`:
+
+<figure id="lsfdme-properties-table" dfn-type="element-attr" dfn-for="LFSDME">
   <table class="data">
     <thead>
       <tr>
@@ -79,111 +227,119 @@ An `UN/LOCODE` MUST NOT include whitespace.
         <th>Specification
     <tbody>
       <tr>
-        <td><dfn>unlocode</dfn>
-        <td>String
+        <td><dfn>shipmentIds</dfn>
+        <td>String[]
         <td>M
-        <td>See [[#un-locode]] and section 1.2 of the [[!CONTENTS-AND-LAYOUT-OF-UNLOCODE]]
+        <td>The non-empty set of [=shipment ids=] used for the calculation of the [=LSF=]
       <tr>
-        <td><dfn>coordinates</dfn>
+        <td><dfn>consignmentIds</dfn>
+        <td>String[]
+        <td>M
+        <td>The non-empty set of [=consignment ids=] used for the calculation of the [=LSF=]
+      <tr>
+        <td><dfn>tCeIds</dfn>
+        <td>String[]
+        <td>M
+        <td>The non-empty set of ids of [=TCEs=] used for the calculation of the [=LSF=]
+      <tr>
+        <td><dfn>modesOfTransport</dfn>
+        <td>String[]
+        <td>M
+        <td>
+            The non-empty set of modes of transport referenced by the [=TCEs=] used for the calculation of the [=LSF=].
+
+            Each entry of this string array MUST be one of the following values:
+
+            - `road`: for transport mode `road`
+            - `rail`: for transport mode `rail`
+            - `air`: for transport mode `air`
+            - `sea`: for transport mode `sea`
+            - `inland waterway`: for transport mode `inland waterway`
+            - `hub`: for hub operations
+      <tr>
+        <td><dfn>loadFactor</dfn>
+        <td>Number
+        <td>M
+        <td>
+            Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
+
+            The value of this property must be between `0` (excluding) and `1` (including).
+
+            Issue: the calculation method must be defined
+      <tr>
+        <td><dfn>emptyDistanceFactor</dfn>
+        <td>Number
+        <td>M
+        <td>
+            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
+
+            The value of this property must be between `0` (excluding) and `1` (excluding).
+
+            Issue: the calculation method must be defined
+      <tr>
+        <td><dfn>temperatureControl</dfn>
         <td>String
         <td>O
-        <td>Coordinates are optional but SHOULD be present when they are defined for the UN/LOCODE. See [[#coordinates]]
-        and section 1.10 of the [[!CONTENTS-AND-LAYOUT-OF-UNLOCODE]]
+        <td>
+            Status of freight being non-ambient.
+
+            If defined, the value of this property MUST be set to one of the following values:
+            - `ambient`: for non-temperature controlled freight
+            - `frozen`: for frozen freight
+            - `refrigerated`: for refrigerated freight
+            - `high temp`: for high temperature freight
+
+            Issue: would not it make more sense to define the temperature range instead of this status?
 
       <tr>
-        <td><dfn>name</dfn>
-        <td>String
+        <td><dfn>glecDataQualityIndex</dfn>
+        <td>Number
         <td>O
-        <td>Name of the location as defined for the UN/LOCODE. See section 1.3 of the
-        [[!CONTENTS-AND-LAYOUT-OF-UNLOCODE]]
+        <td>
+            The data quality index as defined in the [[!GLEC]] Framework
 
-      <tr>
-        <td><dfn>remarks</dfn>
-        <td>String
-        <td>O
-        <td>Remarks about the location, either defined for the UN/LOCODE (see section 1.11 of the
-        [[!CONTENTS-AND-LAYOUT-OF-UNLOCODE]]) or decided by the data owner.
+            The value of this property must be between `0` (including) and `4` (including).
+
+            Issue: the exact calculation rules must be defined
+
 
     </table>
-    <figcaption>Data Model Extension properties</figcaption>
+    <figcaption>LSFDME properties</figcaption>  
 </figure>
 
 
-# Example `ProductFootprint` with extension # {#example}
+### Example ### {#lsf-example}
 
-<pre highlight='json'>
-        {
-            "id": "d9be4477-e351-45b3-acd9-e1da05e6f633",
-            "specVersion": "2.0.0",
-            "version": 0,
-            "created": "2022-05-22T21:47:32Z",
-            "companyName": "My Corp",
-            "companyIds": [
-                "urn:uuid:51131FB5-42A2-4267-A402-0ECFEFAD1619",
-                "urn:epc:id:sgln:4063973.00000.8"
-            ],
-            "productDescription": "Cote'd Or Ethanol",
-            "productIds": [
-                "urn:gtin:4712345060507"
-            ],
-            "productCategoryCpc": "3342",
-            "productNameCompany": "Green Ethanol",
-            "comment": "",
-            "pcf": {
-                "declaredUnit": "liter",
-                "unitaryProductAmount": "12.0",
-                "fossilGhgEmissions": "0.123",
-                "biogenicEmissions": {
-                    "landUseEmissions": "0.001",
-                    "otherEmissions": "0"
-                },
-                "biogenicCarbonContent": "0.0",
-                "reportingPeriodStart": "2021-01-01T00:00:00Z",
-                "reportingPeriodEnd": "2022-01-01T00:00:00Z",
-                "geographyCountry": "ZM",
-                "primaryDataShare": 56.12,
-                "emissionFactorSources": [
-                    {
-                        "name": "Ecoinvent",
-                        "version":
-                        "1.2.3"
-                    }
-                ],
-                "boundaryProcessesDescription": "End-of-life included",
-                "crossSectoralStandardsUsed": [
-                    "GHG Protocol Product standard"
-                ],
-                "productOrSectorSpecificRules": [
-                    {
-                        "operator": "EPD International",
-                        "ruleNames": [
-                            "ABC 2021"
-                        ]
-                    }
-                ]
-            },
-            "extensions": [
-                {
-                    "specVersion": "2.0.0",
-                    "dataSchema": "https://github.com/sine-fdn/locode-extension/blob/main/locode_schema.json",
-                    "data": {
-                      "unlocode": "ZMCHZ",
-                      "coordinates": "0917S 03220E",
-                      "name": "Chozi"
-                    }
-                }
-            ]
-        }
-        </pre>
+Issue: write this section
+
+
+## TCE Footprint ( <dfn>TCEF</dfn> ) ## {#dt-tcef}
+
+- A [=TCE=] Fooprint ([=TCEF=]) is an application of the Pathfinder Network Data Model `ProductFootprint`
+- A TCEF contains the logistics emissions for 1 or more consignments identified by a set of [=consignment ids=]
+- A TCEF is calculated in accordance with the [[!GLEC]] Framework, by
+    1. first applying to GLEC Framework to calculate the TCEs related to the set of [=consignment ids=]
+    1. adding up the emissions of the TCEs and disclosing this as the value of `pCfExcludingBiogenic` of the CarbonFootprint
+    1. adding up the 
+
+### Additional Attributes ### {#tcef-attributes}
+
+Issue: write this section
+
+### Example ### {#tcef-example}
+
+Issue: write example TCEF record
+
+
 
 <pre class=biblio>
  {
-    "CONTENTS-AND-LAYOUT-OF-UNLOCODE": {
+    "GLEC": {
         "authors": [],
-        "href": "https://service.unece.org/trade/locode/Service/LocodeColumn.htm#LOCODE",
-        "title": "Contents and Layout of UN/LOCODE: Codes and Abbreviations Used",
+        "href": "https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf",
+        "title": "GLEC Framework",
         "status": "LS",
-        "publisher": "United Nations"
+        "publisher": "Smart Freight Centre (SFC)"
     }
   }
 </pre>
