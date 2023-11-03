@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: SFC Data Model Technical Specifications (Version 0.1.0-20231030)
+Title: SFC iLEAP Technical Specifications (Version 0.1.0-20231103)
 Shortname: sfc-ileap-tech-specs
 Level: 1
 Status: LD
@@ -14,15 +14,26 @@ Boilerplate: omit conformance, omit copyright
 
 # Introduction # {#introduction}
 
+Issue: this section needs rewording
+
 - Logistics emissions account for a significant share of global greenhouse gas emissions.
-- The SFC iLEAP project aims to develop a data exchange standard for logistics emissions data.
-- The standard is based on the Pathfinder Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the Patfhinder Network.
-- By implementing this specification, logistics actors can exchange logistics emission data at the level of individual consignments, at the level of [=TOCs=] and [=HOCs=]
-- The basic level of abstraction is the data exchange between 2 parties, called [=transaction=]
-- Transactions enables [=logistic actors=] and [=shippers=] to exchange logistics emissions data in an interoperable way. 
+- Bhis document specifies a data model and transactions necessary for the interoperable exchange of logistics emissions data based.
+- The data model [[#data-model]] and the foundational data exchange transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
+- By implementing this specification, logistics actors can exchange logistics emission data at the level of individual consignments, at the level of [=TOCs=] and [=HOCs=]. 
 - The data exchanged is based on the [[!GLEC]] Framework, the related ISO 14083, and the Data Exchange Project of [=SFC=].
 
-## Definitions ## {#definitions}
+
+## Out of Scope ## {#out-of-scope}
+
+This specifcation shall does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
+
+1. Exact calculation of Logistics-related emissions which is explained in the GLEC Framework and specified in ISO14083
+2. Black Carbon (Accounting)
+3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=]
+
+Issue: The GLEC Framework reference at the end of this file needs an update
+
+# Definitions # {#definitions}
 
 : Transport Operation Category (<dfn>TOC</dfn> )
 :: A Tranport Operation Category as defined in the [[!GLEC]] Framework
@@ -73,55 +84,64 @@ Boilerplate: omit conformance, omit copyright
 : <dfn>consignment id</dfn>
 :: TODO: define this
 
+: <dfn>Tool Provider</dfn>
+:: TODO: define this
+
 
 Issue: Link to the pathfinder tech specs in this section
 
 Issue: add a pathfinder tech specs normative reference to this document
 
 
-## Out of Scope ## {#out-of-scope}
-
-This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
-
-1. Exact calculation of Logistics-related emissions which is explained in the GLEC Framework and specified in ISO14083
-2. Black Carbon (Accounting)
-3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=]
-
-Issue: The GLEC Framework reference at the end of this file needs an update
-
-
 # Business Use Cases # {#business-cases}
 
-This specification covers the business needs for end-to-end business Carbon Accounting and Emissions Transparency conforming with the [[!GLEC]] Framework and ISO 14083.
+Note: Non-normative section
 
-For this, this specification integrates information exchange between different kinds of [=logistic actors=] (such as [=LSPs=], [=Carriers=], or [=Warehouse Operators=]) as well as [=shippers=].
+This specification shall serve the general need of businesses for end-to-end Carbon Accounting and Emissions Transparency, conforming with the [[!GLEC]] Framework and ISO 14083.
 
-The following business use cases are covered by this specification:
+Given the nature of the logistics industry, and in order to reduce costs overall, 
+logistics emissions transparency is only possible if all the parties involved, irrespective of their role in the supply chain, 
+are able to exchange emissions data in a truly interoperable way.
+
+To achieve this, this specification is guided by a set of defining business cases. 
+They are the foundation to define a set of basic transactions which allow for the **decentral** data exchange among peers, for instance different kinds of [=logistic actors=]
+(such as [=LSPs=], [=Carriers=], or [=Warehouse Operators=]) or the exchange of data between a [=logistic actor=] and a [=shipper=].
+
+The following business cases shall be supported by this specification:
 
 : <dfn>Business Case #1</dfn>
-:: A [=shipper=] wants to gain logistics emissions transparency by collection emissions data from [=logistic actors=].
-    This business case is supported through [[#txn1]].
-: Business Case #2
-:: A [=shipper=] wants to give logistics emissions transparency to its customers.
-: <dfn>Business Case #3</dfn>
-:: an LSP wants to collect logistics emissions data from its subcontractors, 
-    for instance carriers and warehouse operators, to perform emissions calculations 
-    at the level of [=TCs=] or at a per-shipment level
-: Business Case #4
-:: a shipper procured low-emission logistics services from an LSP. 
-    The shipper needs reliable data to account for and to integrate the (reduced) carbon emissions into its own calculations
-: Business Case #5
 :: 
-    a [=logistic actor=] is utilizing book and claim schemes to reduce the carbon footprint of its logistics operations. 
-  
-Issue: business case #3 needs further refinement
+    A [=shipper=] wants to gain logistics emissions transparency by collection emissions data from [=logistic actors=].
+    To achieve this business case, the [=shipper=] requests per-shipment logistics emission data as supported through [[#txn1]].
+
+: Business Case #2
+:: 
+    A [=shipper=] wants to give logistics emissions transparency to its customers by disclosing logistics emissions together with a [=PCF=].
+    This is enabled through the usage of the Pathfinder Technical Specification and disclosing the data using the SFC iLEAP Data Model ([[#data-model]]).
+
+: <dfn>Business Case #3</dfn>
+:: 
+    An [=LSP=], upon being asked by a shipper to provide per-shipment logistics emission data, needs to collect logistics emissions data from its contractors. 
+    To achieve this, an [=LSP=] performs per-TCE transactions ([[#txn2]]) with its contractors, aggreates it accordance with the [[!GLEC]] Framework and ISO 14083, and then 
+    makes the resulting logistics emissions data available to the [=shipper=] through the Pathfinder API.
+
+: Business Case #4
+:: 
+    A [=shipper=] wants to quantify the avoided emissions stemming from operational changes in their transport network. 
+    For this, the [=shipper=] procures the operational changes and compares the resulting logistics emissions with the emissions without the intervention.
+    This is enabled through [[#txn1]].
+
+
+Issue: business case #4 needs rewording
+    
+
 
 ## Potential additional Business Transactions ## {#txns-appendix}
 
 Issue: this section needs to be first discussed between SFC and SINE 
 
 : Business Case #a1
-:: a Carrier shares activity data with an LSP to enable the LSP to calculate the emissions of a [=TOC=]
+:: a Carrier shares transport activity data (such as the `ton kilometers` related to a consignment) with an [=LSP=] to enable e.g. an LSP or a [=Tool Provider=] to calculate the related emissions
 
 : Business Case #a2
 :: a [=Warehouse Operator=] shares activity data with an LSP to enable the LSP to calculate the emissions of a [=HOC=]
@@ -144,28 +164,26 @@ Issue: write this section :)
 
 ## Transaction 1: Shipment-level Data Exchange ## {#txn1}
 
-This transaction enables a [=logistic actor=] to exchange logistics emissions data with a [=shipper=] at the level of 1 or more shipments.
+
+Issue: remove the "or more shipments" from this transaction.
+
+This transaction enables a [=logistic actor=] to exchange logistics emissions data with a [=shipper=] at the level of a single shipment, identified by a [=shipment id=].
 
 For this, a [=logistic actor=] MUST
 
-1. first calculate the emissions of 1 or more transport chains ([=TCs=]), identified by the set of [=shipment ids=], in accordance with the [[!GLEC]] Framework
+1. first calculate the emissions at the transport chain-level ([=TC=]), identified by the [=shipment id=], in accordance with the [[!GLEC]] Framework and ISO 14083
 1. make the resulting [=LSF=] available to the [=shipper=] through the Pathfinder Network API as a resulting `ProductFootprint`
 
 The [=shipper=] CAN then
-1. access the logistics emissions data for 1 or more shipments from the [=logistic actor=] 
+1. access the logistics emissions data of the shipment from the [=logistic actor=] 
     through the Action `ListFootprints` of the Pathfinder Network API
 1. or if a [=logistic actor=] supports the Pathfinder Network Events API, a shipper CAN 
-    request the logistics emissions data for 1 or more shipments from the [=logistic actor=] 
+    request the logistics emissions data for the shipments from the [=logistic actor=] 
     through the Pathfinder Network Events API.
-
-Note: 
-    the number of shipments which are collated into a single transaction is not limited. 
-    A [=logistic actor=] can decide to offer transparency at the level of a single shipment, 
-    or by grouping more than 1 shipment into a single record exchanged.
 
 Note:
     this transaction definition assumes that the logistic actor already has access to 
-    TCE-level emissions data to perform the calculation of the logistics emissions for the shipments!
+    TCE-level emissions data (see [[#txn2]]) to perform the calculation of the logistics emissions for the shipments!
 
 
 Note:
@@ -186,8 +204,9 @@ This transaction enables a [=logistic actor=] to make logistics emissions data a
 
 For this, a [=logistic actor=] MUST
 
-1. first calculate the emissions of 1 or more transport [=TCEs=], identified by the set of [=consignment ids=], in accordance with the [[!GLEC]] Framework
-    1. This implies that each [=TCE=] is calculated using the same [=TOC=] (likewise [=HOC=])
+1. first calculate the emissions of the [=TCE=], identified by the [=shipment id=] and the [=consignment id=], in accordance with the [[!GLEC]] Framework. This implies
+    1. that the [=logistic actor=] has previously calculated the [=TOC=] (or likewise [=HOC=]),
+    2. that each [=TCE=] is calculated using the same [=TOC=] (likewise [=HOC=])
 1. make the resulting [=TCEF=] available to the [=shipper=] through the Pathfinder Network API as a `ProductFootprint`
 
 Note: This enables [=Business Case #3=].
@@ -204,14 +223,90 @@ Issue: create an end-to-end example combining Transction 1 and Transaction 2 to 
 
 ## Logistics Service Footprint ( <dfn>LSF</dfn> ) ## {#dt-lsf}
 
-- A logistics service footprint ([=LSF=]) is an application of the Pathfinder Data Model `ProductFootprint`
-- A logistics service footprint contains the logistics emissions for 1 or more shipments
-- The emissions are calculated in accordance with the [[!GLEC]] Framework, by
-    1. first applying the GLEC Framework to calculate the emissions for 1 or more [=TCs=]
-    1. adding up the ton kilometres of the shipments which are part of the logistics service footprint, and disclosing this value as the `unitaryProductAmount` of the CarbonFootprint
-    1. adding up the emissions of the [=TCs=] and disclosing this as the value of `pCfExcludingBiogenic` of the CarbonFootprint
+- A logistics service footprint ([=LSF=]) represents the logistics emissions at the level of 
+    a Transport Chain ([=TC=]) of exactly 1 shipment, identified by a [=shipment id=]
+- As a data model, it is an application of the Pathfinder Data Model `ProductFootprint`
+- The emissions disclosed MUST be calculated in accordance with the [[!GLEC]] Framework, by
+    1. first applying the GLEC Framework to calculate the emissions of the [=TCs=] through its related [=TCEs=]
+    1. adding up the ton kilometres of the logistics service footprint, and disclosing this value as the `unitaryProductAmount` of the CarbonFootprint
+    1. disclosing the [=TC=]'s emissions as the value of `pCfExcludingBiogenic` of the `CarbonFootprint`
 
 Issue: this section needs to additional refinement and specifications
+
+### Mapping to Pathfinder Data Model ### {#lsf-mapping}
+
+
+<figure id="lsf-pf-properties-table" dfn-type="element-attr" dfn-for="ProductFootprint">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+    <tbody>
+      <tr>
+        <td>productIds
+        <td>String[]
+        <td>M
+        <td>
+              Must contain the shipment ID `$S-ID$`, encoded as `urn:pathfinder:product:customcode:vendor-assigned:$S-ID$`
+
+              Example: shipment ID is `321`, then the value of this property MUST be `urn:pathfinder:product:customcode:vendor-assigned:321`
+      <tr>
+        <td>productCategoryCpc
+        <td>String
+        <td>M
+        <td>
+              Issue: TBD
+
+    </table>
+    <figcaption>LSF Mapping to the Pathfinder Data Model</figcaption>  
+</figure>
+
+<figure id="lsf-cf-properties-table" dfn-type="element-attr" dfn-for="CarbonFootprint">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+    <tbody>
+      <tr>
+        <td>declaredUnit
+        <td>String
+        <td>M
+        <td>
+              Must be set to `ton kilometer` conforming with the Pathfinder Tech Specs.
+      <tr>
+        <td>unitaryProductAmount
+        <td>String
+        <td>M
+        <td>
+              The ton kilometers related to the shipment.
+
+      <tr>
+        <td>unitaryProductAmount
+        <td>String
+        <td>M
+        <td>
+              The ton kilometers related to the shipment.
+
+      <tr>
+        <td>pCfExcludingBiogenic
+        <td>String
+        <td>M
+        <td>
+              The logistics emissions of the shipment, excluding biogenic emissions, as calculated 
+              in accordance with the [[!GLEC]] Framework and ISO 14083, with unit ` kg of CO2 equivalent per declared unit (kgCO2e / declaredUnit)`, expressed as a decimal string.      
+
+              
+    </table>
+    <figcaption>LSF Mapping to the Pathfinder Data Model</figcaption>  
+</figure>
+
+
 
 ### Additional Attributes ### {#lsf-attributes}
 
@@ -227,15 +322,20 @@ A logistics service footprint ([=LSF=]) contains the following additional attrib
         <th>Specification
     <tbody>
       <tr>
-        <td><dfn>shipmentIds</dfn>
-        <td>String[]
+        <td><dfn>mass</dfn>
+        <td>String
         <td>M
-        <td>The non-empty set of [=shipment ids=] used for the calculation of the [=LSF=]
+        <td>The mass of the good (SI Unit `kilograms`)
+      <tr>
+        <td><dfn>shipmentId</dfn>
+        <td>String
+        <td>M
+        <td>The [=shipment id=]
       <tr>
         <td><dfn>consignmentIds</dfn>
         <td>String[]
         <td>M
-        <td>The non-empty set of [=consignment ids=] used for the calculation of the [=LSF=]
+        <td>The non-empty set of [=consignment ids=] relating to this shipment.
       <tr>
         <td><dfn>tCeIds</dfn>
         <td>String[]
