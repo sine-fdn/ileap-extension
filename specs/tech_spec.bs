@@ -17,7 +17,7 @@ Boilerplate: omit conformance, omit copyright
 Issue: this section needs rewording
 
 - Logistics emissions account for a significant share of global greenhouse gas emissions.
-- Bhis document specifies a data model and transactions necessary for the interoperable exchange of logistics emissions data based.
+- This document specifies a data model and transactions necessary for the interoperable exchange of primary logistics emissions data
 - The data model [[#data-model]] and the foundational data exchange transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
 - By implementing this specification, logistics actors can exchange logistics emission data at the level of individual consignments, at the level of [=TOCs=] and [=HOCs=]. 
 - The data exchanged is based on the [[!GLEC]] Framework, the related ISO 14083, and the Data Exchange Project of [=SFC=].
@@ -86,6 +86,9 @@ Issue: The GLEC Framework reference at the end of this file needs an update
 
 : <dfn>Tool Provider</dfn>
 :: TODO: define this
+
+: <dfn>Transport Activity Distance</dfn>
+:: see ISO 14083
 
 
 Issue: Link to the pathfinder tech specs in this section
@@ -203,7 +206,16 @@ For this, a [=logistic actor=] MUST
 
 Note: This enables [=Business Case #3=].
 
-Note: this transaction assumes the [=logistic actor=] is able to perform its own emissions calculations at the level of [=TCEs=].
+
+## Transaction 3: Activity Data Exchange ## {#txn3}
+
+Note: this transaction needs to be discussed during the SFC iLEAP business workshops
+
+This transaction enables a [=logistic actor=] to exchange [=Logistics Activity Data=] with a another company.
+
+<dfn>Logistics Activity Data</dfn> is 
+1. scoped by a consignment, and
+2. contains the [=Transport Activity Distance=] of the consignment
 
 
 # End-to-End Examples # {#examples}
@@ -488,6 +500,8 @@ Issue: complete this section
 
 ## Hub Operation Category ( <dfn element>HOC</dfn> ) ## {#dt-hoc}
 
+Advisement: This section and data model requires significant input from the SFC Community
+
 The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=TCE=] through the <{TCE/hocId}> property.
 
 [=HOCs=] are the building blocks for the calculation of a [=TCE=].
@@ -500,9 +514,9 @@ Issue: TODO
 
 #### CarbonFootprint properties mapping #### {#hoc-cf-mapping}
 
-### Additional Attributes ### {#toc-add-attributes}
+### Additional Attributes ### {#hoc-add-attributes}
 
-<figure id="toc-properties-table" dfn-type="element-attr" dfn-for="HOC">
+<figure id="hoc-properties-table" dfn-type="element-attr" dfn-for="HOC">
   <table class="data">
     <thead>
       <tr>
