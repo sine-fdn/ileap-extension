@@ -1,0 +1,1119 @@
+<pre class='metadata'>
+Title: SFC iLEAP Technical Specifications (Version 0.1.0-20231103)
+Shortname: sfc-ileap-tech-specs
+Level: 1
+Status: LD
+URL: https://sine-fdn.github.io/ileap-extension/
+Editor:
+Mailing List: public-dev@pathfinder.sine.dev
+Repository: sine-fdn/ileap-extension
+Abstract: This document specifies the data exchange profile for the SFC iLEAP project which is based on the Pathfinder Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the Patfhinder Network. By implementing this specification, logistics actors can exchange logistics emission data. Likewise, shippers can request logistics emission data from their logistics service providers while also integrating the emission values at a per-product level.
+Markup Shorthands: markdown yes
+Boilerplate: omit conformance, omit copyright
+</pre>
+
+# Introduction # {#introduction}
+
+Issue: this section needs rewording
+
+- Logistics emissions account for a significant share of global greenhouse gas emissions.
+- This document specifies a data model and transactions necessary for the interoperable exchange of primary logistics emissions data
+- The data model [[#data-model]] and the foundational data exchange transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
+- By implementing this specification, logistics actors can exchange logistics emission data at the level of individual consignments, at the level of [=TOCs=] and [=HOCs=]. 
+- The data exchanged is based on the [[!GLEC]] Framework, the related [[!ISO14083|ISO 14083]], and the Data Exchange Project of [=SFC=].
+
+
+Issue: Check spelling and definition of units (i.e. is it `kilometers` or `kilometre` etc.)!
+
+## Out of Scope ## {#out-of-scope}
+
+This specifcation shall does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
+
+1. Exact calculation of Logistics-related emissions which is explained in the GLEC Framework and specified in [[!ISO14083|ISO 14083]]
+2. Black Carbon (Accounting)
+3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=]
+
+Issue: The GLEC Framework reference at the end of this file needs an update
+
+# Definitions # {#definitions}
+
+: Transport Operation Category (<dfn>TOC</dfn> )
+:: A Tranport Operation Category as defined in the [[!GLEC]] Framework
+
+: Hub Operation Category (<dfn>HOC</dfn> )
+:: A Hub Operation Category as defined in the GLEC Framework
+
+: Transport Chain (<dfn>TC</dfn> )
+:: A Transport Chain as defined in the GLEC Framework. This is a collection of Transport Operations and Hub Operations, consisting of 1 or more [=TCEs=]
+
+: Transport Chain Element (<dfn>TCE</dfn> )
+:: A Transport Chain Element as defined in the GLEC Framework.
+
+: Transaction
+:: see [[#txns]]
+
+: <dfn>Logistic Actor</dfn>
+:: Any party offering logistics services to [=shippers=]
+
+: <dfn>Shipper</dfn>
+:: A party that is buying services from 1 or more [=Logistic Actors=]
+
+: Smart Freight Centre (<dfn>SFC</dfn> )
+:: The Smart Freight Centre Initiative
+
+: Logistics Service Provider (<dfn>LSP</dfn> )
+:: A [=Logistic Actor=] that is offering logistics services to [=shippers=]
+
+: <dfn>Carrier</dfn>
+:: A party that is offering transport services
+
+: <dfn>Warehouse Operator</dfn>
+:: A party that is offering warehousing services
+
+: <dfn>Data Owner</dfn>
+:: See Pathfinder Tech Specs for the definition
+
+: <dfn>Data Recipient</dfn>
+:: See Pathfinder Tech Specs for the definition
+
+: <dfn>Host System</dfn>
+:: See Pathfinder Tech Specs for the definition. 
+    Here, a host system additionally implements support for 1 or more transactions ([[#txns]]).
+
+: <dfn>shipment id</dfn>
+:: Issue: needs definition
+
+ : <dfn>consignment id</dfn>
+:: Issue: needs definition
+
+: <dfn>Tool Provider</dfn>
+:: Issue: needs definition
+
+: <dfn>Transport Activity Distance</dfn>
+:: see [[!ISO14083]]
+
+
+Issue: Link to the pathfinder tech specs in this section
+
+Issue: add a pathfinder tech specs normative reference to this document
+
+
+# Business Cases # {#business-cases}
+
+Note: Non-normative section
+
+This specification shall serve the general need of businesses for end-to-end Carbon Accounting and Emissions Transparency, conforming with the [[!GLEC]] Framework and ISO 14083.
+
+Given the nature of the logistics industry, and in order to reduce costs overall, 
+logistics emissions transparency is only possible if all the parties involved
+are able to exchange emissions data in a interoperable way.
+
+To achieve this, this specification is guided by a set of defining business cases. 
+They are the foundation to define a set of basic transactions which allow for 
+the **decentral** data exchange among peers, for instance different kinds of [=logistic actors=]
+(such as [=LSPs=], [=Carriers=], or [=Warehouse Operators=]) or the exchange of data between a [=logistic actor=] and a [=shipper=].
+
+The following business cases shall be supported by this specification:
+
+: <dfn>Business Case #1</dfn>
+:: 
+    A [=shipper=] wants to gain logistics emissions transparency by collection
+    emissions data from [=logistic actors=]. To achieve this business case, 
+    the [=shipper=] requests per-shipment logistics emission data as supported
+    through [[#txn1]].
+
+    The logistics actors make so-called emission values at [=TCE=]-level
+    available to the shipper. The shipper can then reconstruct the transport
+    chain ([=TC=]) and calculate the logistics emissions of the shipment in
+    accordance with the [[!GLEC]] Framework and ISO 14083.
+
+: Business Case #2
+:: 
+    A [=shipper=] wants to give logistics emissions transparency to its customers by disclosing logistics emissions together with a [=PCF=].
+    This is enabled through the usage of the Pathfinder Technical Specification and disclosing the data using the SFC iLEAP Data Model ([[#data-model]]).
+
+: <dfn>Business Case #3</dfn>
+:: 
+    An [=LSP=] wants to collect logistics intensity information from its 
+    contractors so that it can calculate emissions at so-called 
+    [=TCE=]-level. 
+    For this, the LSP performs transactions ([[#txn2]]) to collect emission 
+    intensities ([=HOCs=] or [=TOCs=]) from its contractors.
+
+
+: Business Case #4
+:: 
+    A [=shipper=] wants to quantify the avoided emissions stemming from 
+    operational changes in their transport network. For this, the [=shipper=]
+    procures the operational changes and compares the resulting logistics
+    emissions with the emissions without the intervention.
+    This is enabled through [[#txn1]].
+
+
+## Potential additional Business Transactions ## {#txns-appendix}
+
+Issue: this section needs to be first discussed between SFC and SINE 
+
+: Business Case #a1
+:: a Carrier shares transport activity data (such as the `ton kilometers` related to a consignment) with an [=LSP=] to enable e.g. an LSP or a [=Tool Provider=] to calculate the related emissions
+
+: Business Case #a2
+:: a [=Warehouse Operator=] shares activity data with an LSP to enable the LSP to calculate the emissions of a [=HOC=]
+
+
+# Transactions # {#txns}
+
+A <dfn>transaction</dfn> is the process of a data exchange between 2 or more parties as defined in this section.
+
+Each Transaction is scoped by which party (a [=logistic actor=] or [=shipper=]) is interacting with a second party, and which kind of data is exchanged (see [[#data-model]]).
+
+Transactions are executed by [=host systems=] which implement this specification. 
+
+A single transaction, or sometimes the consecutive execution of business transactions, enable 1 or more business cases (see [[#business-cases]]).
+
+
+## Transaction 1: TCE Data Exchange ## {#txn1}
+
+
+Issue: remove the "or more shipments" from this transaction.
+
+This transaction enables a [=logistic actor=] to exchange logistics emissions data with a [=shipper=] at the level of a single shipment, identified by a [=shipment id=].
+
+For this, a [=logistic actor=] MUST
+
+1. first calculate the emissions of 1 or more transport operations ([=TCE=]) identified by the [=shipment id=] in accordance with the [[!GLEC]] Framework and ISO 14083, and then
+1. make the resulting [=TCEs=] available to the [=shipper=] through the Pathfinder Network API using the [=LSF=] data model (see [[#dt-lsf]]).
+
+The [=shipper=] CAN then
+1. access the logistics emissions data of the shipment from the [=logistic actor=] 
+    through the Action `ListFootprints` of the Pathfinder Network API
+1. or if a [=logistic actor=] supports the Pathfinder Network Events API, a shipper CAN 
+    request the logistics emissions data for the shipments from the [=logistic actor=] 
+    through the Pathfinder Network Events API.
+
+
+### Example ### {#txn1-example}
+
+Issue: create example for this transaction, including data exchanged
+
+
+## Transaction 2: TOC and HOC Data Exchange ## {#txn2}
+
+This transaction enables a [=logistic actor=] to make logistics emissions intensity data at the level of a [=TOC=] or [=HOC=] available to a another company.
+
+For this, a [=logistic actor=] MUST
+
+1. first calculate the emissions intensity of the [=HOC=] or [=TOC=] in accordance with the [[!GLEC]] Framework
+1. make the resulting category emission intensity available through the Pathfinder Network API as a <{TOC}> or <{HOC}> (see [[#dt-toc]] and [[#dt-hoc]]).
+
+Note: This enables [=Business Case #3=].
+
+
+## Transaction 3: Activity Data Exchange ## {#txn3}
+
+Note: this transaction needs to be discussed during the SFC iLEAP business workshops
+
+This transaction enables a [=logistic actor=] to exchange [=Logistics Activity Data=] with a another company.
+
+
+# End-to-End Examples # {#examples}
+
+Issue: create an end-to-end example combining Transction 1 and Transaction 2 to show how a shipper can gain transparency at the level of shipments and at the level of TCEs
+
+
+# Data Model # {#data-model}
+
+## Logistics Service Footprint ( <def>LSF</def> ) ## {#dt-lsf}
+
+- A logistics service footprint ([=LSF=]) contains [=TCE=]-level logistics emissions 
+    relating to a single shipment identified by a [=shipment id=]
+- The emissions disclosed MUST be calculated in accordance with the [[!GLEC]] Framework, by
+    1. first applying the GLEC Framework to calculate the emissions of the [=TCEs=]
+    1. then disclosing the footprint as specified below
+
+Issue: this section needs additional refinement and specifications
+
+### Additional Attributes ### {#lsf-attributes}
+
+A logistics service footprint ([=LSF=]) contains the following additional attributes (<dfn element>LSF</dfn>), stored in the data model extension property `extensions` of the underlying `ProductFootprint`:
+
+<figure id="lsf-properties-table" dfn-type="element-attr" dfn-for="LSF">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Property
+        <th>Type
+        <th>Req
+        <th>Specification
+    <tbody>
+      <tr>
+        <td><dfn>mass</dfn>
+        <td>String
+        <td>M
+        <td>The mass of the good (SI Unit `kilograms`)
+      <tr>
+        <td><dfn>shipmentId</dfn>
+        <td>String
+        <td>M
+        <td>The [=shipment id=]
+      <tr>
+        <td><dfn>tces</dfn>
+        <td><{TCE}>[]
+        <td>M
+        <td>The non-empty array of [=TCEs=] relating to this shipment.
+
+    </table>
+    <figcaption>Logistics Service Footprint (LSF) properties</figcaption>  
+</figure>
+
+
+### Mapping to Pathfinder Data Model ### {#lsf-mapping}
+
+#### ProductFootprint property mapping #### {#lsf-pf-mapping}
+
+<figure id="lsf-pf-properties-table" dfn-type="element-attr" dfn-for="ProductFootprint">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+    <tbody>
+      <tr>
+        <td>productIds
+        <td>String[]
+        <td>M
+        <td>
+              Must contain the shipment ID `$S-ID$`, encoded as `urn:pathfinder:product:customcode:vendor-assigned:$S-ID$`
+
+              Example: shipment ID is `321`, then the value of this property MUST be `urn:pathfinder:product:customcode:vendor-assigned:321`
+      <tr>
+        <td>productCategoryCpc
+        <td>String
+        <td>M
+        <td>
+              Issue: TBD
+
+    </table>
+    <figcaption>Mapping of the GLEC Framework-related data to the Pathfinder Data Model</figcaption>  
+</figure>
+
+#### CarbonFootprint properties mapping #### {#lsf-cf-mapping}
+
+<figure id="lsf-cf-properties-table" dfn-type="element-attr" dfn-for="CarbonFootprint">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+    <tbody>
+      <tr>
+        <td>declaredUnit
+        <td>String
+        <td>M
+        <td>
+              Must be set to `ton kilometer` conforming with the Pathfinder Tech Specs.
+      <tr>
+        <td>unitaryProductAmount
+        <td>String
+        <td>M
+        <td>
+              The ton kilometers related to the shipment.
+
+      <tr>
+        <td>unitaryProductAmount
+        <td>String
+        <td>M
+        <td>
+              The ton kilometers related to the shipment.
+
+      <tr>
+        <td>pCfExcludingBiogenic
+        <td>String
+        <td>M
+        <td>
+              The logistics emissions of the shipment, excluding biogenic emissions, as calculated 
+              in accordance with the [[!GLEC]] Framework and ISO 14083, with unit ` kg of CO2 equivalent per declared unit (kgCO2e / declaredUnit)`, expressed as a decimal string.      
+
+              
+  </table>
+  <figcaption>Mapping of GLEC Framework-related data to the Pathfinder Data Model</figcaption>  
+</figure>
+
+
+## Transport Chain Element ( <dfn element>TCE</dfn> ) ## {#dt-tce}
+
+The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] through the <{LSF/tces}> property.
+
+[=TCEs=] are the building blocks for a Transport Chain ([=TC=]) and the calculation of logistics emissions at [=TC=]-level.
+
+
+<figure id="tce-properties-table" dfn-type="element-attr" dfn-for="TCE">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Property
+        <th>Type
+        <th>Req
+        <th>Specification
+    <tbody>
+      <tr>
+        <td><dfn>tceId</dfn>
+        <td>String
+        <td>M
+        <td>The id of the [=TCE=]
+
+      <tr>
+        <td><dfn>tocId</dfn>
+        <td>String
+        <td>O
+        <td>
+              If defined, the id of the [=TOC=] used for the calculation of this <{TCE}>. 
+              Either <{TCE/tocId}> or <{TCE/hocId}> MUST be defined.  
+      <tr>
+        <td><dfn>hocId</dfn>
+        <td>String
+        <td>O
+        <td>
+              If defined, the id of the [=HOC=] used for the calculation of this <{TCE}>.
+              Either <{TCE/tocId}> or <{TCE/hocId}> MUST be defined.  
+      <tr>
+        <td><dfn>consignmentIds</dfn>
+        <td>String[]
+        <td>M
+        <td>The non-empty set of [=consignment ids=] relating to this shipment.
+      <tr>
+        <td><dfn>modeOfTransport</dfn> : {{TransportMode}}
+        <td>String
+        <td>M
+        <td>
+            The mode of transport referenced by the this [=TCE=].
+            See [[#dt-transport-mode]] for details.
+      <tr>
+        <td><dfn>loadFactor</dfn>
+        <td>Number
+        <td>M
+        <td>
+            Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
+
+            The value of this property must be between `0` (excluding) and `1` (including).
+
+            Issue: the calculation method must be defined
+      <tr>
+        <td><dfn>emptyDistanceFactor</dfn>
+        <td>Number
+        <td>M
+        <td>
+            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
+
+            The value of this property must be between `0` (excluding) and `1` (excluding).
+
+            Issue: the calculation method must be defined
+      <tr>
+        <td><dfn>temperatureControl</dfn>
+        <td>String
+        <td>O
+        <td>
+            Status of freight being non-ambient.
+
+            If defined, the value of this property MUST be set to one of the following values:
+            - `ambient`: for non-temperature controlled freight
+            - `frozen`: for frozen freight
+            - `refrigerated`: for refrigerated freight
+            - `high temp`: for high temperature freight
+
+            Issue: would not it make more sense to define the temperature range instead of this status?
+
+      <tr>
+        <td><dfn>glecDataQualityIndex</dfn> : [0..4]
+        <td>Number
+        <td>O
+        <td>
+            The data quality index as defined in the [[!GLEC]] Framework
+
+            The value of this property must be between `0` (including) and `4` (including).
+
+            Issue: the exact calculation rules must be defined
+
+      <tr>
+        <td><dfn>mass</dfn> : Decimal
+        <td>String
+        <td>
+        <td>The freight mass (SI derived Unit `kilograms`)
+
+      <tr>
+        <td><dfn>packagingUnit</dfn>
+        <td>String
+        <td>
+        <td>
+
+      <tr>
+        <td><dfn>packagingUnitAmount</dfn>
+        <td>String
+        <td>
+        <td>
+
+      <tr>
+        <td><dfn>distance</dfn>
+        <td><{GLECDistance}>
+        <td>M
+        <td>The Distance between the origin and the destination of the activity related to the TCE
+
+      <tr>
+        <td><dfn>origin</dfn>
+        <td><{Location}>
+        <td>M
+        <td>The origin of the activity related to the TCE
+
+      <tr>
+        <td><dfn>destination</dfn>
+        <td><{Location}>
+        <td>M
+        <td>The destination of the activity related to the TCE
+
+      <tr>
+        <td><dfn>transportActivity</dfn> : Decimal
+        <td>String
+        <td>M
+        <td>
+            The transport activity of the TCE (SI derived Unit `ton kilometers`)
+
+            <div class=example>
+                if the transport activity is `700` `kilometers` and the mass is `230` `kilograms`, 
+                then the value of this property MUST be `161000` (`700` `kilometers` * `230` `kilograms`).
+            </div>
+
+      <tr>
+        <td><dfn>departureAt</dfn>
+        <td>String
+        <td>O
+        <td>
+              Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
+
+              Note: the original data model defined this as the "date of loading"
+
+      <tr>
+        <td><dfn>arrivalAt</dfn>
+        <td>String
+        <td>O
+        <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
+
+      <tr>
+        <td><dfn>co2eWTW</dfn> : Decimal
+        <td>String
+        <td>M
+        <td>
+              GHGe released to atmosphere during the process of producing, storing, 
+              processing and distributing an energy carrier for vehicle operation + GHG 
+              released to atmosphere as a result of vehicle operation.
+              The value MUST be calculated for the TCE with unit `kgCO2e`.
+              The value MUST be encoded as a decimal string.
+
+      <tr>
+        <td><dfn>co2eTTW</dfn> : Decimal
+        <td>String
+        <td>M
+        <td>
+              GHGe released to atmosphere as a result of vehicle operation
+              The value MUST be calculated for the TCE with unit `kgCO2e`.
+              The value MUST be encoded as a decimal string.
+
+      <tr>
+        <td><dfn>noxTTW</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>
+              Nitrogen oxide released to atmosphere as a result of vehicle operation.
+              The value MUST be calculated for the TCE with unit `kg`.
+              The value MUST be encoded as a decimal string.
+
+      <tr>
+        <td><dfn>soxTTW</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>
+              Sulphur oxide released to atmosphere as a result of vehicle operation.
+              The value MUST be calculated for the TCE with unit `kg`.
+              The value MUST be encoded as a decimal string.
+
+      <tr>
+        <td><dfn>ch4TTW</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>
+              Methane released to atmosphere as a result of vehicle operation.
+              The value MUST be calculated for the TCE with unit `kg`.
+              The value MUST be encoded as a decimal string.
+
+      <tr>
+        <td><dfn>pmTTW</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>
+              Particulate matter (PM10 and PM2.5) released to atmosphere as a result of vehicle operation.
+              The value MUST be calculated for the TCE with unit `kg`.
+              The value MUST be encoded as a decimal string.
+
+  </table>
+  <figcaption>Properties of data type <{TCE}></figcaption>  
+</figure>
+
+### Example ### {#lsf-example}
+
+Issue: write this section
+
+
+## Transport Operation Category ( <dfn element>TOC</dfn> ) ## {#dt-toc}
+
+The Data Type <{TOC}> contains [=TOC=] data. It is referenced in a [=TCE=] through the <{TCE/tocId}> property.
+
+[=TOCs=] are the building blocks for the calculation of a [=TCE=].
+
+A <{TOC}> MUST be calculated by a [=logistics actor=] in accordance with the [[!GLEC]] Framework.
+
+A [=logistic actor=] makes a <{TOC}> available through the Pathfinder Network API as a `ProductFootprint`.
+
+### Mapping to Pathfinder Data Model ### {#toc-mapping}
+
+Issue: TODO
+
+#### ProductFootprint property mapping #### {#toc-pf-mapping}
+
+#### CarbonFootprint properties mapping #### {#toc-cf-mapping}
+
+
+### Additional Attributes ### {#toc-add-attributes}
+
+The Data Type <{TOC}> has the following properties:
+
+<figure id="toc-properties-table" dfn-type="element-attr" dfn-for="TOC">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Property
+        <th>Type
+        <th>Req
+        <th>Specification
+    <tbody>
+      <tr>
+        <td><dfn>tocId</dfn>
+        <td>String
+        <td>M
+        <td>Unique id of the [=TOC=] relative to the [=Host system=].
+
+      <tr>
+        <td><dfn>isVerified</dfn>
+        <td>Boolean
+        <td>M
+        <td>
+
+      <tr>
+        <td><dfn>isAccredited</dfn>
+        <td>Boolean
+        <td>M
+        <td>
+
+      <tr>
+        <td><dfn>description</dfn>
+        <td>String
+        <td>O
+        <td>Text description of the applicable TOC. Reflect on mode of transport, contract type, equipment type, vehicle type, freight temperature, LTL/FTL etc
+
+      <tr>
+        <td><dfn>mode</dfn> : {{TransportMode}}
+        <td>String
+        <td>M
+        <td>
+
+      <tr>
+        <td><dfn>modeAssetType</dfn>
+        <td>String
+        <td>O
+        <td>
+              Categories per mode of transport (Specific category of vehicle, such as 40t truck, 3,5t van, or container vessel or bulk vessel)
+
+              Issue: this needs further refinement!
+
+      <tr>
+        <td><dfn>vehicleEmissionClass</dfn>
+        <td>String
+        <td>O
+        <td>
+              Identification of the vehicle emission class (Road). Depending on the geography of operations, this can be adapted
+
+              Issue: this needs further refinement!
+
+
+      <tr>
+        <td><dfn>loadFactor</dfn> : `(0,1]`
+        <td>String
+        <td>M
+        <td>Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level
+
+      <tr>
+        <td><dfn>loadFactorComment</dfn>
+        <td>String
+        <td>O
+        <td>Description of derivation of the load factor
+
+      <tr>
+        <td><dfn>emptyDistanceFactor</dfn> : `(0,1]`
+        <td>String
+        <td>M
+        <td>Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
+
+      <tr>
+        <td><dfn>emptyDistanceFactorComment</dfn>
+        <td>String
+        <td>O
+        <td>Description of derivation of the empty running
+
+      <tr>
+        <td><dfn>tempControlClass</dfn>
+        <td>String
+        <td>O
+        <td>
+              Issue: this needs further refinemnt
+
+              Advisement: original definition was mandatory. This should be optional or the enumeration should contain "non-temperature-controlled freight" as an option
+
+      <tr>
+        <td><dfn>energyConsumptionComment</dfn>
+        <td>String
+        <td>O
+        <td>Description of derivation of the fuel consumption
+
+      <tr>
+        <td><dfn>energyCarrier</dfn>
+        <td>String
+        <td>M
+        <td>
+              Category of primary energy carrier, such as Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc 
+
+              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+
+      <tr>
+        <td><dfn>energyConsumption</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>
+            Amount of energy or fuel consumed per kilometer.
+            
+            Issue: this needs further refinement!
+
+      <tr>
+        <td><dfn>energyConsumptionUnit</dfn>
+        <td>String
+        <td>O
+        <td>
+            Unit of the energy consumed. (l, kg, kWh, MJ per km)
+
+            Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+
+      <tr>
+        <td><dfn>primaryFeedstock</dfn>
+        <td>String
+        <td>
+        <td>
+              Primary feedstock of energy carrier N (e.g. fossil, natural gas, grid, renewable electricity, waste)
+              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+
+      <tr>
+        <td><dfn>secondaryFeedstock</dfn>
+        <td>String
+        <td>
+        <td>
+              Secondary feedstock of energy carrier N (e.g. bio-waste, soy, legislated biofuel mix, etc). In case there is no secondary feedstock, write N/A. 
+              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+
+      <tr>
+        <td><dfn>secondaryFeedstockRatio</dfn> : [0..1]
+        <td>Number
+        <td>
+        <td>
+              Ratio of the secondary feedstock of the energy carrier N.
+              Issue: this needs further refinement!
+
+
+      <tr>
+        <td><dfn>co2eFuelIntensityWTW</dfn> : Decimal
+        <td>String
+        <td>
+        <td>
+            The WTW fuel emission factor (certified) with unit `kgCO2e / unit of energy consumption` (<{TOC/energyConsumptionUnit}>).
+            Issue: this needs further refinement!
+
+      <tr>
+        <td><dfn>co2eIntensityWTW</dfn> : Decimal
+        <td>String
+        <td>
+        <td>
+             The Coefficient relating specified transport activity with GHG emissions 
+             Issue: this needs further refinement!
+
+      <tr>
+        <td><dfn>co2eIntensityWTWUnit</dfn>
+        <td>String
+        <td>
+        <td>
+             The unit of <{TOC/co2eIntensityWTW}>.
+             Issue: this needs further refinement!
+             Issue: do we really need another unit here?! Shouldn't this be always `kgCO2e / tkm`?!
+
+      <tr>
+        <td><dfn>glecDataQualityIndex</dfn> : [0..4]
+        <td>Number
+        <td>O
+        <td>
+            The data quality index as defined in the [[!GLEC]] Framework
+
+            The value of this property must be between `0` (including) and `4` (including).
+
+            Issue: the exact calculation rules must be defined
+
+  </table>
+  <figcaption>Properties of data type `TOC`</figcaption>  
+</figure>
+
+Issue: complete this section
+
+
+## Hub Operation Category ( <dfn element>HOC</dfn> ) ## {#dt-hoc}
+
+Advisement: This section and data model requires significant input from the SFC Community
+
+The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=TCE=] through the <{TCE/hocId}> property.
+
+[=HOCs=] are the building blocks for the calculation of a [=TCE=].
+
+### Mapping to Pathfinder Data Model ### {#hoc-mapping}
+
+Issue: TODO
+
+#### ProductFootprint property mapping #### {#hoc-pf-mapping}
+
+#### CarbonFootprint properties mapping #### {#hoc-cf-mapping}
+
+### Additional Attributes ### {#hoc-add-attributes}
+
+<figure id="hoc-properties-table" dfn-type="element-attr" dfn-for="HOC">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Property
+        <th>Type
+        <th>Req
+        <th>Specification
+    <tbody>
+      <tr>
+        <td><dfn>hocId</dfn>
+        <td>String
+        <td>M
+        <td>The id of the <{HOC}>
+  </table>
+  <figcaption>Properties of data type `HOC`</figcaption>  
+</figure>
+
+## Logistics Activity Data (<dfn element>LAD</dfn>) ## {#dt-lad}
+
+<dfn>Logistics Activity Data</dfn> is activity data relating to transport or 
+hub operations activities.
+
+Logistics Activity Data can be obtained from direct measurement 
+(see `primary data` definition of [[!ISO14083]]) or other measurements 
+(see `secondary data` definition of [[!ISO14083]]) such as modelled data
+or default value.
+
+
+### Additional Attributes ### {#lad-add-attributes}
+
+Note: 
+    the <{LAD}> data type is defined for the exchange of (primary) activity data for
+    which no GHG emission or GHG entisities values have been calculated.
+    This data type has only few mandatory properties and is defined for gradual
+    expansion of the information exchanged between parties.
+
+Properties of data type <{LAD}>:
+
+Issue: this needs to be discussed with SFC and especially also Tool providers:
+
+Issue: !! we need to define data quality semantics !!
+
+<figure id="lad-properties-table" dfn-type="element-attr" dfn-for="LAD">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+    <tbody>
+      <tr>
+        <td><dfn>activityId</dfn>
+        <td>String
+        <td>M
+        <td>The non-empty unique ID of this activity relative to the [=host system=].
+
+      <tr>
+        <td><dfn>consignmentId</dfn>
+        <td>String
+        <td>M
+        <td>The non-empty unique ID of the consignment related to the activity.
+
+      <tr>
+        <td><dfn>distance</dfn>
+        <td><{GLECDistance}>
+        <td>M
+        <td>The Distance between the origin and the destination of the activity
+
+      <tr>
+        <td><dfn>mass</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>Mass of freight (SI derived Unit `kilograms`)
+
+      <tr>
+        <td><dfn>origin</dfn>
+        <td><{Location}>
+        <td>M
+        <td>The origin of the activity related to the TCE
+
+      <tr>
+        <td><dfn>destination</dfn>
+        <td><{Location}>
+        <td>M
+        <td>The destination of the activity related to the TCE
+
+      <tr>
+        <td><dfn>mode</dfn>
+        <td>{{TransportMode}}
+        <td>O
+        <td>Mode of transport
+
+      <tr>
+        <td><dfn>packagingUnit</dfn>
+        <td>String
+        <td>
+        <td>
+
+      <tr>
+        <td><dfn>packagingUnitAmount</dfn>
+        <td>String
+        <td>
+        <td>
+
+      <tr>
+        <td><dfn>energyCarrier</dfn>
+        <td>String
+        <td>M
+        <td>
+              Category of primary energy carrier, such as Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc 
+
+              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+
+      <tr>
+        <td><dfn>energyConsumption</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>
+            Amount of energy or fuel consumed per kilometer.
+            
+            Issue: this needs further refinement!
+
+      <tr>
+        <td><dfn>energyConsumptionUnit</dfn>
+        <td>String
+        <td>O
+        <td>
+            Unit of the energy consumed. (l, kg, kWh, MJ per km)
+
+            Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+
+      <tr>
+        <td><dfn>primaryFeedstock</dfn>
+        <td>String
+        <td>O
+        <td>
+              Primary feedstock of energy carrier N (e.g. fossil, natural gas, grid, renewable electricity, waste)
+              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+
+      <tr>
+        <td><dfn>secondaryFeedstock</dfn>
+        <td>String
+        <td>O
+        <td>
+              Secondary feedstock of energy carrier N (e.g. bio-waste, soy, legislated biofuel mix, etc). In case there is no secondary feedstock, write N/A. 
+              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+
+      <tr>
+        <td><dfn>secondaryFeedstockRatio</dfn> : [0..1]
+        <td>Number
+        <td>O
+        <td>
+              Ratio of the secondary feedstock of the energy carrier N.
+              Issue: this needs further refinement!
+
+
+
+    </table>
+    <figcaption><{LAD}> properties</figcaption>
+</figure>
+
+
+
+## Additional Utility Data Types ## {#dt-utility-section}
+
+### Data Type GLECDistance ### {#dt-glecdistance}
+
+Properties of data type <dfn element>GLECDistance</dfn>:
+
+Issue: this needs to be refined, especially the semantics of optional data types below (i.e. at least 1 should be defined or similar)
+
+<figure id="glecdistance-properties-table" dfn-type="element-attr" dfn-for="GLECDistance">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+    <tbody>
+      <tr>
+        <td><dfn>actual</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>The Distance between the origin and the destination of a consignment of 
+              freight or a vehicle, along a specified route (or from telematics)
+      <tr>
+        <td><dfn>gcd</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>Distance between the origin and the destination of a consignment GCD (found in the past publications as planned distance)
+      <tr>
+        <td><dfn>sfd</dfn> : Decimal
+        <td>String
+        <td>O
+        <td>Distance between the origin and the destination of a consignment SFD (found in the past publications as planned distance)
+
+    </table>
+    <figcaption><{GLECDistance}> properties</figcaption>
+</figure>
+
+
+
+### Data Type Location ### {#dt-location}
+
+Properties of data type <dfn element>Location</dfn>:
+
+Issue: needs to be refined & checked by SFC
+
+<figure id="location-properties-table" dfn-type="element-attr" dfn-for="Location">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+    <tbody>
+      <tr>
+        <td><dfn>street</dfn>
+        <td>String
+        <td>O
+        <td>
+
+      <tr>
+        <td><dfn>zip</dfn>
+        <td>String
+        <td>O
+        <td>
+      <tr>
+        <td><dfn>city</dfn>
+        <td>String
+        <td>O
+        <td>
+      <tr>
+        <td><dfn>country</dfn>
+        <td>Country
+        <td>O
+        <td>An ISO 3166-2 alpha-2 country code. See [https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc](https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc) for details.
+      <tr>
+        <td><dfn>iata</dfn>
+        <td>iataCode
+        <td>O
+        <td>IATA code of airport
+      <tr>
+        <td><dfn>locode</dfn>
+        <td>locode
+        <td>O
+        <td>UN/LOCODE of the location
+      <tr>
+        <td><dfn>uic</dfn>
+        <td>uic
+        <td>O
+        <td>UIC Code of the location
+      <tr>
+        <td><dfn>lat</dfn>
+        <td>Decimal
+        <td>O
+        <td>Latitude of the destination. If <{Location/lng}> is defined, so MUST <{Location/lat}> be defined
+      <tr>
+        <td><dfn>lng</dfn>
+        <td>Decimal
+        <td>O
+        <td>Longitude of the destination.  If <{Location/lat}> is defined, so MUST <{Location/lng}> be defined
+
+    </table>
+    <figcaption><{GLECDistance}> properties</figcaption>
+</figure>
+
+### Transport Mode (<dfn enum>TransportMode</dfn>) ### {#dt-transport-mode}
+
+The Data Type {{TransportMode}} is an enumeration of the transport modes as defined in the [[!GLEC]] Framework.
+
+It MUST be encoded as a String using one of the following values:
+
+<dl dfn-type="enum-value" dfn-for="TransportMode">
+
+: <dfn>Road</dfn>
+:: for transport mode `road`
+
+: <dfn>Rail</dfn>
+:: for transport mode `rail`
+
+: <dfn>Air</dfn>
+:: for transport mode `air`
+
+: <dfn>Sea</dfn>
+:: for transport mode `sea`
+
+: <dfn>InlandWaterway</dfn>
+:: for transport mode `inland waterway`
+
+: <dfn>Hub</dfn>
+:: for hub operations
+
+</dl>
+
+
+<pre class=biblio>
+ {
+    "GLEC": {
+        "authors": [],
+        "href": "https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf",
+        "title": "GLEC Framework",
+        "status": "LS",
+        "publisher": "Smart Freight Centre (SFC)"
+    },
+    "ISO14083": {
+      "authors": [],
+      "title": "Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations",
+      "href": "https://www.iso.org/standard/78864.html",
+      "status": "International Standard published",
+      "publisher": "International Organization for Standardization"
+    }
+  }
+</pre>
