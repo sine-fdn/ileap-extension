@@ -20,9 +20,9 @@ Boilerplate: omit conformance, omit copyright
 Issue: this section needs rewording
 
 - Logistics emissions account for a significant share of global greenhouse gas emissions.
-- This document specifies a data model and transactions necessary for the interoperable exchange of primary logistics emissions data
-- The data model [[#data-model]] and the foundational data exchange transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
-- By implementing this specification, logistics actors can exchange logistics emission data at the level of individual consignments / [=TCEs=], at the level of [=TOCs=] and [=HOCs=]. 
+- This document specifies a data model and data transactions necessary for the interoperable exchange of primary logistics emissions data
+- The data model [[#data-model]] and the foundational data transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
+- By implementing this specification, logistics actors can exchange logistics emission data at the level of individual consignments / [=TCEs=], at the level of [=TOCs=] and [=HOCs=].
 - This technical specification is based on the [[!GLEC]] Framework, the related [[!ISO14083|ISO 14083]], and the Data Exchange Project of [=SFC=].
 
 
@@ -56,7 +56,7 @@ Issue: add `Decimal` data type definition
 : Transport Chain Element (<dfn>TCE</dfn> )
 :: A Transport Chain Element as defined in the GLEC Framework.
 
-: Transaction
+: Data Transaction
 :: see [[#txns]]
 
 : <dfn>Logistic Actor</dfn>
@@ -81,10 +81,10 @@ Issue: add `Decimal` data type definition
 :: Another term for [=Transport Operator=]
 
 : <dfn>Hub Operator</dfn>
-:: A party that is offering hub services, including warehousing and transshipment center services. 
+:: A party that is offering hub services, including warehousing and transshipment center services.
 
 : <dfn>Hub Activity</dfn>
-:: 
+::
     TODO define me
 
 : <dfn>Data Owner</dfn>
@@ -94,12 +94,12 @@ Issue: add `Decimal` data type definition
 :: See Pathfinder Tech Specs for the definition
 
 : <dfn>Host System</dfn>
-:: See Pathfinder Tech Specs for the definition. 
-    Here, a host system additionally implements support for 1 or more transactions ([[#txns]]).
+:: See Pathfinder Tech Specs for the definition.
+    Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
 : <dfn>Shipment</dfn>
-:: 
-    A shipment refers to the goods in a commercial transaction between a seller and a buyer. 
+::
+    A shipment refers to the goods in a commercial transaction between a seller and a buyer.
     It encompasses the consignments transported as part of this transaction via a transport
     chain from the consignor to the consignee
 
@@ -107,7 +107,7 @@ Issue: add `Decimal` data type definition
 :: Issue: needs definition
 
 : <dfn>Consigment</dfn>
-:: 
+::
     A consignment refers to a quantifiable quantity of cargo that can be distinctly
     identified as a single unit. It is transported from a sender or consignor to a
     receiver or consignee, irrespective of the mode of transportation employed.
@@ -119,8 +119,8 @@ Issue: add `Decimal` data type definition
 :: Tools and programs that support companies calculating and reporting logistics GHG emissions conforming to this technical specifications.
 
 : <dfn>Transport Activity</dfn>
-:: 
-    Transport activity (with unit `ton kilometre`). Transport Activity is calculated for 
+::
+    Transport activity (with unit `ton kilometre`). Transport Activity is calculated for
     each consignment by multiplying the consignment's mass by the TCE distance (see [[!GLEC]])
 
 : <dfn>Distance</dfn>
@@ -144,44 +144,44 @@ Note: Non-normative section
 
 This specification shall serve the general need of businesses for end-to-end Carbon Accounting and Reporting, conforming with the [[!GLEC]] Framework and ISO 14083.
 
-Given the nature of the logistics industry, and in order to reduce costs overall, 
-logistics emissions transparency is only possible if all the parties involved 
-are able to exchange emissions data in an interoperable way. 
+Given the nature of the logistics industry, and in order to reduce costs overall,
+logistics emissions transparency is only possible if all the parties involved
+are able to exchange emissions data in an interoperable way.
 
-To achieve this, this specification is guided by a set of defining business cases. 
-They are the foundation to define a set of basic transactions which allow for 
+To achieve this, this specification is guided by a set of defining business cases.
+They are the foundation to define a set of basic data transactions which allow for
 the decentralized data exchange among peers, for instance different kinds of [=logistic actors=]
 (such as [=LSPs=], [=Carriers=], or [=Hub Operators=]) or the exchange of data between a [=logistic actor=] and a [=shipper=].
 
 The following business cases shall be supported by this specification:
 
 : Business Case #a1
-:: 
-    a [=Carrier=] shares transport activity data (such as the `ton kilometers` related to a consignment) 
+::
+    a [=Carrier=] shares transport activity data (such as the `ton kilometers` related to a consignment)
     with an [=LSP=] to enable e.g. an LSP or a [=Tool Provider=] to calculate the related emissions
 
 : Business Case #2
-:: 
-    A [=shipper=] wants to give logistics emissions transparency to its customers 
+::
+    A [=shipper=] wants to give logistics emissions transparency to its customers
     by disclosing logistics emissions as part of a [=PCF=].
-    This is enabled through the usage of the Pathfinder Technical Specification 
+    This is enabled through the usage of the Pathfinder Technical Specification
     and disclosing through so-called Data Model Extensions based on the iLEAP
     Data Model ([[#data-model]]) .
 
     Issue: add a reference to the Pathfinder Data Model Extensions specification
 
 : <dfn>Business Case #3</dfn>
-:: 
-    An [=LSP=] wants to collect logistics intensity information from its 
-    contractors so that it can calculate emissions at so-called 
-    [=TCE=]-level. 
-    For this, the LSP performs transactions ([[#txn2]]) to collect emission 
+::
+    An [=LSP=] wants to collect logistics intensity information from its
+    contractors so that it can calculate emissions at so-called
+    [=TCE=]-level.
+    For this, the LSP performs data transactions ([[#txn2]]) to collect emission
     intensities ([=HOCs=] or [=TOCs=]) from its contractors.
 
 
 : Business Case #4
-:: 
-    A [=shipper=] wants to quantify the avoided emissions stemming from 
+::
+    A [=shipper=] wants to quantify the avoided emissions stemming from
     operational changes in their transport network. For this, the [=shipper=]
     procures the operational changes and compares the resulting logistics
     emissions with the emissions without the intervention.
@@ -190,34 +190,32 @@ The following business cases shall be supported by this specification:
 
 ## Potential additional Business Cases ## {#txns-appendix}
 
-Issue: this section needs to be first discussed between SFC and SINE 
+Issue: this section needs to be first discussed between SFC and SINE
 
 : Business Case #a2
 :: a [=Hub Operator=] shares activity data with an LSP to enable the LSP to calculate the emissions of a [=HOC=]
 
 
-# Transactions # {#txns}
-
-Issue: rename `transaction` term to `data transaction`
+# Data Transactions # {#txns}
 
 Issue: create and add transactions diagram to this section
 
 
-A <dfn>transaction</dfn> is the process of a data exchange between 2 or more parties as defined in this section.
+A <dfn>data transaction</dfn> is the process of a data exchange between 2 or more parties as defined in this section.
 
-Each Transaction is scoped by which party (a [=logistic actor=] or [=shipper=]) is interacting with a second party, and which kind of data is exchanged (see [[#data-model]]).
+Each data transaction is scoped by which party (a [=logistic actor=] or [=shipper=]) is interacting with a second party, and which kind of data is exchanged (see [[#data-model]]).
 
-Transactions are executed by [=host systems=] which implement this specification. 
+Data transactions are executed by [=host systems=] which implement this specification.
 
-A single transaction, or sometimes the consecutive execution of business transactions, enable 1 or more business cases (see [[#business-cases]]).
+A single data transaction, or sometimes the consecutive execution of business transactions, enable 1 or more business cases (see [[#business-cases]]).
 
 
-## Transaction 1: TCE Data Exchange ## {#txn1}
+## Data Transaction 1: TCE Data Exchange ## {#txn1}
 
 
 Issue: remove the "or more shipments" from this transaction.
 
-This transaction enables a [=logistic actor=] to exchange logistics emissions data with a [=shipper=] at the level of a single shipment.
+This data transaction enables a [=logistic actor=] to exchange logistics emissions data with a [=shipper=] at the level of a single shipment.
 
 For this, a [=logistic actor=] MUST
 
@@ -225,13 +223,13 @@ For this, a [=logistic actor=] MUST
 1. make the resulting [=TCEs=] available to the [=shipper=] through the Pathfinder Network API using the [=LSF=] data model (see [[#dt-lsf]]).
 
 The [=shipper=] CAN then
-1. collect [=TCEs=] from 1 or more [=logistic actors=] to construct 
+1. collect [=TCEs=] from 1 or more [=logistic actors=] to construct
     the transport chain ([=TC=]). The shipper CAN then calculate the logistics emissions of the shipment
     in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
-1. access the logistics emissions data of the shipment from the [=logistic actor=] 
+1. access the logistics emissions data of the shipment from the [=logistic actor=]
     through the Action `ListFootprints` of the Pathfinder Network API
-1. or if a [=logistic actor=] supports the Pathfinder Network Events API, a shipper CAN 
-    request the logistics emissions data for the shipments from the [=logistic actor=] 
+1. or if a [=logistic actor=] supports the Pathfinder Network Events API, a shipper CAN
+    request the logistics emissions data for the shipments from the [=logistic actor=]
     through the Pathfinder Network Events API.
 
 
@@ -240,31 +238,31 @@ The [=shipper=] CAN then
 Issue: create example for this transaction, including data exchanged
 
 
-## Transaction 2: TOC and HOC Data Exchange ## {#txn2}
+## Data Transaction 2: TOC and HOC Data Exchange ## {#txn2}
 
-This transaction enables a [=logistic actor=] to make logistics emissions intensity data at the level of a [=TOC=] or [=HOC=] available to a another company.
+This data transaction enables a [=logistic actor=] to make logistics emissions intensity data at the level of a [=TOC=] or [=HOC=] available to a another company.
 
 For this, a [=logistic actor=] MUST
 
 1. first calculate the emissions intensity of the [=HOC=] or [=TOC=] in accordance with the [[!GLEC]] Framework and ISO 14083, and then
 1. make the resulting category emission intensity available through the Pathfinder Network API as a <{TOC}> or <{HOC}> (see [[#dt-toc]] and [[#dt-hoc]]).
 
-Note: 
-    The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]] 
-    and guidance provided through the [[!GLEC]] Framework. 
+Note:
+    The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
+    and guidance provided through the [[!GLEC]] Framework.
     Details of the calculation method are out of scope of this specification.
 
 Note: This enables [=Business Case #3=].
 
 
-## Transaction 3: Activity Data Exchange ## {#txn3}
+## Data Transaction 3: Activity Data Exchange ## {#txn3}
 
-Note: 
-      This transaction is considered necessary by logistics parties. 
-      Especially for SMEs, lacking the capabilities to Report curated emissions data, 
+Note:
+      This data transaction is considered necessary by logistics parties.
+      Especially for SMEs, lacking the capabilities to Report curated emissions data,
       the option to provide activity data to their customers should be given.
 
-This transaction enables a [=logistic actor=] to exchange [=Logistics Activity Data=] with a another company.
+This data transaction enables a [=logistic actor=] to exchange [=Logistics Activity Data=] with a another company.
 
 
 
@@ -280,9 +278,9 @@ Issue: create an end-to-end example combining Transction 1 and Transaction 2 to 
 
 Issue: we need to find a better term! (candidate: shipment footprint)
 
-- A logistics service footprint ([=LSF=]) contains the [=TCE=]-level logistics emissions 
+- A logistics service footprint ([=LSF=]) contains the [=TCE=]-level logistics emissions
     relating to a single shipment identified by a [=shipment id=].
-    These are all the transport or hub activities performed by a logistic actor 
+    These are all the transport or hub activities performed by a logistic actor
     to its customer, which could comprise the full TC, or part of it.
 - The emissions disclosed MUST be calculated in accordance with the [[!GLEC]] Framework, by
     1. first applying the GLEC Framework to calculate the emissions of the [=TCEs=]
@@ -321,7 +319,7 @@ stored in the data model extension property `extensions` of the underlying `Prod
         <td>The non-empty array of [=TCEs=] relating to this shipment.
 
     </table>
-    <figcaption>Logistics Service Footprint (LSF) properties</figcaption>  
+    <figcaption>Logistics Service Footprint (LSF) properties</figcaption>
 </figure>
 
 
@@ -354,7 +352,7 @@ stored in the data model extension property `extensions` of the underlying `Prod
               Issue: TBD
 
     </table>
-    <figcaption>Mapping of the GLEC Framework-related data to the Pathfinder Data Model</figcaption>  
+    <figcaption>Mapping of the GLEC Framework-related data to the Pathfinder Data Model</figcaption>
 </figure>
 
 #### CarbonFootprint properties mapping #### {#lsf-cf-mapping}
@@ -386,12 +384,12 @@ stored in the data model extension property `extensions` of the underlying `Prod
         <td>String
         <td>M
         <td>
-              The logistics emissions of the shipment, excluding biogenic emissions, as calculated 
-              in accordance with the [[!GLEC]] Framework and ISO 14083, with unit ` kg of CO2 equivalent per declared unit (kgCO2e / declaredUnit)`, expressed as a decimal string.      
+              The logistics emissions of the shipment, excluding biogenic emissions, as calculated
+              in accordance with the [[!GLEC]] Framework and ISO 14083, with unit ` kg of CO2 equivalent per declared unit (kgCO2e / declaredUnit)`, expressed as a decimal string.
 
-              
+
   </table>
-  <figcaption>Mapping of GLEC Framework-related data to the Pathfinder Data Model</figcaption>  
+  <figcaption>Mapping of GLEC Framework-related data to the Pathfinder Data Model</figcaption>
 </figure>
 
 
@@ -422,15 +420,15 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>String
         <td>O
         <td>
-              If defined, the id of the [=TOC=] used for the calculation of this <{TCE}>. 
-              Either <{TCE/tocId}> or <{TCE/hocId}> MUST be defined.  
+              If defined, the id of the [=TOC=] used for the calculation of this <{TCE}>.
+              Either <{TCE/tocId}> or <{TCE/hocId}> MUST be defined.
       <tr>
         <td><dfn>hocId</dfn>
         <td>String
         <td>O
         <td>
               If defined, the id of the [=HOC=] used for the calculation of this <{TCE}>.
-              Either <{TCE/tocId}> or <{TCE/hocId}> MUST be defined.  
+              Either <{TCE/tocId}> or <{TCE/hocId}> MUST be defined.
       <tr>
         <td><dfn>consignmentIds</dfn>
         <td>String[]
@@ -448,7 +446,7 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>Number
         <td>M
         <td>
-            Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level. 
+            Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
             It is applied to the loaded distance of the transport.
 
             The value of this property must be between `0` (excluding) and `1` (including).
@@ -530,7 +528,7 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
             The transport activity of the TCE (SI derived Unit `ton kilometers`)
 
             <div class=example>
-                If the [=distance=] is `700` `kilometers` and the mass is `230` `kilograms`, 
+                If the [=distance=] is `700` `kilometers` and the mass is `230` `kilograms`,
                 then the value of this property MUST be `161000` (`700` `kilometers` * `230` `kilograms`).
             </div>
 
@@ -554,8 +552,8 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>String
         <td>M
         <td>
-              GHGe released to atmosphere during the process of producing, storing, 
-              processing and distributing an energy carrier for vehicle operation + GHG 
+              GHGe released to atmosphere during the process of producing, storing,
+              processing and distributing an energy carrier for vehicle operation + GHG
               released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kgCO2e`.
               The value MUST be encoded as a decimal string.
@@ -606,7 +604,7 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
               The value MUST be encoded as a decimal string.
 
   </table>
-  <figcaption>Properties of data type <{TCE}></figcaption>  
+  <figcaption>Properties of data type <{TCE}></figcaption>
 </figure>
 
 
@@ -727,7 +725,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-              Category of primary energy carrier, such as Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc 
+              Category of primary energy carrier, such as Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc
 
               Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
@@ -737,7 +735,7 @@ The Data Type <{TOC}> has the following properties:
         <td>O
         <td>
             Amount of energy or fuel consumed per kilometer.
-            
+
             Issue: this needs further refinement!
 
       <tr>
@@ -762,7 +760,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>O
         <td>
-              Secondary feedstock of energy carrier N (e.g. bio-waste, soy, legislated biofuel mix, etc). In case there is no secondary feedstock, write N/A. 
+              Secondary feedstock of energy carrier N (e.g. bio-waste, soy, legislated biofuel mix, etc). In case there is no secondary feedstock, write N/A.
               Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
       <tr>
@@ -812,7 +810,7 @@ The Data Type <{TOC}> has the following properties:
             Issue: the exact calculation rules must be defined
 
   </table>
-  <figcaption>Properties of data type `TOC`</figcaption>  
+  <figcaption>Properties of data type `TOC`</figcaption>
 </figure>
 
 Issue: complete this section
@@ -851,24 +849,24 @@ Issue: TODO
         <td>M
         <td>The id of the <{HOC}>
   </table>
-  <figcaption>Properties of data type `HOC`</figcaption>  
+  <figcaption>Properties of data type `HOC`</figcaption>
 </figure>
 
 
 ## Logistics Activity Data (<dfn element>LAD</dfn>) ## {#dt-lad}
 
-<dfn>Logistics Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or 
+<dfn>Logistics Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
 hub operations activities.
 
-Logistics Activity Data can be obtained from direct measurement 
-(see `primary data` definition of [[!ISO14083]]) or other measurements 
+Logistics Activity Data can be obtained from direct measurement
+(see `primary data` definition of [[!ISO14083]]) or other measurements
 (see `secondary data` definition of [[!ISO14083]]) such as modelled data
 or default value.
 
 
 ### Data Attributes ### {#lad-add-attributes}
 
-Note: 
+Note:
     the <{LAD}> data type is defined for the exchange of (primary) activity data for
     which no GHG emission or GHG entisities values have been calculated.
 
@@ -946,7 +944,7 @@ Issue: !! we need to define data quality semantics !!
         <td>String
         <td>M
         <td>
-              Category of primary energy carrier, such as Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc 
+              Category of primary energy carrier, such as Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc
 
               Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
@@ -963,7 +961,7 @@ Issue: !! we need to define data quality semantics !!
         <td>String
         <td>O
         <td>
-              Secondary feedstock of energy carrier N (e.g. bio-waste, soy, legislated biofuel mix, etc). In case there is no secondary feedstock, write N/A. 
+              Secondary feedstock of energy carrier N (e.g. bio-waste, soy, legislated biofuel mix, etc). In case there is no secondary feedstock, write N/A.
               Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
       <tr>
@@ -1001,7 +999,7 @@ Issue: this needs to be refined, especially the semantics of optional data types
         <td><dfn>actual</dfn> : Decimal
         <td>String
         <td>O
-        <td>The Distance between the origin and the destination of a consignment of 
+        <td>The Distance between the origin and the destination of a consignment of
               freight or a vehicle, along a specified route (or from telematics)
       <tr>
         <td><dfn>gcd</dfn> : Decimal
