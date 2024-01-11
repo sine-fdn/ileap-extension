@@ -485,20 +485,20 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
       <tr>
         <td><dfn>mass</dfn> : Decimal
         <td>String
-        <td>
+        <td> Issue: neither O nor M
         <td>The freight mass (SI derived Unit `kilograms`)
 
       <tr>
         <td><dfn>packagingUnit</dfn>
         <td>String
-        <td>
+        <td> Issue: neither O nor M
         <td>
               Issue: needs definition
 
       <tr>
         <td><dfn>packagingUnitAmount</dfn>
         <td>Number
-        <td>
+        <td> Issue: neither O nor M
         <td>
               Issue: needs definition
 
@@ -792,7 +792,7 @@ The Data Type <{TOC}> has the following properties:
       <tr>
         <td><dfn>co2eIntensityWTWUnit</dfn>
         <td>String
-        <td>
+        <td>M
         <td>
              The unit of <{TOC/co2eIntensityWTW}>.
              Issue: this needs further refinement!
