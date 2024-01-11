@@ -262,7 +262,7 @@ Note:
       Especially for SMEs, lacking the capabilities to Report curated emissions data,
       the option to provide activity data to their customers should be given.
 
-This data transaction enables a [=logistic actor=] to exchange [=Logistics Activity Data=] with a another company.
+This data transaction enables a [=logistic actor=] to exchange [=Transport Activity Data=] with a another company.
 
 
 
@@ -853,30 +853,30 @@ Issue: TODO
 </figure>
 
 
-## Logistics Activity Data (<dfn element>LAD</dfn>) ## {#dt-lad}
+## Transport Activity Data (<dfn element>TAD</dfn>) ## {#dt-tad}
 
-<dfn>Logistics Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
+<dfn>Transport Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
 hub operations activities.
 
-Logistics Activity Data can be obtained from direct measurement
+Transport Activity Data can be obtained from direct measurement
 (see `primary data` definition of [[!ISO14083]]) or other measurements
 (see `secondary data` definition of [[!ISO14083]]) such as modelled data
 or default value.
 
 
-### Data Attributes ### {#lad-add-attributes}
+### Data Attributes ### {#tad-add-attributes}
 
 Note:
-    the <{LAD}> data type is defined for the exchange of (primary) activity data for
+    the <{TAD}> data type is defined for the exchange of (primary) activity data for
     which no GHG emission or GHG entisities values have been calculated.
 
-Properties of data type <{LAD}>:
+Properties of data type <{TAD}>:
 
 Issue: this needs to be discussed with SFC and especially also Tool providers:
 
 Issue: !! we need to define data quality semantics !!
 
-<figure id="lad-properties-table" dfn-type="element-attr" dfn-for="LAD">
+<figure id="tad-properties-table" dfn-type="element-attr" dfn-for="TAD">
   <table class="data">
     <thead>
       <tr>
@@ -973,7 +973,7 @@ Issue: !! we need to define data quality semantics !!
               Issue: this needs further refinement!
 
     </table>
-    <figcaption><{LAD}> properties</figcaption>
+    <figcaption><{TAD}> properties</figcaption>
 </figure>
 
 
