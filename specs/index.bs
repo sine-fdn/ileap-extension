@@ -630,7 +630,7 @@ Issue: TODO
 #### CarbonFootprint properties mapping #### {#toc-cf-mapping}
 
 
-### Data Attributes ### {#toc-add-attributes}
+### Data Attributes ### {#toc-attributes}
 
 The Data Type <{TOC}> has the following properties:
 
@@ -832,7 +832,7 @@ Issue: TODO
 
 #### CarbonFootprint properties mapping #### {#hoc-cf-mapping}
 
-### Data Attributes ### {#hoc-add-attributes}
+### Data Attributes ### {#hoc-attributes}
 
 <figure id="hoc-properties-table" dfn-type="element-attr" dfn-for="HOC">
   <table class="data">
@@ -864,7 +864,7 @@ Transport Activity Data can be obtained from direct measurement
 or default value.
 
 
-### Data Attributes ### {#tad-add-attributes}
+### Data Attributes ### {#tad-attributes}
 
 Note:
     the <{TAD}> data type is defined for the exchange of (primary) activity data for
