@@ -67,7 +67,7 @@ Issue: The GLEC Framework reference at the end of this file needs an update
 : Logistics Service Provider (<dfn>LSP</dfn> )
 :: A [=Logistic Actor=] that is offering logistics services to [=shippers=]
 
-: <dfn>Carrier</dfn>
+: <dfn>Transport Service Provider (Carrier) </dfn>
 :: A party that is offering transport services
 
 : <dfn>Warehouse Operator</dfn>
