@@ -84,17 +84,20 @@ Issue: The GLEC Framework reference at the end of this file needs an update
     Here, a host system additionally implements support for 1 or more transactions ([[#txns]]).
 
 : <dfn>shipment id</dfn>
-:: Issue: needs definition
+:: Refers to the goods in a commercial transaction between a seller and a buyer. It encompasses the consignments transported as part of this transaction via a transport chain from the consignor to the consignee
 
  : <dfn>consignment id</dfn>
-:: Issue: needs definition
+:: Refers to a quantifiable amount of cargo that can be distinctly identified as a single unit. It is transported from a sender or consignor to a receiver or consignee, irrespective of the mode of transport employed. 
 
 : <dfn>Tool Provider</dfn>
-:: Issue: needs definition
+:: Tools and programs that support companies by credibly calculating and reporting logistics GHG emissions against the industry standard - the GLEC Framework
 
-: <dfn>Transport Activity Distance</dfn>
-:: see [[!ISO14083]]
+: <dfn>Transport Activity </dfn>
+:: Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance. It is measured in tkm. 
 
+: <dfn>Transport Activity Distance </dfn>
+:: The actual (measured) route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
+:: Issue: add all distance types
 
 Issue: Link to the pathfinder tech specs in this section
 
@@ -999,7 +1002,7 @@ Issue: this needs to be refined, especially the semantics of optional data types
         <td><dfn>sfd</dfn> : Decimal
         <td>String
         <td>O
-        <td>Distance between the origin and the destination of a consignment SFD (found in the past publications as planned distance)
+        <td>Distance between the origin and the destination of a consignment SFD, as defined in the GLEC Framework
 
     </table>
     <figcaption><{GLECDistance}> properties</figcaption>
