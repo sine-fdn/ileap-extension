@@ -17,7 +17,7 @@ Boilerplate: omit conformance, omit copyright
 
 # Introduction # {#introduction}
 
-Issue: this section needs rewording
+Issue: this section needs rewording.
 
 - Logistics emissions account for a significant share of global greenhouse gas emissions.
 - This document specifies a data model and data transactions necessary for the interoperable exchange of primary logistics emissions data
@@ -78,10 +78,13 @@ Issue: add `Decimal` data type definition
 :: See [[!ISO14083]], Section 3.1.32
 
 : <dfn>Carrier</dfn>
-:: Another term for [=Transport Operator=]
+:: see [=Transport Service Provider=]
 
 : <dfn>Hub Operator</dfn>
 :: A party that is offering hub services, including warehousing and transshipment center services.
+
+: <dfn>Transport Service Provider</dfn>
+:: A party that is offering transport services
 
 : <dfn>Hub Activity</dfn>
 ::
@@ -104,7 +107,7 @@ Issue: add `Decimal` data type definition
     chain from the consignor to the consignee
 
 : <dfn>shipment id</dfn>
-:: Issue: needs definition
+:: Refers to the goods in a commercial transaction between a seller and a buyer. It encompasses the consignments transported as part of this transaction via a transport chain from the consignor to the consignee
 
 : <dfn>Consigment</dfn>
 ::
@@ -113,15 +116,17 @@ Issue: add `Decimal` data type definition
     receiver or consignee, irrespective of the mode of transportation employed.
 
  : <dfn>consignment id</dfn>
-:: Issue: needs definition
+:: Refers to a quantifiable amount of cargo that can be distinctly identified as a single unit. It is transported from a sender or consignor to a receiver or consignee, irrespective of the mode of transport employed. 
 
 : <dfn>Tool Provider</dfn>
-:: Tools and programs that support companies calculating and reporting logistics GHG emissions conforming to this technical specifications.
+:: 
+    Provider of software, tools, services, or programs that support companies in 
+    calculating and reporting logistics GHG emissions conforming to this technical specifications.
 
 : <dfn>Transport Activity</dfn>
-::
-    Transport activity (with unit `ton kilometre`). Transport Activity is calculated for
-    each consignment by multiplying the consignment's mass by the TCE distance (see [[!GLEC]])
+:: 
+    Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance. 
+    It is measured with unit `ton kilometre`. See [[!ISO14083]] Section 3.1.24
 
 : <dfn>Distance</dfn>
 :: see [=Transport Distance=] and [=Actual Distance=]
@@ -132,6 +137,11 @@ Issue: add `Decimal` data type definition
 : <dfn>Actual Distance</dfn>
 :: The actual route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
 
+: <dfn>Transport Activity Distance</dfn>
+:: 
+    The actual (measured) route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
+    
+    Issue: add all distance types
 
 Issue: Link to the pathfinder tech specs in this section
 
@@ -1010,7 +1020,7 @@ Issue: this needs to be refined, especially the semantics of optional data types
         <td><dfn>sfd</dfn> : Decimal
         <td>String
         <td>O
-        <td>Distance between the origin and the destination of a consignment SFD (found in the past publications as planned distance)
+        <td>Distance between the origin and the destination of a consignment SFD, as defined in the GLEC Framework
 
     </table>
     <figcaption><{GLECDistance}> properties</figcaption>
