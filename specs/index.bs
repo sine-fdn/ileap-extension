@@ -496,8 +496,8 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
               Issue: needs definition
 
       <tr>
-        <td><dfn>packagingUnitAmount</dfn>
-        <td>Number
+        <td><dfn>packagingUnitAmount</dfn> : Decimal
+        <td>String
         <td> Issue: neither O nor M
         <td>
               Issue: needs definition
