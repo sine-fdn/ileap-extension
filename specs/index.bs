@@ -970,17 +970,17 @@ Issue: this needs to be refined, especially the semantics of optional data types
         <td>String
         <td>O
         <td>The Distance between the origin and the destination of a consignment of
-              freight or a vehicle, along a specified route (or from telematics)
+              freight or a vehicle, along a specified route (or from telematics). As defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>gcd</dfn> : Decimal
         <td>String
         <td>O
-        <td>Distance between the origin and the destination of a consignment GCD (found in the past publications as planned distance)
+        <td>Distance between the origin and the destination of a consignment GCD, as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>sfd</dfn> : Decimal
         <td>String
         <td>O
-        <td>Distance between the origin and the destination of a consignment SFD, as defined in the GLEC Framework
+        <td>Distance between the origin and the destination of a consignment SFD, as defined in the [[!GLEC]] Framework
 
     </table>
     <figcaption><{GLECDistance}> properties</figcaption>
