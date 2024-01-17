@@ -35,6 +35,9 @@ This specifcation shall does not cover the following topics or aspects as they a
 1. Methodology for the exact calculation of Logistics-related emissions which is explained in the GLEC Framework and specified in [[!ISO14083|ISO 14083]]
 2. Black Carbon (Accounting)
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others)
+4. Pilot decentralized data exchange following data space governance principles
+5. How to establish contractual obligations between parties for the provision of data
+6. How to perform data audits and verification
 
 Issue: The GLEC Framework reference at the end of this file needs an update
 
@@ -137,11 +140,13 @@ Issue: add `Decimal` data type definition
 : <dfn>Actual Distance</dfn>
 :: The actual route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
 
-: <dfn>Transport Activity Distance</dfn>
+: <dfn>Shortest Feasible Distance (SFD) </dfn>
 :: 
-    The actual (measured) route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
-    
-    Issue: add all distance types
+    It represents the shortest practical route between two places taking into account the real operating conditions. See [[!GLEC]] Framework
+
+: <dfn>Great Circle Distance (GCD) </dfn>
+:: 
+    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. See [[!GLEC]] Framework
 
 Issue: Link to the pathfinder tech specs in this section
 
