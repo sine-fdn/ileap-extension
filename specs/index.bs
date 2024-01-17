@@ -444,53 +444,6 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>String[]
         <td>M
         <td>The non-empty set of [=consignment ids=] relating to this shipment.
-      <tr>
-        <td><dfn>modeOfTransport</dfn> : {{TransportMode}}
-        <td>String
-        <td>M
-        <td>
-            The mode of transport referenced by the this [=TCE=].
-            See [[#dt-transport-mode]] for details.
-      <tr>
-        <td><dfn>loadFactor</dfn>
-        <td>Number
-        <td>M
-        <td>
-            Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
-            It is applied to the loaded distance of the transport.
-
-            The value of this property must be between `0` (excluding) and `1` (including).
-
-      <tr>
-        <td><dfn>emptyDistanceFactor</dfn>
-        <td>Number
-        <td>M
-        <td>
-            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
-
-            The value of this property must be between `0` (including) and `1` (excluding).
-
-      <tr>
-        <td><dfn>temperatureControl</dfn>
-        <td>String
-        <td>O
-        <td>
-            Status of freight being non-ambient.
-
-            If defined, the value of this property MUST be set to one of the following values:
-            - `ambient`: for non-temperature controlled freight
-            - `refrigerated`: for refrigerated freight
-
-      <tr>
-        <td><dfn>glecDataQualityIndex</dfn> : [0..4]
-        <td>Number
-        <td>O
-        <td>
-            The data quality index as defined in the [[!GLEC]] Framework
-
-            The value of this property must be between `0` (including) and `4` (including).
-
-            Advisement: this is subject to change!
 
       <tr>
         <td><dfn>mass</dfn> : Decimal
@@ -703,32 +656,45 @@ The Data Type <{TOC}> has the following properties:
 
 
       <tr>
-        <td><dfn>loadFactor</dfn> : `(0,1]`
-        <td>String
+        <td><dfn>loadFactor</dfn>
+        <td>Number
         <td>M
-        <td>Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level
+        <td>
+            Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
+            It is applied to the loaded distance of the transport.
+
+            The value of this property must be between `0` (excluding) and `1` (including).
 
       <tr>
-        <td><dfn>loadFactorComment</dfn>
+        <td><dfn>emptyDistanceFactor</dfn>
+        <td>Number
+        <td>M
+        <td>
+            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
+
+            The value of this property must be between `0` (including) and `1` (excluding).
+
+      <tr>
+        <td><dfn>temperatureControl</dfn>
         <td>String
         <td>O
         <td>
-            Issue: Description of derivation of the load factor
+            Status of freight being non-ambient.
+
+            If defined, the value of this property MUST be set to one of the following values:
+            - `ambient`: for non-temperature controlled freight
+            - `refrigerated`: for refrigerated freight
 
       <tr>
-        <td><dfn>emptyDistanceFactor</dfn> : `(0,1]`
-        <td>String
-        <td>M
-        <td>Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
-
-      <tr>
-        <td><dfn>tempControlClass</dfn>
-        <td>String
+        <td><dfn>glecDataQualityIndex</dfn> : [0..4]
+        <td>Number
         <td>O
         <td>
-              Issue: this needs further refinemnt
+            The data quality index as defined in the [[!GLEC]] Framework
 
-              Advisement: original definition was mandatory. This should be optional or the enumeration should contain "non-temperature-controlled freight" as an option
+            The value of this property must be between `0` (including) and `4` (including).
+
+            Advisement: this is subject to change!
 
       <tr>
         <td><dfn>energyCarrier</dfn>
