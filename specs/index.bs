@@ -686,17 +686,6 @@ The Data Type <{TOC}> has the following properties:
             - `refrigerated`: for refrigerated freight
 
       <tr>
-        <td><dfn>glecDataQualityIndex</dfn> : [0..4]
-        <td>Number
-        <td>O
-        <td>
-            The data quality index as defined in the [[!GLEC]] Framework
-
-            The value of this property must be between `0` (including) and `4` (including).
-
-            Advisement: this is subject to change!
-
-      <tr>
         <td><dfn>energyCarrier</dfn>
         <td>String
         <td>M
