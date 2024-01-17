@@ -496,7 +496,7 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
             The transport activity of the TCE (SI derived Unit `ton kilometers`)
 
             <div class=example>
-                If the [=distance=] is `700` `kilometers` and the mass is `230` `kilograms`,
+                If the transport [=distance=] is `700` `kilometers` and the mass is `230` `kilograms`,
                 then the value of this property MUST be `161000` (`700` `kilometers` * `230` `kilograms`).
             </div>
 
