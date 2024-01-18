@@ -20,7 +20,7 @@ Boilerplate: omit conformance, omit copyright
 Issue: this section needs rewording.
 
 - Logistics emissions account for a significant share of global greenhouse gas emissions.
-- This document specifies a data model and data transactions necessary for the interoperable exchange of primary logistics emissions data
+- This document specifies a data model and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data
 - The data model [[#data-model]] and the foundational data transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
 - By implementing this specification, logistics actors can exchange logistics emission data at the level of individual consignments / [=TCEs=], at the level of [=TOCs=] and [=HOCs=].
 - This technical specification is based on the [[!GLEC]] Framework, the related [[!ISO14083|ISO 14083]], and the Data Exchange Project of [=SFC=].
@@ -47,6 +47,7 @@ Issue: add `Decimal` data type definition
 
 # Definitions # {#definitions}
 
+## ISO14083- and GLEC-Framework-related Definitions ## {#iso14083-definitions}
 : Transport Operation Category (<dfn>TOC</dfn> )
 :: A Transport Operation Category as defined in the [[!GLEC]] Framework
 
@@ -58,6 +59,56 @@ Issue: add `Decimal` data type definition
 
 : Transport Chain Element (<dfn>TCE</dfn> )
 :: A Transport Chain Element as defined in the GLEC Framework.
+
+: <dfn>Transport Operator</dfn>
+:: See [[!ISO14083]], Section 3.1.30
+
+: <dfn>Transport Service Organizer</dfn>
+:: See [[!ISO14083]], Section 3.1.32
+
+: <dfn>Hub Activity</dfn>
+::
+    TODO define me
+
+: <dfn>Shipment</dfn>
+::
+    A shipment refers to the goods in a commercial transaction between a seller and a buyer.
+    It encompasses the consignments transported as part of this transaction via a transport
+    chain from the consignor to the consignee
+    Also see [[!ISO14083]], Section 3.1.20
+
+: <dfn>Consigment</dfn>
+::
+    A consignment refers to a quantifiable quantity of cargo that can be distinctly
+    identified as a single unit. It is transported from a sender or consignor to a
+    receiver or consignee, irrespective of the mode of transportation employed.
+
+    Also see [[!ISO14083]], Section 3.1.4
+
+: <dfn>Transport Activity</dfn>
+:: 
+    Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance. 
+    It is measured with unit `ton kilometre`. See [[!ISO14083]] Section 3.1.24
+
+: <dfn>Distance</dfn>
+:: see [=Transport Distance=] and [=Actual Distance=]
+
+: <dfn>Transport Distance</dfn>
+:: see [[!ISO14083]] 3.1.27
+
+: <dfn>Actual Distance</dfn>
+:: The actual route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
+
+: <dfn>Shortest Feasible Distance (SFD) </dfn>
+:: 
+    It represents the shortest practical route between two places taking into account the real operating conditions. See [[!GLEC]] Framework
+
+: <dfn>Great Circle Distance (GCD) </dfn>
+:: 
+    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. See [[!GLEC]] Framework
+
+
+## Auxillary Definitions ## {#auxillary-definitions}
 
 : Data Transaction
 :: see [[#txns]]
@@ -74,12 +125,6 @@ Issue: add `Decimal` data type definition
 : Logistics Service Provider (<dfn>LSP</dfn> )
 :: See [=Transport Service Organizer=]
 
-: <dfn>Transport Operator</dfn>
-:: See [[!ISO14083]], Section 3.1.30
-
-: <dfn>Transport Service Organizer</dfn>
-:: See [[!ISO14083]], Section 3.1.32
-
 : <dfn>Carrier</dfn>
 :: see [=Transport Service Provider=]
 
@@ -88,10 +133,6 @@ Issue: add `Decimal` data type definition
 
 : <dfn>Transport Service Provider</dfn>
 :: A party that is offering transport services
-
-: <dfn>Hub Activity</dfn>
-::
-    TODO define me
 
 : <dfn>Data Owner</dfn>
 :: See Pathfinder Tech Specs for the definition
@@ -103,50 +144,18 @@ Issue: add `Decimal` data type definition
 :: See Pathfinder Tech Specs for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
-: <dfn>Shipment</dfn>
+: <dfn>Shipment id</dfn>
+:: 
+    A digital identifier which uniquely identifies a [=Shipment=].
+
+: <dfn>Consignment id</dfn>
 ::
-    A shipment refers to the goods in a commercial transaction between a seller and a buyer.
-    It encompasses the consignments transported as part of this transaction via a transport
-    chain from the consignor to the consignee
-
-: <dfn>shipment id</dfn>
-:: Refers to the goods in a commercial transaction between a seller and a buyer. It encompasses the consignments transported as part of this transaction via a transport chain from the consignor to the consignee
-
-: <dfn>Consigment</dfn>
-::
-    A consignment refers to a quantifiable quantity of cargo that can be distinctly
-    identified as a single unit. It is transported from a sender or consignor to a
-    receiver or consignee, irrespective of the mode of transportation employed.
-
- : <dfn>consignment id</dfn>
-:: Refers to a quantifiable amount of cargo that can be distinctly identified as a single unit. It is transported from a sender or consignor to a receiver or consignee, irrespective of the mode of transport employed. 
+    A digital identifier which uniquely identifies a [=Consignment=].
 
 : <dfn>Tool Provider</dfn>
 :: 
     Provider of software, tools, services, or programs that support companies in 
     calculating and reporting logistics GHG emissions conforming to this technical specifications.
-
-: <dfn>Transport Activity</dfn>
-:: 
-    Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance. 
-    It is measured with unit `ton kilometre`. See [[!ISO14083]] Section 3.1.24
-
-: <dfn>Distance</dfn>
-:: see [=Transport Distance=] and [=Actual Distance=]
-
-: <dfn>Tranport Distance</dfn>
-:: see [[!ISO14083]] 3.1.27
-
-: <dfn>Actual Distance</dfn>
-:: The actual route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
-
-: <dfn>Shortest Feasible Distance (SFD) </dfn>
-:: 
-    It represents the shortest practical route between two places taking into account the real operating conditions. See [[!GLEC]] Framework
-
-: <dfn>Great Circle Distance (GCD) </dfn>
-:: 
-    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. See [[!GLEC]] Framework
 
 Issue: Link to the pathfinder tech specs in this section
 
@@ -157,7 +166,8 @@ Issue: add a pathfinder tech specs normative reference to this document
 
 Note: Non-normative section
 
-This specification shall serve the general need of businesses for end-to-end Carbon Accounting and Reporting, conforming with the [[!GLEC]] Framework and ISO 14083.
+This specification shall serve the general need of businesses for end-to-end Carbon
+Accounting and Reporting, conforming with the [[!GLEC]] Framework and ISO 14083.
 
 Given the nature of the logistics industry, and in order to reduce costs overall,
 logistics emissions transparency is only possible if all the parties involved
