@@ -93,7 +93,7 @@ Issue: add `Decimal` data type definition
 : <dfn>Transport Activity</dfn>
 :: 
     Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance. 
-    It is measured with unit `ton kilometre`. See [[!ISO14083]] Section 3.1.24
+    It is measured with unit `ton kilometre`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework
 
 : <dfn>Distance</dfn>
 :: see [=Transport Distance=] and [=Actual Distance=]
@@ -185,8 +185,11 @@ The following business cases shall be supported by this specification:
     An [=Transport Service Organizer=] wants to collect information from its
     contractors so that they can calculate emissions according to the GLEC Framework and ISO 14083.
 
-    For this, the LSP performs data transactions ([[#txn2]]) to collect emission
+    For this, the [=Transport Service Organizer=] performs data transactions ([[#txn2]]) to collect emission
     intensities ([=HOCs=] or [=TOCs=]) from its contractors.
+
+    Alternatively, in case the contracted [=Transport Operator=] cannot provide [=TOCs=] to the [=Transport Service Organizer=], 
+    the [=Transport Operator=] can collect [=Transport Activity Data=] and make this data available ([[#txn3]]).
 
 : Business Case #a1
 ::
@@ -250,7 +253,7 @@ For this, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 1. make the resulting <{LSF}> available to the [=Transport Service User=] through the Pathfinder 
     Network API (see [[#dt-lsf]]).
 
-The [=Transport Service User=] CAN then use this transaction to collect the necessary of a Transport Chain ([=TC=]), by
+The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) using the [=shipment id=], by
 1. collecting the <{TCE|TCEs}> from all the [=Transport Operators=] and the [=Transport Service Organizers=] related to the shipment
 1. forming the [=TC=] from the collected TCEs
 1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and ISO 14083
@@ -277,8 +280,6 @@ Note:
     and guidance provided through the [[!GLEC]] Framework.
     Details of the calculation method are out of scope of this specification.
 
-Note: This enables [=Business Case #3=].
-
 
 ## Data Transaction 3: Transport Activity Data Exchange ## {#txn3}
 
@@ -288,11 +289,12 @@ Note:
       the option to provide activity data to their customers should be given.
 
 This data transaction enables a [=Transport Operator=] to exchange [=Transport Activity Data=] 
-with a [=Transport Service Organizer=] or a [=Transport Service User=].
+with a [=Transport Service Organizer=] or a [=Transport Service User=] for a single [=consigment=].
 
 For this, the [=Transport Operator=] MUST
 
-1. first collect Transport Activity Data necessary to calculate of a <{TAD}> (see [[#dt-tad]]) for each [=consignment=] identified by a [=consignment id=]
+1. first collect Transport Activity Data belonging to a consignment identified by the [=consignment id=]
+2. calculate the <{TAD}> (see [[#dt-tad]]) given the [=consignment id=]
 2. make the resulting <{TAD}> available through the Pathfinder Network API
 
 The [=Transport Service Organizer=] or a [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
@@ -340,7 +342,7 @@ stored in the data model extension property `extensions` of the underlying `Prod
         <td><dfn>shipmentId</dfn>
         <td>String
         <td>M
-        <td>The [=shipment id=]
+        <td>The [=shipment id=] of the shipment related to this <{LSF}>
       <tr>
         <td><dfn>tces</dfn>
         <td><{TCE}>[]
@@ -424,7 +426,9 @@ stored in the data model extension property `extensions` of the underlying `Prod
 
 ## Transport Chain Element ( <dfn element>TCE</dfn> ) ## {#dt-tce}
 
-The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] through the <{LSF/tces}> property.
+The Data Type <{TCE}> models information related to a single Transport Chain Element. 
+
+It is referenced in a [=LSF=] through the <{LSF/tces}> property.
 
 [=TCEs=] are the building blocks for a Transport Chain ([=TC=]) and the calculation of logistics emissions at [=TC=]-level.
 
@@ -447,59 +451,67 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
       <tr>
         <td><dfn>tocId</dfn>
         <td>String
-        <td>O
+        <td>
         <td>
               If defined, the id of the [=TOC=] used for the calculation of this <{TCE}>.
+              
               Either <{TCE/tocId}> or <{TCE/hocId}> MUST be defined.
       <tr>
         <td><dfn>hocId</dfn>
         <td>String
-        <td>O
+        <td>
         <td>
               If defined, the id of the [=HOC=] used for the calculation of this <{TCE}>.
+              
               Either <{TCE/tocId}> or <{TCE/hocId}> MUST be defined.
+
       <tr>
-        <td><dfn>consignmentIds</dfn>
-        <td>String[]
+        <td><dfn>shipmentId</dfn>
+        <td>String
         <td>M
-        <td>The non-empty set of [=consignment ids=] relating to this shipment.
+        <td>The [=shipment id=] of the shipment related to this <{TCE}>
+
+
+      <tr>
+        <td><dfn>consignmentId</dfn>
+        <td>String
+        <td>O
+        <td>The [=consignment id=] of the consignment related to the shipment related to this <{TCE}>
 
       <tr>
         <td><dfn>mass</dfn> : Decimal
         <td>String
-        <td> Issue: neither O nor M
+        <td>M
         <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser, in accordance with the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>packagingUnit</dfn>
         <td>String
-        <td> Issue: neither O nor M
-        <td>
-              Issue: needs definition
+        <td>O
+        <td>Issue: needs definition
 
       <tr>
         <td><dfn>packagingUnitAmount</dfn> : Decimal
         <td>String
-        <td> Issue: neither O nor M
-        <td>
-              Issue: needs definition
+        <td>O
+        <td>Issue: needs definition
 
       <tr>
         <td><dfn>distance</dfn>
         <td><{GLECDistance}>
         <td>M
-        <td>The Distance between the origin and the destination of the activity related to the TCE
+        <td>The [=distance=] between the origin and the destination of the activity related to the TCE
 
       <tr>
         <td><dfn>origin</dfn>
         <td><{Location}>
-        <td>M
+        <td>O
         <td>The origin of the activity related to the TCE
 
       <tr>
         <td><dfn>destination</dfn>
         <td><{Location}>
-        <td>M
+        <td>O
         <td>The destination of the activity related to the TCE
 
       <tr>
@@ -507,7 +519,7 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>String
         <td>M
         <td>
-            The transport activity of the TCE (SI derived Unit `ton kilometers`)
+            The [=transport activity=] of the TCE (SI derived Unit `ton kilometers`)
 
             <div class=example>
                 If the transport [=distance=] is `700` `kilometers` and the mass is `230` `kilograms`,
@@ -538,7 +550,6 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
               processing and distributing an energy carrier for vehicle operation + GHG
               released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kgCO2e`.
-              The value MUST be encoded as a decimal string.
 
       <tr>
         <td><dfn>co2eTTW</dfn> : Decimal
@@ -547,7 +558,6 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>
               GHGe released to atmosphere as a result of vehicle operation
               The value MUST be calculated for the TCE with unit `kgCO2e`.
-              The value MUST be encoded as a decimal string.
 
       <tr>
         <td><dfn>noxTTW</dfn> : Decimal
@@ -556,7 +566,6 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>
               Nitrogen oxide released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kg`.
-              The value MUST be encoded as a decimal string.
 
       <tr>
         <td><dfn>soxTTW</dfn> : Decimal
@@ -565,7 +574,6 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>
               Sulphur oxide released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kg`.
-              The value MUST be encoded as a decimal string.
 
       <tr>
         <td><dfn>ch4TTW</dfn> : Decimal
@@ -574,7 +582,6 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>
               Methane released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kg`.
-              The value MUST be encoded as a decimal string.
 
       <tr>
         <td><dfn>pmTTW</dfn> : Decimal
@@ -583,7 +590,6 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td>
               Particulate matter (PM10 and PM2.5) released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kg`.
-              The value MUST be encoded as a decimal string.
 
   </table>
   <figcaption>Properties of data type <{TCE}></figcaption>
@@ -650,7 +656,7 @@ The Data Type <{TOC}> has the following properties:
         <td>Text description of the applicable TOC. Reflect on mode of transport, contract type, equipment type, vehicle type, freight temperature, LTL/FTL etc
 
       <tr>
-        <td><dfn>mode</dfn> : {{TransportMode}}
+        <td><dfn>mode</dfn> : <{TransportMode}>
         <td>String
         <td>M
         <td>
@@ -1015,7 +1021,7 @@ Issue: needs to be refined & checked by SFC
         <th>Attribute Id
         <th>Type
         <th>Req
-        <th>Description
+        <th>Definition
     <tbody>
       <tr>
         <td><dfn>street</dfn>
@@ -1031,12 +1037,12 @@ Issue: needs to be refined & checked by SFC
       <tr>
         <td><dfn>city</dfn>
         <td>String
-        <td>O
+        <td>M
         <td>
       <tr>
         <td><dfn>country</dfn>
         <td>Country
-        <td>O
+        <td>M
         <td>An ISO 3166-2 alpha-2 country code. See [https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc](https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc) for details.
       <tr>
         <td><dfn>iata</dfn>
