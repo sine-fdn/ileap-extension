@@ -45,7 +45,6 @@ Issue: The GLEC Framework reference at the end of this file needs an update
 
 Issue: V/G sync this section with the slidedeck's "out of scope" section
 
-Issue: add `Decimal` data type definition
 
 # Definitions # {#definitions}
 
@@ -478,7 +477,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>The [=consignment id=] of the consignment related to the shipment related to this <{TCE}>
 
       <tr>
-        <td><dfn>mass</dfn> : Decimal
+        <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser, in accordance with the [[!GLEC]] Framework.
@@ -490,7 +489,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>Issue: needs definition
 
       <tr>
-        <td><dfn>packagingUnitAmount</dfn> : Decimal
+        <td><dfn>packagingUnitAmount</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>Issue: needs definition
@@ -514,7 +513,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>The destination of the activity related to the TCE
 
       <tr>
-        <td><dfn>transportActivity</dfn> : Decimal
+        <td><dfn>transportActivity</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
@@ -541,7 +540,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
 
       <tr>
-        <td><dfn>co2eWTW</dfn> : Decimal
+        <td><dfn>co2eWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
@@ -551,7 +550,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
       <tr>
-        <td><dfn>co2eTTW</dfn> : Decimal
+        <td><dfn>co2eTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
@@ -559,7 +558,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
       <tr>
-        <td><dfn>noxTTW</dfn> : Decimal
+        <td><dfn>noxTTW</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>
@@ -567,7 +566,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
               The value MUST be calculated for the TCE with unit `kg`.
 
       <tr>
-        <td><dfn>soxTTW</dfn> : Decimal
+        <td><dfn>soxTTW</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>
@@ -575,7 +574,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
               The value MUST be calculated for the TCE with unit `kg`.
 
       <tr>
-        <td><dfn>ch4TTW</dfn> : Decimal
+        <td><dfn>ch4TTW</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>
@@ -583,7 +582,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
               The value MUST be calculated for the TCE with unit `kg`.
 
       <tr>
-        <td><dfn>pmTTW</dfn> : Decimal
+        <td><dfn>pmTTW</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>
@@ -719,7 +718,7 @@ The Data Type <{TOC}> has the following properties:
               Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
       <tr>
-        <td><dfn>energyConsumption</dfn> : Decimal
+        <td><dfn>energyConsumption</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>
@@ -762,7 +761,7 @@ The Data Type <{TOC}> has the following properties:
 
 
       <tr>
-        <td><dfn>co2eFuelIntensityWTW</dfn> : Decimal
+        <td><dfn>co2eFuelIntensityWTW</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>
@@ -770,7 +769,7 @@ The Data Type <{TOC}> has the following properties:
             Issue: this needs further refinement!
 
       <tr>
-        <td><dfn>co2eIntensityWTW</dfn> : Decimal
+        <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
@@ -893,7 +892,7 @@ Issue: !! we need to define data quality semantics !!
         <td>The Distance between the origin and the destination of the activity
 
       <tr>
-        <td><dfn>mass</dfn> : Decimal
+        <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>Mass of freight (SI derived Unit `kilograms`)
@@ -985,18 +984,18 @@ Issue: this needs to be refined, especially the semantics of optional data types
         <th>Description
     <tbody>
       <tr>
-        <td><dfn>actual</dfn> : Decimal
+        <td><dfn>actual</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>The Distance between the origin and the destination of a consignment of
               freight or a vehicle, along a specified route (or from telematics). As defined in the [[!GLEC]] Framework
       <tr>
-        <td><dfn>gcd</dfn> : Decimal
+        <td><dfn>gcd</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>[=Great Circle Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework
       <tr>
-        <td><dfn>sfd</dfn> : Decimal
+        <td><dfn>sfd</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>[=Shortest Feasible Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework
@@ -1060,12 +1059,12 @@ Issue: needs to be refined & checked by SFC
         <td>UIC Code of the location
       <tr>
         <td><dfn>lat</dfn>
-        <td>Decimal
+        <td>[=Decimal=]
         <td>O
         <td>Latitude of the destination. If <{Location/lng}> is defined, so MUST <{Location/lat}> be defined
       <tr>
         <td><dfn>lng</dfn>
-        <td>Decimal
+        <td>[=Decimal=]
         <td>O
         <td>Longitude of the destination.  If <{Location/lat}> is defined, so MUST <{Location/lng}> be defined
 
@@ -1073,7 +1072,8 @@ Issue: needs to be refined & checked by SFC
     <figcaption><{GLECDistance}> properties</figcaption>
 </figure>
 
-### Transport Mode (<dfn enum>TransportMode</dfn>) ### {#dt-transport-mode}
+
+### Data Type <dfn enum>TransportMode</dfn> ### {#dt-transport-mode}
 
 The Data Type {{TransportMode}} is an enumeration of the transport modes as defined in the [[!GLEC]] Framework.
 
@@ -1101,6 +1101,26 @@ It MUST be encoded as a String using one of the following values:
 
 </dl>
 
+
+### Data Type <dfn>Decimal</dfn> ### {#dt-decimal}
+
+A decimal number. 
+
+In JSON, a [=Decimal=] MUST be encoded as a JSON String.
+
+Note: the JSON String encoding is necessary to avoid floating point rounding errors.
+
+
+<div class=example>
+  Example of the decimal numbers `10` and `-0.123` encoded in JSON:
+
+  ```json
+  "10"
+  ```
+
+  ```json
+  "-0.123"
+  ```
 
 <pre class=biblio>
  {
