@@ -22,7 +22,7 @@ Issue: this section needs rewording.
 - Logistics emissions account for a significant share of global greenhouse gas emissions.
 - This document specifies a data model and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data
 - The data model [[#data-model]] and the foundational data transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
-- By implementing this specification, different stakeholders of the logistics value chain can exchange data to enable logistics emissions calculation at the level of individual [=shipments=] ([=TCEs=]), at the level of so-called [=TOCs=], and [=HOCs=].
+- By implementing this specification, different stakeholders of the logistics value chain can exchange data to enable logistics emissions calculation for [=shipments=].
 - This technical specification is based on the [[!GLEC]] Framework, the related [[!ISO14083|ISO 14083]], and the Data Exchange Project of [=SFC=].
 
 
@@ -57,9 +57,9 @@ Issue: add `Decimal` data type definition
 :: A Hub Operation Category as defined in the GLEC Framework
 
 : Transport Chain (<dfn>TC</dfn> )
-:: A Transport Chain as defined in the GLEC Framework. A TC consists of 1 or more [=TCEs=]
+:: A Transport Chain as defined in the GLEC Framework. A TC consists of 1 or more [=Transport Chain Elements=]
 
-: Transport Chain Element (<dfn>TCE</dfn> )
+: <dfn>Transport Chain Element</dfn> (TCE)
 :: A Transport Chain Element as defined in the GLEC Framework.
 
 : <dfn>Transport Operator</dfn>
@@ -82,7 +82,7 @@ Issue: add `Decimal` data type definition
     chain from the consignor to the consignee
     Also see [[!ISO14083]], Section 3.1.20
 
-: <dfn>Consigment</dfn>
+: <dfn>Consignment</dfn>
 ::
     A consignment refers to a quantifiable quantity of cargo that can be distinctly
     identified as a single unit. It is transported from a sender or consignor to a
@@ -104,11 +104,11 @@ Issue: add `Decimal` data type definition
 : <dfn>Actual Distance</dfn>
 :: The actual route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
 
-: <dfn>Shortest Feasible Distance (SFD) </dfn>
+: <dfn>Shortest Feasible Distance</dfn> (SFD)
 :: 
     It represents the shortest practical route between two places taking into account the real operating conditions. See [[!GLEC]] Framework
 
-: <dfn>Great Circle Distance (GCD) </dfn>
+: <dfn>Great Circle Distance</dfn> (GCD)
 :: 
     It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. See [[!GLEC]] Framework
 
@@ -127,24 +127,18 @@ Issue: add `Decimal` data type definition
 : Logistics Service Provider (<dfn>LSP</dfn> )
 :: See [=Transport Service Organizer=]
 
-: <dfn>Carrier</dfn>
-:: see [=Transport Service Provider=]
-
 : <dfn>Hub Operator</dfn>
 :: A party that is offering hub services, including warehousing and transshipment center services.
 
 : <dfn>Transport Service Provider</dfn>
 :: A party that is offering transport services
 
-: <dfn>Data Owner</dfn>
-:: See Pathfinder Tech Specs for the definition
-
-: <dfn>Data Recipient</dfn>
-:: See Pathfinder Tech Specs for the definition
-
 : <dfn>Host System</dfn>
 :: See Pathfinder Tech Specs for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
+
+: <dfn>ShipmentFootprint</dfn>
+:: See [[#dt-sf]] for the definition.
 
 : <dfn>Shipment id</dfn>
 :: 
@@ -158,6 +152,10 @@ Issue: add `Decimal` data type definition
 :: 
     Provider of software, tools, services, or programs that support companies in 
     calculating and reporting logistics GHG emissions conforming to this technical specifications.
+
+: <dfn>PCF</dfn>
+::
+    Product Carbon Footprint. See Pathfinder Tech Specs for further details
 
 Issue: Link to the pathfinder tech specs in this section
 
@@ -194,7 +192,7 @@ The following business cases shall be supported by this specification:
 : Business Case #a1
 ::
     a [=Transport Operator=] shares [=Transport Activity=] data with e.g an 
-    [=Tranport Service Organizer=]. 
+    [=Transport Service Organizer=]. 
 
     For this, the [=Transport Operator=] collects Transaport Activity Data
     and makes it available through the Pathfinder API using a Pathfinder Data Model Extension
@@ -202,7 +200,7 @@ The following business cases shall be supported by this specification:
 
 : Business Case #2
 ::
-    A [=Transpor Service User=] wants to give logistics emissions transparency 
+    A [=Transport Service User=] wants to give logistics emissions transparency 
     to its customers by disclosing logistics emissions as part of a [=PCF=].
     This is enabled through the usage of the Pathfinder Technical Specification
     and disclosing through so-called Data Model Extensions based on the iLEAP
@@ -244,14 +242,14 @@ A single data transaction, or sometimes the consecutive execution of business tr
 
 ## Data Transaction 1: TCE Data Exchange ## {#txn1}
 
-This data transaction enables a [=Transport Service User=] (such as a [=shipper=]) to receive <{TCE|TCEs}> from a 
+This data transaction enables a [=Transport Service User=] (such as a [=shipper=]) to receive [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>) from a 
 [=Transport Operator=] or a [=Transport Service Organizer=] for a single [=shipment=].
 
 For this, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 
 1. first calculate 1 or more TCEs in accordance with the [[!GLEC]] Framework and ISO 14083, and then
-1. make the resulting <{LSF}> available to the [=Transport Service User=] through the Pathfinder 
-    Network API (see [[#dt-lsf]]).
+1. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the Pathfinder 
+    Network API (see [[#dt-sf]]).
 
 The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) using the [=shipment id=], by
 1. collecting the <{TCE|TCEs}> from all the [=Transport Operators=] and the [=Transport Service Organizers=] related to the shipment
@@ -273,7 +271,7 @@ to make logistics emissions intensity data at the level of 1 or more [=TOC=] .
 For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
 1. first calculate 1 or more TOCs in accordance with the [[!GLEC]] Framework and ISO 14083, and then
-1. make the resulting <{TOCs}> available through the Pathfinder Network API (see [[#dt-toc]]).
+1. make the resulting <{TOC|TOCs}> available through the Pathfinder Network API (see [[#dt-toc]]).
 
 Note:
     The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
@@ -289,7 +287,7 @@ Note:
       the option to provide activity data to their customers should be given.
 
 This data transaction enables a [=Transport Operator=] to exchange [=Transport Activity Data=] 
-with a [=Transport Service Organizer=] or a [=Transport Service User=] for a single [=consigment=].
+with a [=Transport Service Organizer=] or a [=Transport Service User=] for a single [=consignment=].
 
 For this, the [=Transport Operator=] MUST
 
@@ -307,24 +305,27 @@ Issue: create an end-to-end example combining Transction 1 and Transaction 2 to 
 
 # Data Model # {#data-model}
 
-## Logistics Service Footprint (LSF) ## {#dt-lsf}
+## ShipmentFootprint ## {#dt-sf}
 
-Issue: we need to find a better term! (candidate: shipment footprint)
+<dfn element>ShipmentFootprint</dfn> is a data type that contains 1
+or more [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>) 
+for a single [=shipment=] and from a single entity (a [=Transport Operator=] or a [=Transport Service Organizer=]).
 
-A logistics service footprint (<def>LSF</def>) enables a [=Transport Service User=] to calculate the logistics emissions of a single shipment.
+By collecting 1 or more ShipmentFootprint for a shipment from [=Transport Operators=] and [=Transport Service Organizer=], 
+[=Transport Service User=] can construct Transport Chains ([=TCs=]), and thereby calculate 
+logistics emissions.
 
-For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST 
+To calculate a ShipmentFootprint, the [=Transport Operator=] or [=Transport Service Organizer=] MUST 
+
 - first calculate <{TCE|TCEs}> for a single shipment in accordance with [[#dt-tce]],
-- and then derives the <{LSF}> from the <{TCE|TCEs}>.
+- and then derives the <{ShipmentFootprint}> from the <{TCE|TCEs}>.
 
-Issue: this section needs additional refinement and specifications
 
-### Data Attributes ### {#lsf-attributes}
+### Data Attributes ### {#sf-attributes}
 
-A logistics service footprint (LSF) contains the following attributes (<dfn element>LSF</dfn>),
-stored in the data model extension property `extensions` of the underlying `ProductFootprint`:
+A ShipmentFootprint has the following properties:
 
-<figure id="lsf-properties-table" dfn-type="element-attr" dfn-for="LSF">
+<figure id="sf-properties-table" dfn-type="element-attr" dfn-for="ShipmentFootprint">
   <table class="data">
     <thead>
       <tr>
@@ -342,7 +343,7 @@ stored in the data model extension property `extensions` of the underlying `Prod
         <td><dfn>shipmentId</dfn>
         <td>String
         <td>M
-        <td>The [=shipment id=] of the shipment related to this <{LSF}>
+        <td>The [=shipment id=] of the shipment related to this <{ShipmentFootprint}>
       <tr>
         <td><dfn>tces</dfn>
         <td><{TCE}>[]
@@ -350,15 +351,15 @@ stored in the data model extension property `extensions` of the underlying `Prod
         <td>The non-empty array of [=TCEs=] relating to this shipment.
 
     </table>
-    <figcaption>Logistics Service Footprint (LSF) properties</figcaption>
+    <figcaption>ShipmentFootprint properties</figcaption>
 </figure>
 
 
-### Mapping to Pathfinder Data Model ### {#lsf-mapping}
+### Mapping to Pathfinder Data Model ### {#sf-mapping}
 
-#### ProductFootprint property mapping #### {#lsf-pf-mapping}
+#### ProductFootprint property mapping #### {#sf-pf-mapping}
 
-<figure id="lsf-pf-properties-table" dfn-type="element-attr" dfn-for="ProductFootprint">
+<figure id="sf-pf-properties-table">
   <table class="data">
     <thead>
       <tr>
@@ -386,9 +387,9 @@ stored in the data model extension property `extensions` of the underlying `Prod
     <figcaption>Mapping of the GLEC Framework-related data to the Pathfinder Data Model</figcaption>
 </figure>
 
-#### CarbonFootprint properties mapping #### {#lsf-cf-mapping}
+#### CarbonFootprint properties mapping #### {#sf-cf-mapping}
 
-<figure id="lsf-cf-properties-table" dfn-type="element-attr" dfn-for="CarbonFootprint">
+<figure id="sf-cf-properties-table">
   <table class="data">
     <thead>
       <tr>
@@ -426,11 +427,9 @@ stored in the data model extension property `extensions` of the underlying `Prod
 
 ## Transport Chain Element ( <dfn element>TCE</dfn> ) ## {#dt-tce}
 
-The Data Type <{TCE}> models information related to a single Transport Chain Element. 
+The Data Type <{TCE}> models information related to a single [=Transport Chain Element=]. 
 
-It is referenced in a [=LSF=] through the <{LSF/tces}> property.
-
-[=TCEs=] are the building blocks for a Transport Chain ([=TC=]) and the calculation of logistics emissions at [=TC=]-level.
+[=TCEs=] are the building blocks to construct and Transport Chain ([=TC=]), enabling the calculation of logistics emissions.
 
 
 <figure id="tce-properties-table" dfn-type="element-attr" dfn-for="TCE">
@@ -446,7 +445,7 @@ It is referenced in a [=LSF=] through the <{LSF/tces}> property.
         <td><dfn>tceId</dfn>
         <td>String
         <td>M
-        <td>The id of the [=TCE=]
+        <td>The id of the [=Transport Chain Element=]
 
       <tr>
         <td><dfn>tocId</dfn>
@@ -596,14 +595,14 @@ It is referenced in a [=LSF=] through the <{LSF/tces}> property.
 </figure>
 
 
-### Example ### {#lsf-example}
+### Example ### {#sf-example}
 
 Issue: write this section
 
 
 ## Transport Operation Category ( <dfn element>TOC</dfn> ) ## {#dt-toc}
 
-The Data Type <{TOC}> contains [=transport operation category=] data. It is referenced in a [=TCE=] through the <{TCE/tocId}> property.
+The Data Type <{TOC}> contains transport operation category data. 
 
 The [=Transport Operator=] or [=Transport Service Organizer=] MUST calculate the <{TOC}> in accordance with the [[!GLEC]] Framework.
 
@@ -656,7 +655,7 @@ The Data Type <{TOC}> has the following properties:
         <td>Text description of the applicable TOC. Reflect on mode of transport, contract type, equipment type, vehicle type, freight temperature, LTL/FTL etc
 
       <tr>
-        <td><dfn>mode</dfn> : <{TransportMode}>
+        <td><dfn>mode</dfn> : {{TransportMode}}
         <td>String
         <td>M
         <td>
@@ -810,9 +809,9 @@ Issue: complete this section
 
 Advisement: This section and data model requires significant input from the SFC Community
 
-The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=TCE=] through the <{TCE/hocId}> property.
+The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport Chain Element=] through the <{TCE/hocId}> property.
 
-[=HOCs=] are the building blocks for the calculation of a [=TCE=].
+[=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=].
 
 ### Mapping to Pathfinder Data Model ### {#hoc-mapping}
 
@@ -995,12 +994,12 @@ Issue: this needs to be refined, especially the semantics of optional data types
         <td><dfn>gcd</dfn> : Decimal
         <td>String
         <td>O
-        <td>Distance between the origin and the destination of a consignment GCD, as defined in the [[!GLEC]] Framework
+        <td>[=Great Circle Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>sfd</dfn> : Decimal
         <td>String
         <td>O
-        <td>Distance between the origin and the destination of a consignment SFD, as defined in the [[!GLEC]] Framework
+        <td>[=Shortest Feasible Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework
 
     </table>
     <figcaption><{GLECDistance}> properties</figcaption>
