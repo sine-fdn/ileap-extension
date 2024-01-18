@@ -335,7 +335,7 @@ stored in the data model extension property `extensions` of the underlying `Prod
         <td><dfn>mass</dfn>
         <td>String
         <td>M
-        <td>The mass of the good (SI Unit `kilograms`)
+        <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the Transport Service user,  excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser
       <tr>
         <td><dfn>shipmentId</dfn>
         <td>String
@@ -468,7 +468,7 @@ The Data Type <{TCE}> contains [=TCE=] data. It is referenced in a [=LSF=] throu
         <td><dfn>mass</dfn> : Decimal
         <td>String
         <td> Issue: neither O nor M
-        <td>The freight mass (SI derived Unit `kilograms`)
+        <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser, in accordance with the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>packagingUnit</dfn>
