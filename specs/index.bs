@@ -6,9 +6,9 @@ Status Text: Draft Technical Specification
 URL: https://sine-fdn.github.io/ileap-extension/
 ED: https://sine-fdn.github.io/ileap-extension/
 TR: https://sine-fdn.github.io/ileap-extension/
-Editor: Violetta Matzoros <violetta.matzoros@smartfreightcentre.org>
-Editor: Gabriela Rubio Domingo <gabriela.rubiodomingo@smartfreightcentre.org>
-Editor: Martin Pompéry <martin@sine.foundation>
+Editor: Violetta Matzoros, https://www.smartfreightcentre.org, violetta.matzoros@smartfreightcentre.org
+Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rubiodomingo@smartfreightcentre.org
+Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Repository: sine-fdn/ileap-extension
 Abstract: This document specifies the data exchange profile for the SFC iLEAP project which is based on the Pathfinder Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the Patfhinder Network. By implementing this specification, companies can exchange logistics emission data with each other such that shippers can calculate logistics emissions.
 Markup Shorthands: markdown yes
