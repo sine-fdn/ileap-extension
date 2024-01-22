@@ -26,10 +26,6 @@ Issue: this section needs rewording.
 - This technical specification is based on the [[!GLEC]] Framework, the related [[!ISO14083|ISO 14083]], and the Data Exchange Project of [=SFC=].
 
 
-Issue: Update number so that `Business Case #3` becomes `Business Case #1`
-
-Issue: Check spelling and definition of units (i.e. is it `kilometers` or `kilometre` etc.)!
-
 ## Out of Scope ## {#out-of-scope}
 
 This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
@@ -42,8 +38,6 @@ This specifcation does not cover the following topics or aspects as they are cov
 6. How to perform data audits and verification
 
 Issue: The GLEC Framework reference at the end of this file needs an update
-
-Issue: V/G sync this section with the slidedeck's "out of scope" section
 
 
 # Definitions # {#definitions}
@@ -92,7 +86,7 @@ Issue: V/G sync this section with the slidedeck's "out of scope" section
 : <dfn>Transport Activity</dfn>
 :: 
     Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance. 
-    It is measured with unit `ton kilometre`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework
+    It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework
 
 : <dfn>Distance</dfn>
 :: see [=Transport Distance=] and [=Actual Distance=]
@@ -101,7 +95,7 @@ Issue: V/G sync this section with the slidedeck's "out of scope" section
 :: see [[!ISO14083]] 3.1.27
 
 : <dfn>Actual Distance</dfn>
-:: The actual route (with unit `kilometre`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
+:: The actual route (with unit `kilometer`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
 
 : <dfn>Shortest Feasible Distance</dfn> (SFD)
 :: 
@@ -1478,7 +1472,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
     "GLEC": {
         "authors": [],
         "href": "https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf",
-        "title": "GLEC Framework",
+        "title": "Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).",
         "status": "LS",
         "publisher": "Smart Freight Centre (SFC)"
     },
