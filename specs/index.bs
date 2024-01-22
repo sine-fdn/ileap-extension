@@ -53,13 +53,13 @@ Issue: V/G sync this section with the slidedeck's "out of scope" section
 :: A Transport Operation Category as defined in the [[!GLEC]] Framework
 
 : Hub Operation Category (<dfn>HOC</dfn> )
-:: A Hub Operation Category as defined in the GLEC Framework
+:: A Hub Operation Category as defined in the [[!GLEC]] Framework
 
 : Transport Chain (<dfn>TC</dfn> )
-:: A Transport Chain as defined in the GLEC Framework. A TC consists of 1 or more [=Transport Chain Elements=]
+:: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]
 
 : <dfn>Transport Chain Element</dfn> (TCE)
-:: A Transport Chain Element as defined in the GLEC Framework.
+:: A Transport Chain Element as defined in the [[!GLEC]] Framework
 
 : <dfn>Transport Operator</dfn>
 :: See [[!ISO14083]], Section 3.1.30
@@ -78,7 +78,7 @@ Issue: V/G sync this section with the slidedeck's "out of scope" section
 ::
     A shipment refers to the goods in a commercial transaction between a seller and a buyer.
     It encompasses the consignments transported as part of this transaction via a transport
-    chain from the consignor to the consignee
+    chain from the consignor to the consignee.
     Also see [[!ISO14083]], Section 3.1.20
 
 : <dfn>Consignment</dfn>
@@ -150,7 +150,7 @@ Issue: V/G sync this section with the slidedeck's "out of scope" section
 : <dfn>Tool Provider</dfn>
 :: 
     Provider of software, tools, services, or programs that support companies in 
-    calculating and reporting logistics GHG emissions conforming to this technical specifications.
+    calculating and reporting logistics GHG emissions conforming to these technical specifications.
 
 : <dfn>PCF</dfn>
 ::
@@ -177,27 +177,27 @@ They are the context from which supporting data transactions ([#txns]) are defin
 
 The following business cases shall be supported by this specification:
 
-: <dfn>Business Case #3</dfn>
+: <dfn>Business Case #1</dfn>
 ::
     An [=Transport Service Organizer=] wants to collect information from its
     contractors so that they can calculate emissions according to the GLEC Framework and ISO 14083.
 
-    For this, the [=Transport Service Organizer=] performs data transactions ([[#txn2]]) to collect emission
+    For this, the [=Transport Service Organizer=] performs data transaction ([[#txn2]]) to collect emission
     intensities ([=HOCs=] or [=TOCs=]) from its contractors.
 
     Alternatively, in case the contracted [=Transport Operator=] cannot provide [=TOCs=] to the [=Transport Service Organizer=], 
     the [=Transport Operator=] can collect [=Transport Activity Data=] and make this data available ([[#txn3]]).
 
-: Business Case #a1
+: Business Case #2
 ::
-    a [=Transport Operator=] shares [=Transport Activity=] data with e.g an 
+    A [=Transport Operator=] shares [=Transport Activity=] data with e.g an 
     [=Transport Service Organizer=]. 
 
     For this, the [=Transport Operator=] collects Transaport Activity Data
     and makes it available through the Pathfinder API using a Pathfinder Data Model Extension
     as specified in [[#dt-tad]].
 
-: Business Case #2
+: Business Case #3
 ::
     A [=Transport Service User=] wants to give logistics emissions transparency 
     to its customers by disclosing logistics emissions as part of a [=PCF=].
@@ -220,8 +220,8 @@ The following business cases shall be supported by this specification:
 
 Issue: this section needs to be first discussed between SFC and SINE
 
-: Business Case #a2
-:: a [=Hub Operator=] shares activity data with an LSP to enable the LSP to calculate the emissions of a [=HOC=]
+: Business Case #a1
+:: A [=Hub Operator=] shares activity data with an LSP to enable the LSP to calculate the emissions of a [=HOC=]
 
 
 # Data Transactions # {#txns}
@@ -241,12 +241,12 @@ A single data transaction, or sometimes the consecutive execution of business tr
 
 ## Data Transaction 1: TCE Data Exchange ## {#txn1}
 
-This data transaction enables a [=Transport Service User=] (such as a [=shipper=]) to receive [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>) from a 
+This data transaction enables a [=Transport Service User=] (such as a [=shipper=]) to receive [=Transport Chain Elements=] emissions related data (encoded as <{TCE|TCEs}>) from a 
 [=Transport Operator=] or a [=Transport Service Organizer=] for a single [=shipment=].
 
 For this, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 
-1. first calculate 1 or more TCEs in accordance with the [[!GLEC]] Framework and ISO 14083, and then
+1. first calculate 1 or more TCEs emissions related data in accordance with the [[!GLEC]] Framework and ISO 14083, and then
 1. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the Pathfinder 
     Network API (see [[#dt-sf]]).
 
@@ -282,7 +282,7 @@ Note:
 
 Note:
       This data transaction is considered necessary by logistics parties.
-      Especially for SMEs, lacking the capabilities to Report curated emissions data,
+      Especially for SMEs, lacking the capabilities to report curated emissions data,
       the option to provide activity data to their customers should be given.
 
 This data transaction enables a [=Transport Operator=] to exchange [=Transport Activity Data=] 
@@ -1025,18 +1025,18 @@ Issue: needs to be refined & checked by SFC
         <td><dfn>street</dfn>
         <td>String
         <td>O
-        <td>
+        <td>Street of the location
 
       <tr>
         <td><dfn>zip</dfn>
         <td>String
         <td>O
-        <td>
+        <td>Postal code of the location
       <tr>
         <td><dfn>city</dfn>
         <td>String
         <td>M
-        <td>
+        <td>City of the location
       <tr>
         <td><dfn>country</dfn>
         <td>Country
@@ -1061,12 +1061,12 @@ Issue: needs to be refined & checked by SFC
         <td><dfn>lat</dfn>
         <td>[=Decimal=]
         <td>O
-        <td>Latitude of the destination. If <{Location/lng}> is defined, so MUST <{Location/lat}> be defined
+        <td>Latitude of the location. If <{Location/lng}> is defined, so MUST <{Location/lat}> be defined
       <tr>
         <td><dfn>lng</dfn>
         <td>[=Decimal=]
         <td>O
-        <td>Longitude of the destination.  If <{Location/lat}> is defined, so MUST <{Location/lng}> be defined
+        <td>Longitude of the location.  If <{Location/lat}> is defined, so MUST <{Location/lng}> be defined
 
     </table>
     <figcaption><{GLECDistance}> properties</figcaption>
