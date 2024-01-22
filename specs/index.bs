@@ -32,7 +32,7 @@ Issue: Check spelling and definition of units (i.e. is it `kilometers` or `kilom
 
 ## Out of Scope ## {#out-of-scope}
 
-This specifcation shall does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
+This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
 
 1. Methodology for the exact calculation of Logistics-related emissions which is explained in the GLEC Framework and specified in [[!ISO14083|ISO 14083]]
 2. Black Carbon (Accounting)
