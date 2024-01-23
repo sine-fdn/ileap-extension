@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.1.0-20231220)
+Title: iLEAP Technical Specifications (Version 0.1.0-20240124)
 Shortname: ileap-tech-specs
 Status: LD
 Status Text: Draft Technical Specification
@@ -297,9 +297,264 @@ For this, the [=Transport Operator=] MUST
 The [=Transport Service Organizer=] or a [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
 
 
-# End-to-End Examples # {#examples}
+# End-to-End Example # {#example}
 
-Issue: create an end-to-end example combining Transction 1 and Transaction 2 to show how a shipper can gain transparency at the level of shipments and at the level of TCEs
+Note: non-normative section
+
+This section provides an end-to-end example of how the data transactions ([[#txns]]) 
+enable logistics emissions transparency for a single shipment. 
+
+The following hypothetical parties are involved:
+
+: Transport Service User `S`
+::
+    A [=Transport Service User=] which wants to calculate the logistics emissions of a shipment from Rotterdam to Prague.
+    The shipper has a contract with the Transport Service Organizer `Z`.
+
+    `S` operates a [=host system=] which implements Transaction 1 ([[#txn1]]) to collect 
+    <{TCE|TCEs}>. Based on the collected <{TCE|TCEs}>, `S` can calculate Transport Chains ([=TCs=]) and
+    thereby calculate and gain logistics emissions transparency.
+
+: Transport Service Organizer `Z`
+:: 
+    A Transport Service Organizer responsible for a shipment from Rotterdam to Prague.
+
+    The Transport Service Organizer contracts Carrier A and Carrier B to perform the transport.
+
+    This operator has a [=host system=] which implements Transaction 1 ([[#txn1]]) 
+    as well as Transaction 2 ([[#txn2]]). 
+    
+    Through this, the operator is able to eventually calculate <{TCE|TCEs}> and <{TOC|TOCs}>, so that 
+    they can make provide data to transport service user `S`.
+
+
+: Carrier `A`
+:: 
+    A [=Transport Operator=] which is responsible for the first leg of the shipment. 
+    
+    This Operator has a [=host system=] which is capable of calculating <{TCE|TCEs}> and <{TOC|TOCs}> data. 
+
+    Through this, the operator can make [=Transport Chain Element=]-level data available to the 
+    organizer `Z` which `Z` can fetch using Transaction 1 ([[#txn1]]).
+
+: Carrier `B`
+:: 
+    Another [=Transport Operator=] which is responsible for the second leg of the shipment.
+
+    This [=Transport Operator=] is capable of making <{TAD}> data avialable to the 
+    [=Transport Service Organizer=] Z.
+
+
+## Data Transactions Executed ## {#example-txns}
+
+Note: in our hypothetical example, we are omitting any hub Operations for now
+
+Note: In this hypothetical example, when we refer to a party executing a transaction,
+        we implicitly refer to their [=host systems=] which execute
+        the tasks and transactions on their behalf.
+
+
+### Data Collection by Transport Service Organizer `Z` ### {#example-z}
+
+We are starting with the data collection by the Transport Service Organizer `Z`.
+
+As the transport consists of 2 legs, `Z` needs to collect data from the 2 Carriers `A` and `B`.
+
+For this, the Transport Service Organizer `Z` performs the following data transactions:
+
+1. `Z` executes [[#txn1]] with Carrier `A` to collect the <{TCE|TCEs}> 
+    for the first leg of the shipment.
+1. As Carrier `B` does not support [[#txn1]], `Z` performs [[#txn3]] with 
+    Carrier `B` to collect the <{TAD}> for the second leg of the shipment.
+1. `Z` then calculates the <{TCE|TCEs}> for the 2nd leg of the shipment based on 
+      the <{TAD}> data and e.g. modelled or secondary emission database(s).
+
+### Data Collection by User `S` ### {#example-s}
+
+After the organizer `Z` has performed its data colletion, the Transport Service User `S` 
+can calculate the logistics emissions of the shipment by
+
+1. collecting the <{TCE|TCEs}> from `S` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database
+1. `S` can further verify the <{TCE|TCEs}> by collecting the <{TOC|TOCs}> from `Z` using [[#txn2]]
+2. To compute the logistics emissions, `Z` can form the [=TC=] from the collected <{TCE|TCEs}> by taking the <{TCE|TCEs}> of step 1 and 
+    by calculating the logistics emissions for this shipment by following the [[!GLEC]] Framework and ISO 14083.
+
+
+## Example HTTP Calls ## {#example-http}
+
+### Data Collection by `Z` ### {#example-http-z}
+
+To collect the <{TCE|TCEs}> from Carrier `A`, `Z` performs the following HTTP call. 
+
+Note: The call to `/footprints` can return several footprints, 1 for each shipment. 
+        By filtering, e.g. by the shipment id, `Z` can retrieve the <{TCE|TCEs}> for 
+        the shipment of interest (not shown below).
+
+The highlighted lines show the data exchanged according to the <{ShipmentFootprint}> data model.
+
+<div class=example>
+  Example HTTP Request (cURL) to collect TCE Data from Carrier A:
+  <pre highlight='sh'>
+      curl -X 'GET' \
+      'https://api.transport-operator-a.com/2/footprints'      
+  </pre>
+  
+  Example response:
+  
+  <pre highlight='json' line-highlight="37-54" line-numbers>
+  {
+      "id": "d9be4477-e351-45b3-acd9-e1da05e6f633",
+      "specVersion": "2.0.0",
+      "version": 0,
+      "created": "2022-05-22T21:47:32Z",
+      "status": "Active",
+      "companyName": "Super Duper Transport Co.",
+      "companyIds": [ "urn:epc:id:sgln:4063973.00000.8" ],
+      "productDescription": "Logistics emissions related to shipment with ID 1237890",
+      "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:1237890" ],
+      "productCategoryCpc": "83117",
+      "productNameCompany": "Shipment with ID 1237890",
+      "comment": "",
+      "pcf": {
+        "declaredUnit": "ton kilometer",
+        "unitaryProductAmount": "36.801",
+        "pCfExcludingBiogenic": "3.6801",
+        "fossilGhgEmissions": "3.6801",
+        "fossilCarbonContent": "0.0",
+        "biogenicCarbonContent": "0.0",
+        "characterizationFactors": "AR5",
+        "crossSectoralStandardsUsed": [ "GHG Protocol Product standard" ],
+        "productOrSectorSpecificRules": [],
+        "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+        "referencePeriodStart": "2021-01-01T00:00:00Z",
+        "referencePeriodEnd": "2022-01-01T00:00:00Z",
+        "secondaryEmissionFactorSources": [ { "name": "Ecoinvent", "version": "3.9.1" } ],
+        "exemptedEmissionsPercent": "0.0",
+        "exemptedEmissionsDescription": "",
+        "packagingEmissionsIncluded": true,
+        "primaryDataShare": 100.0
+      },
+      "extensions": [
+        {
+          "specVersion": "2.0.0",
+          "dataSchema": "https://catalog.carbon-transparency.com/sfc-ileap/0.0.1/shipmentfootprint.json",
+          "data": {
+            "mass": "87",
+            "shipmentId": "1237890",
+            "tces": [
+              {
+                "tceId": "abcdef",
+                "tocId": "truck-40t-euro5-de",
+                "shipmentId": "1237890",
+                "mass": "87",
+                "distance": {
+                  "actual": "423"
+                },
+                "transportActivity": "36.801",
+                "co2eWTW": "3.6801",
+                "co2eTTW": "3.2801"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  </pre>
+</div>
+
+
+### Data Collection by `S` ### {#example-http-s}
+
+To collect the TCEs related to the shipment and organizer `Z`, `S` performs the following HTTP call which yields 2 TCEs.
+
+Note: The call to `/footprints` can return several footprints, 1 for each shipment. 
+        By filtering, e.g. by the shipment id, `Z` can retrieve the <{TCE|TCEs}> 
+        for the shipment of interest (not shown below).
+
+The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`.
+
+<div class=example>
+  Example HTTP Request (cURL) to collect TCE Data:
+  <pre highlight='sh'>
+      curl -X 'GET' \
+      'https://api.transport-organizer.com/2/footprints'      
+  </pre>
+  
+  Example response:
+  
+  <pre highlight='json' line-highlight="37-66" line-numbers>
+  {
+      "id": "fb1faac2-7712-458a-a1db-bace3a44abb4",
+      "specVersion": "2.0.0",
+      "version": 0,
+      "created": "2022-05-22T21:47:32Z",
+      "status": "Active",
+      "companyName": "Transport Organizer Z",
+      "companyIds": [ "urn:epc:id:sgln:123456.00000.8" ],
+      "productDescription": "Logistics emissions related to shipment with ID 1237890",
+      "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:1237890" ],
+      "productCategoryCpc": "83117",
+      "productNameCompany": "Shipment with ID 1237890",
+      "comment": "",
+      "pcf": {
+        "declaredUnit": "ton kilometer",
+        "unitaryProductAmount": "64.728",
+        "pCfExcludingBiogenic": "8,42769",
+        "fossilGhgEmissions": "8,42769",
+        "fossilCarbonContent": "0.0",
+        "biogenicCarbonContent": "0.0",
+        "characterizationFactors": "AR5",
+        "crossSectoralStandardsUsed": [ "GHG Protocol Product standard" ],
+        "productOrSectorSpecificRules": [],
+        "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+        "referencePeriodStart": "2021-01-01T00:00:00Z",
+        "referencePeriodEnd": "2022-01-01T00:00:00Z",
+        "secondaryEmissionFactorSources": [ { "name": "Ecoinvent", "version": "3.9.1" } ],
+        "exemptedEmissionsPercent": "0.0",
+        "exemptedEmissionsDescription": "",
+        "packagingEmissionsIncluded": true,
+        "primaryDataShare": 56.85
+      },
+      "extensions": [
+        {
+          "specVersion": "2.0.0",
+          "dataSchema": "https://catalog.carbon-transparency.com/sfc-ileap/0.0.1/shipmentfootprint.json",
+          "data": {
+            "mass": "87",
+            "shipmentId": "1237890",
+            "tces": [
+              {
+                "tceId": "abcdef",
+                "tocId": "truck-40t-euro5-de",
+                "shipmentId": "1237890",
+                "mass": "87",
+                "distance": {
+                  "actual": "423"
+                },
+                "transportActivity": "36.801",
+                "co2eWTW": "3.6801",
+                "co2eTTW": "3.2801"
+              },
+              {
+                "tceId": "ghijkl",
+                "tocId": "operator-z-truck-89sdff",
+                "shipmentId": "1237890",
+                "mass": "87",
+                "distance": {
+                  "actual": "321"
+                },
+                "transportActivity": "27.927",
+                "co2eWTW": "4.74759",
+                "co2eTTW": "4.272831"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  </pre>
+</div>
+
 
 
 # Data Model # {#data-model}
@@ -354,82 +609,16 @@ A ShipmentFootprint has the following properties:
 </figure>
 
 
-### Mapping to Pathfinder Data Model ### {#sf-mapping}
-
-#### ProductFootprint property mapping #### {#sf-pf-mapping}
-
-<figure id="sf-pf-properties-table">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Attribute Id
-        <th>Type
-        <th>Req
-        <th>Description
-    <tbody>
-      <tr>
-        <td>productIds
-        <td>String[]
-        <td>M
-        <td>
-              Must contain the shipment ID `$S-ID$`, encoded as `urn:pathfinder:product:customcode:vendor-assigned:$S-ID$`
-
-              Example: shipment ID is `321`, then the value of this property MUST be `urn:pathfinder:product:customcode:vendor-assigned:321`
-      <tr>
-        <td>productCategoryCpc
-        <td>String
-        <td>M
-        <td>
-              Issue: TBD
-
-    </table>
-    <figcaption>Mapping of the GLEC Framework-related data to the Pathfinder Data Model</figcaption>
-</figure>
-
-#### CarbonFootprint properties mapping #### {#sf-cf-mapping}
-
-<figure id="sf-cf-properties-table">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Attribute Id
-        <th>Type
-        <th>Req
-        <th>Description
-    <tbody>
-      <tr>
-        <td>declaredUnit
-        <td>String
-        <td>M
-        <td>
-              Must be set to `ton kilometer` conforming with the Pathfinder Tech Specs.
-      <tr>
-        <td>unitaryProductAmount
-        <td>String
-        <td>M
-        <td>
-              The ton kilometers related to the shipment.
-
-      <tr>
-        <td>pCfExcludingBiogenic
-        <td>String
-        <td>M
-        <td>
-              The logistics emissions of the shipment, excluding biogenic emissions, as calculated
-              in accordance with the [[!GLEC]] Framework and ISO 14083, with unit ` kg of CO2 equivalent per declared unit (kgCO2e / declaredUnit)`, expressed as a decimal string.
-
-
-  </table>
-  <figcaption>Mapping of GLEC Framework-related data to the Pathfinder Data Model</figcaption>
-</figure>
-
-
 ## Transport Chain Element ( <dfn element>TCE</dfn> ) ## {#dt-tce}
 
 The Data Type <{TCE}> models information related to a single [=Transport Chain Element=]. 
 
-[=TCEs=] are the building blocks to construct and Transport Chain ([=TC=]), enabling the calculation of logistics emissions.
+[=TCEs=] are the building blocks to construct a Transport Chain ([=TC=]), enabling the calculation of logistics emissions.
 
+
+### Data Attributes ### {#tce-attributes}
+
+The Data Type <{TCE}> has the following properties:
 
 <figure id="tce-properties-table" dfn-type="element-attr" dfn-for="TCE">
   <table class="data">
@@ -594,26 +783,13 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
 </figure>
 
 
-### Example ### {#sf-example}
-
-Issue: write this section
-
-
 ## Transport Operation Category ( <dfn element>TOC</dfn> ) ## {#dt-toc}
 
 The Data Type <{TOC}> contains transport operation category data. 
 
 The [=Transport Operator=] or [=Transport Service Organizer=] MUST calculate the <{TOC}> in accordance with the [[!GLEC]] Framework.
 
-The [=Transport Operator=] or [=Transport Service Organizer=] CAN then make the <{TOC}> available through the Pathfinder Network API as a `ProductFootprint` (see [[#toc-mapping]]).
-
-### Mapping to Pathfinder Data Model ### {#toc-mapping}
-
-Issue: TODO
-
-#### ProductFootprint property mapping #### {#toc-pf-mapping}
-
-#### CarbonFootprint properties mapping #### {#toc-cf-mapping}
+The [=Transport Operator=] or [=Transport Service Organizer=] CAN then make the <{TOC}> available through the Pathfinder Network API as a `ProductFootprint` (see [[#pcf-mapping-toc]]).
 
 
 ### Data Attributes ### {#toc-attributes}
@@ -811,14 +987,6 @@ Advisement: This section and data model requires significant input from the SFC 
 The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport Chain Element=] through the <{TCE/hocId}> property.
 
 [=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=].
-
-### Mapping to Pathfinder Data Model ### {#hoc-mapping}
-
-Issue: TODO
-
-#### ProductFootprint property mapping #### {#hoc-pf-mapping}
-
-#### CarbonFootprint properties mapping #### {#hoc-cf-mapping}
 
 ### Data Attributes ### {#hoc-attributes}
 
@@ -1121,6 +1289,196 @@ Note: the JSON String encoding is necessary to avoid floating point rounding err
   ```json
   "-0.123"
   ```
+</div>
+
+
+
+# Pathfinder Integration # {#pcf-mapping}
+
+The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
+
+This chapter specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model ([[!PACTDX]] Chapter 4).
+
+By doing so, the existing data exchange protocol ([[!PACTDX]] Network API (see Chapter 6)) can be re-used for logistics emissions data exchange as well.
+
+Such re-use simplifies the integration of logistics emissions data into existing [=host systems=] software, especially if they are already used by [=Transport Service Users=].
+
+They can then use 1 interoperable API for the exchange of different categories of carbon emissions data related to GHG Protocol lifecycle stages (such as material acquisition and transport).
+
+Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
+
+
+## ServiceFootprint ## {#pcf-mapping-sf}
+
+Note: This chaper refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
+
+The values of several properties of a ProductFootprint (see [[!PACTDX]]) can be derived from a <{ShipmentFootprint}> plus additional data. 
+
+This mapping is specified further below in the table.
+
+Additionally, a <{ShipmentFootprint}> MUST be added to a [[!PACTDX]] `ProductFootprint` through the `extensions` property (see [[!DATA-MODEL-EXTENSIONS]]). 
+
+Note: Chapter [[#appendix-a-sf-example]] contains an example.
+
+<figure id="pact-sf-mapping-table">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>PACT Data Type
+        <th>Property
+        <th>Value Derivation
+    <tbody>
+      <tr>
+        <td>ProductFootprint
+        <td>`productIds`
+        <td>
+              MUST contain the shipment ID <{ShipmentFootprint/shipmentId}>, encoded as 
+              : `urn:pathfinder:product:customcode:vendor-assigned:<shipment id>` 
+              :: in case the [=transport service organizer=] has assigned a shipping id, or
+              : `urn:pathfinder:product:customcode:buyer-assigned:<shipment id>` 
+              :: in case the [=transport service user=] has assigned a shipping id
+
+              Note: `productIds` can contain multiple entries. If multiple or different 
+                      shipment ids are assigned to a single shipment, `productIds` CAN contain
+                      all of them.
+
+      <tr>
+        <td>ProductFootprint
+        <td>`productCategoryCpc`
+        <td>
+              MUST be set to the CPC code of logistics services (`83117`).
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`declaredUnit`
+        <td>
+              MUST be set to `ton kilometer` conforming with the Pathfinder Tech Specs.
+              
+              See [[!PACTDX]] Chapter 4 for further details.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`unitaryProductAmount`
+        <td>
+              MUST equal the total ton kilometers over all TCEs (<{ShipmentFootprint/tces}>), 
+                    calculated by taking the sum of the ton kilometers over all TCEs (see property <{TCE/transportActivity})
+      
+      <tr>
+        <td>CarbonFootprint
+        <td>`pCfExcludingBiogenic`
+        <td>
+              MUST be set to the total logistics emissions of the shipment, excluding biogenic emissions,
+              calculated by taking the sum of the <{TCE/co2eWTW}> over all TCEs (<{ShipmentFootprint/tces}>).
+
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`pCfIncludingBiogenic`
+        <td>
+              This property is OPTIONAL in the [[!PACTDX]] data Model.
+
+              It SHOULD be set to the total logistics emissions of the shipment, 
+              including biogenic emissions, calculated by taking the sum of the <{TCE/co2eWTW}> over all TCEs (<{ShipmentFootprint/tces}>).
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`fossilGhgEmissions`
+        <td>
+              see the specificatoin for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`packagingEmissionsIncluded`
+        <td>
+              Issue: this needs a specification
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`primaryDataShare`
+        <td>
+              The relative share of logistics emissions for which primary data has been used for the calculation.
+
+              See [[!PACTDX]] and the Pathfinder Framework ([[!PATHFINDER-FRAMEWORK]]) for further details.
+
+    </table>
+    <figcaption>Mapping of PACT Data Model properties to <{ShipmentFootprint}> properties</figcaption>
+</figure>
+
+## TOC ## {#pcf-mapping-toc}
+
+Issue: this sections is still work in progress
+
+
+
+# Appendix A: Example PCFs with iLEAP Data embedded # {#appendix-a}
+
+## ShipmentFootprint example ## {#appendix-a-sf-example}
+
+A Product Footprint with a <{ShipmentFootprint}> highlighted:
+
+<div class=example>
+  <pre highlight='json' line-highlight="37-54" line-numbers>
+    {
+        "id": "d9be4477-e351-45b3-acd9-e1da05e6f633",
+        "specVersion": "2.0.0",
+        "version": 0,
+        "created": "2022-05-22T21:47:32Z",
+        "status": "Active",
+        "companyName": "Super Duper Transport Co.",
+        "companyIds": [ "urn:epc:id:sgln:4063973.00000.8" ],
+        "productDescription": "Logistics emissions related to shipment with ID 1237890",
+        "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:1237890" ],
+        "productCategoryCpc": "83117",
+        "productNameCompany": "Shipment with ID 1237890",
+        "comment": "",
+        "pcf": {
+          "declaredUnit": "ton kilometer",
+          "unitaryProductAmount": "36.801",
+          "pCfExcludingBiogenic": "3.6801",
+          "fossilGhgEmissions": "3.6801",
+          "fossilCarbonContent": "0.0",
+          "biogenicCarbonContent": "0.0",
+          "characterizationFactors": "AR5",
+          "crossSectoralStandardsUsed": [ "GHG Protocol Product standard" ],
+          "productOrSectorSpecificRules": [],
+          "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+          "referencePeriodStart": "2021-01-01T00:00:00Z",
+          "referencePeriodEnd": "2022-01-01T00:00:00Z",
+          "secondaryEmissionFactorSources": [ { "name": "Ecoinvent", "version": "3.9.1" } ],
+          "exemptedEmissionsPercent": "0.0",
+          "exemptedEmissionsDescription": "",
+          "packagingEmissionsIncluded": true,
+          "primaryDataShare": 56.12
+        },
+        "extensions": [
+          {
+            "specVersion": "2.0.0",
+            "dataSchema": "https://catalog.carbon-transparency.com/sfc-ileap/0.0.1/tce.json",
+            "data": {
+                "mass": "87",
+                "shipmentId": "1237890",
+                "tces": [
+                  {
+                    "tceId": "abcdef",
+                    "tocId": "truck-40t-euro5-de",
+                    "shipmentId": "1237890",
+                    "mass": "87",
+                    "distance": {
+                      "actual": "423"
+                    },
+                    "transportActivity": "36.801",
+                    "co2eWTW": "3.6801",
+                    "co2eTTW": "3.2801"
+                }
+              ]
+            }
+          }
+        ]
+      }
+  </pre>
+</div>
+
+
 
 <pre class=biblio>
  {
@@ -1137,6 +1495,26 @@ Note: the JSON String encoding is necessary to avoid floating point rounding err
       "href": "https://www.iso.org/standard/78864.html",
       "status": "International Standard published",
       "publisher": "International Organization for Standardization"
+    },
+    "PACTDX": {
+      "authors": [],
+      "title": "Technical Specifications for PCF Data Exchange (Version 2.1.0)",
+      "href": "https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/"
+    },
+    "PATHFINDER-FRAMEWORK": {
+      "authors": [],
+      "href": "https://www.carbon-transparency.com/media/srhhloun/pathfinder-framework.pdf",
+      "title": "Pathfinder Framework: Guidance for the Accounting and Exchange of Product Life Cycle Emissions (Version 2.0)",
+      "status": "LS",
+      "publisher": "WBCSD"
+    },
+    "DATA-MODEL-EXTENSIONS": {
+      "authors": [],
+      "href": "https://wbcsd.github.io/data-model-extensions/spec/",
+      "title": "Technical Specification for Data Model Extensions",
+      "status": "LS",
+      "publisher": "WBCSD"  
     }
   }
 </pre>
+
