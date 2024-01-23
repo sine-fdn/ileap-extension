@@ -1066,6 +1066,19 @@ Issue: !! we need to define data quality semantics !!
         <td>The destination of the activity related to the TCE
 
       <tr>
+        <td><dfn>departureAt</dfn>
+        <td>String
+        <td>O
+        <td>
+              Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
+              Note: the original data model defined this as the "date of loading"
+
+      <tr>
+        <td><dfn>arrivalAt</dfn>
+        <td>String
+        <td>O
+        <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
+      <tr>
         <td><dfn>mode</dfn>
         <td>{{TransportMode}}
         <td>O
