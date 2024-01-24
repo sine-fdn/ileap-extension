@@ -478,16 +478,16 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser, in accordance with the [[!GLEC]] Framework.
 
       <tr>
-        <td><dfn>packagingUnit</dfn>
+        <td><dfn>packagingOrTransportEquipmentType</dfn>
         <td>String
         <td>O
-        <td>Issue: needs definition
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container)
 
       <tr>
-        <td><dfn>packagingUnitAmount</dfn> : [=Decimal=]
+        <td><dfn>packagingOrTransportEquipmentAmount</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>Issue: needs definition
+        <td>Number of packaging or transport equipment units utilized to transport the related consignment
 
       <tr>
         <td><dfn>distance</dfn>
