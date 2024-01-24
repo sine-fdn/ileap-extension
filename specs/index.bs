@@ -484,7 +484,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container)
 
       <tr>
-        <td><dfn>packagingOrTransportEquipmentAmount</dfn> : [=Decimal=]
+        <td><dfn>packagingOrTransportEquipmentAmount</dfn> : [=Integer=]
         <td>String
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment
