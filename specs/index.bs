@@ -1294,7 +1294,7 @@ The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the 
 
 This chapter specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model ([[!PACTDX]] Chapter 4).
 
-By doing so, the existing data exchange protocol ([[!PACTDX]] Network API (see Chapter 6)) can be re-used for logistics emissions data exchange as well.
+By doing so, the existing data exchange protocol ([[!PACTDX]] Network API (see Chapter 6) can be re-used for logistics emissions data exchange as well.
 
 Such re-use simplifies the integration of logistics emissions data into existing [=host systems=] software, especially if they are already used by [=Transport Service Users=].
 
