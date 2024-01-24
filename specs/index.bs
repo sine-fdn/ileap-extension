@@ -176,9 +176,6 @@ The following business cases shall be supported by this specification:
     For this, the [=Transport Service Organizer=] performs data transaction ([[#txn2]]) to collect emission
     intensities ([=HOCs=] or [=TOCs=]) from its contractors.
 
-    Alternatively, in case the contracted [=Transport Operator=] cannot provide [=TOCs=] to the [=Transport Service Organizer=], 
-    the [=Transport Operator=] can collect [=Transport Activity Data=] and make this data available ([[#txn3]]).
-
 : Business Case #2
 ::
     A [=Transport Operator=] shares [=Transport Activity=] data with e.g an 
