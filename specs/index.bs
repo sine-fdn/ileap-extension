@@ -364,7 +364,7 @@ For this, the Transport Service Organizer `Z` performs the following data transa
 1. `Z` then calculates the <{TCE|TCEs}> for the 2nd leg of the shipment based on 
       the <{TAD}> data and e.g. modelled or secondary emission database(s).
 
-### Data Collection by User `S` ### {#example-s}
+### Data Collection by Transport Service User `S` ### {#example-s}
 
 After Transport Service Organizer `Z` has performed its data collection, the Transport Service User `S` 
 can calculate the logistics emissions of the shipment by
