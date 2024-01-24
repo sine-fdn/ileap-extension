@@ -1438,7 +1438,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
           "referencePeriodStart": "2021-01-01T00:00:00Z",
           "referencePeriodEnd": "2022-01-01T00:00:00Z",
           "secondaryEmissionFactorSources": [ { "name": "Ecoinvent", "version": "3.9.1" } ],
-          "exemptedEmissionsPercent": "0.0",
+          "exemptedEmissionsPercent": 0.0,
           "exemptedEmissionsDescription": "",
           "packagingEmissionsIncluded": true,
           "primaryDataShare": 56.12
