@@ -36,9 +36,7 @@ This specifcation does not cover the following topics or aspects as they are cov
 5. How to establish contractual obligations between parties for the provision of data
 6. How to perform data audits and verification
 
-Note: 
-ChatGPT
-The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, such as Hub Operation Category, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
+Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, such as Hub Operation Category, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
 
 # Definitions # {#definitions}
 
@@ -65,8 +63,7 @@ The current technical specifications are undergoing continuous refinement as par
 :: See [[!ISO14083]], Section 3.1.33
 
 : <dfn>Hub Activity</dfn>
-::
-    TODO define me
+:: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
 
 : <dfn>Shipment</dfn>
 ::
@@ -89,10 +86,10 @@ The current technical specifications are undergoing continuous refinement as par
     It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework
 
 : <dfn>Distance</dfn>
-:: see [=Transport Distance=] and [=Actual Distance=]
+:: See [=Transport Distance=] and [=Actual Distance=]
 
 : <dfn>Transport Distance</dfn>
-:: see [[!ISO14083]] 3.1.27
+:: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27
 
 : <dfn>Actual Distance</dfn>
 :: The actual route (with unit `kilometer`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
@@ -179,7 +176,7 @@ The following business cases shall be supported by this specification:
     For this, the [=Transport Service Organizer=] performs data transaction ([[#txn2]]) to collect emission
     intensities ([=HOCs=] or [=TOCs=]) from its contractors.
 
-    The disclosure of emission intensities ([=HOCs=] or [=TOCs=]) can serve as a motivating factor for procurement decisions. The [=Transport Service Organizer=] has the option to select services that are optimized in terms of emissions. 
+    By incorporating emission intensities ([=HOCs=] or [=TOCs=]) in procurement processes, the [=Transport Service Organizer=] is also enabled to choose services that are offer carbon-efficiency advantages. 
 
 : Business Case #2
 ::
@@ -192,6 +189,15 @@ The following business cases shall be supported by this specification:
 
 : Business Case #3
 ::
+    A [=shipper=] wants to quantify the avoided emissions stemming from
+    operational changes in their transport network. For this, the [=shipper=]
+    procures the operational changes and compares the resulting logistics
+    emissions with the emissions without the intervention.
+    This is enabled through [[#txn1]].
+
+
+: Business Case #4
+::
     A [=Transport Service User=] wants to give logistics emissions transparency 
     to its customers by disclosing logistics emissions as part of a [=PCF=].
     This is enabled through the usage of the Pathfinder Technical Specification
@@ -199,15 +205,6 @@ The following business cases shall be supported by this specification:
     Data Model ([[#data-model]]) .
 
     Issue: add a reference to the Pathfinder Data Model Extensions specification
-
-: Business Case #4
-::
-    A [=shipper=] wants to quantify the avoided emissions stemming from
-    operational changes in their transport network. For this, the [=shipper=]
-    procures the operational changes and compares the resulting logistics
-    emissions with the emissions without the intervention.
-    This is enabled through [[#txn1]].
-
 
 ## Potential additional Business Cases ## {#txns-appendix}
 
@@ -228,6 +225,7 @@ It serves the purpose of enabling interoperability between different parties by 
 Each transaction combines the iLEAP data model (([[#data-model]])) with the Pathfinder 
 Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=host systems=].
 
+Note: A [=Tool Provider=] can also mediate and adopt different roles on behalf of the [=Transport Service User=], [=Transport Service Organizer=] or [=Transport Operator=], as defined in the Data transactions below, as they mediate in data collection, calculation and reporting activities. 
 
 ## Data Transaction 1: TCE Data Exchange ## {#txn1}
 
@@ -245,7 +243,7 @@ The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) usin
 1. forming the [=TC=] from the collected TCEs
 1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and ISO 14083
 
-Note: a Transport Service User can also be an [=LSP=].
+Note: A Transport Service User can also be an [=LSP=].
 
 Note: for an example exchange, see [[#example]]
 
@@ -661,16 +659,16 @@ The Data Type <{TCE}> has the following properties:
         <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser, in accordance with the [[!GLEC]] Framework.
 
       <tr>
-        <td><dfn>packagingUnit</dfn>
+        <td><dfn>packagingOrTransportEquipmentType</dfn>
         <td>String
         <td>O
-        <td>Issue: needs definition
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container)
 
       <tr>
-        <td><dfn>packagingUnitAmount</dfn> : [=Decimal=]
+        <td><dfn>packagingOrTransportEquipmentAmount</dfn> : [=Integer=]
         <td>String
         <td>O
-        <td>Issue: needs definition
+        <td>Number of packaging or transport equipment units utilized to transport the related consignment
 
       <tr>
         <td><dfn>distance</dfn>
@@ -718,12 +716,24 @@ The Data Type <{TCE}> has the following properties:
         <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
 
       <tr>
+        <td><dfn>flightNo</dfn>
+        <td>String
+        <td>O
+        <td>Identification no of the IATA flight number.
+
+      <tr>
+        <td><dfn>voyageNumber</dfn>
+        <td>String
+        <td>O
+        <td>Identification no of a specific vessel conducting a specific route.
+
+      <tr>
         <td><dfn>co2eWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              GHGe released to atmosphere during the process of producing, storing,
-              processing and distributing an energy carrier for vehicle operation + GHG
+              GHG emissions released to atmosphere during the process of producing, storing,
+              processing and distributing an energy carrier for vehicle operation + GHG emissions
               released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
@@ -732,7 +742,7 @@ The Data Type <{TCE}> has the following properties:
         <td>String
         <td>M
         <td>
-              GHGe released to atmosphere as a result of vehicle operation
+              GHG emissions released to atmosphere as a result of vehicle operation
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
       <tr>
@@ -1011,7 +1021,7 @@ or default value.
 
 Note:
     the <{TAD}> data type is defined for the exchange of (primary) activity data for
-    which no GHG emission or GHG entisities values have been calculated.
+    which no GHG emission or GHG emission intisities values have been calculated.
 
 Properties of data type <{TAD}>:
 
