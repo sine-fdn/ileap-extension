@@ -540,8 +540,8 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>String
         <td>M
         <td>
-              GHGe released to atmosphere during the process of producing, storing,
-              processing and distributing an energy carrier for vehicle operation + GHG
+              GHG emissions released to atmosphere during the process of producing, storing,
+              processing and distributing an energy carrier for vehicle operation + GHG emissions
               released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
@@ -550,7 +550,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>String
         <td>M
         <td>
-              GHGe released to atmosphere as a result of vehicle operation
+              GHG emissions released to atmosphere as a result of vehicle operation
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
       <tr>
@@ -850,7 +850,7 @@ or default value.
 
 Note:
     the <{TAD}> data type is defined for the exchange of (primary) activity data for
-    which no GHG emission or GHG entisities values have been calculated.
+    which no GHG emission or GHG emission intisities values have been calculated.
 
 Properties of data type <{TAD}>:
 
