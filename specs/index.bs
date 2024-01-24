@@ -173,7 +173,7 @@ logistics emissions transparency is made possible if all the parties involved
 are able to exchange emissions data in an interoperable way.
 
 To achieve this, this specification is guided by a set of business cases.
-They are the context from which supporting data transactions ([#txns]) are defined.
+They are the context from which supporting data transactions ([[#txns]]) are defined.
 
 The following business cases shall be supported by this specification:
 
@@ -228,15 +228,12 @@ Issue: this section needs to be first discussed between SFC and SINE
 
 Issue: create and add transactions diagram to this section
 
+A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving 1 or more business cases ([[#business-cases]]).
 
-A <dfn>data transaction</dfn> is the process of a data exchange between 2 or more parties as defined in this section.
+It serves the purpose of enabling interoperability between different parties by explaining the context and their intention(s).
 
-Each data transaction is scoped by which kind of party (such as [=Transport Operator=] or a [=Transport Service User=]) 
-is interacting with a second party, and which kind of data is exchanged (see [[#data-model]]).
-
-Data transactions are executed by [=host systems=] which implement this specification.
-
-A single data transaction, or sometimes the consecutive execution of business transactions, enable 1 or more business cases (see [[#business-cases]]).
+Each transaction combines the iLEAP data model (([[#data-model]])) with the Pathfinder 
+Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=host systems=].
 
 
 ## Data Transaction 1: TCE Data Exchange ## {#txn1}
@@ -248,7 +245,7 @@ For this, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 
 1. first calculate 1 or more TCEs in accordance with the [[!GLEC]] Framework and ISO 14083, and then
 1. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the Pathfinder 
-    Network API (see [[#dt-sf]]).
+    Network API (see [[#pcf-mapping-sf]]).
 
 The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) using the [=shipment id=], by
 1. collecting the <{TCE|TCEs}> from all the [=Transport Operators=] and the [=Transport Service Organizers=] related to the shipment
@@ -257,9 +254,7 @@ The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) usin
 
 Note: a Transport Service User can also be an [=LSP=].
 
-### Example ### {#txn1-example}
-
-Issue: create example for this transaction, including data exchanged
+Note: for an example exchange, see [[#example]]
 
 
 ## Data Transaction 2: TOC Data Exchange ## {#txn2}
@@ -270,7 +265,7 @@ to make logistics emissions intensity data at the level of 1 or more [=TOC=] .
 For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
 1. first calculate 1 or more TOCs in accordance with the [[!GLEC]] Framework and ISO 14083, and then
-1. make the resulting <{TOC|TOCs}> available through the Pathfinder Network API (see [[#dt-toc]]).
+1. make the resulting <{TOC|TOCs}> available through the Pathfinder Network API (see [[#pcf-mapping]]).
 
 Note:
     The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
@@ -1312,11 +1307,9 @@ Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, ex
 
 Note: This chaper refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
-The values of several properties of a ProductFootprint (see [[!PACTDX]]) can be derived from a <{ShipmentFootprint}> plus additional data. 
+A ServiceFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
-This mapping is specified further below in the table.
-
-Additionally, a <{ShipmentFootprint}> MUST be added to a [[!PACTDX]] `ProductFootprint` through the `extensions` property (see [[!DATA-MODEL-EXTENSIONS]]). 
+For interoperability reasons, additional attributes of such a `ProductFootprint` SHOULD be derived from the <{ShipmentFootprint}>. This is specified in the table below.
 
 Note: Chapter [[#appendix-a-sf-example]] contains an example.
 
