@@ -247,7 +247,7 @@ The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) usin
 1. forming the [=TC=] from the collected TCEs
 1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and ISO 14083
 
-Note: a Transport Service User can also be an [=LSP=].
+Note: A Transport Service User can also be an [=LSP=].
 
 ### Example ### {#txn1-example}
 
