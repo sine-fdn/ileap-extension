@@ -65,7 +65,7 @@ The current technical specifications are undergoing continuous refinement as par
 
 : <dfn>Hub Activity</dfn>
 ::
-   The operations carried out at a hub, measured in the hub’s throughput. See [[!GLEC]] Framework.
+   The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
 
 : <dfn>Shipment</dfn>
 ::
