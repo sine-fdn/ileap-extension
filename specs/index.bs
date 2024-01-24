@@ -65,7 +65,7 @@ The current technical specifications are undergoing continuous refinement as par
 
 : <dfn>Hub Activity</dfn>
 ::
-    TODO define me
+   The operations carried out at a hub, measured in the hub’s throughput. See [[!GLEC]] Framework.
 
 : <dfn>Shipment</dfn>
 ::
@@ -88,10 +88,10 @@ The current technical specifications are undergoing continuous refinement as par
     It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework
 
 : <dfn>Distance</dfn>
-:: see [=Transport Distance=] and [=Actual Distance=]
+:: See [=Transport Distance=] and [=Actual Distance=]
 
 : <dfn>Transport Distance</dfn>
-:: see [[!ISO14083]] 3.1.27
+:: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27
 
 : <dfn>Actual Distance</dfn>
 :: The actual route (with unit `kilometer`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
