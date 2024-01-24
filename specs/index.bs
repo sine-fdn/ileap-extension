@@ -505,7 +505,7 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
         "referencePeriodStart": "2021-01-01T00:00:00Z",
         "referencePeriodEnd": "2022-01-01T00:00:00Z",
         "secondaryEmissionFactorSources": [ { "name": "Ecoinvent", "version": "3.9.1" } ],
-        "exemptedEmissionsPercent": "0.0",
+        "exemptedEmissionsPercent": 0.0,
         "exemptedEmissionsDescription": "",
         "packagingEmissionsIncluded": true,
         "primaryDataShare": 56.85
