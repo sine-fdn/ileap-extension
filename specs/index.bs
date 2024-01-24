@@ -230,6 +230,7 @@ Data transactions are executed by [=host systems=] which implement this specific
 
 A single data transaction, or sometimes the consecutive execution of business transactions, enable 1 or more business cases (see [[#business-cases]]).
 
+Note: A [=Tool Provider=] can also mediate and adopt different roles on behalf of the [=Transport Service User=], [=Transport Service Organizer=] or [=Transport Operator=], as defined in the Data transactions below, as they mediate in data collection, calculation and reporting activities. 
 
 ## Data Transaction 1: TCE Data Exchange ## {#txn1}
 
