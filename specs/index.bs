@@ -312,7 +312,7 @@ The following hypothetical parties are involved:
 
 : Transport Service Organizer `Z`
 :: 
-    A Transport Service Organizer responsible for a shipment from Rotterdam to Prague.
+    A [=Transport Service Organizer=] responsible for a shipment from Rotterdam to Prague.
 
     The Transport Service Organizer contracts Carrier A and Carrier B to perform the transport.
 
