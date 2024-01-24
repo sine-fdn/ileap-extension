@@ -1354,7 +1354,7 @@ Note: Chapter [[#appendix-a-sf-example]] contains an example.
         <td>`unitaryProductAmount`
         <td>
               MUST equal the total ton kilometers over all TCEs (<{ShipmentFootprint/tces}>), 
-                    calculated by taking the sum of the ton kilometers over all TCEs (see property <{TCE/transportActivity})
+                    calculated by taking the sum of the ton kilometers over all TCEs (see property <{TCE/transportActivity}>)
       
       <tr>
         <td>CarbonFootprint
