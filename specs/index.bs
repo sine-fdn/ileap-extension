@@ -37,7 +37,6 @@ This specifcation does not cover the following topics or aspects as they are cov
 6. How to perform data audits and verification
 
 Note: 
-ChatGPT
 The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, such as Hub Operation Category, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
 
 # Definitions # {#definitions}
