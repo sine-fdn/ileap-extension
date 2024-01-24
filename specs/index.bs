@@ -178,7 +178,7 @@ The following business cases shall be supported by this specification:
     For this, the [=Transport Service Organizer=] performs data transaction ([[#txn2]]) to collect emission
     intensities ([=HOCs=] or [=TOCs=]) from its contractors.
 
-    The disclosure of emission intensities ([=HOCs=] or [=TOCs=]) can serve as a motivating factor for procurement decisions. The [=Transport Service Organizer=] has the option to select services that are optimized in terms of emissions. 
+    By incorporating emission intensities ([=HOCs=] or [=TOCs=]) in procurement processes, the [=Transport Service Organizer=] is also enabled to choose services that are offer carbon-efficiency advantages. 
 
 : Business Case #2
 ::
@@ -191,6 +191,15 @@ The following business cases shall be supported by this specification:
 
 : Business Case #3
 ::
+    A [=shipper=] wants to quantify the avoided emissions stemming from
+    operational changes in their transport network. For this, the [=shipper=]
+    procures the operational changes and compares the resulting logistics
+    emissions with the emissions without the intervention.
+    This is enabled through [[#txn1]].
+
+
+: Business Case #4
+::
     A [=Transport Service User=] wants to give logistics emissions transparency 
     to its customers by disclosing logistics emissions as part of a [=PCF=].
     This is enabled through the usage of the Pathfinder Technical Specification
@@ -198,15 +207,6 @@ The following business cases shall be supported by this specification:
     Data Model ([[#data-model]]) .
 
     Issue: add a reference to the Pathfinder Data Model Extensions specification
-
-: Business Case #4
-::
-    A [=shipper=] wants to quantify the avoided emissions stemming from
-    operational changes in their transport network. For this, the [=shipper=]
-    procures the operational changes and compares the resulting logistics
-    emissions with the emissions without the intervention.
-    This is enabled through [[#txn1]].
-
 
 ## Potential additional Business Cases ## {#txns-appendix}
 
