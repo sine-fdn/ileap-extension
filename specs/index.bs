@@ -342,7 +342,7 @@ The following hypothetical parties are involved:
 
 ## Data Transactions Executed ## {#example-txns}
 
-Note: in our hypothetical example, we are omitting any hub Operations for now
+Note: In our hypothetical example, we are omitting any hub Operations for now
 
 Note: In this hypothetical example, when we refer to a party executing a transaction,
         we implicitly refer to their [=host systems=] which execute
