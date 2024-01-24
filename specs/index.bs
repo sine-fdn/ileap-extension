@@ -1382,13 +1382,15 @@ Note: Chapter [[#appendix-a-sf-example]] contains an example.
         <td>CarbonFootprint
         <td>`fossilGhgEmissions`
         <td>
-              see the specificatoin for `pCfExcludingBiogenic` in this table
+              see the specification for `pCfExcludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
         <td>`packagingEmissionsIncluded`
         <td>
-              Issue: this needs a specification
+              see [[!PACTDX]] for further details
+
+              Issue: this property is pending input from the tech workshop(s)
 
       <tr>
         <td>CarbonFootprint
