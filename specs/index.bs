@@ -535,6 +535,18 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
         <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
 
       <tr>
+        <td><dfn>flightNo</dfn>
+        <td>String
+        <td>O
+        <td>Identification no of the IATA flight number.
+
+      <tr>
+        <td><dfn>voyageNumber</dfn>
+        <td>String
+        <td>O
+        <td>Identification no of a specific vessel conducting a specific route.
+
+      <tr>
         <td><dfn>co2eWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
