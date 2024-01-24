@@ -935,9 +935,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityWTWUnit}>
-
-             Issue: this needs further refinement!
+             The Coefficient relating specified transport activity with GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityWTWUnit}> as defined in the [[!GLEC]] Framework
 
       <tr>
         <td><dfn>co2eIntensityWTWUnit</dfn>
