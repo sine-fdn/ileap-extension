@@ -366,7 +366,7 @@ For this, the Transport Service Organizer `Z` performs the following data transa
 
 ### Data Collection by User `S` ### {#example-s}
 
-After the organizer `Z` has performed its data colletion, the Transport Service User `S` 
+After Transport Service Organizer `Z` has performed its data collection, the Transport Service User `S` 
 can calculate the logistics emissions of the shipment by
 
 1. collecting the <{TCE|TCEs}> from `S` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database
