@@ -347,8 +347,6 @@ Note: In this hypothetical example, when we refer to a party executing a transac
 
 ### Data Collection by Transport Service Organizer `Z` ### {#example-z}
 
-We are starting with the data collection by the Transport Service Organizer `Z`.
-
 As the transport consists of 2 legs, `Z` needs to collect data from the 2 Carriers `A` and `B`.
 
 For this, the Transport Service Organizer `Z` performs the following data transactions:
