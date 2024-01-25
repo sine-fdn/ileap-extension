@@ -659,13 +659,13 @@ The Data Type <{TCE}> has the following properties:
         <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser, in accordance with the [[!GLEC]] Framework.
 
       <tr>
-        <td><dfn>packagingOrTransportEquipmentType</dfn>
+        <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
         <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container)
 
       <tr>
-        <td><dfn>packagingOrTransportEquipmentAmount</dfn> : [=Integer=]
+        <td><dfn>packagingOrTrEqAmount</dfn> : [=Integer=]
         <td>String
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment
