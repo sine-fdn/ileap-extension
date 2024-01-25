@@ -170,6 +170,14 @@ The following business cases shall be supported by this specification:
 
 : <dfn>Business Case #1</dfn>
 ::
+        A [=shipper=] wants to quantify the avoided emissions stemming from
+    operational changes in their transport network. For this, the [=shipper=]
+    procures the operational changes and compares the resulting logistics
+    emissions with the emissions without the intervention.
+    This is enabled through [[#txn1]].
+
+: Business Case #2
+::
     An [=Transport Service Organizer=] wants to collect information from its
     contractors so that they can calculate emissions according to the GLEC Framework and ISO 14083.
 
@@ -178,23 +186,14 @@ The following business cases shall be supported by this specification:
 
     By incorporating emission intensities ([=HOCs=] or [=TOCs=]) in procurement processes, the [=Transport Service Organizer=] is also enabled to choose services that are offer carbon-efficiency advantages. 
 
-: Business Case #2
+: Business Case #3
 ::
     A [=Transport Operator=] shares [=Transport Activity=] data with e.g an 
     [=Transport Service Organizer=]. 
 
-    For this, the [=Transport Operator=] collects Transaport Activity Data
+    For this, the [=Transport Operator=] performs data transaction ([[#txn3]]) to collect Transaport Activity Data
     and makes it available through the Pathfinder API using a Pathfinder Data Model Extension
     as specified in [[#dt-tad]].
-
-: Business Case #3
-::
-    A [=shipper=] wants to quantify the avoided emissions stemming from
-    operational changes in their transport network. For this, the [=shipper=]
-    procures the operational changes and compares the resulting logistics
-    emissions with the emissions without the intervention.
-    This is enabled through [[#txn1]].
-
 
 : Business Case #4
 ::
