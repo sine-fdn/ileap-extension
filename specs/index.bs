@@ -170,10 +170,7 @@ The following business cases shall be supported by this specification:
 
 : <dfn>Business Case #1</dfn>
 ::
-        A [=shipper=] wants to quantify the avoided emissions stemming from
-    operational changes in their transport network. For this, the [=shipper=]
-    procures the operational changes and compares the resulting logistics
-    emissions with the emissions without the intervention.
+        A [=shipper=] wants to quantify the avoided emissions stemming from operational changes in their transport network. For this, the [=shipper=] procures the operational changes and compares the resulting logistics emissions with the emissions without the intervention.
     This is enabled through [[#txn1]].
 
 : Business Case #2
