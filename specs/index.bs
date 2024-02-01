@@ -609,6 +609,8 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
 
 The Data Type <{TCE}> has the following properties:
 
+Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them MUST be defined.
+
 <figure id="tce-properties-table" dfn-type="element-attr" dfn-for="TCE">
   <table class="data">
     <thead>
