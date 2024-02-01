@@ -736,7 +736,7 @@ The Data Type <{TCE}> has the following properties:
       <tr>
         <td><dfn>co2eTTW</dfn> : [=Decimal=]
         <td>String
-        <td>M
+        <td>O
         <td>
               GHG emissions released to atmosphere as a result of vehicle operation
               The value MUST be calculated for the TCE with unit `kgCO2e`.
