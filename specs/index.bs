@@ -852,7 +852,7 @@ The Data Type <{TOC}> has the following properties:
       <tr>
         <td><dfn>loadFactor</dfn>
         <td>Number
-        <td>M
+        <td>O
         <td>
             Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
             It is applied to the loaded distance of the transport.
@@ -862,7 +862,7 @@ The Data Type <{TOC}> has the following properties:
       <tr>
         <td><dfn>emptyDistanceFactor</dfn>
         <td>Number
-        <td>M
+        <td>O
         <td>
             Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
 
@@ -923,11 +923,11 @@ The Data Type <{TOC}> has the following properties:
               Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
       <tr>
-        <td><dfn>secondaryFeedstockRatio</dfn> : [0..1]
+        <td><dfn>secondaryFeedstockPercentage</dfn> : [0..1]
         <td>Number
         <td>O
         <td>
-              Ratio of the secondary feedstock of the energy carrier N.
+              Percentage of the secondary feedstock of the total composition of energy carrier N.
               Issue: this needs further refinement!
 
 
