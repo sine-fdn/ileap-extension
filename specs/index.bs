@@ -841,25 +841,6 @@ The Data Type <{TOC}> has the following properties:
         <td>
 
       <tr>
-        <td><dfn>modeAssetType</dfn>
-        <td>String
-        <td>O
-        <td>
-              Categories per mode of transport (Specific category of vehicle, such as 40t truck, 3,5t van, or container vessel or bulk vessel)
-
-              Issue: this needs further refinement!
-
-      <tr>
-        <td><dfn>vehicleEmissionClass</dfn>
-        <td>String
-        <td>O
-        <td>
-              Identification of the vehicle emission class (Road). Depending on the geography of operations, this can be adapted
-
-              Issue: this needs further refinement!
-
-
-      <tr>
         <td><dfn>loadFactor</dfn>
         <td>Number
         <td>O
