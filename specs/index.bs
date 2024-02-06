@@ -1009,11 +1009,13 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>String
         <td>O
         <td>
-            Status of freight being non-ambient.
+            Temperature control status of the hub
 
             If defined, the value of this property MUST be set to one of the following values:
-            - `ambient`: for non-temperature controlled freight
-            - `refrigerated`: for refrigerated freight
+            - `ambient`: for HOCs comprising the handling of non-temperature controlled freight only
+            - `refrigerated`: for HOCs comprising the handling of refrigerated freight only
+            - `mixed`: for HOCs comprising the handling of both ambient and refrigerated freight 
+
        <tr>
         <td><dfn>hubLocation</dfn>
         <td><{Location}>
@@ -1353,19 +1355,19 @@ It MUST be encoded as a String using one of the following values:
 <dl dfn-type="enum-value" dfn-for="HubType">
 
 : <dfn>Transshipment</dfn>
-:: for transport mode `road`
+:: refers to hubs where transshipment is the main service (>80% of goods handled) 
 
 : <dfn>StorageAndTransshipment</dfn>
-:: for transport mode `rail`
+:: refers to hubs where both transshipment and warehousing are relevant services
 
 : <dfn>Warehouse</dfn>
-:: for transport mode `air`
+:: refers to hubs where warehousing is the main service (>80% of goods handled)
 
 : <dfn>LiquidBulkTerminal</dfn>
-:: for transport mode `sea`
+:: refers to terminals equiped to handle cargo in liquid and gaseous forms
 
 : <dfn>MaritimeContainerTerminal</dfn>
-:: for transport mode `inland waterway`
+:: refers to hubs where maritime containers are handled
 
 </dl>
 
