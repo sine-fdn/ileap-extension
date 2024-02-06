@@ -582,6 +582,11 @@ A ShipmentFootprint has the following properties:
         <td>O
         <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and the packaging provided for transport by the Transport Service user. ISSUE: To discuss if additional packaging and/or handling equipment should be included 
       <tr>
+        <td><dfn>numberOfPieces</dfn>
+        <td>String
+        <td>M
+        <td>The number of units the shipment is composed of. For example, ISSUE: Add example
+      <tr>
         <td><dfn>shipmentId</dfn>
         <td>String
         <td>M
