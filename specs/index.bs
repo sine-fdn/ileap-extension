@@ -1059,13 +1059,13 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>String
         <td>M
         <td>
-            Any substance that can be used to generate mechanical movement or heat and to generate chemical or physical processes. [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
+            Main energy carrier. Any substance that can be used to generate mechanical movement or heat and to generate chemical or physical processes. [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
      <tr>
         <td><dfn>energyCarrierN</dfn>
         <td>String
-        <td>M
+        <td>O
         <td>
-            Any substance that can be used to generate mechanical movement or heat and to generate chemical or physical processes. [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
+            Any substance N, apart from main energy carrier, that can be used to generate mechanical movement or heat and to generate chemical or physical processes. [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
 
 
   </table>
