@@ -810,13 +810,13 @@ The Data Type <{TOC}> has the following properties:
         <td><dfn>isVerified</dfn>
         <td>Boolean
         <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards).
+        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use ISO 14083 as audit criteria. 
 
       <tr>
         <td><dfn>isAccredited</dfn>
         <td>Boolean
         <td>M
-        <td>Indicates that the calculation methodology has been evaluated by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards).
+        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with ISO 14083:2023, as declared in an Accreditation (=Certification) certificate. 
 
       <tr>
         <td><dfn>description</dfn>
