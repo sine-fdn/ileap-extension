@@ -894,9 +894,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-              Category of primary energy carrier, such as Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc
-
-              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
+            Any substance that can be used to generate mechanical movement or heat and to generate chemical or physical processes. [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
 
       <tr>
         <td><dfn>energyConsumption</dfn> : [=Decimal=]
@@ -905,16 +903,12 @@ The Data Type <{TOC}> has the following properties:
         <td>
             Amount of energy or fuel consumed per kilometer.
 
-            Issue: this needs further refinement!
-
       <tr>
         <td><dfn>energyConsumptionUnit</dfn>
         <td>String
         <td>O
         <td>
             Unit of the energy consumed. (l, kg, kWh, MJ per km)
-
-            Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
       <tr>
         <td><dfn>primaryFeedstock</dfn>
