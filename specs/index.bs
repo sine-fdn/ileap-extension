@@ -892,15 +892,15 @@ The Data Type <{TOC}> has the following properties:
             Unit of the energy consumed. (l, kg, kWh, MJ per km)
 
       <tr>
-        <td><dfn>primaryFeedstock</dfn>
+        <td><dfn>Feedstock1</dfn>
         <td>String
         <td>M
         <td>
-              Primary feedstock of energy carrier N (e.g. fossil, natural gas, grid, renewable electricity, waste)
+              Main feedstock of energy carrier (e.g. fossil, natural gas, grid, renewable electricity, waste)
               Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
       <tr>
-        <td><dfn>secondaryFeedstock</dfn>
+        <td><dfn>FeedstockN</dfn>
         <td>String
         <td>O
         <td>
@@ -908,12 +908,12 @@ The Data Type <{TOC}> has the following properties:
               Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
 
       <tr>
-        <td><dfn>secondaryFeedstockPercentage</dfn> : [0..1]
+        <td><dfn>FeedstockNPercentage</dfn> : [0..1]
         <td>Number
         <td>O
         <td>
-              Percentage of the secondary feedstock in the total composition of energy carrier N.
-              For example, for diesel B5, where 
+              Percentage of feedstock N in the total composition of energy carrier.
+              For example, --Add Example from ISO--
 
 
       <tr>
