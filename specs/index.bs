@@ -982,6 +982,21 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>M
         <td>The id of the <{HOC}>
       <tr>
+        <td><dfn>description</dfn>
+        <td>String
+        <td>O
+        <td>Text description of the applicable HOC. Reflect on hub type, contract type, equipment type, freight temperature, etc
+      <tr>
+        <td><dfn>isVerified</dfn>
+        <td>Boolean
+        <td>M
+        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use ISO 14083 as audit criteria. 
+      <tr>
+        <td><dfn>isAccredited</dfn>
+        <td>Boolean
+        <td>M
+        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with ISO 14083:2023, as declared in an Accreditation (=Certification) certificate. 
+      <tr>
         <td><dfn>hubType</dfn>
         <td>{{HubType}}
         <td>M
@@ -1048,7 +1063,16 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>O
         <td>
             Any substance N, apart from main energy carrier, that can be used to generate mechanical movement or heat and to generate chemical or physical processes. [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
+      <tr>
+        <td><dfn>glecDataQualityIndex</dfn> : [0..4]
+        <td>Number
+        <td>O
+        <td>
+            The data quality index as defined in the [[!GLEC]] Framework
 
+            The value of this property must be between `0` (including) and `4` (including).
+
+            Issue: the exact calculation rules must be defined
 
   </table>
   <figcaption>Properties of data type `HOC`</figcaption>
