@@ -870,6 +870,7 @@ The Data Type <{TOC}> has the following properties:
             If defined, the value of this property MUST be set to one of the following values:
             - `ambient`: for non-temperature controlled freight
             - `refrigerated`: for refrigerated freight
+            - `mixed`: for HOCs comprising the handling of both ambient and refrigerated freight 
 
       <tr>
         <td><dfn>energyCarrier</dfn>
