@@ -871,11 +871,11 @@ The Data Type <{TOC}> has the following properties:
             - `refrigerated`: for refrigerated freight
 
       <tr>
-        <td><dfn>energyCarrier</dfn> : [=EnergyCarrier=]
-        <td><{EnergyCarrier}>
+        <td><dfn>energyCarriers</dfn>
+        <td><{EnergyCarrier}>[]
         <td>M
         <td>
-            Energy carrier used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework. See [=EnergyCarrier=] for details.
+            The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>energyConsumption</dfn> : [=Decimal=]
@@ -1008,20 +1008,13 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>M
         <td>
              Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways. Alternative units (e.g. number of items, etc.) are possible but not recommended.
+
       <tr>
-        <td><dfn>energyCarrier1</dfn>
-        <td>String
+        <td><dfn>energyCarriers</dfn>
+        <td><{EnergyCarrier}>[]
         <td>M
         <td>
-            Main energy carrier. Any substance that can be used to generate mechanical movement or heat and to generate chemical or physical processes. [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
-     <tr>
-        <td><dfn>energyCarrierN</dfn>
-        <td>String
-        <td>O
-        <td>
-            Any substance N, apart from main energy carrier, that can be used to generate mechanical movement or heat and to generate chemical or physical processes. [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
-
-
+            The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
   </table>
   <figcaption>Properties of data type `HOC`</figcaption>
 </figure>
@@ -1128,37 +1121,10 @@ Issue: !! we need to define data quality semantics !!
 
       <tr>
         <td><dfn>energyCarrier</dfn>
-        <td>String
+        <td><{EnergyCarrier}>
         <td>M
         <td>
-              Category of primary energy carrier, such as Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc
-
-              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
-
-      <tr>
-        <td><dfn>primaryFeedstock</dfn>
-        <td>String
-        <td>O
-        <td>
-              Primary feedstock of energy carrier N (e.g. fossil, natural gas, grid, renewable electricity, waste)
-              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
-
-      <tr>
-        <td><dfn>secondaryFeedstock</dfn>
-        <td>String
-        <td>O
-        <td>
-              Secondary feedstock of energy carrier N (e.g. bio-waste, soy, legislated biofuel mix, etc). In case there is no secondary feedstock, write N/A.
-              Issue: this needs further refinement! (i.e. creation of an enumeration or similar)
-
-      <tr>
-        <td><dfn>secondaryFeedstockRatio</dfn> : [0..1]
-        <td>Number
-        <td>O
-        <td>
-              Ratio of the secondary feedstock of the energy carrier N.
-              Issue: this needs further refinement!
-
+            The [=EnergyCarrier=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
@@ -1348,7 +1314,7 @@ Note: the JSON String encoding is necessary to avoid floating point rounding err
 
 ### Data Type <dfn>EnergyCarrier</dfn> ### {#dt-energy-carrier}
 
-Data type `EnergyCarrier` represents an energy carrier, including main and secondary feedstocks.
+Data type `EnergyCarrier` represents an energy carrier, including its feedstocks.
 
 In JSON an `EnergyCarrier` MUST be encoded as a JSON Object.
 
@@ -1364,36 +1330,47 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <th>Definition
     <tbody>
       <tr>
-        <td><dfn>substance</dfn>
+        <td><dfn>energyCarrier</dfn>
         <td>String
         <td>M
-        <td>The specific substance used to generate mechanical movement or heat and to generate chemical or
+        <td>The substance used to generate mechanical movement or heat and to generate chemical or
         physical processes as per the [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
-
-        Issue: Should it be an enumeration?
       <tr>
-        <td><dfn>mainFeedstock</dfn>
-        <td>String
-        <td>M
-        <td>Main feedstock of energy carrier (e.g. fossil, natural gas, grid, renewable electricity, waste).
-
-        Issue: Should it be an enumeration?
-      <tr>
-        <td><dfn>secondaryFeedstock</dfn>
-        <td>String
+        <td><dfn>feedstocks</dfn>
+        <td><{Feedstock}>[]
         <td>O
-        <td>Secondary feedstock of energy carrier (e.g. fossil, natural gas, grid, renewable electricity, waste) in case there is one.
-
-        Issue: Should it be an enumeration?
-      <tr>
-        <td><dfn>secondaryFeedstockPercentage</dfn> : [0..1]
-        <td>Number
-        <td>O
-        <td>Percentage of the secondary feedstock in the total composition of energy carrier. If `secondaryFeedstock` is defined, then this property MUST be defined as well.
+        <td>Non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
     </table>
 </figure>
 
+### Data Type <dfn>Feedstock</dfn> ### {#dt-feed-stock}
 
+Data type `Feedstock` represents one feedstock of an [=EnergyCarrier=].
+
+In JSON an `Feedstock` MUST be encoded as a JSON Object.
+
+The following properties are defined for data type <dfn element>Feedstock</dfn>:
+
+<figure id="feedstock-properties-table" dfn-type="element-attr" dfn-for="Feedstock">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Definition
+    <tbody>
+        <tr>
+          <td><dfn>feedstock</dfn>
+          <td>String
+          <td>M
+          <td>A feedstock of an [=EnergyCarrier=], e.g., fossil, natural gas, grid, renewable electricity, waste.
+
+        <tr>
+          <td><dfn>feedstockPercentage</dfn> : [0..1]
+          <td>Number
+          <td>O
+          <td>Percentage of the feedstock in the total composition of energy carrier.
 
 # Pathfinder Integration # {#pcf-mapping}
 
