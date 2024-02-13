@@ -1266,7 +1266,7 @@ It MUST be encoded as a String using one of the following values:
 
 </dl>
 
-### Data Type <dfn enum>HubType</dfn> ### {#dt-transport-mode}
+### Data Type <dfn enum>HubType</dfn> ### {#dt-hub-type}
 
 The Data Type {{HubType}} is an enumeration of the main hub types as defined in the [[!GLEC]] Framework.
 
