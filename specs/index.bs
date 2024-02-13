@@ -1371,6 +1371,8 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
           <td>Number
           <td>O
           <td>Percentage of the feedstock in the total composition of energy carrier.
+    </table>
+</figure>
 
 # Pathfinder Integration # {#pcf-mapping}
 
