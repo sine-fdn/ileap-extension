@@ -37,6 +37,7 @@ This specifcation does not cover the following topics or aspects as they are cov
 6. How to perform data audits and verification
 7. Modes of transport cable car and pipelines. Although these are acknowledged in both the GLEC Framework and ISO14083, they are left out of scope of the current project, and will be incorporated in future versions of these technical specifications.
 8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
+9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is also supported, but detailed parameters for modelling are not in focus.  
 
 Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, such as Hub Operation Category, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
 
