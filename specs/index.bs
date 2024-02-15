@@ -37,7 +37,7 @@ This specifcation does not cover the following topics or aspects as they are cov
 6. How to perform data audits and verification
 7. Modes of transport cable car and pipelines. Although these are acknowledged in both the GLEC Framework and ISO14083, they are left out of scope of the current project, and will be incorporated in future versions of these technical specifications.
 8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
-9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is also supported, but detailed parameters for modelling are not in focus.  
+9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is also supported, but detailed parameters for modelling are not in focus.
 10. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
 
 Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, such as Hub Operation Category, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
@@ -738,11 +738,34 @@ The Data Type <{TCE}> has the following properties:
         <td>Identification no of a specific vessel conducting a specific route.
 
       <tr>
-        <td><dfn>Incoterms</dfn>
-        <td>Categorical
+        <td><dfn>incoterms</dfn>
+        <td>String
         <td>O
         <td>
-            Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the SCope3 Category in which each party has to report their emissions. This variable can take the values: EXW, FCA, CPT, CIP, DAP, DPU, DDP, FAS, FOB, CFR, CIF
+            Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the SCope3 Category in which each party has to report their emissions.
+
+            If defined, the value of this property MUST be one of the following:
+            : EXW
+
+            : FCA
+
+            : CPT
+
+            : CIP
+
+            : DAP
+
+            : DPU
+
+            : DDP
+
+            : FAS
+
+            : FOB
+
+            : CFR
+
+            : CIF
 
       <tr>
         <td><dfn>co2eWTW</dfn> : [=Decimal=]
@@ -875,12 +898,12 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>O
         <td>
-            Temperature control status of the TOC. 
+            Temperature control status of the TOC.
 
             If defined, the value of this property MUST be set to one of the following values:
             - `ambient`: for non-temperature controlled freight
             - `refrigerated`: for refrigerated freight
-            - `mixed`: for TOCs comprising the handling of both ambient and refrigerated freight 
+            - `mixed`: for TOCs comprising the handling of both ambient and refrigerated freight
 
       <tr>
         <td><dfn>energyCarriers</dfn>
@@ -923,35 +946,54 @@ The Data Type <{TOC}> has the following properties:
              Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}>. At the TOC level, preferred throughputs are tkm, or TEUkm for sea and inland waterways. Alternative units (e.g. number of items, kg, etc.) are possible.
 
       <tr>
-        <td><dfn>ltlFTL</dfn>
-        <td>Categorical
+        <td><dfn>truckLoad</dfn>
+        <td>String
         <td>O
         <td>
-            Only for road. LTL indicates less than truck load. FTL indicates full truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off for LTL is PU-PU-DO-DO, and for FTL is PU-DO-PU-DO. 
-            This variable can take the values: LTL, FTL.
+            Only for road. If defined, the value MUST be one of the following:
+
+            : LTL
+            :: For less than truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off is PU-PU-DO-DO
+            : FTL
+            :: For full truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off is PU-DO-PU-DO
 
      <tr>
         <td><dfn>shippingOptionAir</dfn>
-        <td>Categorical
+        <td>String
         <td>O
         <td>
-            Only for air transport. Indicates if the movement of freight is combined with passanger transport (belly freight), or a dedicated aircraft for the movement of freight (freighter).  
-            This variable can take the values: belly freight, freighter.
+            Only for air transport. Indicates if the movement of freight is combined with passanger transport (belly freight), or a dedicated aircraft for the movement of freight (freighter).
+
+            If defined, the value MUST be one of the following:
+            : belly freight
+            :: For freight combined with passanger transport
+            : freighter
+            :: For freight moved by a dedicated aircraft
      <tr>
         <td><dfn>flightLength</dfn>
-        <td>Categorical
+        <td>String
         <td>O
         <td>
-            Only for air transport. Indicates if the distance travelled is lower or greater than 1500 km, as defined in the [[!GLEC]] Framework.   
-            This variable can take the values: short-haul, long-haul.
+            Only for air transport. Indicates if the distance travelled is smaller or greater than 1500 km, as defined in the [[!GLEC]] Framework.
+
+            If defined, the value MUST be one of the following:
+            : short-haul
+            :: For distances smaller than 1500 km
+            : long-haul
+            :: For distances greater than 1500 km
+
      <tr>
         <td><dfn>electAccountingMethod</dfn>
-        <td>Categorical
+        <td>String
         <td>O
         <td>
-            Only applicable to electricity emissions. Indicates the accounting method chosen for electricity emissions accounting. Location-based is applicable when average grid mix factors are used, and market-based when low carbon electricity or its attributes are purchased and accounted for the defined TOC. 
-            This variable can take the values: location-based, market-based
-           
+            Only applicable to electricity emissions. Indicates the accounting method chosen for electricity emissions accounting.
+
+            If defined, the value MUST be one of the following:
+            : location-based
+            :: For average grid mix factors
+            : market-based
+            :: For low carbon electricity or its attributes purchased and accounted for the defined TOC
       <tr>
         <td><dfn>glecDataQualityIndex</dfn> : [0..4]
         <td>Number
@@ -1003,12 +1045,12 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td><dfn>isVerified</dfn>
         <td>Boolean
         <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use ISO 14083 as audit criteria. 
+        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use ISO 14083 as audit criteria.
       <tr>
         <td><dfn>isAccredited</dfn>
         <td>Boolean
         <td>M
-        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with ISO 14083:2023, as declared in an Accreditation (=Certification) certificate. 
+        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with ISO 14083:2023, as declared in an Accreditation (=Certification) certificate.
       <tr>
         <td><dfn>hubType</dfn>
         <td>{{HubType}}
@@ -1064,7 +1106,10 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>M
         <td>
              Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways. Alternative units (e.g. number of items, etc.) are possible but not recommended.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ee8426 (feat: use standard format for enum properties)
       <tr>
         <td><dfn>energyCarriers</dfn>
         <td><{EnergyCarrier}>[]
