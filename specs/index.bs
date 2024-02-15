@@ -738,6 +738,13 @@ The Data Type <{TCE}> has the following properties:
         <td>Identification no of a specific vessel conducting a specific route.
 
       <tr>
+        <td><dfn>Incoterms</dfn>
+        <td>Categorical
+        <td>O
+        <td>
+            Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the SCope3 Category in which each party has to report their emissions. This variable can take the values: EXW, FCA, CPT, CIP, DAP, DPU, DDP, FAS, FOB, CFR, CIF
+
+      <tr>
         <td><dfn>co2eWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
@@ -895,7 +902,13 @@ The Data Type <{TOC}> has the following properties:
         <td>O
         <td>
             Unit of the energy consumed. (l, kg, kWh, MJ per km)
-
+      <tr>
+        <td><dfn>co2eFuelIntensityWTW</dfn> : [=Decimal=]
+        <td>String
+        <td>O
+        <td>
+            The WTW fuel emission factor (certified) with unit `kgCO2e / unit of energy consumption` (<{TOC/energyConsumptionUnit}>).
+            Issue: this needs further refinement!
       <tr>
         <td><dfn>Feedstock1</dfn>
         <td>String
@@ -920,15 +933,6 @@ The Data Type <{TOC}> has the following properties:
               Percentage of feedstock N in the total composition of energy carrier.
               For example, --Add Example from ISO--
 
-
-      <tr>
-        <td><dfn>co2eFuelIntensityWTW</dfn> : [=Decimal=]
-        <td>String
-        <td>O
-        <td>
-            The WTW fuel emission factor (certified) with unit `kgCO2e / unit of energy consumption` (<{TOC/energyConsumptionUnit}>).
-            Issue: this needs further refinement!
-
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
@@ -943,6 +947,29 @@ The Data Type <{TOC}> has the following properties:
         <td>
              Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}>. At the TOC level, preferred throughputs are tkm, or TEUkm for sea and inland waterways. Alternative units (e.g. number of items, kg, etc.) are possible. 
 
+      <tr>
+        <td><dfn>ltlFTL</dfn>
+        <td>Categorical
+        <td>O
+        <td>
+            Only for road. LTL indicates less than truck load. FTL indicates full truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off for LTL is PU-PU-DO-DO, and for FTL is PU-DO-PU-DO. 
+            This variable can take the values: LTL, FTL.
+
+     <tr>
+        <td><dfn>shippingOptionAir</dfn>
+        <td>Categorical
+        <td>O
+        <td>
+            Only for air transport. Indicates if the movement of freight is combined with passanger transport (belly freight), or a dedicated aircraft for the movement of freight (freighter).  
+            This variable can take the values: belly freight, freighter.
+     <tr>
+        <td><dfn>flightLength</dfn>
+        <td>Categorical
+        <td>O
+        <td>
+            Only for air transport. Indicates if the distance travelled is lower or greater than 1500 km, as defined in the [[!GLEC]] Framework.   
+            This variable can take the values: short-haul, long-haul.
+           
       <tr>
         <td><dfn>glecDataQualityIndex</dfn> : [0..4]
         <td>Number
