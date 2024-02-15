@@ -969,6 +969,13 @@ The Data Type <{TOC}> has the following properties:
         <td>
             Only for air transport. Indicates if the distance travelled is lower or greater than 1500 km, as defined in the [[!GLEC]] Framework.   
             This variable can take the values: short-haul, long-haul.
+     <tr>
+        <td><dfn>electAccountingMethod</dfn>
+        <td>Categorical
+        <td>O
+        <td>
+            Only applicable to electricity emissions. Indicates the accounting method chosen for electricity emissions accounting. Location-based is applicable when average grid mix factors are used, and market-based when low carbon electricity or its attributes are purchased and accounted for the defined TOC. 
+            This variable can take the values: location-based, market-based
            
       <tr>
         <td><dfn>glecDataQualityIndex</dfn> : [0..4]
