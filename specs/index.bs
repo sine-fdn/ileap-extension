@@ -208,14 +208,19 @@ Note: This business case is currently out of scope. It might be supported in the
 
 # Data Transactions # {#txns}
 
-Issue: create and add transactions diagram to this section
-
 A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving 1 or more business cases ([[#business-cases]]).
 
 It serves the purpose of enabling interoperability between different parties by explaining the context and their intention(s).
 
-Each transaction combines the iLEAP data model (([[#data-model]])) with the Pathfinder
+Each transaction combines the iLEAP data model ([[#data-model]]) with the Pathfinder
 Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=host systems=].
+
+The following diagram shows how the three data transactions (defined below) are related:
+
+<figure>
+  <img src="diagrams/transactions.png" width="30%" >
+  <figcaption>Transactions diagram</figcaption>
+</figure>
 
 Note: A [=Tool Provider=] can also mediate and adopt different roles on behalf of the [=Transport Service User=], [=Transport Service Organizer=] or [=Transport Operator=], as defined in the Data transactions below, as they mediate in data collection, calculation and reporting activities.
 
@@ -1215,8 +1220,8 @@ At least one of the following properties of data type <dfn element>GLECDistance<
         <td><dfn>actual</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>The Distance between the origin and the destination of a consignment of
-              freight or a vehicle, along a specified route (or from telematics). As defined in the [[!GLEC]] Framework
+        <td>The distance between the origin and the destination of a consignment of
+              freight or a vehicle, along a specified route (or from telematics), as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>gcd</dfn> : [=Decimal=]
         <td>String
