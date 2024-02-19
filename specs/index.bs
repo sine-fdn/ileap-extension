@@ -147,9 +147,7 @@ Advisement: The current technical specifications are undergoing continuous refin
 
 : <dfn>PCF</dfn>
 ::
-    Product Carbon Footprint. See Pathfinder Tech Specs for further details
-
-Issue: Link to the pathfinder tech specs in this section
+    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
 
 Issue: add a pathfinder tech specs normative reference to this document
 
