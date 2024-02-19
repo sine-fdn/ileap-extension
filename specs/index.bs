@@ -1196,9 +1196,11 @@ Issue: !! we need to define data quality semantics !!
 
 ### Data Type GLECDistance ### {#dt-glecdistance}
 
-Properties of data type <dfn element>GLECDistance</dfn>:
+Data type `GLECDistance` represents a distance between origin and destination as defined in the [[!GLEC]] Framework.
 
-Issue: this needs to be refined, especially the semantics of optional data types below (i.e. at least 1 should be defined or similar)
+In JSON an `GLECDistance` MUST be encoded as a JSON Object.
+
+At least one of the following properties of data type <dfn element>GLECDistance</dfn> the MUST be defined:
 
 <figure id="glecdistance-properties-table" dfn-type="element-attr" dfn-for="GLECDistance">
   <table class="data">
