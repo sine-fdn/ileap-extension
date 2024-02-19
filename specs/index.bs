@@ -742,7 +742,7 @@ The Data Type <{TCE}> has the following properties:
         <td>String
         <td>O
         <td>
-            Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the SCope3 Category in which each party has to report their emissions.
+            Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the Scope3 Category in which each party has to report their emissions.
 
             If defined, the value of this property MUST be one of the following:
             : EXW
@@ -946,7 +946,7 @@ The Data Type <{TOC}> has the following properties:
              Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}>. At the TOC level, preferred throughputs are tkm, or TEUkm for sea and inland waterways. Alternative units (e.g. number of items, kg, etc.) are possible.
 
       <tr>
-        <td><dfn>truckLoad</dfn>
+        <td><dfn>truckLoadingSequence</dfn>
         <td>String
         <td>O
         <td>
@@ -1106,10 +1106,6 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>M
         <td>
              Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways. Alternative units (e.g. number of items, etc.) are possible but not recommended.
-<<<<<<< HEAD
-
-=======
->>>>>>> 2ee8426 (feat: use standard format for enum properties)
       <tr>
         <td><dfn>energyCarriers</dfn>
         <td><{EnergyCarrier}>[]
