@@ -35,10 +35,11 @@ This specifcation does not cover the following topics or aspects as they are cov
 4. Pilot decentralized data exchange following data space governance principles
 5. How to establish contractual obligations between parties for the provision of data
 6. How to perform data audits and verification
-7. Modes of transport cable car and pipelines. Although these are acknowledged in both the GLEC Framework and ISO14083, they are left out of scope of the current project, and will be incorporated in future versions of these technical specifications.
-8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
-9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is also supported, but detailed parameters for modelling are not in focus.
-10. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
+7. Market based approach for electricity emissions accounting. 
+8. Modes of transport cable car and pipelines. Although these are acknowledged in both the GLEC Framework and ISO14083, they are left out of scope of the current project, and will be incorporated in future versions of these technical specifications.
+9. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
+10. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is also supported, but detailed parameters for modelling are not in focus.
+11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
 
 Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, such as Hub Operation Category, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
 
@@ -911,6 +912,18 @@ The Data Type <{TOC}> has the following properties:
         <td>M
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
+      <tr>
+        <td><dfn>energyIntensityFactor</dfn> : [=Decimal=]
+        <td>String
+        <td>O
+        <td>
+            Amount of energy or fuel consumed per tonne-kilometer.
+      <tr>
+        <td><dfn>energyIntensityUnit</dfn>
+        <td>String
+        <td>O
+        <td>
+            Unit of the energy consumed corresponding to the energy intensity factor. (l, kg, kWh, MJ per km)
 
       <tr>
         <td><dfn>energyConsumption</dfn> : [=Decimal=]
@@ -923,7 +936,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>O
         <td>
-            Unit of the energy consumed. (l, kg, kWh, MJ per km)
+            Unit of the energy consumed corresponding to the energy consumption per kilometer. (l, kg, kWh, MJ per km)
       <tr>
         <td><dfn>co2eFuelIntensityWTW</dfn> : [=Decimal=]
         <td>String
@@ -958,7 +971,7 @@ The Data Type <{TOC}> has the following properties:
             :: For full truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off is PU-DO-PU-DO
 
      <tr>
-        <td><dfn>shippingOptionAir</dfn>
+        <td><dfn>airShippingOption</dfn>
         <td>String
         <td>O
         <td>
@@ -982,18 +995,6 @@ The Data Type <{TOC}> has the following properties:
             : long-haul
             :: For distances greater than 1500 km
 
-     <tr>
-        <td><dfn>electAccountingMethod</dfn>
-        <td>String
-        <td>O
-        <td>
-            Only applicable to electricity emissions. Indicates the accounting method chosen for electricity emissions accounting.
-
-            If defined, the value MUST be one of the following:
-            : location-based
-            :: For average grid mix factors
-            : market-based
-            :: For low carbon electricity or its attributes purchased and accounted for the defined TOC
       <tr>
         <td><dfn>glecDataQualityIndex</dfn> : [0..4]
         <td>Number
@@ -1008,8 +1009,6 @@ The Data Type <{TOC}> has the following properties:
   </table>
   <figcaption>Properties of data type `TOC`</figcaption>
 </figure>
-
-Issue: complete this section
 
 
 ## Hub Operation Category ( <dfn element>HOC</dfn> ) ## {#dt-hoc}
@@ -1271,8 +1270,6 @@ Issue: this needs to be refined, especially the semantics of optional data types
 ### Data Type Location ### {#dt-location}
 
 Properties of data type <dfn element>Location</dfn>:
-
-Issue: needs to be refined & checked by SFC
 
 <figure id="location-properties-table" dfn-type="element-attr" dfn-for="Location">
   <table class="data">
