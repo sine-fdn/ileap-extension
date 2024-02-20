@@ -956,7 +956,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}>. At the TOC level, preferred throughputs are tkm, or TEUkm for sea and inland waterways. Alternative units (e.g. number of items, kg, etc.) are possible.
+             Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}>. At the TOC level, preferred throughputs are tkm, or TEUkm for sea and inland waterways. 
 
       <tr>
         <td><dfn>truckLoadingSequence</dfn>
@@ -1104,7 +1104,7 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>String
         <td>M
         <td>
-             Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways. Alternative units (e.g. number of items, etc.) are possible but not recommended.
+             Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways.
       <tr>
         <td><dfn>energyCarriers</dfn>
         <td><{EnergyCarrier}>[]
