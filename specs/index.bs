@@ -942,22 +942,26 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>O
         <td>
-            The WTW fuel emission factor (certified) with unit `kgCO2e / unit of energy consumption` (<{TOC/energyConsumptionUnit}>).
+            The WTW fuel emission factor (certified) with unit `gCO2e / unit of energy consumption` (<{TOC/energyConsumptionUnit}>).
             Issue: this needs further refinement!
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityWTWThroughput}> as defined in the [[!GLEC]] Framework
-
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityWTWThroughput}> as defined in the [[!GLEC]] Framework
       <tr>
-        <td><dfn>co2eIntensityWTWThroughput</dfn>
+        <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-             Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}>. At the TOC level, preferred throughputs are tkm, or TEUkm for sea and inland waterways. 
-
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityWTWThroughput}> as defined in the [[!GLEC]] Framework
+      <tr>
+        <td><dfn>co2eIntensityThroughput</dfn>
+        <td>String
+        <td>M
+        <td>
+             Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}> and at the denominator of the <{TOC/co2eIntensityTTW}>. At the TOC level, possible throughputs are tkm, or TEUkm for sea and inland waterways. 
       <tr>
         <td><dfn>truckLoadingSequence</dfn>
         <td>String
