@@ -946,13 +946,13 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityWTWThroughput}> as defined in the [[!GLEC]] Framework
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityWTWThroughput}> as defined in the [[!GLEC]] Framework
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
         <td>String
