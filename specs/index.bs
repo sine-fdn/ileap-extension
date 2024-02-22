@@ -119,9 +119,6 @@ Advisement: The current technical specifications are undergoing continuous refin
 : Smart Freight Centre (<dfn>SFC</dfn> )
 :: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organisation
 
-: Logistics Service Provider (<dfn>LSP</dfn> )
-:: See [=Transport Service Organizer=]
-
 : <dfn>Hub Operator</dfn>
 :: A party that is offering hub services, including warehousing and transshipment center services.
 
@@ -212,7 +209,7 @@ The following business cases shall be supported by this specification:
 Issue: this section needs to be first discussed between SFC and SINE
 
 : Business Case #a1
-:: A [=Hub Operator=] shares activity data with an LSP to enable the LSP to calculate the emissions of a [=HOC=]
+:: A [=Hub Operator=] shares activity data with a Transport Service Organizer to enable the Transport Service Organizer to calculate the emissions of a [=HOC=]
 
 
 # Data Transactions # {#txns}
@@ -244,7 +241,7 @@ The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) usin
 1. forming the [=TC=] from the collected TCEs
 1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and ISO 14083
 
-Note: A Transport Service User can also be an [=LSP=].
+Note: A Transport Service User can also be a Transport Service Organizer.
 
 Note: for an example exchange, see [[#example]]
 
