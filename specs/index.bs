@@ -203,8 +203,7 @@ The following business cases shall be supported by this specification:
 This business case might be enabled as book & claim methodologies and related variables are considered in scope of this project. This is envisioned for later versions of these technical specifications.
 
 : Business Case #a2: Forecasting 
-:: A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or [=Transport Operator=]) to share GHG emissions at the TOC or HOC level. 
-   This enables the Transport Service User to forecast emissions related to specific activities or services, before these take place. 
+:: A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or [=Transport Operator=]) to share GHG emissions at the TOC or HOC level. This enables the Transport Service User to forecast emissions related to specific activities or services, before these take place. 
 
 # Data Transactions # {#txns}
 
