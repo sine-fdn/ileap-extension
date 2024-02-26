@@ -1451,7 +1451,7 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>String
         <td>M
         <td>
-             Indicates the freight transport activity unit at the denominator of the <{energyCarrier/co2eIntensityWTW}> and at the denominator of the <{energyCarrier/co2eIntensityTTW}>. At the TOC level, possible throughputs are tkm, or TEUkm for sea and inland waterways.
+             Indicates the freight transport activity unit at the denominator of the <{energyCarrier/co2eIntensityWTW}> and at the denominator of the <{energyCarrier/co2eIntensityTTW}>. At the energy carrier level, possible throughputs are l, kg, kWh, MJ. 
       <tr>
     </table>
 </figure>
