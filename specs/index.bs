@@ -1424,21 +1424,15 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
-        <td>O
-        <td>
-            The WTW fuel emission factor (certified) with unit `gCO2e / unit of energy consumption` (<{EnergyCarrier/energyConsumptionUnit}>).
-      <tr>
-        <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
-        <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{EnergyCarrier/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework
+            The WTW fuel emission factor (certified) with unit `gCO2e / unit of energy consumption` (<{EnergyCarrier/energyConsumptionUnit}>)
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{EnergyCarrier/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework
+             The TTW fuel emission factor (certified) with unit `gCO2e / unit of energy consumption` (<{EnergyCarrier/energyConsumptionUnit}>)
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
         <td>String
