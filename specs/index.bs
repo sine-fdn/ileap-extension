@@ -197,13 +197,14 @@ The following business cases shall be supported by this specification:
 
 ## Potential additional Business Cases ## {#txns-appendix}
 
-: Business Case #a1: Book & Claim
-:: A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share with them emissions attributes in the context of a book & claim scheme. 
-   
-This business case might be enabled as book & claim methodologies and related variables are considered in scope of this project. This is envisioned for later versions of these technical specifications.
-
-: Business Case #a2: Forecasting 
+: Business Case #a1: Forecasting 
 :: A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or [=Transport Operator=]) to share GHG emissions at the TOC or HOC level. This enables the Transport Service User to forecast emissions related to specific activities or services, before these take place. 
+
+: Business Case #a2: Book & Claim
+:: A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share with them emissions attributes according to a book & claim scheme. 
+   
+Note: This business case is currently out of scope. It might be supported in the future, as book & claim methodologies and related variables are considered in scope of these technical specifications. 
+
 
 # Data Transactions # {#txns}
 
