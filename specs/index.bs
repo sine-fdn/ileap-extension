@@ -1414,20 +1414,13 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>String
         <td>M
         <td>
-            The WTW fuel emission factor (certified) with unit `gCO2e / unit of energy consumption` (<{EnergyCarrier/co2eIntensityThroughput}>)
+            The WTW fuel emission factor (certified) with unit `gCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-             The TTW fuel emission factor (certified) with unit `gCO2e / unit of energy consumption` (<{EnergyCarrier/co2eIntensityThroughput}>)
-      <tr>
-        <td><dfn>co2eIntensityThroughput</dfn>
-        <td>String
-        <td>M
-        <td>
-             Indicates the freight transport activity unit at the denominator of the <{EnergyCarrier/co2eIntensityWTW}> and at the denominator of the <{EnergyCarrier/co2eIntensityTTW}>. At the energy carrier level, possible throughputs are l, kg, kWh, MJ. 
-      <tr>
+             The TTW fuel emission factor (certified) with unit `gCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
     </table>
 </figure>
 
