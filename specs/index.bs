@@ -1452,6 +1452,11 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
           <td>Number
           <td>O
           <td>Percentage of the feedstock in the total composition of energy carrier.
+        <tr>
+          <td><dfn>regionProvenance</dfn> : [0..1]
+          <td>String
+          <td>O
+          <td>Country or region of provenance of the feedstock. 
     </table>
 </figure>
 
