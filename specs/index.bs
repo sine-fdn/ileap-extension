@@ -724,7 +724,7 @@ The Data Type <{TCE}> has the following properties:
         <td>Identification no of the IATA flight number.
 
       <tr>
-        <td><dfn>voyageNumber</dfn>
+        <td><dfn>voyageNo</dfn>
         <td>String
         <td>O
         <td>Identification no of a specific vessel conducting a specific route.
