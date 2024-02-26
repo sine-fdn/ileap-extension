@@ -1408,7 +1408,7 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>String
         <td>O
         <td>
-            Unit of the energy consumed corresponding to the (<{TOC/energyConsumption}>). (l, kg, kWh, MJ)
+            Unit of the energy consumed corresponding to the (<{EnergyCarrier/energyConsumption}>). (l, kg, kWh, MJ)
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
