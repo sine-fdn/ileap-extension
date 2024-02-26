@@ -929,13 +929,6 @@ The Data Type <{TOC}> has the following properties:
         <td>
             Unit of the energy consumed corresponding to the energy consumption per kilometer. (l, kg, kWh, MJ per km)
       <tr>
-        <td><dfn>co2eFuelIntensityWTW</dfn> : [=Decimal=]
-        <td>String
-        <td>O
-        <td>
-            The WTW fuel emission factor (certified) with unit `gCO2e / unit of energy consumption` (<{TOC/energyConsumptionUnit}>).
-            Issue: this needs further refinement!
-      <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
@@ -1429,6 +1422,37 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td><{Feedstock}>[]
         <td>O
         <td>If defined, theon-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
+     <tr>
+        <td><dfn>energyConsumptionUnit</dfn>
+        <td>String
+        <td>O
+        <td>
+            Unit of the energy consumed corresponding to the energy consumption per kilometer. (l, kg, kWh, MJ per km)
+      <tr>
+        <td><dfn>co2eFuelIntensityWTW</dfn> : [=Decimal=]
+        <td>String
+        <td>O
+        <td>
+            The WTW fuel emission factor (certified) with unit `gCO2e / unit of energy consumption` (<{TOC/energyConsumptionUnit}>).
+      <tr>
+        <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{energyCarrier/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework
+      <tr>
+        <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{energyCarrier/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework
+      <tr>
+        <td><dfn>co2eIntensityThroughput</dfn>
+        <td>String
+        <td>M
+        <td>
+             Indicates the freight transport activity unit at the denominator of the <{energyCarrier/co2eIntensityWTW}> and at the denominator of the <{energyCarrier/co2eIntensityTTW}>. At the TOC level, possible throughputs are tkm, or TEUkm for sea and inland waterways.
+      <tr>
     </table>
 </figure>
 
