@@ -170,13 +170,13 @@ They are the context from which supporting data transactions ([[#txns]]) are def
 
 The following business cases shall be supported by this specification:
 
-: <dfn>Business Case #1: Quantify Avoided Emissions </dfn>
+: <dfn>Business Case #1</dfn>: Quantify Avoided Emissions 
 ::
     A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or ([=Transport Operator=])) to share GHG emissions at the TCE level, to enable accurate emissions accounting based on primary data. 
     This allows the Transport Service User to compare the logistics emissions reduction resulting of the introduction of specific operational changes with the emissions without the intervention. 
     This is enabled through [[#txn1]].
 
-: <dfn>Business Case #2: Procurement of carbon-efficient services </dfn>
+: Business Case #2: Procurement of carbon-efficient services
 ::
     A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share GHG emissions at the TOC or HOC level. 
     By incorporating emission intensities (HOCs or TOCs) in procurement processes, the Transport Service Organizer is enabled to choose services that are offer carbon-efficiency advantages.
@@ -197,7 +197,7 @@ The following business cases shall be supported by this specification:
 
 ## Potential additional Business Cases ## {#txns-appendix}
 
-: <dfn>Business Case #a1: Book & Claim </dfn>
+: Business Case #a1: Book & Claim
 :: A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share with them emissions attributes in the context of a book & claim scheme. 
    
 This business case might be enabled as book & claim methodologies and related variables are considered in scope of this project. This is envisioned for later versions of these technical specifications.
