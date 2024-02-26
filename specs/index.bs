@@ -172,16 +172,17 @@ The following business cases shall be supported by this specification:
 
 : <dfn>Business Case #1: Quantify Avoided Emissions </dfn>
 ::
-    A [=Transport Service User=]requests their service provider ([=Transport Service Organizer=] or ([=Transport Operator=])) to share GHG emissions at the TCE level, to enable accurate emissions accounting based on primary data. 
-    This allows the [=Transport Service User=] to compare the logistics emissions reduction resulting of the introduction of specific operational changes with the emissions without the intervention. 
-    Thus, the [=Transport Service User=] can quantify the avoided emissions stemming from operational changes in their transport network. This is enabled through [[#txn1]].
+    A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or ([=Transport Operator=])) to share GHG emissions at the TCE level, to enable accurate emissions accounting based on primary data. 
+    This allows the Transport Service User to compare the logistics emissions reduction resulting of the introduction of specific operational changes with the emissions without the intervention. 
+    
+    This is enabled through [[#txn1]].
 
 : Business Case #2: Procurement of carbon-efficient services
 ::
-    An [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share GHG emissions at the TOC or HOC level. 
+    A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share GHG emissions at the TOC or HOC level. 
     By incorporating emission intensities (HOCs or TOCs) in procurement processes, the Transport Service Organizer is enabled to choose services that are offer carbon-efficiency advantages.
+    
     This is enabled through [[#txn2]].
-
     
 : Business Case #3: Enable Emissions Calculations from Activity Data
 ::
@@ -194,10 +195,7 @@ The following business cases shall be supported by this specification:
     A [=Transport Service User=] is requested by their customers to disclose logistics emissions as part of a [=PCF=].
     This is enabled through the usage of the Pathfinder Technical Specification
     and disclosing through so-called Data Model Extensions based on the iLEAP
-    Data Model ([[#data-model]]) . See the Pathfinder [DATA-MODEL-EXTENSIONS!] specification. 
-
-
-    Issue: add a reference to the Pathfinder Data Model Extensions specification: https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/
+    Data Model ([[#data-model]]) . See the Pathfinder [[!DATA-MODEL-EXTENSIONS]] specification. 
 
 ## Potential additional Business Cases ## {#txns-appendix}
 
