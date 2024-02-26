@@ -174,23 +174,21 @@ The following business cases shall be supported by this specification:
 ::
     A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or ([=Transport Operator=])) to share GHG emissions at the TCE level, to enable accurate emissions accounting based on primary data. 
     This allows the Transport Service User to compare the logistics emissions reduction resulting of the introduction of specific operational changes with the emissions without the intervention. 
-    
     This is enabled through [[#txn1]].
 
 : <dfn>Business Case #2: Procurement of carbon-efficient services </dfn>
 ::
     A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share GHG emissions at the TOC or HOC level. 
     By incorporating emission intensities (HOCs or TOCs) in procurement processes, the Transport Service Organizer is enabled to choose services that are offer carbon-efficiency advantages.
-    
     This is enabled through [[#txn2]].
     
-: <dfn>Business Case #3: Enable Emissions Calculations from Activity Data </dfn>
+: Business Case #3: Enable Emissions Calculations from Activity Data 
 ::
     A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share [=Transport Activity=] data to enable the estimation of emissions from the contracted services. 
     This is enabled through [[#txn3]].
     ISSUE: I would argue this is not a business case, but just a data transaction. 
 
-: <dfn>Business Case #4: Disclose Logistics Emissions as Part of PCFs </dfn>
+: Business Case #4: Disclose Logistics Emissions as Part of PCFs 
 ::
     A [=Transport Service User=] is requested by their customers to disclose logistics emissions as part of a [=PCF=].
     This is enabled through the usage of the Pathfinder Technical Specification
@@ -204,7 +202,7 @@ The following business cases shall be supported by this specification:
    
 This business case might be enabled as book & claim methodologies and related variables are considered in scope of this project. This is envisioned for later versions of these technical specifications.
 
-: <dfn>Business Case #a2: Forecasting </dfn>
+: Business Case #a2: Forecasting 
 :: A [=Transpor Service User=] requests their service provider ([=Transpor Service Organizer=] or [=Transport Operator=]) to share GHG emissions at the TOC or HOC level. 
    This enables the Transpor Service User to forecast emissions related to specific activities or services, before these take place. 
 
