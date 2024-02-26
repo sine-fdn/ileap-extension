@@ -904,18 +904,6 @@ The Data Type <{TOC}> has the following properties:
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
       <tr>
-        <td><dfn>energyIntensityFactor</dfn> : [=Decimal=]
-        <td>String
-        <td>O
-        <td>
-            Amount of energy or fuel consumed per tonne-kilometer.
-      <tr>
-        <td><dfn>energyIntensityUnit</dfn>
-        <td>String
-        <td>O
-        <td>
-            Unit of the energy consumed corresponding to the energy intensity factor. (l, kg, kWh, MJ per km)
-      <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
