@@ -1073,16 +1073,6 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>M
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
-       <tr>
-        <td><dfn>glecDataQualityIndex</dfn> : [0..4]
-        <td>Number
-        <td>O
-        <td>
-            The data quality index as defined in the [[!GLEC]] Framework
-
-            The value of this property must be between `0` (including) and `4` (including).
-
-            Issue: the exact calculation rules must be defined 
   </table>
   <figcaption>Properties of data type `HOC`</figcaption>
 </figure>
