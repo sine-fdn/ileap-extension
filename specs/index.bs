@@ -144,9 +144,7 @@ Advisement: The current technical specifications are undergoing continuous refin
 
 : <dfn>PCF</dfn>
 ::
-    Product Carbon Footprint. See Pathfinder Tech Specs for further details
-
-Issue: Link to the pathfinder tech specs in this section
+    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
 
 Issue: add a pathfinder tech specs normative reference to this document
 
@@ -205,14 +203,19 @@ Note: This business case is currently out of scope. It might be supported in the
 
 # Data Transactions # {#txns}
 
-Issue: create and add transactions diagram to this section
-
 A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving 1 or more business cases ([[#business-cases]]).
 
 It serves the purpose of enabling interoperability between different parties by explaining the context and their intention(s).
 
-Each transaction combines the iLEAP data model (([[#data-model]])) with the Pathfinder
+Each transaction combines the iLEAP data model ([[#data-model]]) with the Pathfinder
 Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=host systems=].
+
+The following diagram shows how the three data transactions (defined below) are related:
+
+<figure>
+  <img src="diagrams/transactions.png" width="30%" >
+  <figcaption>Transactions diagram</figcaption>
+</figure>
 
 Note: A [=Tool Provider=] can also mediate and adopt different roles on behalf of the [=Transport Service User=], [=Transport Service Organizer=] or [=Transport Operator=], as defined in the Data transactions below, as they mediate in data collection, calculation and reporting activities.
 
@@ -1193,9 +1196,11 @@ Issue: !! we need to define data quality semantics !!
 
 ### Data Type GLECDistance ### {#dt-glecdistance}
 
-Properties of data type <dfn element>GLECDistance</dfn>:
+Data type `GLECDistance` represents a distance between origin and destination as defined in the [[!GLEC]] Framework.
 
-Issue: this needs to be refined, especially the semantics of optional data types below (i.e. at least 1 should be defined or similar)
+In JSON an `GLECDistance` MUST be encoded as a JSON Object.
+
+At least one of the following properties of data type <dfn element>GLECDistance</dfn> the MUST be defined:
 
 <figure id="glecdistance-properties-table" dfn-type="element-attr" dfn-for="GLECDistance">
   <table class="data">
@@ -1210,8 +1215,8 @@ Issue: this needs to be refined, especially the semantics of optional data types
         <td><dfn>actual</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>The Distance between the origin and the destination of a consignment of
-              freight or a vehicle, along a specified route (or from telematics). As defined in the [[!GLEC]] Framework
+        <td>The distance between the origin and the destination of a consignment of
+              freight or a vehicle, along a specified route (or from telematics), as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>gcd</dfn> : [=Decimal=]
         <td>String
