@@ -122,9 +122,6 @@ Advisement: The current technical specifications are undergoing continuous refin
 : <dfn>Hub Operator</dfn>
 :: A party that is offering hub services, including warehousing and transshipment center services.
 
-: <dfn>Transport Service Provider</dfn>
-:: A party that is offering transport services
-
 : <dfn>Host System</dfn>
 :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
