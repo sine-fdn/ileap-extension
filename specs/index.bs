@@ -1410,7 +1410,7 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>O
         <td>
             Unit of the energy consumed corresponding to the <{EnergyCarrier/energyConsumption}> (e.g., `"l"`, `"kg"`, `"kWh"`, `"MJ"`).
-            If defined, <{EnergyCarrier/energyConsumption}> MUST be defined as well.
+           <{EnergyCarrier/energyConsumptionUnit}> MUST be defined if <{EnergyCarrier/energyConsumption}> is defined.
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
