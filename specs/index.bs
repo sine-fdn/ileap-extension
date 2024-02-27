@@ -17,6 +17,8 @@ Boilerplate: omit conformance, omit copyright
 
 # Introduction # {#introduction}
 
+FOOBAR
+
 
 - Logistics emissions account for a significant share of global greenhouse gas emissions.
 - This document specifies a data model and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data
