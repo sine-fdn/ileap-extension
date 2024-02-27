@@ -1402,13 +1402,15 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>String
         <td>O
         <td>
-            Amount of energy carrier consumed per transport activity, as defined for the TOC or HOC.
+            Amount of energy carrier consumed per transport activity, as defined for the TOC or HOC. If defined, <{EnergyCarrier/energyConsumptionUnit}>
+            MUST be defined as well.
       <tr>
         <td><dfn>energyConsumptionUnit</dfn>
         <td>String
         <td>O
         <td>
-            Unit of the energy consumed corresponding to the (<{EnergyCarrier/energyConsumption}>). (l, kg, kWh, MJ)
+            Unit of the energy consumed corresponding to the <{EnergyCarrier/energyConsumption}> (e.g., `"l"`, `"kg"`, `"kWh"`, `"MJ"`).
+           <{EnergyCarrier/energyConsumptionUnit}> MUST be defined if <{EnergyCarrier/energyConsumption}> is defined.
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
