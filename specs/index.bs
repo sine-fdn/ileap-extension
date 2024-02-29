@@ -232,7 +232,7 @@ The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) usin
 1. forming the [=TC=] from the collected TCEs
 1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and [[!ISO14083]]
 
-Note: for an example exchange, see [[#example]]
+Note: For an example exchange, see [[#example]]
 
 
 ## Data Transaction 2: TOC Data Exchange ## {#txn2}
@@ -735,7 +735,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
             :: Ex Works
 
             : FCA
-            :: Free CArrier
+            :: Free Carrier
 
             : CPT
             :: Carriage Paid to
@@ -980,8 +980,6 @@ The Data Type <{TOC}> has the following properties:
 
 
 ## Hub Operation Category ( <dfn element>HOC</dfn> ) ## {#dt-hoc}
-
-Advisement: This section and data model requires significant input from the SFC Community
 
 The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport Chain Element=] through the <{TCE/hocId}> property.
 
