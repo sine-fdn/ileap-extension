@@ -1043,6 +1043,11 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>Boolean
         <td>O
         <td>Indicates if the hub has a sustainability certificate. NOTE: Check if this remains. NOT an ISO/GLEC requirement.
+       <tr>
+        <td><dfn>yearBuilt</dfn>
+        <td>Boolean
+        <td>O
+        <td>Indicates the year the hub was built. 
       <tr>
         <td><dfn>inboundTransportMode</dfn>: {{TransportMode}}
         <td>{{TransportMode}}
