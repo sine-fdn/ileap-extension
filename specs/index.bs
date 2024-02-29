@@ -320,7 +320,7 @@ The following hypothetical parties are involved:
 
 ## Data Transactions Executed ## {#example-txns}
 
-Note: In our hypothetical example, we are omitting any hub Operations for now
+Note: In this hypothetical example, hub operations are currently ommitted.
 
 Note: In this hypothetical example, when we refer to a party executing a transaction,
         we implicitly refer to their [=host systems=] which execute
@@ -530,6 +530,8 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
 
 # Data Model # {#data-model}
 
+ISSUE: Add a brief Intro to the data model? Potentially with brief diagram or explanation on how shipment, TCE, TOC etc. relate to each other? 
+
 ## ShipmentFootprint ## {#dt-sf}
 
 <dfn element>ShipmentFootprint</dfn> is a data type that contains 1
@@ -563,17 +565,22 @@ A ShipmentFootprint has the following properties:
         <td><dfn>mass</dfn>
         <td>String
         <td>M
-        <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser
+        <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the [=Transport Service User=], excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser
       <tr>
         <td><dfn>volume</dfn>
         <td>String
         <td>O
-        <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and the packaging provided for transport by the Transport Service user. ISSUE: To discuss if additional packaging and/or handling equipment should be included
+        <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and any packaging provided by the [=Transport Service User=].
       <tr>
-        <td><dfn>numberOfPieces</dfn>
+        <td><dfn>numberOfItems</dfn>
         <td>String
-        <td>M
-        <td>The number of units the shipment is composed of. For example, ISSUE: Add example
+        <td>O
+        <td>The number of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of.
+      <tr>
+        <td><dfn>typeOfItems</dfn>
+        <td>String
+        <td>O
+        <td>The type of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of. For example, boxes, pallets, bottles, etc. 
       <tr>
         <td><dfn>shipmentId</dfn>
         <td>String
