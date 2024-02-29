@@ -214,7 +214,7 @@ The following diagram shows how the three data transactions (defined below) are 
   <figcaption>Transactions diagram</figcaption>
 </figure>
 
-Note: A [=Tool Provider=] can also mediate and adopt different roles on behalf of the [=Transport Service User=], [=Transport Service Organizer=] or [=Transport Operator=], as defined in the Data transactions below, as they mediate in data collection, calculation and reporting activities.
+Note: A [=Tool Provider=] can assume various roles on behalf of the [=Transport Service User=], [=Transport Service Organizer=] or [=Transport Operator=], as outlined in the data transactions below. They can serve as mediators in activities involving data collection, calculation, and reporting.
 
 ## Data Transaction 1: TCE Data Exchange ## {#txn1}
 
