@@ -658,13 +658,13 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container)
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn> : [=Integer=]
         <td>String
         <td>O
-        <td>Number of packaging or transport equipment units utilized to transport the related consignment
+        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
       <tr>
         <td><dfn>distance</dfn>
@@ -731,27 +731,38 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
             Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the Scope3 Category in which each party has to report their emissions.
 
             If defined, the value of this property MUST be one of the following:
-            : EXW: Ex Works
+            : EXW
+            :: Ex Works
 
-            : FCA: Free CArrier
+            : FCA
+            :: Free CArrier
 
-            : CPT: Carriage Paid to
+            : CPT
+            :: Carriage Paid to
 
-            : CIP: Carriage and Insurance Paid to
+            : CIP
+            :: Carriage and Insurance Paid to
 
-            : DAP: Delivered at Place
+            : DAP
+            :: Delivered at Place
 
-            : DPU: Delivered at Place Unloaded
+            : DPU
+            :: Delivered at Place Unloaded
 
-            : DDP: Delivered Duty Paid
+            : DDP
+            :: Delivered Duty Paid
 
-            : FAS: Free Alongside Ship
+            : FAS
+            :: Free Alongside Ship
 
-            : FOB: Free on Board
+            : FOB
+            :: Free on Board
 
-            : CFR: Cost and Freight
+            : CFR
+            :: Cost and Freight
 
-            : CIF: Cost, Insurance and Freight
+            : CIF
+            :: Cost, Insurance and Freight
 
       <tr>
         <td><dfn>co2eWTW</dfn> : [=Decimal=]
