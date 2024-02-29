@@ -29,16 +29,16 @@ Boilerplate: omit conformance, omit copyright
 
 This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
 
-1. Methodology for the exact calculation of Logistics-related emissions which is explained in the GLEC Framework and specified in [[!ISO14083|ISO 14083]]
+1. Methodology for the calculation of Logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083|ISO 14083]]
 2. Black Carbon (Accounting)
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others)
-4. Pilot decentralized data exchange following data space governance principles
+4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project. 
 5. How to establish contractual obligations between parties for the provision of data
 6. How to perform data audits and verification
 7. Market based approach for electricity emissions accounting.
-8. Modes of transport cable car and pipelines. Although these are acknowledged in both the GLEC Framework and ISO14083, they are left out of scope of the current project, and will be incorporated in future versions of these technical specifications.
-9. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
-10. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is also supported, but detailed parameters for modelling are not in focus.
+8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
+9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is supported, but detailed parameters for modelling are excluded from the current version.
+10. Modes of transport cable car and pipelines. These will be incorporated in future versions of these technical specifications. 
 11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
 
 Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, such as Hub Operation Category, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
