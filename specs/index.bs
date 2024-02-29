@@ -47,16 +47,16 @@ Advisement: The current technical specifications are undergoing continuous refin
 
 ## ISO14083- and GLEC-Framework-related Definitions ## {#iso14083-definitions}
 : Transport Operation Category (<dfn>TOC</dfn> )
-:: A Transport Operation Category as defined in the [[!GLEC]] Framework
+:: A Transport Operation Category is a grouping of transport categories sharing similar characteristics.  [[!GLEC]] Framework
 
 : Hub Operation Category (<dfn>HOC</dfn> )
-:: A Hub Operation Category as defined in the [[!GLEC]] Framework
+:: A Hub Operation Category represents a grouping of hub operations that share similar characteristics.  [[!GLEC]] Framework
 
 : Transport Chain (<dfn>TC</dfn> )
 :: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]
 
 : <dfn>Transport Chain Element</dfn> (TCE)
-:: A Transport Chain Element as defined in the [[!GLEC]] Framework
+:: A Transport Chain Element is one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework
 
 : <dfn>Transport Operator</dfn>
 :: Refers to the party that carries out the transport service. See [[!ISO14083]], Section 3.1.30
