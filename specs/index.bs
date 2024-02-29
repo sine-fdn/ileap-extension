@@ -1111,7 +1111,7 @@ hub operations activities.
 ### Data Attributes ### {#tad-attributes}
 
 Note:
-    the <{TAD}> data type is defined for the exchange of (primary) activity data for
+    The <{TAD}> data type is defined for the exchange of (primary) activity data for
     which no GHG emission or GHG emission intisities values have been calculated.
 
 Properties of data type <{TAD}>:
@@ -1150,7 +1150,24 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td>String
         <td>O
         <td>Mass of freight (SI derived Unit `kilograms`)
+      <tr>
+        <td><dfn>loadFactor</dfn>
+        <td>Number
+        <td>O
+        <td>
+            Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
+            It is applied to the loaded distance of the transport.
 
+            The value of this property must be between `0` (excluding) and `1` (including).
+
+      <tr>
+        <td><dfn>emptyDistanceFactor</dfn>
+        <td>Number
+        <td>O
+        <td>
+            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
+
+            The value of this property must be between `0` (including) and `1` (excluding).
       <tr>
         <td><dfn>origin</dfn>
         <td><{Location}>
@@ -1169,7 +1186,7 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td>O
         <td>
               Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
-              Note: the original data model defined this as the "date of loading"
+              NOTE: the original data model defined this as the "date of loading"
 
       <tr>
         <td><dfn>arrivalAt</dfn>
@@ -1179,20 +1196,20 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
       <tr>
         <td><dfn>mode</dfn>
         <td>{{TransportMode}}
-        <td>O
+        <td>M
         <td>Mode of transport
 
       <tr>
-        <td><dfn>packagingUnit</dfn>
+        <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
-        <td>
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
 
       <tr>
-        <td><dfn>packagingUnitAmount</dfn>
+        <td><dfn>packagingOrTrEqAmount</dfn> : [=Integer=]
         <td>String
         <td>O
-        <td>
+        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
       <tr>
         <td><dfn>energyCarrier</dfn>
@@ -1336,10 +1353,9 @@ It MUST be encoded as a String using one of the following values:
 : <dfn>InlandWaterway</dfn>
 :: for transport mode `inland waterway`
 
-: <dfn>Hub</dfn>
-:: for hub operations ISSUE: Hub operations should maybe be excluded from here, as these transport modes are defined for TOC, and HOC is defined separately
-
 </dl>
+
+NOTE: : Hub operations are excluded from here, as these transport modes are defined for TOC, and HOC is defined separately
 
 ### Data Type <dfn enum>HubType</dfn> ### {#dt-hub-type}
 
