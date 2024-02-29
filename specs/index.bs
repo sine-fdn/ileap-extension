@@ -20,7 +20,7 @@ Boilerplate: omit conformance, omit copyright
 
 - Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision. 
 - This document specifies a [[#data-model]] and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, , ensuring they are structured to facilitate the calculation of Product Carbon Footprints (PCFs)
-- Grounded in the [[!GLEC]] Framework and [[!ISO14083|ISO 14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It establishes a foundational semantics framework for the [=SFC=] Data Exchange Network project. 
+- Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It establishes a foundational semantics framework for the [=SFC=] Data Exchange Network project. 
 - Adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
 
 
@@ -29,7 +29,7 @@ Boilerplate: omit conformance, omit copyright
 
 This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
 
-1. Methodology for the calculation of Logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083|ISO 14083]]
+1. Methodology for the calculation of Logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083]]
 2. Black Carbon (Accounting)
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others)
 4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project. 
@@ -151,7 +151,7 @@ Issue: add a pathfinder tech specs normative reference to this document
 Note: Non-normative section
 
 This specification shall serve the general need of businesses for logistics GHG emissions
-accounting and reporting, conforming with the [[!GLEC]] Framework and ISO 14083.
+accounting and reporting, conforming with the [[!GLEC]] Framework and [[!ISO14083]].
 
 Given the nature of the logistics industry, and in order to reduce costs overall,
 logistics emissions transparency is made possible if all the parties involved
@@ -202,7 +202,7 @@ Note: This business case is currently out of scope. It might be supported in the
 
 A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
 
-It serves the purpose of enabling interoperability between different parties by explaining the context and their intention(s).
+Its function is to facilitate interoperability between different parties by explaining the context and their intention(s).
 
 Each transaction combines the iLEAP data model ([[#data-model]]) with the Pathfinder
 Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=host systems=].
@@ -223,14 +223,14 @@ This data transaction enables a [=Transport Service User=] (for example, a [=shi
 
 For this, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 
-1. first calculate 1 or more TCEs emissions related data in accordance with the [[!GLEC]] Framework and ISO 14083, and then
+1. first calculate 1 or more TCEs emissions related data in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
 1. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the Pathfinder
     Network API (see [[#pcf-mapping-sf]]).
 
 The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) using the [=shipment id=], by
 1. collecting the <{TCE|TCEs}> from all the [=Transport Operators=] and the [=Transport Service Organizers=] related to the shipment
 1. forming the [=TC=] from the collected TCEs
-1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and ISO 14083
+1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and [[!ISO14083]]
 
 Note: for an example exchange, see [[#example]]
 
@@ -240,12 +240,12 @@ Note: for an example exchange, see [[#example]]
 This data transaction enables [=Transport Operators=] and [=Transport Service Organizers=]
 to make logistics emissions intensity data at the level of 1 or more [=TOC=] .
 
-The provision of emission intensity data at the [=TOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and ISO 14083.
+The provision of emission intensity data at the [=TOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
 It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages.
 
 For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
-1. first calculate 1 or more TOCs in accordance with the [[!GLEC]] Framework and ISO 14083, and then
+1. first calculate 1 or more TOCs in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
 1. make the resulting <{TOC|TOCs}> available through the Pathfinder Network API (see [[#pcf-mapping]]).
 
 Note:
@@ -351,7 +351,7 @@ can calculate the logistics emissions of the shipment by
 1. collecting the <{TCE|TCEs}> from `S` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database.
 1. `S` can further verify the <{TCE|TCEs}> by collecting the <{TOC|TOCs}> from `Z` using [[#txn2]]
 1. To compute the logistics emissions, `Z` can form the [=TC=] from the collected <{TCE|TCEs}> by taking the <{TCE|TCEs}> of step 1 and
-    by calculating the logistics emissions for this shipment by following the [[!GLEC]] Framework and ISO 14083.
+    by calculating the logistics emissions for this shipment by following the [[!GLEC]] Framework and [[!ISO14083]].
 
 
 ## Example HTTP Calls ## {#example-http}
@@ -843,13 +843,13 @@ The Data Type <{TOC}> has the following properties:
         <td><dfn>isVerified</dfn>
         <td>Boolean
         <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use ISO 14083 as audit criteria.
+        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
 
       <tr>
         <td><dfn>isAccredited</dfn>
         <td>Boolean
         <td>M
-        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with ISO 14083:2023, as declared in an Accreditation (=Certification) certificate.
+        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
 
       <tr>
         <td><dfn>description</dfn>
@@ -1004,12 +1004,12 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td><dfn>isVerified</dfn>
         <td>Boolean
         <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use ISO 14083 as audit criteria.
+        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
       <tr>
         <td><dfn>isAccredited</dfn>
         <td>Boolean
         <td>M
-        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with ISO 14083:2023, as declared in an Accreditation (=Certification) certificate.
+        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
       <tr>
         <td><dfn>hubType</dfn>
         <td>{{HubType}}
