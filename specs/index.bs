@@ -41,7 +41,7 @@ This specifcation does not cover the following topics or aspects as they are cov
 10. Modes of transport cable car and pipelines. These will be incorporated in future versions of these technical specifications. 
 11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
 
-Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, such as Hub Operation Category, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
+Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
 
 # Definitions # {#definitions}
 
