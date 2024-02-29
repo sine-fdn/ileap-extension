@@ -18,11 +18,11 @@ Boilerplate: omit conformance, omit copyright
 # Introduction # {#introduction}
 
 
-- Logistics emissions account for a significant share of global greenhouse gas emissions.
-- This document specifies a data model and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data.
-- The data model [[#data-model]] and the foundational data transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
-- By implementing this specification, different stakeholders of the logistics value chain can exchange data to enable logistics emissions calculation for [=shipments=].
-- This technical specification is based on the [[!GLEC]] Framework and the [[!ISO14083|ISO 14083]]. It provides a foundational semantics framework to the [=SFC=] Data Exchange Network project.
+- Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision. 
+- This document specifies a [[#data-model]] and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, , ensuring they are structured to facilitate the calculation of Product Carbon Footprints (PCFs)
+- Grounded in the [[!GLEC]] Framework and [[!ISO14083|ISO 14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It establishes a foundational semantics framework for the [=SFC=] Data Exchange Network project. 
+- Adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
+
 
 
 ## Out of Scope ## {#out-of-scope}
