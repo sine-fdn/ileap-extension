@@ -303,7 +303,7 @@ The following hypothetical parties are involved:
 ::
     A [=Transport Service Organizer=] responsible for a shipment from Rotterdam to Prague.
 
-    The Transport Service Organizer contracts Carrier A and Carrier B to perform the transport.
+    The Transport Service Organizer contracts Transport Operator A and Transport Operator B to perform the transport.
 
     This operator has a [=host system=] which implements Transaction 1 ([[#txn1]])
     as well as Transaction 2 ([[#txn2]]).
@@ -312,7 +312,7 @@ The following hypothetical parties are involved:
     they can make provide data to transport service user `S`.
 
 
-: Carrier `A`
+: Transport Operator `A`
 ::
     A [=Transport Operator=] which is responsible for the first leg of the shipment.
 
@@ -321,7 +321,7 @@ The following hypothetical parties are involved:
     Through this, the operator can make [=Transport Chain Element=]-level data available to the
     organizer `Z` which `Z` can fetch using Transaction 1 ([[#txn1]]).
 
-: Carrier `B`
+: Transport Operator `B`
 ::
     Another [=Transport Operator=] which is responsible for the second leg of the shipment.
 
@@ -340,14 +340,14 @@ Note: In this hypothetical example, when we refer to a party executing a transac
 
 ### Data Collection by Transport Service Organizer `Z` ### {#example-z}
 
-As the transport consists of 2 legs, `Z` needs to collect data from the 2 Carriers `A` and `B`.
+As the transport consists of 2 legs, `Z` needs to collect data from the 2 Transport Operators `A` and `B`.
 
 For this, the Transport Service Organizer `Z` performs the following data transactions:
 
-1. `Z` executes [[#txn1]] with Carrier `A` to collect the <{TCE|TCEs}>
+1. `Z` executes [[#txn1]] with Transport Operator `A` to collect the <{TCE|TCEs}>
     for the first leg of the shipment.
-1. As Carrier `B` does not support [[#txn1]], `Z` performs [[#txn3]] with
-    Carrier `B` to collect the <{TAD}> for the second leg of the shipment.
+1. As Transport Operator `B` does not support [[#txn1]], `Z` performs [[#txn3]] with
+    Transport Operator `B` to collect the <{TAD}> for the second leg of the shipment.
 1. `Z` then calculates the <{TCE|TCEs}> for the 2nd leg of the shipment based on
       the <{TAD}> data and e.g. modelled or secondary emission database(s).
 
@@ -366,7 +366,7 @@ can calculate the logistics emissions of the shipment by
 
 ### Data Collection by Transport Service Organizer `Z` ### {#example-http-z}
 
-To collect the <{TCE|TCEs}> from Carrier `A`, `Z` performs the following HTTP call.
+To collect the <{TCE|TCEs}> from Transport Operator `A`, `Z` performs the following HTTP call.
 
 Note: The call to `/footprints` can return several footprints, 1 for each shipment.
         By filtering, e.g. by the shipment id, `Z` can retrieve the <{TCE|TCEs}> for
@@ -375,7 +375,7 @@ Note: The call to `/footprints` can return several footprints, 1 for each shipme
 The highlighted lines show the data exchanged according to the <{ShipmentFootprint}> data model.
 
 <div class=example>
-  Example HTTP Request (cURL) to collect TCE Data from Carrier A (please note that an actual API call would require authentication):
+  Example HTTP Request (cURL) to collect TCE Data from Transport Operator A (please note that an actual API call would require authentication):
   <pre highlight='sh'>
       curl -X 'GET' \
       'https://api.transport-operator-a.com/2/footprints'
