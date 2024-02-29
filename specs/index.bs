@@ -596,6 +596,11 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
 
 [=TCEs=] are the building blocks to construct a Transport Chain ([=TC=]), enabling the calculation of logistics emissions.
 
+Transport Chain Element Data can be obtained from direct measurement
+(see `primary data` definition of [[!ISO14083]]) or other measurements
+(see `secondary data` definition of [[!ISO14083]]) such as modelled data
+or default value.
+
 
 ### Data Attributes ### {#tce-attributes}
 
@@ -827,6 +832,10 @@ The [=Transport Operator=] or [=Transport Service Organizer=] MUST calculate the
 
 The [=Transport Operator=] or [=Transport Service Organizer=] CAN then make the <{TOC}> available through the Pathfinder Network API as a `ProductFootprint` (see [[#pcf-mapping-toc]]).
 
+Transport Operation Category Data can be obtained from direct measurement
+(see `primary data` definition of [[!ISO14083]]) or other measurements
+(see `secondary data` definition of [[!ISO14083]]) such as modelled data
+or default value.
 
 ### Data Attributes ### {#toc-attributes}
 
@@ -983,7 +992,7 @@ The Data Type <{TOC}> has the following properties:
 
 The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport Chain Element=] through the <{TCE/hocId}> property.
 
-[=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=].
+[=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=] with hub operations.
 
 ### Data Attributes ### {#hoc-attributes}
 
@@ -1064,6 +1073,12 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>O
         <td>Indicates the nature of freight handled (e.g. palletized, containerized, piece good).
       <tr>
+        <td><dfn>energyCarriers</dfn>
+        <td><{EnergyCarrier}>[]
+        <td>M
+        <td>
+            The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
+      <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
@@ -1076,12 +1091,6 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>M
         <td>
              Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways.
-      <tr>
-        <td><dfn>energyCarriers</dfn>
-        <td><{EnergyCarrier}>[]
-        <td>M
-        <td>
-            The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
   </table>
   <figcaption>Properties of data type `HOC`</figcaption>
 </figure>
@@ -1091,11 +1100,6 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
 
 <dfn>Transport Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
 hub operations activities.
-
-Transport Activity Data can be obtained from direct measurement
-(see `primary data` definition of [[!ISO14083]]) or other measurements
-(see `secondary data` definition of [[!ISO14083]]) such as modelled data
-or default value.
 
 
 ### Data Attributes ### {#tad-attributes}
@@ -1107,8 +1111,6 @@ Note:
 Properties of data type <{TAD}>:
 
 Issue: this needs to be discussed with SFC and especially also Tool providers:
-
-Issue: !! we need to define data quality semantics !!
 
 <figure id="tad-properties-table" dfn-type="element-attr" dfn-for="TAD">
   <table class="data">
