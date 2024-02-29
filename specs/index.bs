@@ -59,13 +59,16 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: A Transport Chain Element as defined in the [[!GLEC]] Framework
 
 : <dfn>Transport Operator</dfn>
-:: See [[!ISO14083]], Section 3.1.30
+:: Refers to the party that carries out the transport service   
+   See [[!ISO14083]], Section 3.1.30
 
 : <dfn>Transport Service Organizer</dfn>
-:: See [[!ISO14083]], Section 3.1.32
+:: Refers to the party providing transport services, where some of the operations are subcontrated to a third party, usually a Transport Operator  
+   See [[!ISO14083]], Section 3.1.32
 
 : <dfn>Transport Service User</dfn>
-:: See [[!ISO14083]], Section 3.1.33
+:: Refers to the party that purchases and or utilizes a transport service.  It could be a shipper or a Transport Service Organizer. 
+   See [[!ISO14083]], Section 3.1.33
 
 : <dfn>Hub Activity</dfn>
 :: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
