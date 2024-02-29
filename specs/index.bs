@@ -74,16 +74,13 @@ Advisement: The current technical specifications are undergoing continuous refin
 ::
     A shipment refers to the goods in a commercial transaction between a seller and a buyer.
     It encompasses the consignments transported as part of this transaction via a transport
-    chain from the consignor to the consignee.
-    Also see [[!ISO14083]], Section 3.1.20
+    chain from the consignor to the consignee. See [[!ISO14083]], Section 3.1.20
 
 : <dfn>Consignment</dfn>
 ::
     A consignment refers to a quantifiable quantity of cargo that can be distinctly
     identified as a single unit. It is transported from a sender or consignor to a
-    receiver or consignee, irrespective of the mode of transportation employed.
-
-    Also see [[!ISO14083]], Section 3.1.4
+    receiver or consignee, irrespective of the mode of transportation employed. See [[!ISO14083]], Section 3.1.4
 
 : <dfn>Transport Activity</dfn>
 ::
@@ -97,15 +94,15 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27
 
 : <dfn>Actual Distance</dfn>
-:: The actual route (with unit `kilometer`) taken for a consignment. See [[!ISO14083]] Section 3.1.27.1
+:: The actual route (with unit `kilometer`) taken for a consignment. [[!GLEC]] Framework. See also [[!ISO14083]] Section 3.1.27.1
 
 : <dfn>Shortest Feasible Distance</dfn> (SFD)
 ::
-    It represents the shortest practical route between two places taking into account the real operating conditions. See [[!GLEC]] Framework
+    It represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework
 
 : <dfn>Great Circle Distance</dfn> (GCD)
 ::
-    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. See [[!GLEC]] Framework
+    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework
 
 
 ## Auxillary Definitions ## {#auxillary-definitions}
