@@ -114,7 +114,7 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: see [[#txns]]
 
 : <dfn>Shipper</dfn>
-:: An entity which buys logistics services; e.g. from [=Transport Service Organizers=] or [=Transport Operators=]
+:: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework
 
 : Smart Freight Centre (<dfn>SFC</dfn> )
 :: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organisation
