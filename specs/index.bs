@@ -65,7 +65,7 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: Refers to the party providing transport services, where some of the operations are subcontrated to a third party, usually a Transport Operator. See [[!ISO14083]], Section 3.1.32
 
 : <dfn>Transport Service User</dfn>
-:: Refers to the party that purchases and or utilizes a transport service.  It could be a shipper or a Transport Service Organizer. See [[!ISO14083]], Section 3.1.33
+:: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33
 
 : <dfn>Hub Activity</dfn>
 :: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
@@ -150,15 +150,15 @@ Issue: add a pathfinder tech specs normative reference to this document
 
 Note: Non-normative section
 
-This specification shall serve the general need of businesses for end-to-end Carbon
-Accounting and Reporting, conforming with the [[!GLEC]] Framework and ISO 14083.
+This specification shall serve the general need of businesses for logistics GHG emissions
+accounting and reporting, conforming with the [[!GLEC]] Framework and ISO 14083.
 
 Given the nature of the logistics industry, and in order to reduce costs overall,
 logistics emissions transparency is made possible if all the parties involved
-are able to exchange emissions data in an interoperable way.
+are able to exchange emissions data in an interoperable manner.
 
-To achieve this, this specification is guided by a set of business cases.
-They are the context from which supporting data transactions ([[#txns]]) are defined.
+To achieve this objective, the specification is guided by a set of business cases, which provide the 
+framework for delineating subsequent data transactions ([[#txns]]).
 
 The following business cases shall be supported by this specification:
 
@@ -171,7 +171,7 @@ The following business cases shall be supported by this specification:
 : Business Case #2: Procurement of carbon-efficient services
 ::
     A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share GHG emissions at the TOC or HOC level.
-    By incorporating emission intensities (HOCs or TOCs) in procurement processes, the Transport Service Organizer is enabled to choose services that are offer carbon-efficiency advantages.
+    By incorporating emission intensities (HOCs or TOCs) in procurement processes, the Transport Service Organizer is enabled to choose services that offer carbon-efficiency advantages.
     This is enabled through [[#txn2]].
 
 : Business Case #3: Enable Emissions Calculations from Activity Data
@@ -200,7 +200,7 @@ Note: This business case is currently out of scope. It might be supported in the
 
 # Data Transactions # {#txns}
 
-A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving 1 or more business cases ([[#business-cases]]).
+A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
 
 It serves the purpose of enabling interoperability between different parties by explaining the context and their intention(s).
 
@@ -218,7 +218,7 @@ Note: A [=Tool Provider=] can assume various roles on behalf of the [=Transport 
 
 ## Data Transaction 1: TCE Data Exchange ## {#txn1}
 
-This data transaction enables a [=Transport Service User=] (such as a [=shipper=]) to receive [=Transport Chain Elements=] emissions related data (encoded as <{TCE|TCEs}>) from a
+This data transaction enables a [=Transport Service User=] (for example, a [=shipper=]) to receive [=Transport Chain Elements=] emissions related data (encoded as <{TCE|TCEs}>) from a
 [=Transport Operator=] or a [=Transport Service Organizer=] for a single [=shipment=].
 
 For this, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
@@ -231,8 +231,6 @@ The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) usin
 1. collecting the <{TCE|TCEs}> from all the [=Transport Operators=] and the [=Transport Service Organizers=] related to the shipment
 1. forming the [=TC=] from the collected TCEs
 1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and ISO 14083
-
-Note: A Transport Service User can also be a Transport Service Organizer.
 
 Note: for an example exchange, see [[#example]]
 
