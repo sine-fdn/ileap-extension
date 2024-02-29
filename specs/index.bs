@@ -910,31 +910,6 @@ The Data Type <{TOC}> has the following properties:
             - `ambient`: for non-temperature controlled freight
             - `refrigerated`: for refrigerated freight
             - `mixed`: for TOCs comprising the handling of both ambient and refrigerated freight
-
-      <tr>
-        <td><dfn>energyCarriers</dfn>
-        <td><{EnergyCarrier}>[]
-        <td>M
-        <td>
-            The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
-      <tr>
-        <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
-        <td>String
-        <td>M
-        <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
-      <tr>
-        <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
-        <td>String
-        <td>M
-        <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
-      <tr>
-        <td><dfn>co2eIntensityThroughput</dfn>
-        <td>String
-        <td>M
-        <td>
-             Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}> and at the denominator of the <{TOC/co2eIntensityTTW}>. At the TOC level, possible throughputs are tkm, or TEUkm for sea and inland waterways.
       <tr>
         <td><dfn>truckLoadingSequence</dfn>
         <td>String
@@ -972,6 +947,31 @@ The Data Type <{TOC}> has the following properties:
             : long-haul
             :: For distances greater than 1500 km
 
+
+      <tr>
+        <td><dfn>energyCarriers</dfn>
+        <td><{EnergyCarrier}>[]
+        <td>M
+        <td>
+            The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
+      <tr>
+        <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
+      <tr>
+        <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
+      <tr>
+        <td><dfn>co2eIntensityThroughput</dfn>
+        <td>String
+        <td>M
+        <td>
+             Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}> and at the denominator of the <{TOC/co2eIntensityTTW}>. At the TOC level, possible throughputs are tkm, or TEUkm for sea and inland waterways.
       <tr>
         <td><dfn>glecDataQualityIndex</dfn> : [0..4]
         <td>Number
@@ -1083,14 +1083,20 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with GHG emissions with unit `kgCO2e` per <{HOC/co2eIntensityWTWThroughput}> as defined in the [[!GLEC]] Framework
-
-      <tr>
-        <td><dfn>co2eIntensityWTWThroughput</dfn>
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{HOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework
+ <tr>
+        <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-             Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways.
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
+    
+      <tr>
+        <td><dfn>co2eIntensityThroughput</dfn>
+        <td>String
+        <td>M
+        <td>
+             Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}> and at the denominator of the <{HOC/co2eIntensityTTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways.
   </table>
   <figcaption>Properties of data type `HOC`</figcaption>
 </figure>
