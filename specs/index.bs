@@ -1216,7 +1216,7 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td><{EnergyCarrier}>
         <td>M
         <td>
-            The [=EnergyCarrier=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
+            The [=EnergyCarrier=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework. ISSUE: Should fuel intensity be optional for activity data exchange, only fuel type needed?
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
