@@ -10,7 +10,7 @@ Editor: Violetta Matzoros, https://www.smartfreightcentre.org, violetta.matzoros
 Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rubiodomingo@smartfreightcentre.org
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Repository: sine-fdn/ileap-extension
-Abstract: This document specifies the data exchange profile for the SFC iLEAP project which is based on the Pathfinder Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the Patfhinder Network. By implementing this specification, companies can exchange logistics emission data with each other such that shippers can calculate logistics emissions.
+Abstract: This document outlines the semantics for logistics emissions data exchange as part of the SFC iLEAP Project. Its format is based on the Pathfinder Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the Pathfinder Network. Implementing this specification enables stakeholders within the supply chain to exchange data on logistics emissions. This facilitates the tracking of logistics emissions and the computation of their contribution to product carbon footprints.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
 </pre>
@@ -22,7 +22,7 @@ Boilerplate: omit conformance, omit copyright
 - This document specifies a data model and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data.
 - The data model [[#data-model]] and the foundational data transactions ([[#txns]]) build upon the [[!GLEC]] Framework, the Pathfinder Framework, and the Pathfinder Technical Specifications.
 - By implementing this specification, different stakeholders of the logistics value chain can exchange data to enable logistics emissions calculation for [=shipments=].
-- This technical specification is based on the [[!GLEC]] Framework, the related [[!ISO14083|ISO 14083]], and the Data Exchange Project of [=SFC=].
+- This technical specification is based on the [[!GLEC]] Framework and the [[!ISO14083|ISO 14083]]. It provides a foundational semantics framework to the [=SFC=] Data Exchange Network project.
 
 
 ## Out of Scope ## {#out-of-scope}
