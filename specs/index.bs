@@ -237,11 +237,10 @@ Note: for an example exchange, see [[#example]]
 
 ## Data Transaction 2: TOC Data Exchange ## {#txn2}
 
-This data transaction enables [=Transport Operators=] and [=Transport Service Organizers=]
-to make logistics emissions intensity data at the level of 1 or more [=TOC=] .
+This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] emission intensity related data from a [=Transport Operator=]. 
 
 The provision of emission intensity data at the [=TOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
-It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages.
+It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
 
 For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
@@ -256,13 +255,7 @@ Note:
 
 ## Data Transaction 3: Transport Activity Data Exchange ## {#txn3}
 
-Note:
-      This data transaction is considered necessary by logistics parties.
-      Especially for SMEs, lacking the capabilities to report curated emissions data,
-      the option to provide activity data to their customers should be given.
-
-This data transaction enables a [=Transport Operator=] to exchange [=Transport Activity Data=]
-with a [=Transport Service Organizer=] or a [=Transport Service User=] for a single [=consignment=].
+This data transaction enables a [=Transport Service Organizer=] or a [=Transport Service User=] to receive [=Transport Activity Data=] from a [=Transport Operator=].
 
 For this, the [=Transport Operator=] MUST
 
@@ -270,8 +263,12 @@ For this, the [=Transport Operator=] MUST
 2. calculate the <{TAD}> (see [[#dt-tad]]) given the [=consignment id=]
 2. make the resulting <{TAD}> available through the Pathfinder Network API
 
-The [=Transport Service Organizer=] or a [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
+The [=Transport Service Organizer=] or [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
 
+Note:
+      This data transaction is considered necessary by logistics parties.
+      Especially for SMEs, lacking the capabilities to report curated emissions data,
+      the option to provide activity data to their customers should be given.
 
 # End-to-End Example # {#example}
 
