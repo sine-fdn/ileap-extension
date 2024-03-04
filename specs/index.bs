@@ -1148,8 +1148,8 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td>O
         <td>Mass of freight (SI derived Unit `kilograms`)
       <tr>
-        <td><dfn>loadFactor</dfn>
-        <td>Number
+        <td><dfn>loadFactor</dfn> : [=Decimal=]
+        <td>String
         <td>O
         <td>
             Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
@@ -1157,8 +1157,8 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
 
             The value of this property must be between `0` (excluding) and `1` (including).
       <tr>
-        <td><dfn>emptyDistanceFactor</dfn>
-        <td>Number
+        <td><dfn>emptyDistanceFactor</dfn> : [=Decimal=]
+        <td>String
         <td>O
         <td>
             Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
