@@ -1103,6 +1103,10 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
 
 <dfn>Transport Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
 hub operations activities.
+This data type is meant for service providers ([=Transport Operator=] or [=Transport Service Organizer=]) unable to perform carbon emission calculations.
+It captures basic attributes logistic parties usually have access to, and which are helpful for the data recipient to make estimations or use relevant defaults.
+It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers
+The data type is unimodal, and shold be used for capturing primary data.
 
 
 ### Data Attributes ### {#tad-attributes}
