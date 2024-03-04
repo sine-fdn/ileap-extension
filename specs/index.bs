@@ -18,9 +18,9 @@ Boilerplate: omit conformance, omit copyright
 # Introduction # {#introduction}
 
 
-- Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision. 
+- Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision.
 - This document specifies a [[#data-model]] and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, , ensuring they are structured to facilitate the calculation of Product Carbon Footprints (PCFs)
-- Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It establishes a foundational semantics framework for the [=SFC=] Data Exchange Network project. 
+- Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It establishes a foundational semantics framework for the [=SFC=] Data Exchange Network project.
 - Adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
 
 
@@ -32,13 +32,13 @@ This specifcation does not cover the following topics or aspects as they are cov
 1. Methodology for the calculation of Logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083]]
 2. Black Carbon (Accounting)
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others)
-4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project. 
+4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project.
 5. How to establish contractual obligations between parties for the provision of data
 6. How to perform data audits and verification
 7. Market based approach for electricity emissions accounting.
 8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
 9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is supported, but detailed parameters for modelling are excluded from the current version.
-10. Modes of transport cable car and pipelines. These will be incorporated in future versions of these technical specifications. 
+10. Modes of transport cable car and pipelines. These will be incorporated in future versions of these technical specifications.
 11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
 
 Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
@@ -157,7 +157,7 @@ Given the nature of the logistics industry, and in order to reduce costs overall
 logistics emissions transparency is made possible if all the parties involved
 are able to exchange emissions data in an interoperable manner.
 
-To achieve this objective, the specification is guided by a set of business cases, which provide the 
+To achieve this objective, the specification is guided by a set of business cases, which provide the
 framework for delineating subsequent data transactions ([[#txns]]).
 
 The following business cases shall be supported by this specification:
@@ -237,7 +237,7 @@ Note: For an example exchange, see [[#example]]
 
 ## Data Transaction 2: TOC Data Exchange ## {#txn2}
 
-This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] emission intensity related data from a [=Transport Operator=]. 
+This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] emission intensity related data from a [=Transport Operator=].
 
 The provision of emission intensity data at the [=TOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
 It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
@@ -1056,7 +1056,7 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td><dfn>yearBuilt</dfn>
         <td>Boolean
         <td>O
-        <td>Indicates the year the hub was built. 
+        <td>Indicates the year the hub was built.
       <tr>
         <td><dfn>inboundTransportMode</dfn>: {{TransportMode}}
         <td>{{TransportMode}}
@@ -1090,7 +1090,7 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>M
         <td>
               The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
-    
+
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
         <td>String
@@ -1132,19 +1132,16 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td>String
         <td>M
         <td>The non-empty unique ID of this activity relative to the [=host system=].
-
       <tr>
         <td><dfn>consignmentId</dfn>
         <td>String
         <td>M
         <td>The non-empty unique ID of the consignment related to the activity.
-
       <tr>
         <td><dfn>distance</dfn>
         <td><{GLECDistance}>
         <td>M
         <td>The Distance between the origin and the destination of the activity
-
       <tr>
         <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
@@ -1159,7 +1156,6 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
             It is applied to the loaded distance of the transport.
 
             The value of this property must be between `0` (excluding) and `1` (including).
-
       <tr>
         <td><dfn>emptyDistanceFactor</dfn>
         <td>Number
@@ -1173,13 +1169,11 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td><{Location}>
         <td>M
         <td>The origin of the activity related to the TCE
-
       <tr>
         <td><dfn>destination</dfn>
         <td><{Location}>
         <td>M
         <td>The destination of the activity related to the TCE
-
       <tr>
         <td><dfn>departureAt</dfn>
         <td>String
@@ -1187,7 +1181,6 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td>
               Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
               NOTE: the original data model defined this as the "date of loading"
-
       <tr>
         <td><dfn>arrivalAt</dfn>
         <td>String
@@ -1198,25 +1191,27 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td>{{TransportMode}}
         <td>M
         <td>Mode of transport
-
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
         <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
-
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn> : [=Integer=]
         <td>String
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
-
       <tr>
         <td><dfn>energyCarrier</dfn>
-        <td><{EnergyCarrier}>
+        <td>String
         <td>M
-        <td>
-            The [=EnergyCarrier=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework. ISSUE: Should fuel intensity be optional for activity data exchange, only fuel type needed?
+        <td>The substance used to generate mechanical movement or heat and to generate chemical or
+        physical processes as per the [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
+      <tr>
+        <td><dfn>feedstocks</dfn>
+        <td><{Feedstock}>[]
+        <td>O
+        <td>If defined, theon-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
