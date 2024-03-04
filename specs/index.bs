@@ -18,9 +18,9 @@ Boilerplate: omit conformance, omit copyright
 # Introduction # {#introduction}
 
 
-- Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision. 
+- Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision.
 - This document specifies a [[#data-model]] and [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, , ensuring they are structured to facilitate the calculation of Product Carbon Footprints (PCFs)
-- Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It establishes a foundational semantics framework for the [=SFC=] Data Exchange Network project. 
+- Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It establishes a foundational semantics framework for the [=SFC=] Data Exchange Network project.
 - Adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
 
 
@@ -32,13 +32,13 @@ This specifcation does not cover the following topics or aspects as they are cov
 1. Methodology for the calculation of Logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083]]
 2. Black Carbon (Accounting)
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others)
-4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project. 
+4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project.
 5. How to establish contractual obligations between parties for the provision of data
 6. How to perform data audits and verification
 7. Market based approach for electricity emissions accounting.
 8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
 9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is supported, but detailed parameters for modelling are excluded from the current version.
-10. Modes of transport cable car and pipelines. These will be incorporated in future versions of these technical specifications. 
+10. Modes of transport cable car and pipelines. These will be incorporated in future versions of these technical specifications.
 11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
 
 Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
@@ -123,6 +123,12 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
+: <dfn>Data Owner</dfn>
+:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-owner) for the definition.
+
+: <dfn>Data Recipient</dfn>
+:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
+
 : <dfn>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
 
@@ -143,8 +149,10 @@ Advisement: The current technical specifications are undergoing continuous refin
 ::
     Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
 
-Issue: add a pathfinder tech specs normative reference to this document
+: <dfn>Access Token</dfn>
+:: :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
 
+Issue: add a pathfinder tech specs normative reference to this document
 
 # Business Cases # {#business-cases}
 
@@ -157,7 +165,7 @@ Given the nature of the logistics industry, and in order to reduce costs overall
 logistics emissions transparency is made possible if all the parties involved
 are able to exchange emissions data in an interoperable manner.
 
-To achieve this objective, the specification is guided by a set of business cases, which provide the 
+To achieve this objective, the specification is guided by a set of business cases, which provide the
 framework for delineating subsequent data transactions ([[#txns]]).
 
 The following business cases shall be supported by this specification:
@@ -237,7 +245,7 @@ Note: For an example exchange, see [[#example]]
 
 ## Data Transaction 2: TOC Data Exchange ## {#txn2}
 
-This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] emission intensity related data from a [=Transport Operator=]. 
+This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] emission intensity related data from a [=Transport Operator=].
 
 The provision of emission intensity data at the [=TOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
 It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
@@ -881,8 +889,8 @@ The Data Type <{TOC}> has the following properties:
         <td>
 
       <tr>
-        <td><dfn>loadFactor</dfn>
-        <td>Number
+        <td><dfn>loadFactor</dfn> : [=Decimal=]
+        <td>String
         <td>O
         <td>
             Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
@@ -891,8 +899,8 @@ The Data Type <{TOC}> has the following properties:
             The value of this property must be between `0` (excluding) and `1` (including).
 
       <tr>
-        <td><dfn>emptyDistanceFactor</dfn>
-        <td>Number
+        <td><dfn>emptyDistanceFactor</dfn> : [=Decimal=]
+        <td>String
         <td>O
         <td>
             Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
@@ -1056,7 +1064,7 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td><dfn>yearBuilt</dfn>
         <td>Boolean
         <td>O
-        <td>Indicates the year the hub was built. 
+        <td>Indicates the year the hub was built.
       <tr>
         <td><dfn>inboundTransportMode</dfn>: {{TransportMode}}
         <td>{{TransportMode}}
@@ -1090,7 +1098,7 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>M
         <td>
               The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
-    
+
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
         <td>String
@@ -1496,22 +1504,156 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
     </table>
 </figure>
 
-# Pathfinder Integration # {#pcf-mapping}
+# HTTP REST API # {#http-rest-api}
 
-The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
+The exchange of logistics emissions data throught the [[#data-model]] presupposes the implementation of the HTTP REST API defined in [[!PACTDX]] (Chapter 6).
 
-This chapter specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model ([[!PACTDX]] Chapter 4).
-
-By doing so, the existing data exchange protocol ([[!PACTDX]] Network API (see Chapter 6) can be re-used for logistics emissions data exchange as well.
-
-Such re-use simplifies the integration of logistics emissions data into existing [=host systems=] software, especially if they are already used by [=Transport Service Users=].
+Reusing the [[!PACTDX]] data exchange protocol simplifies the integration of logistics emissions data into existing [=host systems=] software, especially if they are already used by [=Transport Service Users=].
 
 They can then use 1 interoperable API for the exchange of different categories of carbon emissions data related to GHG Protocol lifecycle stages (such as material acquisition and transport).
 
 Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
+Two steps are required to implement the exchange of logistics emissions data as specified in this document in an existing [=host system=]:
+1. Implementation of an endpoint dedicated to the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
+1. Integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model (see [[#pcf-mapping]]).
 
-## ServiceFootprint ## {#pcf-mapping-sf}
+## Action TransportActivityData ## {#action-tad}
+
+Lists the [=data owner=]'s [=Transport Activity Data=] with [[#pagination]] and optional [[#filtering]]
+
+[=Host systems=] SHOULD implement an access management system and only return the [=Transport Activity Data=] for which the [=data owner=] granted access to the requesting [=data recipient=].
+
+### Filtering ### {#filtering}
+
+Filtering CAN be requested by a [=data recipient=] by setting a conforming [=Filter=] request parameter.
+
+Note: The filter statement syntax is described at the [=Filter=] request parameter.
+
+Support for [=Filter|filtering=] by a [=host system=] is OPTIONAL such that
+
+1. if a [=host system=] does not implement Filtering, it MUST process the
+     request as if no [=Filter=] was provided
+1. If a [=host system=] implements Filtering, it CAN process the [=filter=]
+     statement on a best-effort basis:
+     1. it CAN ignore the filter statement or parts of the filter statement, or
+     1. it CAN refuse to process the specific filter statement if it does not support
+          the filter statement or parts of it. In this case, it MUST return
+          an error response with code `NotImplemented`, as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses).
+     1. it CAN treat concatenated filters disjunctively, i.e., returning the union of the results of the individual filters.
+
+### Pagination ### {#pagination}
+
+[=Host systems=] MUST implement pagination server-side such that
+
+1. The host system MAY return less [=Transport Activity Data=] than requested through the [=Limit=] request parameter
+1. The host system MUST return a `Link` header if there is additional [=Transport Activity Data=] ready to be retrieved, such that
+   1. The `Link` header conforms to [[!RFC8288]]
+   1. The value of the `rel` parameter is equal to `next`
+   1. the target IRI (RFC8288, section 3.1) of the `Link` header is absolute
+   1. The value of `host` of the target IRI is equal to the value of the `host` request header from the original `TransportActivityData` HTTP request
+
+The target IRI from a pagination `link` header is called a <dfn>pagination link</dfn>.
+
+Upon a [=host system=] returning a [=pagination link=]
+
+1. a data recipient CAN call the pagination link more than once
+1. upon each call, the host system
+    1. MUST return the same Transport Activity Data upon successful authentication (i.e. a Bearer token authentication as defined in [[!PACTDX]] Section 6.3)
+    1. MUST NOT return more data than requested in case [=Limit=] was defined by a [=data recipient=]
+    1. MUST return a `Link` header conforming with the previous description in case there is additional Transport Activity Data  available
+1. If a response contains a second pagination link and the data recipient upon calling the second pagination link, the previous pagination link MAY no longer work
+    - i.e. data recipients MUST NOT assume that previous pagination links continue to return results after advancing in the pagination process
+1. a pagination link MUST be valid for at least 180 seconds after creation
+1. a data recipient SHOULD retry calling the pagination link after the server returned an error
+   1. and SHOULD use a randomized exponential back-off strategy when retrying
+
+### Request Syntax ### {#action-tad-request}
+
+<pre highlight=http>
+GET <l>[=Subpath=]</l>/2/ileap/tad?<l>[=Filter=]</l>&<l>[=Limit=]</l> HTTP/1.1
+host: <l>[=Hostname=]</l>
+authorization: Bearer <l>[=BearerToken=]</l>
+</pre>
+
+: <dfn>Subpath</dfn>
+:: If a host system uses a relative subpath, then the requesting data recipient MUST prepend this subpath.
+
+: <dfn>Hostname</dfn>
+:: The requesting data recipient MUST use the domain name of the host system.
+
+: <dfn>BearerToken</dfn>
+:: See [[!PACTDX]] section 6.3 Authentication Flow.
+
+: <dfn>Filter</dfn>
+::
+    `Filter` is an OPTIONAL request parameter that can be replaced by any name-value pair with the syntax `$name=$value`,
+    where `$name` SHOULD be replaced by the (case-sensitive) name of the field to filter by, and `$value` SHOULD be replaced
+    by the (case-insensitive) value to filter for. Several filters CAN be concatenated with `&`.
+
+    <div class=example>
+      Get transport activity data with [=Feedstock=] `"Fossil"` and <{TAD/packagingOrTrEqType}> `"Pallet"`
+
+      ```http
+      GET /2/ileap/tad?feedstock=Fossil&packagingOrTrEqType=pallet HTTP/1.1
+      ```
+    </div>
+
+: <dfn>Limit</dfn>
+::
+    `Limit` is an OPTIONAL request parameter. If defined,
+      1. the name of the HTTP request parameter MUST be `limit`
+      2. and the value MUST be a positive integer.
+
+### Response Syntax ### {#action-tad-response}
+
+<pre highlight=http>
+HTTP/1.1 <l>[=TadStatusCode=]</l> <l>[=TadStatusText=]</l>
+content-type: application/json
+content-length: <l>[=ContentLength=]</l>
+
+<l>[=TadResponseBody=]</l>
+</pre>
+
+With response parameters
+
+: <dfn>TadStatusCode</dfn>
+::
+    If the host system returns transport activity data, the `HttpStatusCode` MUST be either 200 or 202:
+        - `HttpStatusCode` 200 indicates the returned data is the complete result of the given query.
+        - `HttpStatusCode` 202 indicates the returned data is an incomplete result of the given query. The host system MAY return this `HttpStatusCode` if it principally decides that it's able to obtain the remaining data in the future. This `HttpStatusCode` MUST NOT be returned if the request parameter `Filter` is not defined. The [=data recipient=] MAY continue to send the same request with exponential-backoff until it receives the complete result, indicated by `HttpStatusCode` 200.
+
+    If the host system responds with an error response, the `HttpStatusCode` MUST match the HTTP Status Code of the respective error response code, as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responsesm).
+
+    If the host system does not return the transport activity data, it MUST return an error HTTP Status Code (4xx, 5xx).
+
+: <dfn>TadStatusText</dfn>
+::
+    The HTTP Status text conforming to the HTTP status code [=TadStatusCode=].
+
+: <dfn>TadResponseBody</dfn>
+::
+    If the host system accepts the [=access token=], the body MUST be a JSON object with property `data` with value the list of [=Transport Activity Data=].
+    The list MUST be encoded as a JSON array. If the list is empty, the host system MUST return an empty JSON array.
+
+    If the request parameter `Filter` is defined, the specified expression SHOULD be evaluated for each Transport Activity Data in the collection, and only [=Transport Activity Data=] where the expression evaluates to true SHOULD be included in the response, as described in [[#filtering]]. ProductFootprints for which the expression evaluates to false or which are not made available for the [=data recipient=] SHOULD be omitted from the list returned in the response.
+
+    If the host system does not accept the access token, the body MUST be an error response with code [AccessDenied](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#accessdenied).
+
+    If the host system does not accept the access token because it expired, the body SHOULD be an error response with code [TokenExpired](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#tokenexpired).
+
+    In all other cases, for instance in case of a malformed value of the header authorization, the body SHOULD be an error response with code [BadRequest](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#badrequest).
+
+: <dfn>ContentLength</dfn>
+:: The length of the Body. See [[!rfc9112]].
+
+## Pathfinder Integration ## {#pcf-mapping}
+
+The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
+
+This section specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model ([[!PACTDX]] Chapter 4).
+
+### ServiceFootprint ### {#pcf-mapping-sf}
 
 Note: This chaper refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
@@ -1607,11 +1749,9 @@ Note: Chapter [[#appendix-a-sf-example]] contains an example.
     <figcaption>Mapping of PACT Data Model properties to <{ShipmentFootprint}> properties</figcaption>
 </figure>
 
-## TOC ## {#pcf-mapping-toc}
+### TOC ### {#pcf-mapping-toc}
 
 Issue: this sections is still work in progress
-
-
 
 # Appendix A: Example PCFs with iLEAP Data embedded # {#appendix-a}
 
