@@ -666,8 +666,8 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
 
       <tr>
-        <td><dfn>packagingOrTrEqAmount</dfn> : [=Integer=]
-        <td>String
+        <td><dfn>packagingOrTrEqAmount</dfn>
+        <td>Number
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
@@ -1047,16 +1047,6 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td><{Location}>
         <td>O
         <td>The address of the hub.
-       <tr>
-        <td><dfn>hasSustCertificate</dfn>
-        <td>Boolean
-        <td>O
-        <td>Indicates if the hub has a sustainability certificate. NOTE: Check if this remains. NOT an ISO/GLEC requirement.
-       <tr>
-        <td><dfn>yearBuilt</dfn>
-        <td>Boolean
-        <td>O
-        <td>Indicates the year the hub was built.
       <tr>
         <td><dfn>inboundTransportMode</dfn>: {{TransportMode}}
         <td>{{TransportMode}}
@@ -1068,10 +1058,17 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
         <td>O
         <td>Indicates the transport mode downstream the hub.
       <tr>
-        <td><dfn>natureFreightHandled</dfn>: {{TransportMode}}
+        <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
-        <td>Indicates the nature of freight handled (e.g. palletized, containerized, piece good).
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
+
+      <tr>
+        <td><dfn>packagingOrTrEqAmount</dfn>
+        <td>Number
+        <td>O
+        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
+
       <tr>
         <td><dfn>energyCarriers</dfn>
         <td><{EnergyCarrier}>[]
@@ -1106,6 +1103,13 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
 
 <dfn>Transport Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
 hub operations activities.
+This data type is meant for service providers ([=Transport Operator=] or [=Transport Service Organizer=]) lacking the capabilities to perform carbon emission calculations.
+
+It captures fundamental attributes commonly accessible to service providers, and which are needed for the data recipient to make estimations or choose relevant defaults.
+
+It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers
+
+The data type is unimodal, and shold be used for capturing primary data.
 
 
 ### Data Attributes ### {#tad-attributes}
@@ -1132,6 +1136,11 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td>String
         <td>M
         <td>The non-empty unique ID of this activity relative to the [=host system=].
+      <tr>
+        <td><dfn>shipmentId</dfn>
+        <td>String
+        <td>M
+        <td>The [=shipment id=] of the shipment related to this <{TCE}>
       <tr>
         <td><dfn>consignmentId</dfn>
         <td>String
@@ -1197,8 +1206,8 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
         <td>O
         <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
       <tr>
-        <td><dfn>packagingOrTrEqAmount</dfn> : [=Integer=]
-        <td>String
+        <td><dfn>packagingOrTrEqAmount</dfn>
+        <td>Number
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
       <tr>
