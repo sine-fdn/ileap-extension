@@ -104,11 +104,11 @@ Advisement: The current technical specifications are undergoing continuous refin
 ::
     It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
-: <dfn>Primary Data</dfn> (GCD)
+: <dfn>Primary Data</dfn>
 ::
     Data based on direct measurements of energy consumption. Also see [[!GLEC]] Framework.
 
-: <dfn>Secondary Data</dfn> (GCD)
+: <dfn>Secondary Data</dfn>
 ::
     Any data that is not primary data. It applies to modelled and default data. [[!GLEC]] Framework.
 
@@ -611,9 +611,8 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
 [=TCEs=] are the building blocks to construct a Transport Chain ([=TC=]), enabling the calculation of logistics emissions.
 
 Transport Chain Element Data can be obtained from direct measurement
-(see `primary data` definition of [[!ISO14083]]) or other measurements
-(see `secondary data` definition of [[!ISO14083]]) such as modelled data
-or default value.
+(see [=Primary Data=] or other measurements
+(see [=Secondary Data=]).
 
 
 ### Data Attributes ### {#tce-attributes}
