@@ -1516,7 +1516,7 @@ Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, ex
 
 A [=host system=] MUST implement:
 1. The endpoint for the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
-1. Integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model (see [[#pcf-mapping]]).
+1. The exchange of <{ShipmentFootprint}> and <{TOC}> as specified in [[#pcf-mapping]].
 
 ## Action TransportActivityData ## {#action-tad}
 
