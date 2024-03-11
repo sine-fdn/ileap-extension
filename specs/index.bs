@@ -29,43 +29,43 @@ Boilerplate: omit conformance, omit copyright
 
 This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
 
-1. Methodology for the calculation of Logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083]]
-2. Black Carbon (Accounting)
-3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others)
+1. Methodology for the calculation of logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083]].
+2. Black Carbon (Accounting).
+3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others).
 4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project.
-5. How to establish contractual obligations between parties for the provision of data
-6. How to perform data audits and verification
+5. How to establish contractual obligations between parties for the provision of data.
+6. How to perform data audits and verification.
 7. Market based approach for electricity emissions accounting.
 8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
 9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is supported, but detailed parameters for modelling are excluded from the current version.
 10. Modes of transport cable car and pipelines. These will be incorporated in future versions of these technical specifications.
 11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
 
-Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections, intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
+Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
 
 # Definitions # {#definitions}
 
 ## ISO14083- and GLEC-Framework-related Definitions ## {#iso14083-definitions}
 : Transport Operation Category (<dfn>TOC</dfn> )
-:: A Transport Operation Category is a grouping of transport categories sharing similar characteristics.  [[!GLEC]] Framework
+:: A Transport Operation Category is a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
 
 : Hub Operation Category (<dfn>HOC</dfn> )
-:: A Hub Operation Category represents a grouping of hub operations that share similar characteristics.  [[!GLEC]] Framework
+:: A Hub Operation Category is a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
 
 : Transport Chain (<dfn>TC</dfn> )
-:: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]
+:: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=].
 
 : <dfn>Transport Chain Element</dfn> (TCE)
-:: A Transport Chain Element is one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework
+:: A Transport Chain Element is one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
 
 : <dfn>Transport Operator</dfn>
-:: Refers to the party that carries out the transport service. See [[!ISO14083]], Section 3.1.30
+:: Refers to the party that carries out the transport service. See [[!ISO14083]], Section 3.1.30.
 
 : <dfn>Transport Service Organizer</dfn>
-:: Refers to the party providing transport services, where some of the operations are subcontrated to a third party, usually a Transport Operator. See [[!ISO14083]], Section 3.1.32
+:: Refers to the party providing transport services, where some of the operations are subcontrated to a third party, usually a Transport Operator. See [[!ISO14083]], Section 3.1.32.
 
 : <dfn>Transport Service User</dfn>
-:: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33
+:: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
 
 : <dfn>Hub Activity</dfn>
 :: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
@@ -74,35 +74,35 @@ Advisement: The current technical specifications are undergoing continuous refin
 ::
     A shipment refers to the goods in a commercial transaction between a seller and a buyer.
     It encompasses the consignments transported as part of this transaction via a transport
-    chain from the consignor to the consignee. See [[!ISO14083]], Section 3.1.20
+    chain from the consignor to the consignee. See [[!ISO14083]], Section 3.1.20.
 
 : <dfn>Consignment</dfn>
 ::
     A consignment refers to a quantifiable quantity of cargo that can be distinctly
     identified as a single unit. It is transported from a sender or consignor to a
-    receiver or consignee, irrespective of the mode of transportation employed. See [[!ISO14083]], Section 3.1.4
+    receiver or consignee, irrespective of the mode of transportation employed. See [[!ISO14083]], Section 3.1.4.
 
 : <dfn>Transport Activity</dfn>
 ::
     Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance.
-    It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework
+    It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework.
 
 : <dfn>Distance</dfn>
 :: See [=Transport Distance=] and [=Actual Distance=]
 
 : <dfn>Transport Distance</dfn>
-:: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27
+:: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27.
 
 : <dfn>Actual Distance</dfn>
-:: The actual route (with unit `kilometer`) taken for a consignment. [[!GLEC]] Framework. See also [[!ISO14083]] Section 3.1.27.1
+:: The actual route (with unit `kilometer`) taken for a consignment. [[!GLEC]] Framework. See also [[!ISO14083]] Section 3.1.27.1.
 
 : <dfn>Shortest Feasible Distance</dfn> (SFD)
 ::
-    It represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework
+    It represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework.
 
 : <dfn>Great Circle Distance</dfn> (GCD)
 ::
-    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework
+    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
 
 ## Auxillary Definitions ## {#auxillary-definitions}
@@ -111,10 +111,10 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: see [[#txns]]
 
 : <dfn>Shipper</dfn>
-:: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework
+:: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
 
 : Smart Freight Centre (<dfn>SFC</dfn> )
-:: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organisation
+:: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organisation.
 
 : <dfn>Hub Operator</dfn>
 :: A party that is offering hub services, including warehousing and transshipment center services.
@@ -141,10 +141,7 @@ Advisement: The current technical specifications are undergoing continuous refin
 
 : <dfn>PCF</dfn>
 ::
-    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
-
-Issue: add a pathfinder tech specs normative reference to this document
-
+    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details.
 
 # Business Cases # {#business-cases}
 
@@ -224,13 +221,13 @@ This data transaction enables a [=Transport Service User=] (for example, a [=shi
 For this, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 
 1. first calculate 1 or more TCEs emissions related data in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
-1. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the Pathfinder
+2. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the Pathfinder
     Network API (see [[#pcf-mapping-sf]]).
 
 The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) using the [=shipment id=], by
 1. collecting the <{TCE|TCEs}> from all the [=Transport Operators=] and the [=Transport Service Organizers=] related to the shipment
-1. forming the [=TC=] from the collected TCEs
-1. calculate the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and [[!ISO14083]]
+2. forming the [=TC=] from the collected TCEs
+3. calculating the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
 Note: For an example exchange, see [[#example]]
 
@@ -245,7 +242,7 @@ It could also facilitate the inclusion of emission intensity in procurement proc
 For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
 1. first calculate 1 or more TOCs in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
-1. make the resulting <{TOC|TOCs}> available through the Pathfinder Network API (see [[#pcf-mapping]]).
+2. make the resulting <{TOC|TOCs}> available through the Pathfinder Network API (see [[#pcf-mapping]]).
 
 Note:
     The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
@@ -261,7 +258,7 @@ For this, the [=Transport Operator=] MUST
 
 1. first collect Transport Activity Data belonging to a consignment identified by the [=consignment id=]
 2. calculate the <{TAD}> (see [[#dt-tad]]) given the [=consignment id=]
-2. make the resulting <{TAD}> available through the Pathfinder Network API
+3. make the resulting <{TAD}> available through the Pathfinder Network API.
 
 The [=Transport Service Organizer=] or [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
 
