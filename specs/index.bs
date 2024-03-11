@@ -1522,7 +1522,7 @@ A [=host system=] MUST implement:
 
 Lists the [=data owner=]'s [=Transport Activity Data=] with [[#pagination]] and optional [[#filtering]]
 
-[=Host systems=] SHOULD implement an access management system and only return the [=Transport Activity Data=] for which the [=data owner=] granted access to the requesting [=data recipient=].
+A [=Host system=] SHOULD implement an access management system to return only the [=transport activity data=] intended for the requesting [=data recipient=].
 
 ### Filtering ### {#filtering}
 
