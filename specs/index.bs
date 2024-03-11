@@ -295,7 +295,7 @@ The following hypothetical parties are involved:
     as well as Transaction 2 ([[#txn2]]).
 
     Through this, the operator is able to eventually calculate <{TCE|TCEs}> and <{TOC|TOCs}>, so that
-    they can make provide data to transport service user `S`.
+    they can provide data to Transport Service User `S`.
 
 
 : Transport Operator `A`
@@ -305,7 +305,7 @@ The following hypothetical parties are involved:
     This Operator has a [=host system=] which is capable of calculating <{TCE|TCEs}> and <{TOC|TOCs}> data.
 
     Through this, the operator can make [=Transport Chain Element=]-level data available to the
-    organizer `Z` which `Z` can fetch using Transaction 1 ([[#txn1]]).
+    Transport Service Organizer `Z`, which `Z` can fetch using Transaction 1 ([[#txn1]]).
 
 : Transport Operator `B`
 ::
@@ -335,14 +335,14 @@ For this, the Transport Service Organizer `Z` performs the following data transa
 1. As Transport Operator `B` does not support [[#txn1]], `Z` performs [[#txn3]] with
     Transport Operator `B` to collect the <{TAD}> for the second leg of the shipment.
 1. `Z` then calculates the <{TCE|TCEs}> for the 2nd leg of the shipment based on
-      the <{TAD}> data and e.g. modelled or secondary emission database(s).
+      the <{TAD}> data and modelled or default factors.
 
 ### Data Collection by Transport Service User `S` ### {#example-s}
 
 After Transport Service Organizer `Z` has performed its data collection, the Transport Service User `S`
 can calculate the logistics emissions of the shipment by
 
-1. collecting the <{TCE|TCEs}> from `S` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database.
+1. collecting the <{TCE|TCEs}> from `Z` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database.
 1. `S` can further verify the <{TCE|TCEs}> by collecting the <{TOC|TOCs}> from `Z` using [[#txn2]]
 1. To compute the logistics emissions, `Z` can form the [=TC=] from the collected <{TCE|TCEs}> by taking the <{TCE|TCEs}> of step 1 and
     by calculating the logistics emissions for this shipment by following the [[!GLEC]] Framework and [[!ISO14083]].
@@ -433,7 +433,7 @@ The highlighted lines show the data exchanged according to the <{ShipmentFootpri
 
 ### Data Collection by Transport Service User `S` ### {#example-http-s}
 
-To collect the TCEs related to the shipment and organizer `Z`, `S` performs the following HTTP call which yields 2 TCEs.
+To collect the TCEs data related to the shipment from Transport Organizer `Z`, `S` performs the following HTTP call which yields 2 TCEs.
 
 Note: The call to `/footprints` can return several footprints, 1 for each shipment.
         By filtering, e.g. by the shipment id, `Z` can retrieve the <{TCE|TCEs}>
@@ -536,8 +536,10 @@ or more [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>)
 for a single [=shipment=] and from a single entity (a [=Transport Operator=] or a [=Transport Service Organizer=]).
 
 By collecting 1 or more ShipmentFootprint for a shipment from [=Transport Operators=] and [=Transport Service Organizer=],
-[=Transport Service User=] can construct Transport Chains ([=TCs=]), and thereby calculate
+a [=Transport Service User=] can construct Transport Chains ([=TCs=]), and thereby calculate
 logistics emissions.
+
+ISSUE: The way the above paragraphs are defined might lead to confusion. 
 
 To calculate a ShipmentFootprint, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
