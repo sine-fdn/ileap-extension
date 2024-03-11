@@ -1514,7 +1514,7 @@ They can then use 1 interoperable API for the exchange of different categories o
 
 Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
-Two steps are required to implement the exchange of logistics emissions data as specified in this document in an existing [=host system=]:
+A [=host system=] MUST implement:
 1. Implementation of an endpoint dedicated to the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
 1. Integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model (see [[#pcf-mapping]]).
 
