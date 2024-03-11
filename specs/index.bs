@@ -845,7 +845,7 @@ The [=Transport Operator=] or [=Transport Service Organizer=] MUST calculate the
 
 The [=Transport Operator=] or [=Transport Service Organizer=] CAN then make the <{TOC}> available through the Pathfinder Network API as a `ProductFootprint` (see [[#pcf-mapping-toc]]).
 
-Transport Operation Category Data can be obtained from direct measurement
+Transport Operation Category data can be obtained from direct measurement
 (see `primary data` definition of [[!ISO14083]]) or other measurements
 (see `secondary data` definition of [[!ISO14083]]) such as modelled data
 or default value.
@@ -1008,6 +1008,7 @@ The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport C
 [=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=] with hub operations.
 
 ### Data Attributes ### {#hoc-attributes}
+The Data Type <{HOC}> has the following properties:
 
 <figure id="hoc-properties-table" dfn-type="element-attr" dfn-for="HOC">
   <table class="data">
@@ -1120,7 +1121,7 @@ This data type is meant for service providers ([=Transport Operator=] or [=Trans
 
 It captures fundamental attributes commonly accessible to service providers, and which are needed for the data recipient to make estimations or choose relevant defaults.
 
-It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers
+It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers.
 
 The data type is unimodal, and shold be used for capturing primary data.
 
