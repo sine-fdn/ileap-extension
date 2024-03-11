@@ -104,6 +104,14 @@ Advisement: The current technical specifications are undergoing continuous refin
 ::
     It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
+: <dfn>Primary Data</dfn> (GCD)
+::
+    Data based on direct measurements of energy consumption. Also see [[!GLEC]] Framework.
+
+: <dfn>Secondary Data</dfn> (GCD)
+::
+    Any data that is not primary data. It applies to modelled and default data. [[!GLEC]] Framework.
+
 
 ## Auxillary Definitions ## {#auxillary-definitions}
 
