@@ -1619,13 +1619,9 @@ With response parameters
 
 : <dfn>TadStatusCode</dfn>
 ::
-    If the host system returns transport activity data, the `HttpStatusCode` MUST be either 200 or 202:
-        - `HttpStatusCode` 200 indicates the returned data is the complete result of the given query.
-        - `HttpStatusCode` 202 indicates the returned data is an incomplete result of the given query. The host system MAY return this `HttpStatusCode` if it principally decides that it's able to obtain the remaining data in the future. This `HttpStatusCode` MUST NOT be returned if the request parameter `Filter` is not defined. The [=data recipient=] MAY continue to send the same request with exponential-backoff until it receives the complete result, indicated by `HttpStatusCode` 200.
+    If the host system returns transport activity data, the `HttpStatusCode` MUST be 200.
 
     If the host system responds with an error response, the `HttpStatusCode` MUST match the HTTP Status Code of the respective error response code, as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responsesm).
-
-    If the host system does not return the transport activity data, it MUST return an error HTTP Status Code (4xx, 5xx).
 
 : <dfn>TadStatusText</dfn>
 ::
@@ -1634,9 +1630,7 @@ With response parameters
 : <dfn>TadResponseBody</dfn>
 ::
     If the host system accepts the [=access token=], the body MUST be a JSON object with property `data` with value the list of [=Transport Activity Data=].
-    The list MUST be encoded as a JSON array. If the list is empty, the host system MUST return an empty JSON array.
-
-    If the request parameter `Filter` is defined, the specified expression SHOULD be evaluated for each Transport Activity Data in the collection, and only [=Transport Activity Data=] where the expression evaluates to true SHOULD be included in the response, as described in [[#filtering]]. ProductFootprints for which the expression evaluates to false or which are not made available for the [=data recipient=] SHOULD be omitted from the list returned in the response.
+    The list MUST be encoded as a JSON array.
 
     If the host system does not accept the access token, the body MUST be an error response with code [AccessDenied](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#accessdenied).
 
