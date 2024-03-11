@@ -1526,21 +1526,19 @@ A [=Host system=] SHOULD implement an access management system to return only th
 
 ### Filtering ### {#filtering}
 
-Filtering CAN be requested by a [=data recipient=] by setting a conforming [=Filter=] request parameter.
+Filtering CAN be requested by a [=data recipient=] by supplying a [=filter statement=] through the [=Filter=] request parameter.
 
 Note: The filter statement syntax is described at the [=Filter=] request parameter.
 
-Support for [=Filter|filtering=] by a [=host system=] is OPTIONAL such that
+If a [=host system=] does not implement filtering, it MUST process the request as if no [=Filter=] was provided.
 
-1. if a [=host system=] does not implement Filtering, it MUST process the
-     request as if no [=Filter=] was provided
-1. If a [=host system=] implements Filtering, it CAN process the [=filter=]
-     statement on a best-effort basis:
-     1. it CAN ignore the filter statement or parts of the filter statement, or
-     1. it CAN refuse to process the specific filter statement if it does not support
-          the filter statement or parts of it. In this case, it MUST return
-          an error response with code `NotImplemented`, as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses).
-     1. it CAN treat concatenated filters disjunctively, i.e., returning the union of the results of the individual filters.
+If a [=host system=] implements filtering, it CAN process the filter statement on a best-effort basis:
+
+1. it CAN ignore the filter statement or parts of the filter statement, or
+1. it CAN return an error response as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses).
+    For instance, a host system CAN return an error with code `NotImplemented` if it does not support a specific filter pair.
+1. it CAN treat concatenated filters disjunctively, i.e., returning the union of the results of the individual filters.
+
 
 ### Pagination ### {#pagination}
 
@@ -1587,9 +1585,11 @@ authorization: Bearer <l>[=BearerToken=]</l>
 
 : <dfn>Filter</dfn>
 ::
-    `Filter` is an OPTIONAL request parameter that can be replaced by any name-value pair with the syntax `$name=$value`,
-    where `$name` SHOULD be replaced by the (case-sensitive) name of the field to filter by, and `$value` SHOULD be replaced
-    by the (case-insensitive) value to filter for. Several filters CAN be concatenated with `&`.
+    `Filter` is an OPTIONAL request parameter containing a filter statement.
+    A <dfn>filter statement</dfn> is a list of name-value filter pairs.
+    Each filter pair has a `$name=$value` syntax where `$name` is the (case-sensitive) name
+    of the field to filter by, and `$value` the (case-insensitive) value to filter for.
+    Filter pairs CAN be concatenated with `&`.
 
     <div class=example>
       Get transport activity data with [=Feedstock=] `"Fossil"` and <{TAD/packagingOrTrEqType}> `"Pallet"`
@@ -1607,6 +1607,8 @@ authorization: Bearer <l>[=BearerToken=]</l>
 
 ### Response Syntax ### {#action-tad-response}
 
+Response without a `link` header:
+
 <pre highlight=http>
 HTTP/1.1 <l>[=TadStatusCode=]</l> <l>[=TadStatusText=]</l>
 content-type: application/json
@@ -1614,6 +1616,20 @@ content-length: <l>[=ContentLength=]</l>
 
 <l>[=TadResponseBody=]</l>
 </pre>
+
+
+Paginated response with a `link` header:
+
+<pre highlight=http>
+HTTP/1.1 <l>[=TadStatusCode=]</l> <l>[=TadStatusText=]</l>
+content-type: application/json
+content-length: <l>[=ContentLength=]</l>
+link: <<l>[=PaginationLink=]</l>>; rel="next"
+
+<l>[=TadResponseBody=]</l>
+</pre>
+
+
 
 With response parameters
 
@@ -1646,6 +1662,10 @@ With response parameters
 
 : <dfn>ContentLength</dfn>
 :: The length of the Body. See [[!rfc9112]].
+
+: <dfn>PaginationLink</dfn>
+:: see [=pagination link=] and [[#pagination]].
+
 
 ## Pathfinder Integration ## {#pcf-mapping}
 
