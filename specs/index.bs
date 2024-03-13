@@ -1065,12 +1065,12 @@ The Data Type <{HOC}> has the following properties:
         <td><dfn>inboundTransportMode</dfn>: {{TransportMode}}
         <td>{{TransportMode}}
         <td>O
-        <td>Indicates the transport mode upstream the hub.
+        <td>Indicates the transport mode upstream the hub for the hub operations the HOC is defined for.
       <tr>
         <td><dfn>outboundTransportMode</dfn>: {{TransportMode}}
         <td>{{TransportMode}}
         <td>O
-        <td>Indicates the transport mode downstream the hub.
+        <td>Indicates the transport mode downstream the hub for the hub operations the HOC is defined for.
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
