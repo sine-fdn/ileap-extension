@@ -1,9 +1,0 @@
-{
-  "specVersion": "2.0.0",
-  "dataSchema": "https://github.com/sine-fdn/locode-extension/blob/main/locode_schema.json",
-  "data": {
-    "unlocode": "ZMCHZ",
-    "coordinates": "0917S 03220E",
-    "name": "Chozi"
-  }
-}
