@@ -1527,6 +1527,10 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
 
 # HTTP REST API # {#http-rest-api}
 
+A [=host system=] MUST implement:
+1. The endpoint for the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
+1. The exchange of <{ShipmentFootprint}> and <{TOC}> as specified in [[#pcf-mapping]].
+
 The exchange of logistics emissions data throught the [[#data-model]] presupposes the implementation of the HTTP REST API defined in [[!PACTDX]] (Chapter 6).
 
 Reusing the [[!PACTDX]] data exchange protocol simplifies the integration of logistics emissions data into existing [=host systems=] software, especially if they are already used by [=Transport Service Users=].
@@ -1535,9 +1539,35 @@ They can then use 1 interoperable API for the exchange of different categories o
 
 Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
-A [=host system=] MUST implement:
-1. The endpoint for the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
-1. The exchange of <{ShipmentFootprint}> and <{TOC}> as specified in [[#pcf-mapping]].
+The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the Pathfinder Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
+Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
+The list below contains the properties that were omitted for this reason.
+
+<figure id="ileap-pact-properties-mapping">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+        <th>Source
+    <tbody>
+        <tr>
+          <td><dfn>validityPeriodStart</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>String
+          <td>O
+          <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+          <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
+
+        <tr>
+          <td><dfn>validityPeriodEnd</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>String
+          <td>O
+          <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+          <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend)
+    </table>
+</figure>
 
 ## Action TransportActivityData ## {#action-tad}
 
