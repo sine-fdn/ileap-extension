@@ -1147,6 +1147,8 @@ Properties of data type <{TAD}>:
 
 Issue: this needs to be discussed with SFC and especially also Tool providers:
 
+Note: The properties `energyCarrier` and `feedstocks` are mutually exclusive, but one of them MUST be defined.
+
 <figure id="tad-properties-table" dfn-type="element-attr" dfn-for="TAD">
   <table class="data">
     <thead>
@@ -1211,14 +1213,14 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
       <tr>
         <td><dfn>departureAt</dfn>
         <td>String
-        <td>O
+        <td>M
         <td>
               Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
               NOTE: the original data model defined this as the "date of loading"
       <tr>
         <td><dfn>arrivalAt</dfn>
         <td>String
-        <td>O
+        <td>M
         <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
       <tr>
         <td><dfn>mode</dfn>
@@ -1238,14 +1240,20 @@ Issue: this needs to be discussed with SFC and especially also Tool providers:
       <tr>
         <td><dfn>energyCarrier</dfn>
         <td>String
-        <td>M
-        <td>The substance used to generate mechanical movement or heat and to generate chemical or
-        physical processes as per the [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
+        <td>O
+        <td>
+            The substance used to generate mechanical movement or heat and to generate chemical or
+            physical processes as per the [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
+
+            Either <{TAD/energyCarrier}> or <{TAD/feedstocks}> MUST be defined.
       <tr>
         <td><dfn>feedstocks</dfn>
         <td><{Feedstock}>[]
         <td>O
-        <td>If defined, theon-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
+        <td>
+            If defined, the non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
+
+            Either <{TAD/energyCarrier}> or <{TAD/feedstocks}> MUST be defined.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
@@ -1846,7 +1854,8 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
           "fossilGhgEmissions": "3.6801",
           "fossilCarbonContent": "0.0",
           "biogenicCarbonContent": "0.0",
-          "characterizationFactors": "AR5",
+          "characterizationFactors": "AR6",
+          "ipccCharacterizationFactors": ["AR6"],
           "crossSectoralStandardsUsed": [ "GHG Protocol Product standard" ],
           "productOrSectorSpecificRules": [],
           "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
