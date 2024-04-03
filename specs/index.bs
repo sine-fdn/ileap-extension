@@ -1532,7 +1532,7 @@ The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved 
 Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
 The list below contains the properties that were omitted for this reason.
 
-<figure id="pact-logistics-properties-table">
+<figure id="ileap-pact-properties-mapping">
   <table class="data">
     <thead>
       <tr>
