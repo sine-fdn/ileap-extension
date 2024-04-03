@@ -131,6 +131,12 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
+: <dfn>Data Owner</dfn>
+:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-owner) for the definition.
+
+: <dfn>Data Recipient</dfn>
+:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
+
 : <dfn>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
 
@@ -149,7 +155,12 @@ Advisement: The current technical specifications are undergoing continuous refin
 
 : <dfn>PCF</dfn>
 ::
-    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details.
+    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
+
+: <dfn>Access Token</dfn>
+:: :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
+
+Issue: add a pathfinder tech specs normative reference to this document
 
 # Business Cases # {#business-cases}
 
@@ -894,8 +905,8 @@ The Data Type <{TOC}> has the following properties:
         <td>
 
       <tr>
-        <td><dfn>loadFactor</dfn>
-        <td>Number
+        <td><dfn>loadFactor</dfn> : [=Decimal=]
+        <td>String
         <td>O
         <td>
             Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
@@ -904,8 +915,8 @@ The Data Type <{TOC}> has the following properties:
             The value of this property must be between `0` (excluding) and `1` (including).
 
       <tr>
-        <td><dfn>emptyDistanceFactor</dfn>
-        <td>Number
+        <td><dfn>emptyDistanceFactor</dfn> : [=Decimal=]
+        <td>String
         <td>O
         <td>
             Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
@@ -1514,51 +1525,170 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
     </table>
 </figure>
 
-# Pathfinder Integration # {#pcf-mapping}
+# HTTP REST API # {#http-rest-api}
 
-The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
+The exchange of logistics emissions data throught the [[#data-model]] presupposes the implementation of the HTTP REST API defined in [[!PACTDX]] (Chapter 6).
 
-This chapter specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model ([[!PACTDX]] Chapter 4).
-
-By doing so, the existing data exchange protocol [[!PACTDX]] Network API (see Chapter 6) can be re-used for logistics emissions data exchange as well.
-
-Such re-use simplifies the integration of logistics emissions data into existing [=host systems=] software, especially if they are already used by [=Transport Service Users=].
+Reusing the [[!PACTDX]] data exchange protocol simplifies the integration of logistics emissions data into existing [=host systems=] software, especially if they are already used by [=Transport Service Users=].
 
 They can then use 1 interoperable API for the exchange of different categories of carbon emissions data related to GHG Protocol lifecycle stages (such as material acquisition and transport).
 
 Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
-The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the Pathfinder Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
-Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
-The list below contains the properties that were omitted for this reason.
+A [=host system=] MUST implement:
+1. The endpoint for the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
+1. The exchange of <{ShipmentFootprint}> and <{TOC}> as specified in [[#pcf-mapping]].
 
-<figure id="ileap-pact-properties-mapping">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Attribute Id
-        <th>Type
-        <th>Req
-        <th>Description
-        <th>Source
-    <tbody>
-        <tr>
-          <td><dfn>validityPeriodStart</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
-          <td>String
-          <td>O
-          <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
-          <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
+## Action TransportActivityData ## {#action-tad}
 
-        <tr>
-          <td><dfn>validityPeriodEnd</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
-          <td>String
-          <td>O
-          <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
-          <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend)
-    </table>
-</figure>
+Lists the [=data owner=]'s [=Transport Activity Data=] with [[#pagination]] and optional [[#filtering]]
 
-## ServiceFootprint ## {#pcf-mapping-sf}
+A [=Host system=] SHOULD implement an access management system to return only the [=transport activity data=] intended for the requesting [=data recipient=].
+
+### Filtering ### {#filtering}
+
+Filtering CAN be requested by a [=data recipient=] by supplying a [=filter statement=] through the [=Filter=] request parameter.
+
+Note: The filter statement syntax is described at the [=Filter=] request parameter.
+
+If a [=host system=] does not implement filtering, it MUST process the request as if no [=Filter=] was provided.
+
+If a [=host system=] implements filtering, it CAN process the filter statement on a best-effort basis:
+
+1. it CAN ignore the filter statement or parts of the filter statement, or
+1. it CAN return an error response as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses).
+    For instance, a host system CAN return an error with code `NotImplemented` if it does not support a specific filter pair.
+1. it CAN treat concatenated filters disjunctively, i.e., returning the union of the results of the individual filters.
+
+
+### Pagination ### {#pagination}
+
+[=Host systems=] MUST implement pagination server-side such that
+
+1. The host system MAY return less [=Transport Activity Data=] than requested through the [=Limit=] request parameter
+1. The host system MUST return a `Link` header if there is additional [=Transport Activity Data=] ready to be retrieved, such that
+   1. The `Link` header conforms to [[!RFC8288]]
+   1. The value of the `rel` parameter is equal to `next`
+   1. the target IRI (RFC8288, section 3.1) of the `Link` header is absolute
+   1. The value of `host` of the target IRI is equal to the value of the `host` request header from the original `TransportActivityData` HTTP request
+
+The target IRI from a pagination `link` header is called a <dfn>pagination link</dfn>.
+
+Upon a [=host system=] returning a [=pagination link=]
+
+1. a data recipient CAN call the pagination link more than once
+1. upon each call, the host system
+    1. MUST return the same Transport Activity Data upon successful authentication (i.e. a Bearer token authentication as defined in [[!PACTDX]] Section 6.3)
+    1. MUST NOT return more data than requested in case [=Limit=] was defined by a [=data recipient=]
+    1. MUST return a `Link` header conforming with the previous description in case there is additional Transport Activity Data  available
+1. If a response contains a second pagination link and the data recipient upon calling the second pagination link, the previous pagination link MAY no longer work
+    - i.e. data recipients MUST NOT assume that previous pagination links continue to return results after advancing in the pagination process
+1. a pagination link MUST be valid for at least 180 seconds after creation
+1. a data recipient SHOULD retry calling the pagination link after the server returned an error
+   1. and SHOULD use a randomized exponential back-off strategy when retrying
+
+### Request Syntax ### {#action-tad-request}
+
+<pre highlight=http>
+GET <l>[=Subpath=]</l>/2/ileap/tad?<l>[=Filter=]</l>&<l>[=Limit=]</l> HTTP/1.1
+host: <l>[=Hostname=]</l>
+authorization: Bearer <l>[=BearerToken=]</l>
+</pre>
+
+: <dfn>Subpath</dfn>
+:: If a host system uses a relative subpath, then the requesting data recipient MUST prepend this subpath.
+
+: <dfn>Hostname</dfn>
+:: The requesting data recipient MUST use the domain name of the host system.
+
+: <dfn>BearerToken</dfn>
+:: See [[!PACTDX]] section 6.3 Authentication Flow.
+
+: <dfn>Filter</dfn>
+::
+    `Filter` is an OPTIONAL request parameter containing a filter statement.
+    A <dfn>filter statement</dfn> is a list of name-value filter pairs.
+    Each filter pair has a `$name=$value` syntax where `$name` is the (case-sensitive) name
+    of the field to filter by, and `$value` the (case-insensitive) value to filter for.
+    Filter pairs CAN be concatenated with `&`.
+
+    <div class=example>
+      Get transport activity data with [=Feedstock=] `"Fossil"` and <{TAD/packagingOrTrEqType}> `"Pallet"`
+
+      ```http
+      GET /2/ileap/tad?feedstock=Fossil&packagingOrTrEqType=pallet HTTP/1.1
+      ```
+    </div>
+
+: <dfn>Limit</dfn>
+::
+    `Limit` is an OPTIONAL request parameter. If defined,
+      1. the name of the HTTP request parameter MUST be `limit`
+      2. and the value MUST be a positive integer.
+
+### Response Syntax ### {#action-tad-response}
+
+Response without a `link` header:
+
+<pre highlight=http>
+HTTP/1.1 <l>[=TadStatusCode=]</l> <l>[=TadStatusText=]</l>
+content-type: application/json
+content-length: <l>[=ContentLength=]</l>
+
+<l>[=TadResponseBody=]</l>
+</pre>
+
+
+Paginated response with a `link` header:
+
+<pre highlight=http>
+HTTP/1.1 <l>[=TadStatusCode=]</l> <l>[=TadStatusText=]</l>
+content-type: application/json
+content-length: <l>[=ContentLength=]</l>
+link: <<l>[=PaginationLink=]</l>>; rel="next"
+
+<l>[=TadResponseBody=]</l>
+</pre>
+
+
+
+With response parameters
+
+: <dfn>TadStatusCode</dfn>
+::
+    If the host system returns transport activity data, the `HttpStatusCode` MUST be 200.
+
+    If the host system responds with an error response, the `HttpStatusCode` MUST match the HTTP Status Code of the respective error response code, as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responsesm).
+
+: <dfn>TadStatusText</dfn>
+::
+    The HTTP Status text conforming to the HTTP status code [=TadStatusCode=].
+
+: <dfn>TadResponseBody</dfn>
+::
+    If the host system accepts the [=access token=], the body MUST be a JSON object with property `data` with value the list of [=Transport Activity Data=].
+    The list MUST be encoded as a JSON array.
+
+    If the host system does not accept the access token, the body MUST be an error response with code [AccessDenied](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#accessdenied).
+
+    If the host system does not accept the access token because it expired, the body SHOULD be an error response with code [TokenExpired](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#tokenexpired).
+
+    In all other cases, for instance in case of a malformed value of the header authorization, the body SHOULD be an error response with code [BadRequest](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#badrequest).
+
+: <dfn>ContentLength</dfn>
+:: The length of the Body. See [[!rfc9112]].
+
+: <dfn>PaginationLink</dfn>
+:: see [=pagination link=] and [[#pagination]].
+
+
+## Pathfinder Integration ## {#pcf-mapping}
+
+The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
+
+This section specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model ([[!PACTDX]] Chapter 4).
+
+### ServiceFootprint ### {#pcf-mapping-sf}
 
 Note: This chaper refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
@@ -1654,11 +1784,9 @@ Note: Chapter [[#appendix-a-sf-example]] contains an example.
     <figcaption>Mapping of PACT Data Model properties to <{ShipmentFootprint}> properties</figcaption>
 </figure>
 
-## TOC ## {#pcf-mapping-toc}
+### TOC ### {#pcf-mapping-toc}
 
 Issue: this sections is still work in progress
-
-
 
 # Appendix A: Example PCFs with iLEAP Data embedded # {#appendix-a}
 
