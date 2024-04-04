@@ -1147,7 +1147,7 @@ Properties of data type <{TAD}>:
 
 Issue: this needs to be discussed with SFC and especially also Tool providers:
 
-Note: The properties `energyCarrier` and `feedstocks` are mutually exclusive, but one of them MUST be defined.
+Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be defined.
 
 <figure id="tad-properties-table" dfn-type="element-attr" dfn-for="TAD">
   <table class="data">
@@ -1163,11 +1163,6 @@ Note: The properties `energyCarrier` and `feedstocks` are mutually exclusive, bu
         <td>String
         <td>M
         <td>The non-empty unique ID of this activity relative to the [=host system=].
-      <tr>
-        <td><dfn>shipmentId</dfn>
-        <td>String
-        <td>M
-        <td>The [=shipment id=] of the shipment related to this <{TCE}>
       <tr>
         <td><dfn>consignmentId</dfn>
         <td>String
@@ -1245,7 +1240,7 @@ Note: The properties `energyCarrier` and `feedstocks` are mutually exclusive, bu
             The substance used to generate mechanical movement or heat and to generate chemical or
             physical processes as per the [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
 
-            Either <{TAD/energyCarrier}> or <{TAD/feedstocks}> MUST be defined.
+            If <{TAD/energyCarrier}> is not defined, then <{TAD/feedstocks}> MUST be defined.
       <tr>
         <td><dfn>feedstocks</dfn>
         <td><{Feedstock}>[]
@@ -1253,7 +1248,7 @@ Note: The properties `energyCarrier` and `feedstocks` are mutually exclusive, bu
         <td>
             If defined, the non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
 
-            Either <{TAD/energyCarrier}> or <{TAD/feedstocks}> MUST be defined.
+            If <{TAD/feedstocks}> is not defined, then <{TAD/energyCarrier}> MUST be defined.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
