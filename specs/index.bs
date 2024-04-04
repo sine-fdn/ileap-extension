@@ -1015,6 +1015,7 @@ The Data Type <{TOC}> has the following properties:
 ## Hub Operation Category ( <dfn element>HOC</dfn> ) ## {#dt-hoc}
 
 The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport Chain Element=] through the <{TCE/hocId}> property.
+Advisement: Please, note that variables pertaining to the HOC Data Type have not been validated by experts and are subject to undergo major updates.  
 
 [=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=] with hub operations.
 
