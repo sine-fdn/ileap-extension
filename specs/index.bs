@@ -1147,7 +1147,8 @@ Properties of data type <{TAD}>:
 
 Issue: this needs to be discussed with SFC and especially also Tool providers:
 
-Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be defined.
+Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be defined. If possible,
+both SHOULD be defined.
 
 <figure id="tad-properties-table" dfn-type="element-attr" dfn-for="TAD">
   <table class="data">
@@ -1240,7 +1241,7 @@ Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be def
             The substance used to generate mechanical movement or heat and to generate chemical or
             physical processes as per the [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
 
-            If <{TAD/energyCarrier}> is not defined, then <{TAD/feedstocks}> MUST be defined.
+            If <{TAD/energyCarrier}> is not defined, then <{TAD/feedstocks}> MUST be defined. If possible, both SHOULD be defined.
       <tr>
         <td><dfn>feedstocks</dfn>
         <td><{Feedstock}>[]
@@ -1248,7 +1249,7 @@ Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be def
         <td>
             If defined, the non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
 
-            If <{TAD/feedstocks}> is not defined, then <{TAD/energyCarrier}> MUST be defined.
+            If <{TAD/feedstocks}> is not defined, then <{TAD/energyCarrier}> MUST be defined. If possible, both SHOULD be defined.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
