@@ -1016,7 +1016,7 @@ The Data Type <{TOC}> has the following properties:
 
 The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport Chain Element=] through the <{TCE/hocId}> property.
 
-Advisement: Please, note that variables pertaining to the HOC Data Type have not been validated and are subject to undergo major updates.  
+Advisement: Please, note that variables pertaining to the HOC Data Type have not been validated and are subject to undergo major updates.
 
 [=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=] with hub operations.
 
@@ -1545,36 +1545,6 @@ They can then use 1 interoperable API for the exchange of different categories o
 
 Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
-The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the Pathfinder Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
-Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
-The list below contains the properties that were omitted for this reason.
-
-<figure id="ileap-pact-properties-mapping">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Attribute Id
-        <th>Type
-        <th>Req
-        <th>Description
-        <th>Source
-    <tbody>
-        <tr>
-          <td><dfn>validityPeriodStart</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
-          <td>String
-          <td>O
-          <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
-          <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
-
-        <tr>
-          <td><dfn>validityPeriodEnd</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
-          <td>String
-          <td>O
-          <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
-          <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend)
-    </table>
-</figure>
-
 ## Action TransportActivityData ## {#action-tad}
 
 Lists the [=data owner=]'s [=Transport Activity Data=] with [[#pagination]] and optional [[#filtering]]
@@ -1723,6 +1693,42 @@ With response parameters
 The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
 
 This section specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model ([[!PACTDX]] Chapter 4).
+
+The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the Pathfinder Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
+Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
+The list below contains the properties that were omitted for this reason.
+
+<figure id="ileap-pact-properties-mapping">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Attribute Id
+        <th>Type
+        <th>Req
+        <th>Description
+        <th>Source
+    <tbody>
+        <tr>
+          <td><dfn>validityPeriodStart</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>String
+          <td>O
+          <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+          <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
+
+        <tr>
+          <td><dfn>validityPeriodEnd</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>String
+          <td>O
+          <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+          <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend)
+        <tr>
+          <td><dfn>assurance</dfn> : [Assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-assurance)
+          <td>Object
+          <td>O
+          <td>If present, the Assurance information in accordance with the [[!PATHFINDER-FRAMEWORK]].
+          <td>[CarbonFootprint/assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-carbonfootprint-assurance)
+    </table>
+</figure>
 
 ### ServiceFootprint ### {#pcf-mapping-sf}
 
