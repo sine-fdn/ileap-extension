@@ -984,7 +984,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityWTW}> as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
@@ -1733,13 +1733,13 @@ The list below contains the properties that were omitted for this reason.
 
 ### ServiceFootprint ### {#pcf-mapping-sf}
 
-Note: This chaper refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
+Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
 A ServiceFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
 For interoperability reasons, additional attributes of such a `ProductFootprint` SHOULD be derived from the <{ShipmentFootprint}>. This is specified in the table below.
 
-Note: Chapter [[#appendix-a-sf-example]] contains an example.
+Note: Section [[#appendix-a-sf-example]] contains an example.
 
 <figure id="pact-sf-mapping-table">
   <table class="data">
@@ -1829,7 +1829,97 @@ Note: Chapter [[#appendix-a-sf-example]] contains an example.
 
 ### TOC ### {#pcf-mapping-toc}
 
-Issue: this sections is still work in progress
+Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
+
+A TOC CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{TOC}> as an
+extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
+
+For interoperability reasons, additional attributes of such a `ProductFootprint` SHOULD be derived
+from the <{TOC}>. This is specified in the table below.
+
+Note: Section [[#appendix-a-toc-example]] contains an example.
+
+<figure id="pact-toc-mapping-table">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>PACT Data Type
+        <th>Property
+        <th>Value Derivation
+    <tbody>
+      <tr>
+        <td>ProductFootprint
+        <td>`productIds`
+        <td>
+              MUST contain the TOC ID <{TOC/tocId}>, encoded as
+              : `urn:pathfinder:product:customcode:vendor-assigned:<toc id>`
+              :: in case the [=transport service organizer=] has assigned a toc id, or
+              : `urn:pathfinder:product:customcode:buyer-assigned:<toc id>`
+              :: in case the [=transport service user=] has assigned a toc id
+
+              Note: `productIds` can contain multiple entries. If multiple or different
+                      toc ids are assigned to a single TOC, `productIds` CAN contain
+                      all of them.
+      <tr>
+        <td>ProductFootprint
+        <td>`productCategoryCpc`
+        <td>
+              MUST be set to the CPC code of logistics services (`83117`).
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`declaredUnit`
+        <td>
+              MUST be set to `ton kilometer` conforming with the Pathfinder Tech Specs.
+
+              See [[!PACTDX]] Chapter 4 for further details.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`unitaryProductAmount`
+        <td>
+              MUST be set to `"1"` so that the ProductFootprint represents the emissions per ton kilometer of the TOC.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`pCfExcludingBiogenic`
+        <td>
+              MUST be set to the logistics emissions intensity of the TOC, excluding biogenic emissions,
+              found in <{TOC/co2eIntensityWTW }>.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`pCfIncludingBiogenic`
+        <td>
+              This property is OPTIONAL in the [[!PACTDX]] data Model.
+
+              It SHOULD be set to the logistics emissions intensity of the TOC,
+              including biogenic emissions, found in <{TOC/co2eIntensityWTW}>.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`fossilGhgEmissions`
+        <td>
+              see the specification for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`packagingEmissionsIncluded`
+        <td>
+              see [[!PACTDX]] for further details
+
+              MUST be set to `false`.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`primaryDataShare`
+        <td>
+              The relative share of logistics emissions for which primary data has been used for the calculation.
+
+              See [[!PACTDX]] and the Pathfinder Framework ([[!PATHFINDER-FRAMEWORK]]) for further details.
+  </table>
+  <figcaption>Mapping of PACT Data Model properties to <{TOC}> properties</figcaption>
+</figure>
 
 # Appendix A: Example PCFs with iLEAP Data embedded # {#appendix-a}
 
@@ -1860,7 +1950,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
           "fossilCarbonContent": "0.0",
           "biogenicCarbonContent": "0.0",
           "characterizationFactors": "AR6",
-          "ipccCharacterizationFactors": ["AR6"],
+          "ipccCharacterizationFactorsSources": ["AR6"],
           "crossSectoralStandardsUsed": [ "GHG Protocol Product standard" ],
           "productOrSectorSpecificRules": [],
           "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
@@ -1875,7 +1965,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
         "extensions": [
           {
             "specVersion": "2.0.0",
-            "dataSchema": "https://catalog.carbon-transparency.com/sfc-ileap/0.0.1/tce.json",
+            "dataSchema": "https://api.ileap.sine.dev/openapi.json",
             "data": {
                 "mass": "87",
                 "shipmentId": "1237890",
@@ -1900,7 +1990,70 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
   </pre>
 </div>
 
+## TOC example ## {#appendix-a-toc-example}
 
+A Product Footprint with a <{TOC}> highlighted:
+
+<div class=example>
+  <pre highlight='json' line-highlight="37-54" line-numbers>
+    {
+        "id": "f3c04ec8-b33a-43b1-9fa7-d6a448fd60af",
+        "specVersion": "2.0.0",
+        "version": 0,
+        "created": "2022-05-22T21:47:32Z",
+        "status": "Active",
+        "companyName": "Super Duper Transport Co.",
+        "companyIds": [ "urn:epc:id:sgln:4063973.00000.8" ],
+        "productDescription": "Logistics emissions related to TOC with ID 4561230",
+        "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:4561230" ],
+        "productCategoryCpc": "83117",
+        "productNameCompany": "TOC with ID 4561230",
+        "comment": "",
+        "pcf": {
+          "declaredUnit": "ton kilometer",
+          "unitaryProductAmount": "1",
+          "pCfExcludingBiogenic": "3.6801",
+          "fossilGhgEmissions": "3.6801",
+          "fossilCarbonContent": "0.0",
+          "biogenicCarbonContent": "0.0",
+          "characterizationFactors": "AR6",
+          "ipccCharacterizationFactorsSources": ["AR6"],
+          "crossSectoralStandardsUsed": [ "GHG Protocol Product standard" ],
+          "productOrSectorSpecificRules": [],
+          "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+          "referencePeriodStart": "2021-01-01T00:00:00Z",
+          "referencePeriodEnd": "2022-01-01T00:00:00Z",
+          "secondaryEmissionFactorSources": [ { "name": "Ecoinvent", "version": "3.9.1" } ],
+          "exemptedEmissionsPercent": 0.0,
+          "exemptedEmissionsDescription": "",
+          "packagingEmissionsIncluded": false,
+          "primaryDataShare": 56.12
+        },
+        "extensions": [
+          {
+            "specVersion": "2.0.0",
+            "dataSchema": "https://api.ileap.sine.dev/openapi.json",
+            "data": {
+              "tocId": "4561230",
+              "isVerified": true,
+              "isAccredited": true,
+              "mode": "Road",
+              "temperatureControl": "refrigerated",
+              "truckLoadingSequence": "FTL",
+              "energyCarriers": [
+                "energyCarrier": "Diesel",
+                "co2eIntensityWTW": "3.6801",
+                "co2eIntensityTTW": "3.2801"
+              ],
+              "co2eIntensityWTW": "3.6801",
+              "co2eIntensityTTW": "3.2801",
+              "co2eIntensityThroughput": "tkm",
+            }
+          }
+        ]
+      }
+  </pre>
+</div>
 
 <pre class=biblio>
  {
