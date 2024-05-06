@@ -686,9 +686,9 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
 
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
-        <td>String
+        <td><{PackagingOrTrEqType}>
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See Data type <{PackagingOrTrEqType}> for further information.
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
@@ -1089,7 +1089,7 @@ The Data Type <{HOC}> has the following properties:
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See Data type <{PackagingOrTrEqType}> for further information.
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
@@ -1230,7 +1230,7 @@ both SHOULD be defined.
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment (e.g. box, pallet, container) by the [=Transport Operator=] or [=Transport Service Organizer=].
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See Data type <{PackagingOrTrEqType}> for further information.
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
         <td>Number
@@ -1496,7 +1496,7 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
     </table>
 </figure>
 
-### Data Type <dfn>Feedstock</dfn> ### {#dt-feed-stock}
+### Data Type <dfn>Feedstock</dfn> ### {#dt-feedstock}
 
 Data type `Feedstock` represents one feedstock of an [=EnergyCarrier=].
 
@@ -1531,6 +1531,24 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
           <td>Country or region of provenance of the feedstock.
     </table>
 </figure>
+
+### Data Type <dfn>PackagingOrTrEqType</dfn> ### {#dt-packaging-or-tr-eq-type}
+
+Data type <dfn element>PackagingOrTrEqType</dfn> represents the category of relevant packaging or transport equipment
+units utilized for the transport of the consignment by the [=Transport Operator=] or [=Transport
+Service Organizer=].
+
+It MUST be encoded as a String using one of the following values:
+
+Advisement: The enumeration of packaging or transport equipment units below will be evolved in future revisions. Account for this when
+implementing the validation of this property.
+
+: Box
+:: refers to boxes
+: Pallet
+:: refers to pallets
+: Container
+:: refers to containers
 
 # HTTP REST API # {#http-rest-api}
 
