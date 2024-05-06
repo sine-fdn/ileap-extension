@@ -1737,7 +1737,7 @@ Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for 
 
 A ServiceFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
-For interoperability reasons, additional attributes of such a `ProductFootprint` SHOULD be derived from the <{ShipmentFootprint}>. This is specified in the table below.
+For interoperability reasons, additional attributes of such a `ProductFootprint` SHOULD be derived from the <{ShipmentFootprint}>. This is specified in the [table](#pact-sf-mapping-table) below.
 
 Note: Section [[#appendix-a-sf-example]] contains an example.
 
@@ -1834,8 +1834,8 @@ Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for 
 A TOC CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{TOC}> as an
 extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
-For interoperability reasons, additional attributes of such a `ProductFootprint` SHOULD be derived
-from the <{TOC}>. This is specified in the table below.
+For interoperability reasons, several attributes of a `ProductFootprint` MUST be derived from the
+<{TOC}>. This is specified in the [table](#pact-toc-mapping-table) below.
 
 Note: Section [[#appendix-a-toc-example]] contains an example.
 
@@ -1878,14 +1878,14 @@ Note: Section [[#appendix-a-toc-example]] contains an example.
         <td>CarbonFootprint
         <td>`unitaryProductAmount`
         <td>
-              MUST be set to `"1"` so that the ProductFootprint represents the emissions per ton kilometer of the TOC.
+              SHOULD be set to `"1"` so that the ProductFootprint represents the emissions per ton kilometer of the TOC.
 
       <tr>
         <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
               MUST be set to the logistics emissions intensity of the TOC, excluding biogenic emissions,
-              found in <{TOC/co2eIntensityWTW }>.
+              defined in <{TOC/co2eIntensityWTW }>.
 
       <tr>
         <td>CarbonFootprint
