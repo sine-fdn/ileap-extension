@@ -984,13 +984,13 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityWTW}> as defined in the [[!GLEC]] Framework
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
         <td>String
@@ -1114,7 +1114,7 @@ The Data Type <{HOC}> has the following properties:
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `gCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
 
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
@@ -1486,13 +1486,13 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>String
         <td>M
         <td>
-            The WTW fuel emission factor (certified) with unit `gCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
+            The WTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-             The TTW fuel emission factor (certified) with unit `gCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
+             The TTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
     </table>
 </figure>
 
