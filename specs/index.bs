@@ -688,7 +688,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td><dfn>packagingOrTrEqType</dfn>
         <td><{PackagingOrTrEqType}>
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See Data type <{PackagingOrTrEqType}> for further information.
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
@@ -1089,7 +1089,7 @@ The Data Type <{HOC}> has the following properties:
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See Data type <{PackagingOrTrEqType}> for further information.
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
@@ -1230,7 +1230,7 @@ both SHOULD be defined.
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See Data type <{PackagingOrTrEqType}> for further information.
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
         <td>Number
@@ -1238,11 +1238,11 @@ both SHOULD be defined.
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
       <tr>
         <td><dfn>energyCarrier</dfn>
-        <td>String
+        <td><{EnergyCarrierType}>
         <td>O
         <td>
             The substance used to generate mechanical movement or heat and to generate chemical or
-            physical processes as per the [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
+            physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
 
             If <{TAD/energyCarrier}> is not defined, then <{TAD/feedstocks}> MUST be defined. If possible, both SHOULD be defined.
       <tr>
@@ -1458,10 +1458,10 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
     <tbody>
       <tr>
         <td><dfn>energyCarrier</dfn>
-        <td>String
+        <td><{EnergyCarrierType}>
         <td>M
         <td>The substance used to generate mechanical movement or heat and to generate chemical or
-        physical processes as per the [[!GLEC]] Framework. For example: Diesel, HVO, petrol, CNG, LNG, LPG, HFO, MGO, Aviation fuel, Hydrogen, Methanol, Electric, etc.
+        physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
       <tr>
         <td><dfn>feedstocks</dfn>
         <td><{Feedstock}>[]
@@ -1496,6 +1496,42 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
     </table>
 </figure>
 
+### Data Type <dfn>EnergyCarrierType</dfn> ### {#dt-energy-carrier-type}
+
+Data type <dfn element>EnergyCarrierType</dfn> represents the substance used to generate mechanical
+movement or heat and to generate chemical or physical processes as per the [[!GLEC]] Framework.
+
+It MUST be encoded as a String using one of the following values:
+
+Advisement: The enumeration of energy carrier types below will be evolved in future revisions.
+Account for this when implementing the validation of this property.
+
+: Diesel
+:: refers to diesel
+: HVO
+:: refers to Hydrotreated Vegetable Oil
+: Petrol
+:: refers to petrol
+: CNG
+:: refers to Compressed Natural Gas
+: LNG
+:: refers to Liquefied Natural Gas
+: LPG
+:: refers to Liquefied Petroleum Gas
+: HFO
+:: refers to Heavy Fuel Oil
+: MGO
+:: refers to Marine Gas Oil
+: Aviation fuel
+:: refers to aviation fuel
+: Hydrogen
+:: refers to hydrogen
+: Methanol
+:: refers to methanol
+: Electric
+:: refers to electricity
+
+
 ### Data Type <dfn>Feedstock</dfn> ### {#dt-feedstock}
 
 Data type `Feedstock` represents one feedstock of an [=EnergyCarrier=].
@@ -1517,8 +1553,23 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
           <td><dfn>feedstock</dfn>
           <td>String
           <td>M
-          <td>A feedstock of an [=EnergyCarrier=], e.g., fossil, natural gas, grid, renewable electricity, waste.
+          <td>A feedstock of an [=EnergyCarrier=].
 
+            The value MUST be one of the following:
+
+            Advisement: The enumeration of feedstocks below will be evolved in future revisions.
+            Account for this when implementing the validation of this property.
+
+            : Fossil
+            :: refers to fossil sources
+            : Natural gas
+            :: refers to natural gas
+            : Grid
+            :: refers to grid electricity
+            : Renewable electricity
+            :: refers to renewable sources of electricity
+            : Cooking oil
+            :: refers to cooking (e.g., vegetable) oil
         <tr>
           <td><dfn>feedstockPercentage</dfn> : [0..1]
           <td>Number
