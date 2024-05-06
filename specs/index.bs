@@ -1923,6 +1923,9 @@ Note: Section [[#appendix-a-toc-example]] contains an example.
 
 # Appendix A: Example PCFs with iLEAP Data embedded # {#appendix-a}
 
+Advisement: In both examples, the value of `dataSchema` is currently placeholder and should not be
+taken as a link to the actual data schema. This will be updated as soon as possible.
+
 ## ShipmentFootprint example ## {#appendix-a-sf-example}
 
 A Product Footprint with a <{ShipmentFootprint}> highlighted:
