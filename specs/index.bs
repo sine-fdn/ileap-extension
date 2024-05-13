@@ -1808,7 +1808,7 @@ A ServiceFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]
 
 For interoperability reasons, additional attributes of such a `ProductFootprint` SHOULD be derived from the <{ShipmentFootprint}>. This is specified in the [table](#pact-sf-mapping-table) below.
 
-Note: Section [[#appendix-a-sf-example]] contains an example.
+Note: Section [[#appendix-b-sf-example]] contains an example.
 
 <figure id="pact-sf-mapping-table">
   <table class="data">
@@ -1906,7 +1906,7 @@ extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 For interoperability reasons, several attributes of a `ProductFootprint` MUST be derived from the
 <{TOC}>. This is specified in the [table](#pact-toc-mapping-table) below.
 
-Note: Section [[#appendix-a-toc-example]] contains an example.
+Note: Section [[#appendix-b-toc-example]] contains an example.
 
 <figure id="pact-toc-mapping-table">
   <table class="data">
@@ -1990,12 +1990,20 @@ Note: Section [[#appendix-a-toc-example]] contains an example.
   <figcaption>Mapping of PACT Data Model properties to <{TOC}> properties</figcaption>
 </figure>
 
-# Appendix A: Example PCFs with iLEAP Data embedded # {#appendix-a}
+
+# Appendix A: Changelog # {#changelog}
+
+## Version 0.1.0 (2024-05-13)
+
+Summary: Initial release of the specification.
+
+
+# Appendix B: Example PCFs with iLEAP Data embedded # {#appendix-b}
 
 Advisement: In both examples, the value of `dataSchema` is currently placeholder and should not be
 taken as a link to the actual data schema. This will be updated as soon as possible.
 
-## ShipmentFootprint example ## {#appendix-a-sf-example}
+## ShipmentFootprint example ## {#appendix-b-sf-example}
 
 A Product Footprint with a <{ShipmentFootprint}> highlighted:
 
@@ -2062,7 +2070,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
   </pre>
 </div>
 
-## TOC example ## {#appendix-a-toc-example}
+## TOC example ## {#appendix-b-toc-example}
 
 A Product Footprint with a <{TOC}> highlighted:
 
@@ -2144,9 +2152,14 @@ A Product Footprint with a <{TOC}> highlighted:
       "publisher": "International Organization for Standardization"
     },
     "PACTDX": {
-      "authors": [],
+      "authors": [
+        "Martin Pompéry",
+        "Cecilia Valeri"
+      ],
       "title": "Technical Specifications for PCF Data Exchange (Version 2.1.0)",
-      "href": "https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/"
+      "href": "https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/",
+      "publisher": "WBCSD",
+      "status": "CR"
     },
     "PATHFINDER-FRAMEWORK": {
       "authors": [],
