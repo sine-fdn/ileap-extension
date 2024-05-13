@@ -161,7 +161,6 @@ Advisement: The current technical specifications are undergoing continuous refin
 : <dfn>Access Token</dfn>
 :: :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
 
-Issue: add a pathfinder tech specs normative reference to this document
 
 # Business Cases # {#business-cases}
 
@@ -191,25 +190,34 @@ The following business cases shall be supported by this specification:
     By incorporating emission intensities (HOCs or TOCs) in procurement processes, the Transport Service Organizer is enabled to choose services that offer carbon-efficiency advantages.
     This is enabled through [[#txn2]].
 
-: Business Case #3: Enable Emissions Calculations from Activity Data
+: Business Case #3: Simplified Emissions Calculation from Transport Activity Data
 ::
-    A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share [=Transport Activity=] data to enable the estimation of emissions from the contracted services.
-    This is enabled through [[#txn3]].
-    ISSUE: I would argue this is not a business case, but just a data transaction.
+    A [=Transport Service Organizer=] recognizes that a [=Transport Operator=] is not yet capable of calculation GHG emissions at the TOC or HOC level.
+    In such a case, the Transport Service Organizer can request the Transport Operator to make [=Transport Activity Data=] available instead, which
+    has a lower initial complexity in terms of data collection and calculation.
 
-: Business Case #4: Disclose Logistics Emissions as Part of PCFs
+    Upon receiving Transport Activity Data, a Transport Service Organizer can then calculate the emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]] and make this available to the [=Transport Service User=].
+
+    Exchange of Transport Activity Data is enabled through [[#txn3]] and the related <{TAD}> Data type (see [[#dt-tad]] and [[#action-tad]] for further details).
+
+
+## Potential additional Business Cases ## {#txns-appendix}
+
+
+: Business Case #a1: Disclose Logistics Emissions as Part of PCFs
 ::
-    A [=Transport Service User=] is requested by their customers to disclose logistics emissions as part of a [=PCF=].
+    A [=Transport Service User=] is requested to disclose logistics emissions as part of a [=PCF=].
+    A Transport Service User can disclose this data as a data model extension (see [[#pcf-mapping-sf]])
+
     This is enabled through the usage of the Pathfinder Technical Specification
     and disclosing through so-called Data Model Extensions based on the iLEAP
     Data Model ([[#data-model]]) . See the Pathfinder [[!DATA-MODEL-EXTENSIONS]] specification.
 
-## Potential additional Business Cases ## {#txns-appendix}
 
-: Business Case #a1: Forecasting
+: Business Case #a2: Forecasting
 :: A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or [=Transport Operator=]) to share GHG emissions at the TOC or HOC level. This enables the Transport Service User to forecast emissions related to specific activities or services, before these take place.
 
-: Business Case #a2: Book & Claim
+: Business Case #a3: Book & Claim
 :: A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share with them emissions attributes according to a book & claim scheme.
 
 Note: This business case is currently out of scope. It might be supported in the future, as book & claim methodologies and related variables are considered in scope of these technical specifications.
