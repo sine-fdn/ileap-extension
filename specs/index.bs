@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications
+Title: iLEAP Technical Specifications (Version 0.1.0)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
