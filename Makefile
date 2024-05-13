@@ -11,4 +11,4 @@ specs/index.html: specs/index.bs
 serve:
 	cd specs && bikeshed serve
 
-.PHONY: serve release
+.PHONY: serve build
