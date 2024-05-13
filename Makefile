@@ -1,4 +1,9 @@
-all: specs/index.html
+RELEASE_DIR:=out
+
+build: specs/index.html
+	mkdir -p ${RELEASE_DIR}
+	cp -r $< specs/diagrams ${RELEASE_DIR}/
+	cp -r TR ${RELEASE_DIR}/
 
 specs/index.html: specs/index.bs
 	bikeshed spec $< $@
@@ -6,4 +11,4 @@ specs/index.html: specs/index.bs
 serve:
 	cd specs && bikeshed serve
 
-.PHONY: serve
+.PHONY: serve release
