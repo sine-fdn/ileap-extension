@@ -1993,6 +1993,15 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
+
+## Version 0.2.0 (2024-05-13) ## {#version-0-2-0}
+
+Summary of changes:
+
+- updated the mapping of a shipment id of a <{ShipmentFootprint}> into the Pathfinder Data Model
+- updated the mapping of a shipment id of a <{TOC}> into the Pathfinder Data Model
+
+
 ## Version 0.1.0 (2024-05-13) ## {#version-0-1-0}
 
 Summary: Initial release of the specification.
