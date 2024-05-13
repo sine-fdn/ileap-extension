@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.1.0)
+Title: iLEAP Technical Specifications (Version 0.2.0-20240513)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -1806,7 +1806,7 @@ Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for 
 
 A ServiceFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
-For interoperability reasons, additional attributes of such a `ProductFootprint` SHOULD be derived from the <{ShipmentFootprint}>. This is specified in the [table](#pact-sf-mapping-table) below.
+For interoperability reasons, [[!PACTDX]]-related attributes MUST be derived from the <{ShipmentFootprint}> where possible. Details are specified in the [table](#pact-sf-mapping-table) below.
 
 Note: Section [[#appendix-b-sf-example]] contains an example.
 
@@ -1823,9 +1823,9 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>`productIds`
         <td>
               MUST contain the shipment ID <{ShipmentFootprint/shipmentId}>, encoded as
-              : `urn:pathfinder:product:customcode:vendor-assigned:<shipment id>`
+              : `urn:pathfinder:product:customcode:vendor-assigned:shipment:<shipment id>`
               :: in case the [=transport service organizer=] has assigned a shipping id, or
-              : `urn:pathfinder:product:customcode:buyer-assigned:<shipment id>`
+              : `urn:pathfinder:product:customcode:buyer-assigned:shipment:<shipment id>`
               :: in case the [=transport service user=] has assigned a shipping id
 
               Note: `productIds` can contain multiple entries. If multiple or different
@@ -1836,7 +1836,7 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>ProductFootprint
         <td>`productCategoryCpc`
         <td>
-              MUST be set to the CPC code of logistics services (`83117`).
+              MUST be equal to `83117`, the CPC code of logistics services.
 
       <tr>
         <td>CarbonFootprint
@@ -1921,9 +1921,9 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>`productIds`
         <td>
               MUST contain the TOC ID <{TOC/tocId}>, encoded as
-              : `urn:pathfinder:product:customcode:vendor-assigned:<toc id>`
+              : `urn:pathfinder:product:customcode:vendor-assigned:toc:<toc id>`
               :: in case the [=transport service organizer=] has assigned a toc id, or
-              : `urn:pathfinder:product:customcode:buyer-assigned:<toc id>`
+              : `urn:pathfinder:product:customcode:buyer-assigned:toc:<toc id>`
               :: in case the [=transport service user=] has assigned a toc id
 
               Note: `productIds` can contain multiple entries. If multiple or different
@@ -1933,7 +1933,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>ProductFootprint
         <td>`productCategoryCpc`
         <td>
-              MUST be set to the CPC code of logistics services (`83117`).
+              MUST be equal to `83117`, the CPC code of logistics services.
 
       <tr>
         <td>CarbonFootprint
@@ -2018,7 +2018,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
         "companyName": "Super Duper Transport Co.",
         "companyIds": [ "urn:epc:id:sgln:4063973.00000.8" ],
         "productDescription": "Logistics emissions related to shipment with ID 1237890",
-        "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:1237890" ],
+        "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:shipment:1237890" ],
         "productCategoryCpc": "83117",
         "productNameCompany": "Shipment with ID 1237890",
         "comment": "",
@@ -2085,7 +2085,7 @@ A Product Footprint with a <{TOC}> highlighted:
         "companyName": "Super Duper Transport Co.",
         "companyIds": [ "urn:epc:id:sgln:4063973.00000.8" ],
         "productDescription": "Logistics emissions related to TOC with ID 4561230",
-        "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:4561230" ],
+        "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:toc:4561230" ],
         "productCategoryCpc": "83117",
         "productNameCompany": "TOC with ID 4561230",
         "comment": "",
