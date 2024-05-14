@@ -24,7 +24,7 @@ Boilerplate: omit conformance, omit copyright
 - Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms the foundational semantics framework for the [=SFC=] Data Exchange Network project.
 - The adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=Transport Chain Element|TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
 
- 
+
 
 ## Out of Scope ## {#out-of-scope}
 
@@ -1810,11 +1810,11 @@ The list below contains the properties that were omitted for this reason.
     </table>
 </figure>
 
-### ServiceFootprint ### {#pcf-mapping-sf}
+### ShipmentFootprint ### {#pcf-mapping-sf}
 
 Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
-A ServiceFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
+A ShipmentFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
 For interoperability reasons, [[!PACTDX]]-related attributes MUST be derived from the <{ShipmentFootprint}> where possible. Details are specified in the [table](#pact-sf-mapping-table) below.
 
