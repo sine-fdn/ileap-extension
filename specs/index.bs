@@ -565,7 +565,7 @@ for a single [=shipment=], identified by the <{ShipmentFootprint/shipmentId}>.
 
 Section [[#pcf-mapping-sf]] further specifies how to exchange <{ShipmentFootprint|ShipmentFootprints}> using the [[!PACTDX|Pathfinder Data Exchange Protocol and Data Model]].
 By collecting 1 or more <{ShipmentFootprint}> in this way, any party, including the original [=Transport Service User=], can construct Transport Chains ([=TCs=]), and thereby calculate
-logistics emissions related of the shipment. 
+logistics emissions related to the shipment. 
 
 To derive a ShipmentFootprint, [=Transport Operators=] or the [=Transport Service Organizer=] respectively MUST
 
