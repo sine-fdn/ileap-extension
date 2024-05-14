@@ -621,6 +621,8 @@ A <{ShipmentFootprint}> has the following properties:
     <figcaption>ShipmentFootprint properties</figcaption>
 </figure>
 
+Issue: <{ShipmentFootprint/numberOfItems}> and <{ShipmentFootprint/typeOfItems}> are currently underspecified and need to be re-visited / revised soon.  
+
 
 ## Transport Chain Element ( <dfn element>TCE</dfn> ) ## {#dt-tce}
 
@@ -1153,8 +1155,6 @@ Note:
     which no GHG emission or GHG emission intisities values have been calculated.
 
 Properties of data type <{TAD}>:
-
-Issue: this needs to be discussed with SFC and especially also Tool providers:
 
 Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be defined. If possible,
 both SHOULD be defined.
