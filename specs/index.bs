@@ -54,7 +54,7 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: A Hub Operation Category is a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
 
 : Transport Chain (<dfn>TC</dfn> )
-:: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=].
+:: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]. A TC corresponds to a shipment.
 
 : <dfn>Transport Chain Element</dfn> (TCE)
 :: A Transport Chain Element is one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
