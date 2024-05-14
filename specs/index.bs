@@ -2000,7 +2000,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 # Appendix A: Changelog # {#changelog}
 
 
-## Version 0.2.0 (2024-05-13) ## {#version-0-2-0}
+## Version 0.2.0-20240513 (2024-05-13) ## {#version-20240513}
 
 Summary of changes:
 
