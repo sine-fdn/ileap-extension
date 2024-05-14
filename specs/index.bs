@@ -563,16 +563,14 @@ ISSUE: Add a brief Intro to the data model? Potentially with brief diagram or ex
 or more [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>)
 for a single [=shipment=] and from a single entity (a [=Transport Operator=] or a [=Transport Service Organizer=]).
 
-By collecting 1 or more ShipmentFootprint for a shipment from [=Transport Operators=] and [=Transport Service Organizer=],
-a [=Transport Service User=] can construct Transport Chains ([=TCs=]), and thereby calculate
-logistics emissions.
+By collecting 1 or more <{TCE|TCEs}> for a shipment from [=Transport Operators=] and [=Transport Service Organizer=],
+a [=Transport Service User=] can construct the <{ShipmentFootprint}>. The <{ShipmentFootprint}> corresponds to the logistics emissions related to a full Transport Chain ([=TC=]).
 
-ISSUE: The way the above paragraphs are defined might lead to confusion.
+To calculate a ShipmentFootprint, the [=Transport Service User=] MUST
 
-To calculate a ShipmentFootprint, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
-
-- first calculate <{TCE|TCEs}> for a single shipment in accordance with [[#dt-tce]],
-- and then derives the <{ShipmentFootprint}> from the <{TCE|TCEs}>.
+- first receive <{TCE|TCEs}>  from [=Transport Operators=] and [=Transport Service Organizers=], linked to the shipment ID for a single shipment in accordance with [[#dt-tce]], 
+OR calculate <{TCE|TCEs}> from <{TCO|TOCs}> or <{TAD|TADs}> from [=Transport Operators=] and [=Transport Service Organizers=].
+- and then add up all <{TCE|TCEs}> that compose the full Transport Chain ([=TC=]) to derive the <{ShipmentFootprint}>.
 
 
 ### Data Attributes ### {#sf-attributes}
