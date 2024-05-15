@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.0-20240513)
+Title: iLEAP Technical Specifications (Version 0.2.0-20240514)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -559,25 +559,23 @@ ISSUE: Add a brief Intro to the data model? Potentially with brief diagram or ex
 
 ## ShipmentFootprint ## {#dt-sf}
 
-<dfn element>ShipmentFootprint</dfn> is a data type that contains 1
+<dfn element>ShipmentFootprint</dfn> is a collection of 1
 or more [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>)
-for a single [=shipment=] and from a single entity (a [=Transport Operator=] or a [=Transport Service Organizer=]).
+for a single [=shipment=], identified by the <{ShipmentFootprint/shipmentId}>.
 
-By collecting 1 or more ShipmentFootprint for a shipment from [=Transport Operators=] and [=Transport Service Organizer=],
-a [=Transport Service User=] can construct Transport Chains ([=TCs=]), and thereby calculate
-logistics emissions.
+Section [[#pcf-mapping-sf]] further specifies how to exchange <{ShipmentFootprint|ShipmentFootprints}> using the [[!PACTDX|Pathfinder Data Exchange Protocol and Data Model]].
+By collecting 1 or more <{ShipmentFootprint}> in this way, any party, including the original [=Transport Service User=], can construct Transport Chains ([=TCs=]), and thereby calculate
+logistics emissions related to the shipment. 
 
-ISSUE: The way the above paragraphs are defined might lead to confusion.
-
-To calculate a ShipmentFootprint, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
+To derive a ShipmentFootprint, [=Transport Operators=] or the [=Transport Service Organizer=] respectively MUST
 
 - first calculate <{TCE|TCEs}> for a single shipment in accordance with [[#dt-tce]],
-- and then derives the <{ShipmentFootprint}> from the <{TCE|TCEs}>.
+- and then derive the <{ShipmentFootprint}> from the <{TCE|TCEs}>.
 
 
 ### Data Attributes ### {#sf-attributes}
 
-A ShipmentFootprint has the following properties:
+A <{ShipmentFootprint}> has the following properties:
 
 <figure id="sf-properties-table" dfn-type="element-attr" dfn-for="ShipmentFootprint">
   <table class="data">
@@ -622,6 +620,8 @@ A ShipmentFootprint has the following properties:
     </table>
     <figcaption>ShipmentFootprint properties</figcaption>
 </figure>
+
+Issue: <{ShipmentFootprint/numberOfItems}> and <{ShipmentFootprint/typeOfItems}> are currently underspecified and need to be re-visited / revised soon.  
 
 
 ## Transport Chain Element ( <dfn element>TCE</dfn> ) ## {#dt-tce}
@@ -1155,8 +1155,6 @@ Note:
     which no GHG emission or GHG emission intisities values have been calculated.
 
 Properties of data type <{TAD}>:
-
-Issue: this needs to be discussed with SFC and especially also Tool providers:
 
 Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be defined. If possible,
 both SHOULD be defined.
@@ -2001,8 +1999,12 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
+## Version 0.2.0-20240514 (2024-05-14) ## {#version-20240514}
 
-## Version 0.2.0 (2024-05-13) ## {#version-0-2-0}
+- minor cleanups in section [[#df-sf]]
+- removal of stale `issues` 
+
+## Version 0.2.0-20240513 (2024-05-13) ## {#version-20240513}
 
 Summary of changes:
 
