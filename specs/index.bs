@@ -554,8 +554,9 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
 
 
 # Data Model # {#data-model}
-
-ISSUE: Add a brief Intro to the data model? Potentially with brief diagram or explanation on how shipment, TCE, TOC etc. relate to each other?
+The data model is based on the aforementioned data transactions (see Figure 1), and builds on the ISO 14083 concepts of TOC, HOC, TCE, TC. Additionally, the concept of transport activity data (TAD) is added to facilitate partial reporting in case of missing data or limited calculation capabilities from Transport Operators.
+TOCs/ HOCs are defined as a vehicle or group of vehicles/hubs sharing similar characteristics. 
+Please, find more details on emission calculation and the relantionship between the different concepts in the [[!GLEC]] Framework or [[!ISO14083]]). 
 
 ## ShipmentFootprint ## {#dt-sf}
 
