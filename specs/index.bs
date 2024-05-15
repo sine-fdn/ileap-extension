@@ -24,7 +24,7 @@ Boilerplate: omit conformance, omit copyright
 - Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms the foundational semantics framework for the [=SFC=] Data Exchange Network project.
 - The adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=Transport Chain Element|TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
 
-
+ 
 
 ## Out of Scope ## {#out-of-scope}
 
@@ -47,17 +47,62 @@ Advisement: The current technical specifications are undergoing continuous refin
 # Definitions # {#definitions}
 
 ## ISO14083- and GLEC-Framework-related Definitions ## {#iso14083-definitions}
-: Transport Operation Category (<dfn>TOC</dfn> )
-:: A Transport Operation Category is a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
+: <dfn>Actual Distance</dfn>
+:: The actual route (with unit `kilometer`) taken for a consignment. [[!GLEC]] Framework. See also [[!ISO14083]] Section 3.1.27.1.
+
+: <dfn>Consignment</dfn>
+::
+    A consignment refers to a quantifiable quantity of cargo that can be distinctly
+    identified as a single unit. It is transported from a sender or consignor to a
+    receiver or consignee, irrespective of the mode of transportation employed. See [[!ISO14083]], Section 3.1.4.
+
+: <dfn>Distance</dfn>
+:: See [=Transport Distance=] and [=Actual Distance=]
+
+: <dfn>Great Circle Distance</dfn> (GCD)
+::
+    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
+
+: <dfn>Hub Activity</dfn>
+:: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
 
 : Hub Operation Category (<dfn>HOC</dfn> )
 :: A Hub Operation Category is a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
+
+: <dfn>Primary Data</dfn>
+::
+    Data based on direct measurements of energy consumption. Also see [[!GLEC]] Framework.
+
+: <dfn>Secondary Data</dfn>
+::
+    Any data that is not primary data. It applies to modelled and default data. [[!GLEC]] Framework.
+
+: <dfn>Shipment</dfn>
+::
+    A shipment refers to the goods in a commercial transaction between a seller and a buyer.
+    It encompasses the consignments transported as part of this transaction via a transport
+    chain from the consignor to the consignee. See [[!ISO14083]], Section 3.1.20.
+
+: <dfn>Shortest Feasible Distance</dfn> (SFD)
+::
+    It represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework.
+
+: <dfn>Transport Activity</dfn>
+::
+    Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance.
+    It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework.
 
 : Transport Chain (<dfn>TC</dfn> )
 :: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]. A TC corresponds to a shipment.
 
 : <dfn>Transport Chain Element</dfn> (TCE)
 :: A Transport Chain Element is one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
+
+: <dfn>Transport Distance</dfn>
+:: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27.
+
+: Transport Operation Category (<dfn>TOC</dfn> )
+:: A Transport Operation Category is a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Transport Operator</dfn>
 :: Refers to the party that carries out the transport service. See [[!ISO14083]], Section 3.1.30.
@@ -68,75 +113,35 @@ Advisement: The current technical specifications are undergoing continuous refin
 : <dfn>Transport Service User</dfn>
 :: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
 
-: <dfn>Hub Activity</dfn>
-:: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
-
-: <dfn>Shipment</dfn>
-::
-    A shipment refers to the goods in a commercial transaction between a seller and a buyer.
-    It encompasses the consignments transported as part of this transaction via a transport
-    chain from the consignor to the consignee. See [[!ISO14083]], Section 3.1.20.
-
-: <dfn>Consignment</dfn>
-::
-    A consignment refers to a quantifiable quantity of cargo that can be distinctly
-    identified as a single unit. It is transported from a sender or consignor to a
-    receiver or consignee, irrespective of the mode of transportation employed. See [[!ISO14083]], Section 3.1.4.
-
-: <dfn>Transport Activity</dfn>
-::
-    Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance.
-    It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework.
-
-: <dfn>Distance</dfn>
-:: See [=Transport Distance=] and [=Actual Distance=]
-
-: <dfn>Transport Distance</dfn>
-:: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27.
-
-: <dfn>Actual Distance</dfn>
-:: The actual route (with unit `kilometer`) taken for a consignment. [[!GLEC]] Framework. See also [[!ISO14083]] Section 3.1.27.1.
-
-: <dfn>Shortest Feasible Distance</dfn> (SFD)
-::
-    It represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework.
-
-: <dfn>Great Circle Distance</dfn> (GCD)
-::
-    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
-
-: <dfn>Primary Data</dfn>
-::
-    Data based on direct measurements of energy consumption. Also see [[!GLEC]] Framework.
-
-: <dfn>Secondary Data</dfn>
-::
-    Any data that is not primary data. It applies to modelled and default data. [[!GLEC]] Framework.
-
 
 ## Auxillary Definitions ## {#auxillary-definitions}
 
-: Data Transaction
-:: see [[#txns]]
+: <dfn>Access Token</dfn>
+:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
 
-: <dfn>Shipper</dfn>
-:: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
-
-: Smart Freight Centre (<dfn>SFC</dfn> )
-:: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organisation.
-
-: <dfn>Hub Operator</dfn>
-:: A party that is offering hub services, including warehousing and transshipment center services.
-
-: <dfn>Host System</dfn>
-:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
-    Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
+: <dfn>Consignment id</dfn>
+::
+    A digital identifier which uniquely identifies a [=Consignment=].
 
 : <dfn>Data Owner</dfn>
 :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-owner) for the definition.
 
 : <dfn>Data Recipient</dfn>
 :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
+
+: Data Transaction
+:: see [[#txns]]
+
+: <dfn>Host System</dfn>
+:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
+    Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
+
+: <dfn>Hub Operator</dfn>
+:: A party that is offering hub services, including warehousing and transshipment center services.
+
+: <dfn>PCF</dfn>
+::
+    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
 
 : <dfn>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
@@ -145,21 +150,16 @@ Advisement: The current technical specifications are undergoing continuous refin
 ::
     A digital identifier which uniquely identifies a [=Shipment=].
 
-: <dfn>Consignment id</dfn>
-::
-    A digital identifier which uniquely identifies a [=Consignment=].
+: <dfn>Shipper</dfn>
+:: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
+
+: Smart Freight Centre (<dfn>SFC</dfn> )
+:: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organisation.
 
 : <dfn>Tool Provider</dfn>
 ::
     Provider of software, tools, services, or programs that support companies in
     calculating and reporting logistics GHG emissions conforming to these technical specifications.
-
-: <dfn>PCF</dfn>
-::
-    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
-
-: <dfn>Access Token</dfn>
-:: :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
 
 
 # Business Cases # {#business-cases}
