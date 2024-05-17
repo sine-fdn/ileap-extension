@@ -234,7 +234,7 @@ Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=h
 
 The following diagram shows how the three data transactions (defined below) are related:
 
-<figure>
+<figure id="figure-data-transactions">
   <img src="diagrams/transactions.png" width="30%" >
   <figcaption>Transactions diagram</figcaption>
 </figure>
@@ -554,9 +554,12 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
 
 
 # Data Model # {#data-model}
-The data model is based on the aforementioned data transactions (see Figure 1), and builds on the ISO 14083 concepts of TOC, HOC, TCE, TC. Additionally, the concept of transport activity data (TAD) is added to facilitate partial reporting in case of missing data or limited calculation capabilities from Transport Operators.
-TOCs/ HOCs are defined as a vehicle or group of vehicles/hubs sharing similar characteristics. 
-Please, find more details on emission calculation and the relantionship between the different concepts in the [[!GLEC]] Framework or [[!ISO14083]]). 
+
+The iLEAP data model of this chapter together with the data transactions ([[#txns]]) build on top of the [[!ISO14083|ISO 14083]] concepts of TOC, HOC, TCE, TC.
+
+Additionally, the concept of transport activity data ([[#dt-tad|TAD]]) is added to facilitate reporting in case of missing data or limited emissions calculation capabilities from e.g. [=Transport Operators=].
+
+Please, find more details on emissions calculation and the relantionship between the different concepts in the [[!GLEC]] Framework and [[!ISO14083]]).
 
 ## ShipmentFootprint ## {#dt-sf}
 
