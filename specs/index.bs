@@ -561,16 +561,16 @@ ISSUE: Add a brief Intro to the data model? Potentially with brief diagram or ex
 
 <dfn element>ShipmentFootprint</dfn> is a collection of 1
 or more [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>)
-for a single [=shipment=], identified by the <{ShipmentFootprint/shipmentId}>.
+for a single [=shipment=] and from a single entity (a [=Transport Operator=] or a [=Transport Service Organizer=]).
 
-Section [[#pcf-mapping-sf]] further specifies how to exchange <{ShipmentFootprint|ShipmentFootprints}> using the [[!PACTDX|Pathfinder Data Exchange Protocol and Data Model]].
-By collecting 1 or more <{ShipmentFootprint}> in this way, any party, including the original [=Transport Service User=], can construct Transport Chains ([=TCs=]), and thereby calculate
-logistics emissions related to the shipment. 
+By collecting 1 or more <{TCE|TCEs}> for a shipment from [=Transport Operators=] and [=Transport Service Organizer=],
+a [=Transport Service User=] can construct the <{ShipmentFootprint}>. The <{ShipmentFootprint}> corresponds to the logistics emissions related to a full Transport Chain ([=TC=]).
 
-To derive a ShipmentFootprint, [=Transport Operators=] or the [=Transport Service Organizer=] respectively MUST
+To calculate a ShipmentFootprint, the [=Transport Service User=] MUST
 
-- first calculate <{TCE|TCEs}> for a single shipment in accordance with [[#dt-tce]],
-- and then derive the <{ShipmentFootprint}> from the <{TCE|TCEs}>.
+- first receive <{TCE|TCEs}>  from [=Transport Operators=] and [=Transport Service Organizers=], linked to the shipment ID for a single shipment in accordance with [[#dt-tce]],
+OR calculate <{TCE|TCEs}> from <{TCO|TOCs}> or <{TAD|TADs}> from [=Transport Operators=] and [=Transport Service Organizers=].
+- and then add up all <{TCE|TCEs}> that compose the full Transport Chain ([=TC=]) to derive the <{ShipmentFootprint}>.
 
 
 ### Data Attributes ### {#sf-attributes}
@@ -621,7 +621,7 @@ A <{ShipmentFootprint}> has the following properties:
     <figcaption>ShipmentFootprint properties</figcaption>
 </figure>
 
-Issue: <{ShipmentFootprint/numberOfItems}> and <{ShipmentFootprint/typeOfItems}> are currently underspecified and need to be re-visited / revised soon.  
+Issue: <{ShipmentFootprint/numberOfItems}> and <{ShipmentFootprint/typeOfItems}> are currently underspecified and need to be re-visited / revised soon.
 
 
 ## Transport Chain Element ( <dfn element>TCE</dfn> ) ## {#dt-tce}
@@ -2002,7 +2002,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 ## Version 0.2.0-20240514 (2024-05-14) ## {#version-20240514}
 
 - minor cleanups in section [[#df-sf]]
-- removal of stale `issues` 
+- removal of stale `issues`
 
 ## Version 0.2.0-20240513 (2024-05-13) ## {#version-20240513}
 
