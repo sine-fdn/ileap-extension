@@ -569,7 +569,7 @@ a [=Transport Service User=] can construct the <{ShipmentFootprint}>. The <{Ship
 To calculate a ShipmentFootprint, the [=Transport Service User=] MUST
 
 - first receive <{TCE|TCEs}>  from [=Transport Operators=] and [=Transport Service Organizers=], linked to the shipment ID for a single shipment in accordance with [[#dt-tce]],
-OR calculate <{TCE|TCEs}> from <{TCO|TOCs}> or <{TAD|TADs}> from [=Transport Operators=] and [=Transport Service Organizers=].
+    OR calculate <{TCE|TCEs}> from <{TOC|TOCs}> or <{TAD|TADs}> from [=Transport Operators=] and [=Transport Service Organizers=].
 - and then add up all <{TCE|TCEs}> that compose the full Transport Chain ([=TC=]) to derive the <{ShipmentFootprint}>.
 
 
@@ -2001,7 +2001,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 ## Version 0.2.0-20240514 (2024-05-14) ## {#version-20240514}
 
-- minor cleanups in section [[#df-sf]]
+- minor cleanups in section [[#dt-sf]]
 - removal of stale `issues`
 
 ## Version 0.2.0-20240513 (2024-05-13) ## {#version-20240513}
