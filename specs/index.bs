@@ -1810,11 +1810,11 @@ The list below contains the properties that were omitted for this reason.
     </table>
 </figure>
 
-### ServiceFootprint ### {#pcf-mapping-sf}
+### ShipmentFootprint ### {#pcf-mapping-sf}
 
 Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
-A ServiceFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
+A ShipmentFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
 For interoperability reasons, [[!PACTDX]]-related attributes MUST be derived from the <{ShipmentFootprint}> where possible. Details are specified in the [table](#pact-sf-mapping-table) below.
 
