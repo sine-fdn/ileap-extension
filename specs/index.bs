@@ -2086,7 +2086,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
       "extensions": [
         {
           "specVersion": "2.0.0",
-          "dataSchema": "https://api.ileap.sine.dev/openapi.json",
+          "dataSchema": "https://api.ileap.sine.dev/shipment-footprint.json",
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "mass": "87",
@@ -2167,7 +2167,7 @@ A Product Footprint with a <{TOC}> highlighted:
       "extensions": [
         {
           "specVersion": "2.0.0",
-          "dataSchema": "https://api.ileap.sine.dev/openapi.json",
+          "dataSchema": "https://api.ileap.sine.dev/toc.json",
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "tocId": "4561230",
