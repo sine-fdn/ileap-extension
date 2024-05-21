@@ -2006,6 +2006,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 ## Version 0.2.0-20240521 (2024-05-21) ## {#version-20240521}
 
 - fixed typos and incorrect `productId` in examples
+- `ServiceFootprint` renamed to `ShipmentFootprint` throughout this document
 
 ## Version 0.2.0-20240514 (2024-05-14) ## {#version-20240514}
 
