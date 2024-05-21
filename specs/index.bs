@@ -562,6 +562,26 @@ Additionally, the concept of transport activity data ([[#dt-tad|TAD]]) is added 
 
 Please, find more details on emissions calculation and the relantionship between the different concepts in the [[!GLEC]] Framework and [[!ISO14083]]).
 
+The iLEAP Data Model is composed by five main data types: <{ShipmentFootprint}>, <{TCE}>, <{TOC}>,
+<{HOC}>, and <{TAD}>.
+
+<{ShipmentFootprint|ShipmentFootprints}> and <{TOC|TOCs}> can be exchanged independently as extensions to the Pathfinder
+Data Model ([[!PACTDX]]) (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
+
+<{TAD|TADs}> can be exchanged through a dedicated endpoint. These should only be used by [=Transport
+Operators=] who cannot yet provide <{ShipmentFootprint|ShipmentFootprints}>, <{TOC|TOCs}>, nor <{HOC|HOCs}>.
+
+The relations between these data types are summarized by the diagram below:
+
+Note: A <{TCE}> MUST use either a <{TOC}> or an <{HOC}> (see [[#dt-tce]]). The dashed line aims at
+representing that <{TOC|TOCs}> and <{HOC|HOCs}> can exist without <{TCE|TCEs}> and that <{TCE|TCEs}>
+must identify one (and only one) <{TOC}> or <{HOC}> to be defined.
+
+<figure>
+  <img src="diagrams/data-model.svg" width="70%">
+  <figcaption>Data model entity relation diagram</figcaption>
+</figure>
+
 ## ShipmentFootprint ## {#dt-sf}
 
 <dfn element>ShipmentFootprint</dfn> is a collection of 1
