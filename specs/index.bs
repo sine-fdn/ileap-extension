@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.0-20240514)
+Title: iLEAP Technical Specifications (Version 0.2.0-20240521)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -24,7 +24,7 @@ Boilerplate: omit conformance, omit copyright
 - Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms the foundational semantics framework for the [=SFC=] Data Exchange Network project.
 - The adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=Transport Chain Element|TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
 
- 
+
 
 ## Out of Scope ## {#out-of-scope}
 
@@ -488,7 +488,7 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
       "companyName": "Transport Organizer Z",
       "companyIds": [ "urn:epc:id:sgln:123456.00000.8" ],
       "productDescription": "Logistics emissions related to shipment with ID 1237890",
-      "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:1237890" ],
+      "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:shipment:1237890" ],
       "productCategoryCpc": "83117",
       "productNameCompany": "Shipment with ID 1237890",
       "comment": "",
@@ -527,7 +527,7 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
                 "distance": {
                   "actual": "423"
                 },
-                "transportActivity": "36.801",
+                "transportActivity": "3.6801",
                 "co2eWTW": "3.6801",
                 "co2eTTW": "3.2801"
               },
@@ -2003,6 +2003,10 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
+## Version 0.2.0-20240521 (2024-05-21) ## {#version-20240521}
+
+- fixed typos and incorrect `productId` in examples
+
 ## Version 0.2.0-20240514 (2024-05-14) ## {#version-20240514}
 
 - minor cleanups in section [[#dt-sf]]
@@ -2033,63 +2037,77 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
 <div class=example>
   <pre highlight='json' line-highlight="37-54" line-numbers>
     {
-        "id": "d9be4477-e351-45b3-acd9-e1da05e6f633",
-        "specVersion": "2.0.0",
-        "version": 0,
-        "created": "2022-05-22T21:47:32Z",
-        "status": "Active",
-        "companyName": "Super Duper Transport Co.",
-        "companyIds": [ "urn:epc:id:sgln:4063973.00000.8" ],
-        "productDescription": "Logistics emissions related to shipment with ID 1237890",
-        "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:shipment:1237890" ],
-        "productCategoryCpc": "83117",
-        "productNameCompany": "Shipment with ID 1237890",
-        "comment": "",
-        "pcf": {
-          "declaredUnit": "ton kilometer",
-          "unitaryProductAmount": "36.801",
-          "pCfExcludingBiogenic": "3.6801",
-          "fossilGhgEmissions": "3.6801",
-          "fossilCarbonContent": "0.0",
-          "biogenicCarbonContent": "0.0",
-          "characterizationFactors": "AR6",
-          "ipccCharacterizationFactorsSources": ["AR6"],
-          "crossSectoralStandardsUsed": [ "GHG Protocol Product standard" ],
-          "productOrSectorSpecificRules": [],
-          "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
-          "referencePeriodStart": "2021-01-01T00:00:00Z",
-          "referencePeriodEnd": "2022-01-01T00:00:00Z",
-          "secondaryEmissionFactorSources": [ { "name": "GLEC", "version": "3.0" } ],
-          "exemptedEmissionsPercent": 0.0,
-          "exemptedEmissionsDescription": "",
-          "packagingEmissionsIncluded": true,
-          "primaryDataShare": 56.12
-        },
-        "extensions": [
-          {
-            "specVersion": "2.0.0",
-            "dataSchema": "https://api.ileap.sine.dev/openapi.json",
-            "data": {
-                "mass": "87",
-                "shipmentId": "1237890",
-                "tces": [
-                  {
-                    "tceId": "abcdef",
-                    "tocId": "truck-40t-euro5-de",
-                    "shipmentId": "1237890",
-                    "mass": "87",
-                    "distance": {
-                      "actual": "423"
-                    },
-                    "transportActivity": "36.801",
-                    "co2eWTW": "3.6801",
-                    "co2eTTW": "3.2801"
-                }
-              ]
+      "id": "d9be4477-e351-45b3-acd9-e1da05e6f633",
+      "specVersion": "2.0.0",
+      "version": 0,
+      "created": "2022-05-22T21:47:32Z",
+      "status": "Active",
+      "companyName": "Super Duper Transport Co.",
+      "companyIds": [
+          "urn:epc:id:sgln:4063973.00000.8"
+      ],
+      "productDescription": "Logistics emissions related to shipment with ID 1237890",
+      "productIds": [
+          "urn:pathfinder:product:customcode:vendor-assigned:shipment:1237890"
+      ],
+      "productCategoryCpc": "83117",
+      "productNameCompany": "Shipment with ID 1237890",
+      "comment": "",
+      "pcf": {
+        "declaredUnit": "ton kilometer",
+        "unitaryProductAmount": "36.801",
+        "pCfExcludingBiogenic": "3.6801",
+        "fossilGhgEmissions": "3.6801",
+        "fossilCarbonContent": "0",
+        "biogenicCarbonContent": "0",
+        "characterizationFactors": "AR6",
+        "ipccCharacterizationFactorsSources": [
+            "AR6"
+        ],
+        "crossSectoralStandardsUsed": [
+            "GHG Protocol Product standard"
+        ],
+        "productOrSectorSpecificRules": [],
+        "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+        "referencePeriodStart": "2021-01-01T00:00:00Z",
+        "referencePeriodEnd": "2022-01-01T00:00:00Z",
+        "secondaryEmissionFactorSources": [
+            {
+                "name": "Ecoinvent",
+                "version": "3.9.1"
             }
+        ],
+        "exemptedEmissionsPercent": 0,
+        "exemptedEmissionsDescription": "",
+        "packagingEmissionsIncluded": true,
+        "primaryDataShare": 56.12
+      },
+      "extensions": [
+        {
+          "specVersion": "2.0.0",
+          "dataSchema": "https://api.ileap.sine.dev/openapi.json",
+          "documentation": "https://sine-fdn.github.io/ileap-extension/",
+          "data": {
+              "mass": "87",
+              "shipmentId": "1237890",
+              "tces": [
+                  {
+                      "tceId": "abcdef",
+                      "tocId": "truck-40t-euro5-de",
+                      "shipmentId": "1237890",
+                      "mass": "87",
+                      "distance": {
+                          "actual": "423"
+                      },
+                      "transportActivity": "3.6801",
+                      "co2eWTW": "3.6801",
+                      "co2eTTW": "3.2801"
+                  }
+              ]
           }
-        ]
-      }
+        }
+      ]
+    }
   </pre>
 </div>
 
@@ -2100,43 +2118,57 @@ A Product Footprint with a <{TOC}> highlighted:
 <div class=example>
   <pre highlight='json' line-highlight="37-54" line-numbers>
     {
-        "id": "f3c04ec8-b33a-43b1-9fa7-d6a448fd60af",
-        "specVersion": "2.0.0",
-        "version": 0,
-        "created": "2022-05-22T21:47:32Z",
-        "status": "Active",
-        "companyName": "Super Duper Transport Co.",
-        "companyIds": [ "urn:epc:id:sgln:4063973.00000.8" ],
-        "productDescription": "Logistics emissions related to TOC with ID 4561230",
-        "productIds": [ "urn:pathfinder:product:customcode:vendor-assigned:toc:4561230" ],
-        "productCategoryCpc": "83117",
-        "productNameCompany": "TOC with ID 4561230",
-        "comment": "",
-        "pcf": {
-          "declaredUnit": "ton kilometer",
-          "unitaryProductAmount": "1",
-          "pCfExcludingBiogenic": "3.6801",
-          "fossilGhgEmissions": "3.6801",
-          "fossilCarbonContent": "0.0",
-          "biogenicCarbonContent": "0.0",
-          "characterizationFactors": "AR6",
-          "ipccCharacterizationFactorsSources": ["AR6"],
-          "crossSectoralStandardsUsed": [ "GHG Protocol Product standard" ],
-          "productOrSectorSpecificRules": [],
-          "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
-          "referencePeriodStart": "2021-01-01T00:00:00Z",
-          "referencePeriodEnd": "2022-01-01T00:00:00Z",
-          "secondaryEmissionFactorSources": [ { "name": "GLEC", "version": "3.0" } ],
-          "exemptedEmissionsPercent": 0.0,
-          "exemptedEmissionsDescription": "",
-          "packagingEmissionsIncluded": false,
-          "primaryDataShare": 56.12
-        },
-        "extensions": [
-          {
-            "specVersion": "2.0.0",
-            "dataSchema": "https://api.ileap.sine.dev/openapi.json",
-            "data": {
+      "id": "f3c04ec8-b33a-43b1-9fa7-d6a448fd60af",
+      "specVersion": "2.0.0",
+      "version": 0,
+      "created": "2022-05-22T21:47:32Z",
+      "status": "Active",
+      "companyName": "Super Duper Transport Co.",
+      "companyIds": [
+          "urn:epc:id:sgln:4063973.00000.8"
+      ],
+      "productDescription": "Logistics emissions related to TOC with ID 4561230",
+      "productIds": [
+          "urn:pathfinder:product:customcode:vendor-assigned:toc:4561230"
+      ],
+      "productCategoryCpc": "83117",
+      "productNameCompany": "TOC with ID 4561230",
+      "comment": "",
+      "pcf": {
+        "declaredUnit": "ton kilometer",
+        "unitaryProductAmount": "1",
+        "pCfExcludingBiogenic": "3.6801",
+        "fossilGhgEmissions": "3.6801",
+        "fossilCarbonContent": "0",
+        "biogenicCarbonContent": "0",
+        "characterizationFactors": "AR6",
+        "ipccCharacterizationFactorsSources": [
+            "AR6"
+        ],
+        "crossSectoralStandardsUsed": [
+            "GHG Protocol Product standard"
+        ],
+        "productOrSectorSpecificRules": [],
+        "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+        "referencePeriodStart": "2021-01-01T00:00:00Z",
+        "referencePeriodEnd": "2022-01-01T00:00:00Z",
+        "secondaryEmissionFactorSources": [
+            {
+                "name": "Ecoinvent",
+                "version": "3.9.1"
+            }
+        ],
+        "exemptedEmissionsPercent": 0,
+        "exemptedEmissionsDescription": "",
+        "packagingEmissionsIncluded": false,
+        "primaryDataShare": 56.12
+      },
+      "extensions": [
+        {
+          "specVersion": "2.0.0",
+          "dataSchema": "https://api.ileap.sine.dev/openapi.json",
+          "documentation": "https://sine-fdn.github.io/ileap-extension/",
+          "data": {
               "tocId": "4561230",
               "isVerified": true,
               "isAccredited": true,
@@ -2144,17 +2176,19 @@ A Product Footprint with a <{TOC}> highlighted:
               "temperatureControl": "refrigerated",
               "truckLoadingSequence": "FTL",
               "energyCarriers": [
-                "energyCarrier": "Diesel",
-                "co2eIntensityWTW": "3.6801",
-                "co2eIntensityTTW": "3.2801"
+                  {
+                      "energyCarrier": "Diesel",
+                      "co2eIntensityWTW": "3.6801",
+                      "co2eIntensityTTW": "3.2801"
+                  }
               ],
               "co2eIntensityWTW": "3.6801",
               "co2eIntensityTTW": "3.2801",
-              "co2eIntensityThroughput": "tkm",
-            }
+              "co2eIntensityThroughput": "tkm"
           }
-        ]
-      }
+        }
+      ]
+    }
   </pre>
 </div>
 
