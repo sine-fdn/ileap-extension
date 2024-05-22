@@ -577,11 +577,6 @@ Note: A <{TCE}> MUST use either a <{TOC}> or an <{HOC}> (see [[#dt-tce]]). The d
 representing that <{TOC|TOCs}> and <{HOC|HOCs}> can exist without <{TCE|TCEs}> and that <{TCE|TCEs}>
 must identify one (and only one) <{TOC}> or <{HOC}> to be defined.
 
-<figure>
-  <img src="diagrams/data-model.svg" width="70%">
-  <figcaption>Data model entity relation diagram</figcaption>
-</figure>
-
 ## ShipmentFootprint ## {#dt-sf}
 
 <dfn element>ShipmentFootprint</dfn> is a collection of 1
