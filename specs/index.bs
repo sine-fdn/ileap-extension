@@ -2024,7 +2024,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.0 (2024-05-21) ## {version-0.2.0}
+## Version 0.2.0 Consultation Draft (2024-05-21) ## {#version-0.2.0}
 
 Release Consultation Draft
 
