@@ -1150,7 +1150,8 @@ It captures fundamental attributes commonly accessible to service providers, and
 
 It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers.
 
-The data type is unimodal, and shold be used for capturing primary data.
+The data type is unimodal, and should be used for capturing primary data.
+ISSUE: Add a disclaimer that TAD is not meant for capturing transport activity data at the TCE level, but at higher levels of aggregation for the same modality.
 
 
 ### Data Attributes ### {#tad-attributes}
