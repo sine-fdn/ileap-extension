@@ -1236,24 +1236,24 @@ both SHOULD be defined.
         <td><dfn>mode</dfn>
         <td>{{TransportMode}}
         <td>M
-        <td>Mode of transport
+        <td>Mode of transport on a TOC level.
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment on a TOC level. See data type <{PackagingOrTrEqType}> for further information.
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
         <td>Number
         <td>O
-        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
+        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=] on a TCE level.
       <tr>
         <td><dfn>energyCarrier</dfn>
         <td><{EnergyCarrierType}>
         <td>O
         <td>
             The substance used to generate mechanical movement or heat and to generate chemical or
-            physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
+            physical processes as per the [[!GLEC]] Framework, on a TOC level. See data type <{EnergyCarrierType}> for further information.
 
             If <{TAD/energyCarrier}> is not defined, then <{TAD/feedstocks}> MUST be defined. If possible, both SHOULD be defined.
       <tr>
@@ -1261,7 +1261,7 @@ both SHOULD be defined.
         <td><{Feedstock}>[]
         <td>O
         <td>
-            If defined, the non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
+            If defined, the non-empty array of [=Feedstocks=] of the energy carrier on a TOC level. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
 
             If <{TAD/feedstocks}> is not defined, then <{TAD/energyCarrier}> MUST be defined. If possible, both SHOULD be defined.
     </table>
