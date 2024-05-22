@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.0)
+Title: iLEAP Technical Specifications (Version 0.2.0-20240522)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2018,6 +2018,10 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.0-20240522 (2024-05-22) ## {#version-20240522}
+
+- updated the introduction to the [[#data-model]] chapter
 
 ## Version 0.2.0 Consultation Draft (2024-05-21) ## {#version-0.2.0}
 
