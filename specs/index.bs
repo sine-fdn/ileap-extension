@@ -155,7 +155,7 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
 
 : Smart Freight Centre (<dfn>SFC</dfn> )
-:: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organisation.
+:: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organization.
 
 : <dfn>Tool Provider</dfn>
 ::
@@ -595,7 +595,7 @@ A <{ShipmentFootprint}> has the following properties:
         <td><dfn>mass</dfn>
         <td>String
         <td>M
-        <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the [=Transport Service User=], excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser
+        <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the [=Transport Service User=], excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer
       <tr>
         <td><dfn>volume</dfn>
         <td>String
@@ -695,7 +695,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
         <td>M
-        <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser, in accordance with the [[!GLEC]] Framework.
+        <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer, in accordance with the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
