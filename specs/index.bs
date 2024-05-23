@@ -571,12 +571,6 @@ Data Model ([[!PACTDX]]) (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint
 <{TAD|TADs}> can be exchanged through a dedicated endpoint. These should only be used by [=Transport
 Operators=] who cannot yet provide <{ShipmentFootprint|ShipmentFootprints}>, <{TOC|TOCs}>, nor <{HOC|HOCs}>.
 
-The relations between these data types are summarized by the diagram below:
-
-Note: A <{TCE}> MUST use either a <{TOC}> or an <{HOC}> (see [[#dt-tce]]). The dashed line aims at
-representing that <{TOC|TOCs}> and <{HOC|HOCs}> can exist without <{TCE|TCEs}> and that <{TCE|TCEs}>
-must identify one (and only one) <{TOC}> or <{HOC}> to be defined.
-
 ## ShipmentFootprint ## {#dt-sf}
 
 <dfn element>ShipmentFootprint</dfn> is a collection of 1
