@@ -2004,6 +2004,11 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
+## Version 0.2.0-20240523 (2024-05-23) ## {#version-20240523}
+
+- Consolidate American spelling
+- Consolidate terminology in [[#txns]] diagram
+
 ## Version 0.2.0 Consultation Draft (2024-05-21) ## {#version-0.2.0}
 
 Release Consultation Draft
