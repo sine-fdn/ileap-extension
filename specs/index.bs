@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.0)
+Title: iLEAP Technical Specifications (Version 0.2.0-20240522)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -561,6 +561,15 @@ The iLEAP data model of this chapter together with the data transactions ([[#txn
 Additionally, the concept of transport activity data ([[#dt-tad|TAD]]) is added to facilitate reporting in case of missing data or limited emissions calculation capabilities from e.g. [=Transport Operators=].
 
 Please, find more details on emissions calculation and the relantionship between the different concepts in the [[!GLEC]] Framework and [[!ISO14083]]).
+
+The iLEAP Data Model is composed by five main data types: <{ShipmentFootprint}>, <{TCE}>, <{TOC}>,
+<{HOC}>, and <{TAD}>.
+
+<{ShipmentFootprint|ShipmentFootprints}> and <{TOC|TOCs}> can be exchanged independently as extensions to the Pathfinder
+Data Model ([[!PACTDX]]) (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
+
+<{TAD|TADs}> can be exchanged through a dedicated endpoint. These should only be used by [=Transport
+Operators=] who cannot yet provide <{ShipmentFootprint|ShipmentFootprints}>, <{TOC|TOCs}>, nor <{HOC|HOCs}>.
 
 ## ShipmentFootprint ## {#dt-sf}
 
@@ -2006,6 +2015,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 ## Version 0.2.0-20240523 (2024-05-23) ## {#version-20240523}
 
+- updated the introduction to the [[#data-model]] chapter
 - Consolidate American spelling
 - Consolidate terminology in [[#txns]] diagram
 
