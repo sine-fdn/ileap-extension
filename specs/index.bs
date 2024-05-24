@@ -22,7 +22,7 @@ Local Boilerplate: header yes
 
 - Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision.
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring they are structured to facilitate the calculation of Product Carbon Footprints (PCFs)
-- Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms the foundational semantics framework for the [=SFC=] Data Exchange Network project.
+- Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms the foundational semantics framework for the [=SFC=] Exchange Network project.
 - The adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=Transport Chain Element|TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
 
 
@@ -40,7 +40,7 @@ This specifcation does not cover the following topics or aspects as they are cov
 7. Market based approach for electricity emissions accounting.
 8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
 9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is supported, but detailed parameters for modelling are excluded from the current version.
-10. Modes of transport cable car and pipelines. These will be incorporated in future versions of these technical specifications.
+10. Modes of transport cable car and pipelines. These could be considered for future versions of these technical specifications.
 11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
 
 Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
@@ -155,7 +155,7 @@ Advisement: The current technical specifications are undergoing continuous refin
 :: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
 
 : Smart Freight Centre (<dfn>SFC</dfn> )
-:: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organisation.
+:: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organization.
 
 : <dfn>Tool Provider</dfn>
 ::
@@ -604,7 +604,7 @@ A <{ShipmentFootprint}> has the following properties:
         <td><dfn>mass</dfn>
         <td>String
         <td>M
-        <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the [=Transport Service User=], excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser
+        <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the [=Transport Service User=], excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer
       <tr>
         <td><dfn>volume</dfn>
         <td>String
@@ -704,7 +704,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
         <td>M
-        <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organiser, in accordance with the [[!GLEC]] Framework.
+        <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer, in accordance with the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
@@ -2013,9 +2013,11 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.0-20240522 (2024-05-22) ## {#version-20240522}
+## Version 0.2.0-20240523 (2024-05-23) ## {#version-20240523}
 
 - updated the introduction to the [[#data-model]] chapter
+- Consolidate American spelling
+- Consolidate terminology in [[#txns]] diagram
 
 ## Version 0.2.0 Consultation Draft (2024-05-21) ## {#version-0.2.0}
 
