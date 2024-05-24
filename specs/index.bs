@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.0-20240522)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240523)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2013,7 +2013,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.0-20240523 (2024-05-23) ## {#version-20240523}
+## Version 0.2.1-20240523 (2024-05-23) ## {#version-20240523}
 
 - updated the introduction to the [[#data-model]] chapter
 - Consolidate American spelling
