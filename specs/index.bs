@@ -1151,15 +1151,14 @@ The Data Type <{HOC}> has the following properties:
 
 ## Transport Activity Data (<dfn element>TAD</dfn>) ## {#dt-tad}
 
-<dfn>Transport Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
-hub operations activities.
-This data type is meant for service providers ([=Transport Operator=] or [=Transport Service Organizer=]) lacking the capabilities to perform carbon emission calculations.
+The <dfn>Transport Activity Data</dfn> data type contains [=transport activity data=], referring to a single consignment, leg, and mode of transport, or to a single transshipment within a hub. 
 
-It captures fundamental attributes commonly accessible to service providers, and which are needed for the data recipient to make estimations or choose relevant defaults.
+Each TAD CAN contain values for attributes which are categorial to the operations of a fleet or hub (such as load factor or mix of feedstock(s)). In this case, the values CAN be calculated from the actual data of more than one consignment (“representative” or “average data”). 
 
-It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers.
+Example: Instead of exchanging the load factor for a single consignment, the load factor calculated from a multitude of consignments following the principles of TOC calculation can be used. 
 
-The data type is unimodal, and shold be used for capturing primary data.
+The TAD data type is designed for entities ([=Transport Operator=] or [=Transport Service Organizer=]) that lack the capability to perform carbon emission calculations or are contractually obliged to exchange transport activity data with another party (see Business Case 3).  
+It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers where contractually relevant. 
 
 
 ### Data Attributes ### {#tad-attributes}
