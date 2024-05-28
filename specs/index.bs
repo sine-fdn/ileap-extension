@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240523)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240528)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2033,10 +2033,11 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.1-20240527 (2024-05-27) ## {#version-20240527}
+## Version 0.2.1-20240528 (2024-05-28) ## {#version-20240528}
 
 - rewording of chapter [[#business-cases]] and splitting of the business cases into individual subchapters
     - scope of business case 3 [[#business-case-3]] changed towards more clarity on use of TAD data
+- reworded introduction at chapter [[#dt-tad]]
 
 ## Version 0.2.1-20240523 (2024-05-23) ## {#version-20240523}
 
