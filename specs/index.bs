@@ -1162,27 +1162,37 @@ The Data Type <{HOC}> has the following properties:
 
 ## Transport Activity Data (<dfn element>TAD</dfn>) ## {#dt-tad}
 
-<dfn>Transport Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
-hub operations activities.
-This data type is meant for service providers ([=Transport Operator=] or [=Transport Service Organizer=]) lacking the capabilities to perform carbon emission calculations.
+The <dfn>Transport Activity Data </dfn> (<{TAD}>) data type contains activity 
+data, referring to a single consignment, leg, and mode of transport, or to a
+single transshipment within a hub. 
 
-It captures fundamental attributes commonly accessible to service providers, and which are needed for the data recipient to make estimations or choose relevant defaults.
+Each TAD CAN contain values for attributes which are categorial to the
+operations of a fleet or hub (such as load factor or mix of feedstock(s)).
+In this case, the values CAN be calculated from the actual data of more
+than one consignment (“representative” or “average data”). 
 
-It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers.
+<div class=example>
+  Instead of exchanging the load factor for a single assignment, 
+  the load factor can be calculated from a multitude of consignments 
+  following the principles of TOC calculation. 
+</div>
 
-The data type is unimodal, and shold be used for capturing primary data.
+The TAD data type is designed for entities 
+([=Transport Operators=] or [=Transport Service Organizers=]) that lack 
+the capabilities to perform carbon emission calculations 
+(see [[#business-case-3|Business Case 3]]) or are 
+contractually obliged to exchange activity data with another party.
 
+It can also be used by the service providers (Transport Operator or 
+Transport Service Organizer) to provide additional transparency 
+to their business partners where relevant. 
 
 ### Data Attributes ### {#tad-attributes}
 
-Note:
-    The <{TAD}> data type is defined for the exchange of (primary) activity data for
-    which no GHG emission or GHG emission intisities values have been calculated.
+Below table lists the properties defined for the <{TAD}> data type.
 
-Properties of data type <{TAD}>:
-
-Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be defined. If possible,
-both SHOULD be defined.
+When exchanging it through the Action TransportActivityData, it MUST be 
+encoded as a JSON object. See [[#action-tad]] for details.
 
 <figure id="tad-properties-table" dfn-type="element-attr" dfn-for="TAD">
   <table class="data">
@@ -1287,7 +1297,6 @@ both SHOULD be defined.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
-
 
 
 ## Additional Utility Data Types ## {#dt-utility-section}
