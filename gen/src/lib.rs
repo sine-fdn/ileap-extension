@@ -5,13 +5,6 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
-#[serde(rename_all = "camelCase", untagged)]
-pub enum IleapExtension {
-    ShipmentFootprint(ShipmentFootprint),
-    Toc(Toc),
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct ShipmentFootprint {
     pub mass: String,

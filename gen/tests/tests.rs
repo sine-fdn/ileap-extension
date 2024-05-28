@@ -47,10 +47,9 @@ fn test_temperature_control_deser() {
 
 #[test]
 fn test_toc_deser() {
-
     let (json, expected) = (
         r#"{"tocId":"4561230","isVerified":true,"isAccredited":true,"mode":"Road","temperatureControl":"refrigerated","truckLoadingSequence":"FTL","energyCarriers":[{"energyCarrier":"Diesel","co2eIntensityWTW":"3.6801","co2eIntensityTTW":"3.2801"}],"co2eIntensityWTW":"3.6801","co2eIntensityTTW":"3.2801","co2eIntensityThroughput":"tkm"}"#,
-        IleapExtension::Toc(Toc {
+        Toc {
             toc_id: "4561230".to_string(),
             is_verified: true,
             is_accredited: true,
@@ -75,14 +74,14 @@ fn test_toc_deser() {
             empty_distance_factor: None,
             air_shipping_option: None,
             flight_length: None,
-        }),
+        },
     );
 
     let serialized = serde_json::to_string(&expected).unwrap();
     println!("seria: {serialized}");
     println!("input: {json}");
 
-    let toc: IleapExtension = serde_json::from_str(json).unwrap();
+    let toc: Toc = serde_json::from_str(json).unwrap();
     assert_eq!(toc, expected)
 }
 
@@ -90,7 +89,7 @@ fn test_toc_deser() {
 fn test_ship_foot_deser() {
     let (json, expected) = (
         r#"{"mass":"87","shipmentId":"1237890","tces":[{"tceId":"abcdef","tocId":"truck-40t-euro5-de","shipmentId":"1237890","mass":"87","distance":{"actual":"423"},"transportActivity":"36.801","co2eWTW":"36.801","co2eTTW":"3.2801"}]}"#,
-        IleapExtension::ShipmentFootprint(ShipmentFootprint {
+        ShipmentFootprint {
             mass: "87".to_string(),
             volume: None,
             number_of_items: None,
@@ -121,9 +120,9 @@ fn test_ship_foot_deser() {
                 ch4_ttw: None,
                 pm_ttw: None,
             }]),
-        }),
+        },
     );
 
-    let ship_foot: IleapExtension = serde_json::from_str(json).unwrap();
+    let ship_foot: ShipmentFootprint = serde_json::from_str(json).unwrap();
     assert_eq!(ship_foot, expected)
 }
