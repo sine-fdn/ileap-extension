@@ -1,0 +1,70 @@
+{
+  "id": "d9be4477-e351-45b3-acd9-e1da05e6f633",
+  "specVersion": "2.0.0",
+  "version": 0,
+  "created": "2022-05-22T21:47:32Z",
+  "status": "Active",
+  "companyName": "Super Duper Transport Co.",
+  "companyIds": [
+    "urn:epc:id:sgln:4063973.00000.8"
+  ],
+  "productDescription": "Logistics emissions related to shipment with ID 1237890",
+  "productIds": [
+    "urn:pathfinder:product:customcode:vendor-assigned:shipment:1237890"
+  ],
+  "productCategoryCpc": "83117",
+  "productNameCompany": "Shipment with ID 1237890",
+  "comment": "",
+  "pcf": {
+    "declaredUnit": "ton kilometer",
+    "unitaryProductAmount": "36.801",
+    "pCfExcludingBiogenic": "3.6801",
+    "fossilGhgEmissions": "3.6801",
+    "fossilCarbonContent": "0",
+    "biogenicCarbonContent": "0",
+    "characterizationFactors": "AR6",
+    "ipccCharacterizationFactorsSources": [
+      "AR6"
+    ],
+    "crossSectoralStandardsUsed": [
+      "GHG Protocol Product standard"
+    ],
+    "productOrSectorSpecificRules": [],
+    "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+    "referencePeriodStart": "2021-01-01T00:00:00Z",
+    "referencePeriodEnd": "2022-01-01T00:00:00Z",
+    "secondaryEmissionFactorSources": [
+      {
+        "name": "Ecoinvent",
+        "version": "3.9.1"
+      }
+    ],
+    "exemptedEmissionsPercent": 0.0,
+    "exemptedEmissionsDescription": "",
+    "packagingEmissionsIncluded": true,
+    "primaryDataShare": 56.12
+  },
+  "extensions": [
+    {
+      "specVersion": "2.0.0",
+      "dataSchema": "https://api.ileap.sine.dev/shipment-footprint.json",
+      "documentation": "https://sine-fdn.github.io/ileap-extension/",
+      "mass": "87",
+      "shipmentId": "1237890",
+      "tces": [
+        {
+          "tceId": "abcdef",
+          "tocId": "truck-40t-euro5-de",
+          "shipmentId": "1237890",
+          "mass": "87",
+          "distance": {
+            "actual": "423"
+          },
+          "transportActivity": "3.6801",
+          "co2eWTW": "3.6801",
+          "co2eTTW": "3.2801"
+        }
+      ]
+    }
+  ]
+}

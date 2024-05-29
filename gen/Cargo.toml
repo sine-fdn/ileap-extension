@@ -10,7 +10,10 @@ pact-data-model = { git = "ssh://git@github.com/sine-fdn/pact-data-model.git" }
 chrono = { version = "0.4", features = ["serde"] }
 schemars = { version = "0.8", features = ["chrono"] }
 serde = { version = "1.0.203", features = ["derive"]}
-serde_json = "1.0.96"
+serde_json = {version = "1.0.96", features = ["preserve_order"]}
 rust_decimal = "1.35.0"
 rust_decimal_macros = "^1.20"
 regex = "1.10.4"
+reqwest = { version = "0.12.4", features = ["json"] }
+url = "2.5.0"
+tokio = {version = "1.37.0", features = ["rt", "macros"]}
