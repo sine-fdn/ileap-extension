@@ -1994,7 +1994,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>`pCfExcludingBiogenic`
         <td>
               MUST be set to the logistics emissions intensity of the TOC, excluding biogenic emissions,
-              defined in <{TOC/co2eIntensityWTW }>.
+              defined in <{TOC/co2eIntensityWTW}>.
 
       <tr>
         <td>CarbonFootprint
