@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240523)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240528)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -170,42 +170,53 @@ Note: Non-normative section
 This specification shall serve the general need of businesses for logistics GHG emissions
 accounting and reporting, conforming with the [[!GLEC]] Framework and [[!ISO14083]].
 
-Given the nature of the logistics industry, and in order to reduce costs overall,
-logistics emissions transparency is made possible if all the parties involved
-are able to exchange emissions data in an interoperable manner.
+Given the nature of the logistics industry, and in order to reduce costs overall, this specification aims at
+enabling interoperability in the exchange of emissions data between different parties in the logistics value chain.
 
-To achieve this objective, the specification is guided by a set of business cases, which provide the
-framework for delineating subsequent data transactions ([[#txns]]).
+To achieve this objective, the specification is guided by a set of business cases which provide the
+framework for delineating subsequent [[#txns|data transactions]] and the [[#data-model|iLEAP data model]].
 
-The following business cases shall be supported by this specification:
 
-: <dfn>Business Case #1</dfn>: Quantify Avoided Emissions
-::
-    A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or ([=Transport Operator=])) to share GHG emissions at the TCE level, to enable accurate emissions accounting based on primary data.
-    This allows the Transport Service User to compare the logistics emissions reduction resulting of the introduction of specific operational changes with the emissions without the intervention.
-    This is enabled through [[#txn1]].
+## Quantification of (Avoided) Emissions ## {#business-case-1}
 
-: Business Case #2: Procurement of carbon-efficient services
-::
-    A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share GHG emissions at the TOC or HOC level.
-    By incorporating emission intensities (HOCs or TOCs) in procurement processes, the Transport Service Organizer is enabled to choose services that offer carbon-efficiency advantages.
-    This is enabled through [[#txn2]].
+A [=Transport Service User=] requests its [=Transport Service Organizers=] or [=Transport Operators=] to provide it with the GHG emissions of [=Shipments=]. 
+The transport service user is particularly interested in having access to accurate emission and emission intensity values based on the measurement of actual data ("primary data").
 
-: Business Case #3: Simplified Emissions Calculation from Transport Activity Data
-::
-    A [=Transport Service Organizer=] recognizes that a [=Transport Operator=] is not yet capable of calculation GHG emissions at the TOC or HOC level.
-    In such a case, the Transport Service Organizer can request the Transport Operator to make [=Transport Activity Data=] available instead, which
-    has a lower initial complexity in terms of data collection and calculation.
+Accurate logistics emissions values also enable the Transport Service User to compare logistics emissions and the resulting reductions from operational measures.
 
-    Upon receiving Transport Activity Data, a Transport Service Organizer can then calculate the emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]] and make this available to the [=Transport Service User=].
+Data Transactions #1 ([[#txn1]]) and #2 ([[#txn2]]) enable this business case.
 
-    Exchange of Transport Activity Data is enabled through [[#txn3]] and the related <{TAD}> Data type (see [[#dt-tad]] and [[#action-tad]] for further details).
+
+## Procurement of Carbon-Efficient Logistics Services ## {#business-case-2}
+
+A [=Transport Service Organizer=] requests their [=Transport Operators=] to share GHG emission intensity information at the [=TOC=] or [=HOC=] level.
+Similarly, a [=Transport Service User=] requests intensity information from their [=Transport Service Organizers=] and [=Transport Operators=].
+
+By incorporating emission intensities in procurement processes, the parties are enabled to select services by carbon-efficiency advantages. 
+
+Data Transaction #2 [[#txn2]] enable this business case.
+
+
+## Simplified Emissions Calculation from Transport Activity Data ## {#business-case-3}
+
+A [=Transport Operator=], and possibly also [=Transport Service Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]].
+
+In such a case, the Party may choose to collect [=Transport Activity Data=], that is information related to a single shipment including mass or energy carriers used.
+
+After collecting Transport Activity Data, the Party can then contract a third party, such as a [=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
+
+This business case is particularly relevant for SMEs to reduce the barrier to entry for logistics emissions reporting.
+
+The way this business case is realized through iLEAP, generally simplifies data collection efforts for the parties involved. 
+For instance, each party needs to collect the activity data only once. Afterwards, the Party can make the activity data available to multiple parties (see [[#txn3]]) or for different purposes, including business cases beyond emissions calculations.
+
+Data Transaction #3 ([[#txn3]]) enables this business case.
 
 
 ## Potential additional Business Cases ## {#txns-appendix}
 
 
-: Business Case #a1: Disclose Logistics Emissions as Part of PCFs
+: Disclosure of Logistics Emissions as part of PCFs
 ::
     A [=Transport Service User=] is requested to disclose logistics emissions as part of a [=PCF=].
     A Transport Service User can disclose this data as a data model extension (see [[#pcf-mapping-sf]])
@@ -215,10 +226,10 @@ The following business cases shall be supported by this specification:
     Data Model ([[#data-model]]) . See the Pathfinder [[!DATA-MODEL-EXTENSIONS]] specification.
 
 
-: Business Case #a2: Forecasting
+: Forecasting
 :: A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or [=Transport Operator=]) to share GHG emissions at the TOC or HOC level. This enables the Transport Service User to forecast emissions related to specific activities or services, before these take place.
 
-: Business Case #a3: Book & Claim
+: Integration of Book & Claim
 :: A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share with them emissions attributes according to a book & claim scheme.
 
 Note: This business case is currently out of scope. It might be supported in the future, as book & claim methodologies and related variables are considered in scope of these technical specifications.
@@ -1151,27 +1162,37 @@ The Data Type <{HOC}> has the following properties:
 
 ## Transport Activity Data (<dfn element>TAD</dfn>) ## {#dt-tad}
 
-<dfn>Transport Activity Data</dfn> contains [=transport activity data=]-level data relating to transport or
-hub operations activities.
-This data type is meant for service providers ([=Transport Operator=] or [=Transport Service Organizer=]) lacking the capabilities to perform carbon emission calculations.
+The <dfn>Transport Activity Data </dfn> (<{TAD}>) data type contains activity 
+data, referring to a single consignment, leg, and mode of transport, or to a
+single transshipment within a hub. 
 
-It captures fundamental attributes commonly accessible to service providers, and which are needed for the data recipient to make estimations or choose relevant defaults.
+Each TAD CAN contain values for attributes which are categorial to the
+operations of a fleet or hub (such as load factor or mix of feedstock(s)).
+In this case, the values CAN be calculated from the actual data of more
+than one consignment (“representative” or “average data”). 
 
-It can also be used by the service providers (Transport Operator or Transport Service Organizer) to provide additional transparency to their customers.
+<div class=example>
+  Instead of exchanging the load factor for a single assignment, 
+  the load factor can be calculated from a multitude of consignments 
+  following the principles of TOC calculation. 
+</div>
 
-The data type is unimodal, and shold be used for capturing primary data.
+The TAD data type is designed for entities 
+([=Transport Operators=] or [=Transport Service Organizers=]) that lack 
+the capabilities to perform carbon emission calculations 
+(see [[#business-case-3|Business Case 3]]) or are 
+contractually obliged to exchange activity data with another party.
 
+It can also be used by the service providers (Transport Operator or 
+Transport Service Organizer) to provide additional transparency 
+to their business partners where relevant. 
 
 ### Data Attributes ### {#tad-attributes}
 
-Note:
-    The <{TAD}> data type is defined for the exchange of (primary) activity data for
-    which no GHG emission or GHG emission intisities values have been calculated.
+Below table lists the properties defined for the <{TAD}> data type.
 
-Properties of data type <{TAD}>:
-
-Note: At least one of the properties `energyCarrier` or `feedstocks` MUST be defined. If possible,
-both SHOULD be defined.
+When exchanging it through the Action TransportActivityData, it MUST be 
+encoded as a JSON object. See [[#action-tad]] for details.
 
 <figure id="tad-properties-table" dfn-type="element-attr" dfn-for="TAD">
   <table class="data">
@@ -1276,7 +1297,6 @@ both SHOULD be defined.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
-
 
 
 ## Additional Utility Data Types ## {#dt-utility-section}
@@ -2012,6 +2032,12 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20240528 (2024-05-28) ## {#version-20240528}
+
+- rewording of chapter [[#business-cases]] and splitting of the business cases into individual subchapters
+    - scope of business case 3 [[#business-case-3]] changed towards more clarity on use of TAD data
+- reworded introduction at chapter [[#dt-tad]]
 
 ## Version 0.2.1-20240523 (2024-05-23) ## {#version-20240523}
 
