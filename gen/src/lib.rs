@@ -156,8 +156,7 @@ pub struct GlecDataQualityIndex(pub u8);
 /// Data Type "Transport Activity Data" of the iLEAP Technical Specifications
 pub struct Tad {
     pub activity_id: ActivityId,        // Unique
-    pub shipment_id: ShipmentId,        // Unique
-    pub consignment_id: ConsignementId, // Unique
+    pub consignment_id: Vec<ConsignementId>, // Unique
     pub distance: GlecDistance,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mass: Option<WrappedDecimal>,
