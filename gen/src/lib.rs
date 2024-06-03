@@ -23,7 +23,7 @@ pub struct ShipmentFootprint {
 pub struct NonEmptyVec<T>(pub Vec<T>);
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
-#[serde(rename_all = "camelCase")]
+#[serde(rename_all = "camelCase", rename = "TCE")]
 pub struct Tce {
     pub tce_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -155,8 +155,8 @@ pub struct GlecDataQualityIndex(pub u8);
 #[serde(rename_all = "camelCase", rename = "TAD")]
 /// Data Type "Transport Activity Data" of the iLEAP Technical Specifications
 pub struct Tad {
-    pub activity_id: ActivityId,        // Unique
-    pub consignment_id: Vec<ConsignementId>, // Unique
+    pub activity_id: ActivityId,              // Unique
+    pub consignment_ids: Vec<ConsignementId>, // Unique
     pub distance: GlecDistance,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mass: Option<WrappedDecimal>,
