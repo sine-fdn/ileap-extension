@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240529)
+Title: iLEAP Technical Specifications (Version 0.2.0)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2033,30 +2033,24 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.1-20240529 (2024-05-29) ## {#version-20240529}
+## Version 0.2.0 Release (2024-06-03) ## {#version-20240603}
+
+Stable Release including the following changes:
 
 - reorganized and reworded chapter [[#business-cases]]
 - updated introduction to the [[#dt-tad]] chapter
 - replaced property `consignmentId` in <{TAD}> by an array of strings <{TAD/consignmentIds}>
     achieving coherence with introductory text
-
-## Version 0.2.1-20240528 (2024-05-28) ## {#version-20240528}
-
 - rewording of chapter [[#business-cases]] and splitting of the business cases into individual subchapters
     - scope of business case 3 [[#business-case-3]] changed towards more clarity on use of TAD data
 - reworded introduction at chapter [[#dt-tad]]
-
-## Version 0.2.1-20240523 (2024-05-23) ## {#version-20240523}
-
 - updated the introduction to the [[#data-model]] chapter
 - Consolidate American spelling
 - Consolidate terminology in [[#txns]] diagram
 
-## Version 0.2.0 Consultation Draft (2024-05-21) ## {#version-0.2.0}
+## Version 0.2.0 Draft (2024-05-21) ## {#version-20240501}
 
 Release Consultation Draft
-
-## Version 0.2.0-20240521 (2024-05-21) ## {#version-20240521}
 
 - fixed typos and incorrect `productId` in examples
 - `ServiceFootprint` renamed to `ShipmentFootprint` throughout this document
