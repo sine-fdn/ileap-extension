@@ -9,6 +9,7 @@ fn main() -> Result<(), Error> {
     generate_schema::<ShipmentFootprint>()?;
     generate_schema::<Toc>()?;
     generate_schema::<Tad>()?;
+    generate_schema::<Hoc>()?;
 
     Ok(())
 }
