@@ -1,6 +1,6 @@
 RELEASE_DIR:=out
 
-build: specs/index.html
+build: specs/index.html specs/computed-metadata.include
 	mkdir -p ${RELEASE_DIR}
 	cp -r $< specs/diagrams ${RELEASE_DIR}/
 	cp -r TR ${RELEASE_DIR}/
