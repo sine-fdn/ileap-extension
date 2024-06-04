@@ -21,7 +21,7 @@
       "type": "string"
     },
     "tces": {
-      "$ref": "#/definitions/NonEmptyVec_for_Tce"
+      "$ref": "#/definitions/NonEmptyVec_for_TCE"
     },
     "typeOfItems": {
       "type": [
@@ -249,13 +249,13 @@
       "type": "string",
       "minLength": 1
     },
-    "NonEmptyVec_for_Tce": {
+    "NonEmptyVec_for_TCE": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Tce"
+        "$ref": "#/definitions/TCE"
       }
     },
-    "Tce": {
+    "TCE": {
       "type": "object",
       "required": [
         "co2eTTW",
