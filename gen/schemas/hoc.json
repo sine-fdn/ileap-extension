@@ -29,10 +29,7 @@
       ]
     },
     "energyCarriers": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/EnergyCarrier"
-      }
+      "$ref": "#/definitions/NonEmptyVec_for_EnergyCarrier"
     },
     "hocId": {
       "type": "string"
@@ -345,6 +342,12 @@
     "NonEmptyString": {
       "type": "string",
       "minLength": 1
+    },
+    "NonEmptyVec_for_EnergyCarrier": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/EnergyCarrier"
+      }
     },
     "PackagingOrTrEqType": {
       "type": "string",

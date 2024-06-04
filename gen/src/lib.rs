@@ -172,7 +172,7 @@ pub struct Hoc {
     pub packaging_or_tr_eq_type: Option<PackagingOrTrEqType>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub packaging_or_tr_eq_amount: Option<usize>,
-    pub energy_carriers: Vec<EnergyCarrier>,
+    pub energy_carriers: NonEmptyVec<EnergyCarrier>,
     #[serde(rename = "co2eIntensityWTW")]
     pub co2e_intensity_wtw: WrappedDecimal,
     #[serde(rename = "co2eIntensityTTW")]
