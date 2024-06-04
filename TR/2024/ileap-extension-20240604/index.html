@@ -2175,8 +2175,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 }
 </style>
   <meta content="Bikeshed version d765c696b, updated Fri Mar 8 15:58:52 2024 -0800" name="generator">
-  <link href="https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/" rel="canonical">
-  <meta content="faa988957e9b8981fe9e6ac9e54d3ea6b8a691cf" name="revision">
+  <link href="https://sine-fdn.github.io/TR/2024ileap-extension-20240604/" rel="canonical">
+  <meta content="1af8a84c4c563f0e58c613de447e17312b89c45d" name="revision">
   <meta content="dark light" name="color-scheme">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
@@ -2941,14 +2941,14 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">iLEAP Technical Specifications (Version 0.2.0)</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Release</span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Release, 4 June 2024</span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://sine-fdn.github.io/ileap-extension/">https://sine-fdn.github.io/ileap-extension/</a>
-     <dt>Latest published version:
-     <dd><a href="https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/">https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/</a>
-     <dt>Feedback:
+     <dd><a class="u-url" href="https://sine-fdn.github.io/TR/2024ileap-extension-20240604/">https://sine-fdn.github.io/TR/2024ileap-extension-20240604/</a>
+     <dt>Previous Versions:
+     <dd><a href="https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/" rel="prev">https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/</a>
+     <dt>Issue Tracking:
      <dd><a href="https://github.com/sine-fdn/ileap-extension/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
@@ -3074,7 +3074,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <li>
      <a href="#changelog"><span class="secno"></span> <span class="content">Appendix A: Changelog</span></a>
      <ol class="toc">
-      <li><a href="#version-20240603"><span class="secno"></span> <span class="content">Version 0.2.0 Release (2024-06-03)</span></a>
+      <li><a href="#version-20240604"><span class="secno"></span> <span class="content">Version 0.2.0 Release (2024-06-04)</span></a>
       <li><a href="#version-20240501"><span class="secno"></span> <span class="content">Version 0.2.0 Draft (2024-05-21)</span></a>
       <li><a href="#version-20240514"><span class="secno"></span> <span class="content">Version 0.2.0-20240514 (2024-05-14)</span></a>
       <li><a href="#version-20240513"><span class="secno"></span> <span class="content">Version 0.2.0-20240513 (2024-05-13)</span></a>
@@ -3295,7 +3295,7 @@ Data Model (<a href="#data-model">§ 6 Data Model</a>) . See the Pathfinder <a
 Data Exchange Protocol (<a href="#pcf-mapping">§ 7.2 Pathfinder Integration</a>) to enable interoperability between <a data-link-type="dfn" href="#host-system" id="ref-for-host-system">host systems</a>.</p>
    <p>The following diagram shows how the three data transactions (defined below) are related:</p>
    <figure id="figure-data-transactions">
-     <img src="diagrams/transactions.png" width="30%"> 
+     <img src="diagrams/transactions.png" width="30%">
     <figcaption>Transactions diagram</figcaption>
    </figure>
    <p class="note" role="note"><span class="marker">Note:</span> A <a data-link-type="dfn" href="#tool-provider" id="ref-for-tool-provider①">Tool Provider</a> can assume various roles on behalf of the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user④">Transport Service User</a>, <a data-link-type="dfn" href="#transport-service-organizer" id="ref-for-transport-service-organizer⑧">Transport Service Organizer</a> or <a data-link-type="dfn" href="#transport-operator" id="ref-for-transport-operator⑦">Transport Operator</a>, as outlined in the data transactions below. They can serve as mediators in activities involving data collection, calculation, and reporting.</p>
@@ -3415,7 +3415,7 @@ by calculating the logistics emissions for this shipment by following the <a dat
         the shipment of interest (not shown below).</p>
    <p>The highlighted lines show the data exchanged according to the <code><a data-link-type="element" href="#elementdef-shipmentfootprint" id="ref-for-elementdef-shipmentfootprint①">ShipmentFootprint</a></code> data model.</p>
    <div class="example" id="example-feb25438">
-    <a class="self-link" href="#example-feb25438"></a> Example HTTP Request (cURL) to collect TCE Data from Transport Operator A (please note that an actual API call would require authentication): 
+    <a class="self-link" href="#example-feb25438"></a> Example HTTP Request (cURL) to collect TCE Data from Transport Operator A (please note that an actual API call would require authentication):
 <pre class="highlight">curl -X <c- t>'GET'</c-> <c- se>\</c->
 <c- t>'https://api.transport-operator-a.com/2/footprints'</c->
 </pre>
@@ -3428,7 +3428,7 @@ by calculating the logistics emissions for this shipment by following the <a dat
         By filtering, e.g. by the shipment id, <code>Z</code> can retrieve the <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce①⑤">TCEs</a></code> for the shipment of interest (not shown below).</p>
    <p>The highlighted lines show 2 TCEs which <code>Z</code> has collected and calculated for <code>S</code>.</p>
    <div class="example" id="example-d17af3fb">
-    <a class="self-link" href="#example-d17af3fb"></a> Example HTTP Request (cURL) to collect TCE Data (please note that an actual API call would require authentication): 
+    <a class="self-link" href="#example-d17af3fb"></a> Example HTTP Request (cURL) to collect TCE Data (please note that an actual API call would require authentication):
 <pre class="highlight">curl -X <c- t>'GET'</c-> <c- se>\</c->
 <c- t>'https://api.transport-organizer.com/2/footprints'</c->
 </pre>
@@ -3464,41 +3464,41 @@ OR calculate <code><a data-link-type="element" href="#elementdef-tce" id="ref-fo
     <table class="data">
      <thead>
       <tr>
-       <th>Property 
-       <th>Type 
-       <th>Req 
-       <th>Specification 
+       <th>Property
+       <th>Type
+       <th>Req
+       <th>Specification
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-mass"><code>mass</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>The mass of the good (SI Unit <code>kilograms</code>) and the packaging provided for transport by the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user①③">Transport Service User</a>, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer 
+       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-mass"><code>mass</code></dfn>
+       <td>String
+       <td>M
+       <td>The mass of the good (SI Unit <code>kilograms</code>) and the packaging provided for transport by the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user①③">Transport Service User</a>, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-volume"><code>volume</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>The volume of the freight (SI Unit <code>cubic metre (CBM)</code>) and any packaging provided by the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user①④">Transport Service User</a>. 
+       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-volume"><code>volume</code></dfn>
+       <td>String
+       <td>O
+       <td>The volume of the freight (SI Unit <code>cubic metre (CBM)</code>) and any packaging provided by the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user①④">Transport Service User</a>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-numberofitems"><code>numberOfItems</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>The number of units the shipment, including the goods transported and any packaging provided by the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user①⑤">Transport Service User</a>, is composed of. 
+       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-numberofitems"><code>numberOfItems</code></dfn>
+       <td>String
+       <td>O
+       <td>The number of units the shipment, including the goods transported and any packaging provided by the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user①⑤">Transport Service User</a>, is composed of.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-typeofitems"><code>typeOfItems</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>The type of units the shipment, including the goods transported and any packaging provided by the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user①⑥">Transport Service User</a>, is composed of. For example, boxes, pallets, bottles, etc. 
+       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-typeofitems"><code>typeOfItems</code></dfn>
+       <td>String
+       <td>O
+       <td>The type of units the shipment, including the goods transported and any packaging provided by the <a data-link-type="dfn" href="#transport-service-user" id="ref-for-transport-service-user①⑥">Transport Service User</a>, is composed of. For example, boxes, pallets, bottles, etc.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-shipmentid"><code>shipmentId</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>The <a data-link-type="dfn" href="#shipment-id" id="ref-for-shipment-id②">shipment id</a> of the shipment related to this <code><a data-link-type="element" href="#elementdef-shipmentfootprint" id="ref-for-elementdef-shipmentfootprint⑨">ShipmentFootprint</a></code> 
+       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-shipmentid"><code>shipmentId</code></dfn>
+       <td>String
+       <td>M
+       <td>The <a data-link-type="dfn" href="#shipment-id" id="ref-for-shipment-id②">shipment id</a> of the shipment related to this <code><a data-link-type="element" href="#elementdef-shipmentfootprint" id="ref-for-elementdef-shipmentfootprint⑨">ShipmentFootprint</a></code>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-tces"><code>tces</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②②">TCE</a></code>[] 
-       <td>M 
-       <td>The non-empty array of <a data-link-type="dfn" href="#tc" id="ref-for-tc⑥">TCEs</a> relating to this shipment. 
+       <td><dfn class="dfn-paneled" data-dfn-for="ShipmentFootprint" data-dfn-type="element-attr" data-export id="element-attrdef-shipmentfootprint-tces"><code>tces</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②②">TCE</a></code>[]
+       <td>M
+       <td>The non-empty array of <a data-link-type="dfn" href="#tc" id="ref-for-tc⑥">TCEs</a> relating to this shipment.
     </table>
     <figcaption>ShipmentFootprint properties</figcaption>
    </figure>
@@ -3516,106 +3516,106 @@ OR calculate <code><a data-link-type="element" href="#elementdef-tce" id="ref-fo
     <table class="data">
      <thead>
       <tr>
-       <th>Property 
-       <th>Type 
-       <th>Req 
-       <th>Specification 
+       <th>Property
+       <th>Type
+       <th>Req
+       <th>Specification
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-tceid"><code>tceId</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>The id of the <a data-link-type="dfn" href="#transport-chain-element" id="ref-for-transport-chain-element⑥">Transport Chain Element</a> 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-tceid"><code>tceId</code></dfn>
+       <td>String
+       <td>M
+       <td>The id of the <a data-link-type="dfn" href="#transport-chain-element" id="ref-for-transport-chain-element⑥">Transport Chain Element</a>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-tocid"><code>tocId</code></dfn> 
-       <td>String 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-tocid"><code>tocId</code></dfn>
+       <td>String
        <td>
        <td>
-         If defined, the id of the <a data-link-type="dfn" href="#toc①" id="ref-for-toc①⑥">TOC</a> used for the calculation of this <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑤">TCE</a></code>. 
+         If defined, the id of the <a data-link-type="dfn" href="#toc①" id="ref-for-toc①⑥">TOC</a> used for the calculation of this <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑤">TCE</a></code>.
         <p>Either <code><a data-link-type="element-sub" href="#element-attrdef-tce-tocid" id="ref-for-element-attrdef-tce-tocid">tocId</a></code> or <code><a data-link-type="element-sub" href="#element-attrdef-tce-hocid" id="ref-for-element-attrdef-tce-hocid">hocId</a></code> MUST be defined.</p>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-hocid"><code>hocId</code></dfn> 
-       <td>String 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-hocid"><code>hocId</code></dfn>
+       <td>String
        <td>
        <td>
-         If defined, the id of the <a data-link-type="dfn" href="#hoc" id="ref-for-hoc③">HOC</a> used for the calculation of this <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑥">TCE</a></code>. 
+         If defined, the id of the <a data-link-type="dfn" href="#hoc" id="ref-for-hoc③">HOC</a> used for the calculation of this <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑥">TCE</a></code>.
         <p>Either <code><a data-link-type="element-sub" href="#element-attrdef-tce-tocid" id="ref-for-element-attrdef-tce-tocid①">tocId</a></code> or <code><a data-link-type="element-sub" href="#element-attrdef-tce-hocid" id="ref-for-element-attrdef-tce-hocid①">hocId</a></code> MUST be defined.</p>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-shipmentid"><code>shipmentId</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>The <a data-link-type="dfn" href="#shipment-id" id="ref-for-shipment-id③">shipment id</a> of the shipment related to this <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑦">TCE</a></code> 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-shipmentid"><code>shipmentId</code></dfn>
+       <td>String
+       <td>M
+       <td>The <a data-link-type="dfn" href="#shipment-id" id="ref-for-shipment-id③">shipment id</a> of the shipment related to this <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑦">TCE</a></code>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-consignmentid"><code>consignmentId</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>The <a data-link-type="dfn" href="#consignment-id" id="ref-for-consignment-id③">consignment id</a> of the consignment related to the shipment related to this <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑧">TCE</a></code> 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-consignmentid"><code>consignmentId</code></dfn>
+       <td>String
+       <td>O
+       <td>The <a data-link-type="dfn" href="#consignment-id" id="ref-for-consignment-id③">consignment id</a> of the consignment related to the shipment related to this <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑧">TCE</a></code>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-mass"><code>mass</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal">Decimal</a> 
-       <td>String 
-       <td>M 
-       <td>The freight mass (SI derived Unit <code>kilograms</code>) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer, in accordance with the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-mass"><code>mass</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal">Decimal</a>
+       <td>String
+       <td>M
+       <td>The freight mass (SI derived Unit <code>kilograms</code>) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer, in accordance with the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-packagingortreqtype"><code>packagingOrTrEqType</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-packagingortreqtype" id="ref-for-elementdef-packagingortreqtype">PackagingOrTrEqType</a></code> 
-       <td>O 
-       <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <code><a data-link-type="element" href="#elementdef-packagingortreqtype" id="ref-for-elementdef-packagingortreqtype①">PackagingOrTrEqType</a></code> for further information. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-packagingortreqtype"><code>packagingOrTrEqType</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-packagingortreqtype" id="ref-for-elementdef-packagingortreqtype">PackagingOrTrEqType</a></code>
+       <td>O
+       <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <code><a data-link-type="element" href="#elementdef-packagingortreqtype" id="ref-for-elementdef-packagingortreqtype①">PackagingOrTrEqType</a></code> for further information.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-packagingortreqamount"><code>packagingOrTrEqAmount</code></dfn> 
-       <td>Number 
-       <td>O 
-       <td>Number of packaging or transport equipment units utilized to transport the related consignment by the <a data-link-type="dfn" href="#transport-operator" id="ref-for-transport-operator②④">Transport Operator</a> or <a data-link-type="dfn" href="#transport-service-organizer" id="ref-for-transport-service-organizer②③">Transport Service Organizer</a>. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-packagingortreqamount"><code>packagingOrTrEqAmount</code></dfn>
+       <td>Number
+       <td>O
+       <td>Number of packaging or transport equipment units utilized to transport the related consignment by the <a data-link-type="dfn" href="#transport-operator" id="ref-for-transport-operator②④">Transport Operator</a> or <a data-link-type="dfn" href="#transport-service-organizer" id="ref-for-transport-service-organizer②③">Transport Service Organizer</a>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-distance"><code>distance</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-glecdistance" id="ref-for-elementdef-glecdistance">GLECDistance</a></code> 
-       <td>M 
-       <td>The <a data-link-type="dfn" href="#distance" id="ref-for-distance">distance</a> between the origin and the destination of the activity related to the TCE 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-distance"><code>distance</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-glecdistance" id="ref-for-elementdef-glecdistance">GLECDistance</a></code>
+       <td>M
+       <td>The <a data-link-type="dfn" href="#distance" id="ref-for-distance">distance</a> between the origin and the destination of the activity related to the TCE
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-origin"><code>origin</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location">Location</a></code> 
-       <td>O 
-       <td>The origin of the activity related to the TCE 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-origin"><code>origin</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location">Location</a></code>
+       <td>O
+       <td>The origin of the activity related to the TCE
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-destination"><code>destination</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location①">Location</a></code> 
-       <td>O 
-       <td>The destination of the activity related to the TCE 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-destination"><code>destination</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location①">Location</a></code>
+       <td>O
+       <td>The destination of the activity related to the TCE
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-transportactivity"><code>transportActivity</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①">Decimal</a> 
-       <td>String 
-       <td>M 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-transportactivity"><code>transportActivity</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①">Decimal</a>
+       <td>String
+       <td>M
        <td>
-         The <a data-link-type="dfn" href="#transport-activity" id="ref-for-transport-activity">transport activity</a> of the TCE (SI derived Unit <code>ton kilometers</code>) 
+         The <a data-link-type="dfn" href="#transport-activity" id="ref-for-transport-activity">transport activity</a> of the TCE (SI derived Unit <code>ton kilometers</code>)
         <div class="example" id="example-284642a6"> If the transport <a data-link-type="dfn" href="#distance" id="ref-for-distance①">distance</a> is <code>700</code> <code>kilometers</code> and the mass is <code>230</code> <code>kilograms</code>,
                 then the value of this property MUST be <code>161000</code> (<code>700</code> <code>kilometers</code> * <code>230</code> <code>kilograms</code>). </div>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-departureat"><code>departureAt</code></dfn> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-departureat"><code>departureAt</code></dfn>
+       <td>String
+       <td>O
        <td>
-         Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC. 
+         Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
         <p class="note" role="note"><span class="marker">Note:</span> the original data model defined this as the "date of loading"</p>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-arrivalat"><code>arrivalAt</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-arrivalat"><code>arrivalAt</code></dfn>
+       <td>String
+       <td>O
+       <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-flightno"><code>flightNo</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Identification no of the IATA flight number. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-flightno"><code>flightNo</code></dfn>
+       <td>String
+       <td>O
+       <td>Identification no of the IATA flight number.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-voyageno"><code>voyageNo</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Identification no of a specific vessel conducting a specific route. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-voyageno"><code>voyageNo</code></dfn>
+       <td>String
+       <td>O
+       <td>Identification no of a specific vessel conducting a specific route.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-incoterms"><code>incoterms</code></dfn> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-incoterms"><code>incoterms</code></dfn>
+       <td>String
+       <td>O
        <td>
-         Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the Scope3 Category in which each party has to report their emissions. 
+         Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the Scope3 Category in which each party has to report their emissions.
         <p>If defined, the value of this property MUST be one of the following:</p>
         <dl>
          <dt data-md>EXW
@@ -3653,43 +3653,43 @@ OR calculate <code><a data-link-type="element" href="#elementdef-tce" id="ref-fo
           <p>Cost, Insurance and Freight</p>
         </dl>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-co2ewtw"><code>co2eWTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②">Decimal</a> 
-       <td>String 
-       <td>M 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-co2ewtw"><code>co2eWTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②">Decimal</a>
+       <td>String
+       <td>M
        <td> GHG emissions released to atmosphere during the process of producing, storing,
               processing and distributing an energy carrier for vehicle operation + GHG emissions
               released to atmosphere as a result of vehicle operation.
-              The value MUST be calculated for the TCE with unit <code>kgCO2e</code>. 
+              The value MUST be calculated for the TCE with unit <code>kgCO2e</code>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-co2ettw"><code>co2eTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal③">Decimal</a> 
-       <td>String 
-       <td>M 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-co2ettw"><code>co2eTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal③">Decimal</a>
+       <td>String
+       <td>M
        <td> GHG emissions released to atmosphere as a result of vehicle operation
-              The value MUST be calculated for the TCE with unit <code>kgCO2e</code>. 
+              The value MUST be calculated for the TCE with unit <code>kgCO2e</code>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-noxttw"><code>noxTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal④">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-noxttw"><code>noxTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal④">Decimal</a>
+       <td>String
+       <td>O
        <td> Nitrogen oxide released to atmosphere as a result of vehicle operation.
-              The value MUST be calculated for the TCE with unit <code>kg</code>. 
+              The value MUST be calculated for the TCE with unit <code>kg</code>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-soxttw"><code>soxTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑤">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-soxttw"><code>soxTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑤">Decimal</a>
+       <td>String
+       <td>O
        <td> Sulphur oxide released to atmosphere as a result of vehicle operation.
-              The value MUST be calculated for the TCE with unit <code>kg</code>. 
+              The value MUST be calculated for the TCE with unit <code>kg</code>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-ch4ttw"><code>ch4TTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑥">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-ch4ttw"><code>ch4TTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑥">Decimal</a>
+       <td>String
+       <td>O
        <td> Methane released to atmosphere as a result of vehicle operation.
-              The value MUST be calculated for the TCE with unit <code>kg</code>. 
+              The value MUST be calculated for the TCE with unit <code>kg</code>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-pmttw"><code>pmTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑦">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TCE" data-dfn-type="element-attr" data-export id="element-attrdef-tce-pmttw"><code>pmTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑦">Decimal</a>
+       <td>String
+       <td>O
        <td> Particulate matter (PM10 and PM2.5) released to atmosphere as a result of vehicle operation.
-              The value MUST be calculated for the TCE with unit <code>kg</code>. 
+              The value MUST be calculated for the TCE with unit <code>kg</code>.
     </table>
     <figcaption>Properties of data type <code><a data-link-type="element" href="#elementdef-tce" id="ref-for-elementdef-tce②⑨">TCE</a></code></figcaption>
    </figure>
@@ -3707,57 +3707,57 @@ or default value.</p>
     <table class="data">
      <thead>
       <tr>
-       <th>Property 
-       <th>Type 
-       <th>Req 
-       <th>Specification 
+       <th>Property
+       <th>Type
+       <th>Req
+       <th>Specification
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-tocid"><code>tocId</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>Unique id of the <a data-link-type="dfn" href="#toc①" id="ref-for-toc①⑦">TOC</a> relative to the <a data-link-type="dfn" href="#host-system" id="ref-for-host-system⑤">Host system</a>. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-tocid"><code>tocId</code></dfn>
+       <td>String
+       <td>M
+       <td>Unique id of the <a data-link-type="dfn" href="#toc①" id="ref-for-toc①⑦">TOC</a> relative to the <a data-link-type="dfn" href="#host-system" id="ref-for-host-system⑤">Host system</a>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-isverified"><code>isVerified</code></dfn> 
-       <td>Boolean 
-       <td>M 
-       <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use <a data-link-type="biblio" href="#biblio-iso14083" title="Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations">[ISO14083]</a> as audit criteria. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-isverified"><code>isVerified</code></dfn>
+       <td>Boolean
+       <td>M
+       <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use <a data-link-type="biblio" href="#biblio-iso14083" title="Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations">[ISO14083]</a> as audit criteria.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-isaccredited"><code>isAccredited</code></dfn> 
-       <td>Boolean 
-       <td>M 
-       <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with <a data-link-type="biblio" href="#biblio-iso14083" title="Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations">[ISO14083]</a>:2023, as declared in an Accreditation (=Certification) certificate. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-isaccredited"><code>isAccredited</code></dfn>
+       <td>Boolean
+       <td>M
+       <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with <a data-link-type="biblio" href="#biblio-iso14083" title="Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations">[ISO14083]</a>:2023, as declared in an Accreditation (=Certification) certificate.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-description"><code>description</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Text description of the applicable TOC. Reflect on mode of transport, contract type, equipment type, vehicle type, freight temperature, LTL/FTL etc 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-description"><code>description</code></dfn>
+       <td>String
+       <td>O
+       <td>Text description of the applicable TOC. Reflect on mode of transport, contract type, equipment type, vehicle type, freight temperature, LTL/FTL etc
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-mode"><code>mode</code></dfn> : <code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode">TransportMode</a></code> 
-       <td>String 
-       <td>M 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-mode"><code>mode</code></dfn> : <code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode">TransportMode</a></code>
+       <td>String
+       <td>M
        <td>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-loadfactor"><code>loadFactor</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑧">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-loadfactor"><code>loadFactor</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑧">Decimal</a>
+       <td>String
+       <td>O
        <td>
          Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
-            It is applied to the loaded distance of the transport. 
+            It is applied to the loaded distance of the transport.
         <p>The value of this property must be between <code>0</code> (excluding) and <code>1</code> (including).</p>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-emptydistancefactor"><code>emptyDistanceFactor</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑨">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-emptydistancefactor"><code>emptyDistanceFactor</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal⑨">Decimal</a>
+       <td>String
+       <td>O
        <td>
-         Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level 
+         Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
         <p>The value of this property must be between <code>0</code> (including) and <code>1</code> (excluding).</p>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-temperaturecontrol"><code>temperatureControl</code></dfn> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-temperaturecontrol"><code>temperatureControl</code></dfn>
+       <td>String
+       <td>O
        <td>
-         Temperature control status of the TOC. 
+         Temperature control status of the TOC.
         <p>If defined, the value of this property MUST be set to one of the following values:</p>
         <ul>
          <li data-md>
@@ -3768,11 +3768,11 @@ or default value.</p>
           <p><code>mixed</code>: for TOCs comprising the handling of both ambient and refrigerated freight</p>
         </ul>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-truckloadingsequence"><code>truckLoadingSequence</code></dfn> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-truckloadingsequence"><code>truckLoadingSequence</code></dfn>
+       <td>String
+       <td>O
        <td>
-         Only for road. If defined, the value MUST be one of the following: 
+         Only for road. If defined, the value MUST be one of the following:
         <dl>
          <dt data-md>LTL
          <dd data-md>
@@ -3782,11 +3782,11 @@ or default value.</p>
           <p>For full truck load, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. The sequence of pick-up &amp; drop-off is PU-DO-PU-DO</p>
         </dl>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-airshippingoption"><code>airShippingOption</code></dfn> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-airshippingoption"><code>airShippingOption</code></dfn>
+       <td>String
+       <td>O
        <td>
-         Only for air transport. Indicates if the movement of freight is combined with passanger transport (belly freight), or a dedicated aircraft for the movement of freight (freighter). 
+         Only for air transport. Indicates if the movement of freight is combined with passanger transport (belly freight), or a dedicated aircraft for the movement of freight (freighter).
         <p>If defined, the value MUST be one of the following:</p>
         <dl>
          <dt data-md>belly freight
@@ -3797,11 +3797,11 @@ or default value.</p>
           <p>For freight moved by a dedicated aircraft</p>
         </dl>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-flightlength"><code>flightLength</code></dfn> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-flightlength"><code>flightLength</code></dfn>
+       <td>String
+       <td>O
        <td>
-         Only for air transport. Indicates if the distance travelled is smaller or greater than 1500 km, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. 
+         Only for air transport. Indicates if the distance travelled is smaller or greater than 1500 km, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework.
         <p>If defined, the value MUST be one of the following:</p>
         <dl>
          <dt data-md>short-haul
@@ -3812,31 +3812,31 @@ or default value.</p>
           <p>For distances greater than 1500 km</p>
         </dl>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-energycarriers"><code>energyCarriers</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-energycarrier" id="ref-for-elementdef-energycarrier">EnergyCarrier</a></code>[] 
-       <td>M 
-       <td> The non-empty array of <a data-link-type="dfn" href="#energycarrier" id="ref-for-energycarrier">EnergyCarriers</a> used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-energycarriers"><code>energyCarriers</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-energycarrier" id="ref-for-elementdef-energycarrier">EnergyCarrier</a></code>[]
+       <td>M
+       <td> The non-empty array of <a data-link-type="dfn" href="#energycarrier" id="ref-for-energycarrier">EnergyCarriers</a> used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-co2eintensitywtw"><code>co2eIntensityWTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⓪">Decimal</a> 
-       <td>String 
-       <td>M 
-       <td> The Coefficient relating specified transport activity with WTW GHG emissions with unit <code>kgCO2e</code> per <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensitywtw" id="ref-for-element-attrdef-toc-co2eintensitywtw">co2eIntensityWTW</a></code> as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-co2eintensitywtw"><code>co2eIntensityWTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⓪">Decimal</a>
+       <td>String
+       <td>M
+       <td> The Coefficient relating specified transport activity with WTW GHG emissions with unit <code>kgCO2e</code> per <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensitywtw" id="ref-for-element-attrdef-toc-co2eintensitywtw">co2eIntensityWTW</a></code> as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-co2eintensityttw"><code>co2eIntensityTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①①">Decimal</a> 
-       <td>String 
-       <td>M 
-       <td> The Coefficient relating specified transport activity with TTW GHG emissions with unit <code>kgCO2e</code> per <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensityttw" id="ref-for-element-attrdef-toc-co2eintensityttw">co2eIntensityTTW</a></code> as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-co2eintensityttw"><code>co2eIntensityTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①①">Decimal</a>
+       <td>String
+       <td>M
+       <td> The Coefficient relating specified transport activity with TTW GHG emissions with unit <code>kgCO2e</code> per <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensityttw" id="ref-for-element-attrdef-toc-co2eintensityttw">co2eIntensityTTW</a></code> as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-co2eintensitythroughput"><code>co2eIntensityThroughput</code></dfn> 
-       <td>String 
-       <td>M 
-       <td> Indicates the freight transport activity unit at the denominator of the <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensitywtw" id="ref-for-element-attrdef-toc-co2eintensitywtw①">co2eIntensityWTW</a></code> and at the denominator of the <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensityttw" id="ref-for-element-attrdef-toc-co2eintensityttw①">co2eIntensityTTW</a></code>. At the TOC level, possible throughputs are tkm, or TEUkm for sea and inland waterways. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-co2eintensitythroughput"><code>co2eIntensityThroughput</code></dfn>
+       <td>String
+       <td>M
+       <td> Indicates the freight transport activity unit at the denominator of the <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensitywtw" id="ref-for-element-attrdef-toc-co2eintensitywtw①">co2eIntensityWTW</a></code> and at the denominator of the <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensityttw" id="ref-for-element-attrdef-toc-co2eintensityttw①">co2eIntensityTTW</a></code>. At the TOC level, possible throughputs are tkm, or TEUkm for sea and inland waterways.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-glecdataqualityindex"><code>glecDataQualityIndex</code></dfn> : [0..4] 
-       <td>Number 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TOC" data-dfn-type="element-attr" data-export id="element-attrdef-toc-glecdataqualityindex"><code>glecDataQualityIndex</code></dfn> : [0..4]
+       <td>Number
+       <td>O
        <td>
-         The data quality index as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework 
+         The data quality index as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework
         <p>The value of this property must be between <code>0</code> (including) and <code>4</code> (including).</p>
         <p class="issue" id="issue-3833d2b1"> the exact calculation rules must be defined</p>
     </table>
@@ -3847,47 +3847,47 @@ or default value.</p>
    <p><strong class="advisement"> Please, note that variables pertaining to the HOC Data Type have not been validated and are subject to undergo major updates.</strong></p>
    <p><a data-link-type="dfn" href="#hoc" id="ref-for-hoc⑤">HOCs</a> are the building blocks for the calculation of a <a data-link-type="dfn" href="#transport-chain-element" id="ref-for-transport-chain-element⑧">Transport Chain Element</a> with hub operations.</p>
    <h4 class="heading settled" data-level="6.4.1" id="hoc-attributes"><span class="secno">6.4.1. </span><span class="content">Data Attributes</span><a class="self-link" href="#hoc-attributes"></a></h4>
-    The Data Type <code><a data-link-type="element" href="#elementdef-hoc" id="ref-for-elementdef-hoc③">HOC</a></code> has the following properties: 
+    The Data Type <code><a data-link-type="element" href="#elementdef-hoc" id="ref-for-elementdef-hoc③">HOC</a></code> has the following properties:
    <figure id="hoc-properties-table">
     <table class="data">
      <thead>
       <tr>
-       <th>Property 
-       <th>Type 
-       <th>Req 
-       <th>Specification 
+       <th>Property
+       <th>Type
+       <th>Req
+       <th>Specification
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-hocid"><code>hocId</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>The id of the <code><a data-link-type="element" href="#elementdef-hoc" id="ref-for-elementdef-hoc④">HOC</a></code> 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-hocid"><code>hocId</code></dfn>
+       <td>String
+       <td>M
+       <td>The id of the <code><a data-link-type="element" href="#elementdef-hoc" id="ref-for-elementdef-hoc④">HOC</a></code>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-description"><code>description</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Text description of the applicable HOC. Reflect on hub type, contract type, equipment type, freight temperature, etc 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-description"><code>description</code></dfn>
+       <td>String
+       <td>O
+       <td>Text description of the applicable HOC. Reflect on hub type, contract type, equipment type, freight temperature, etc
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-isverified"><code>isVerified</code></dfn> 
-       <td>Boolean 
-       <td>M 
-       <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use <a data-link-type="biblio" href="#biblio-iso14083" title="Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations">[ISO14083]</a> as audit criteria. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-isverified"><code>isVerified</code></dfn>
+       <td>Boolean
+       <td>M
+       <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use <a data-link-type="biblio" href="#biblio-iso14083" title="Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations">[ISO14083]</a> as audit criteria.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-isaccredited"><code>isAccredited</code></dfn> 
-       <td>Boolean 
-       <td>M 
-       <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with <a data-link-type="biblio" href="#biblio-iso14083" title="Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations">[ISO14083]</a>:2023, as declared in an Accreditation (=Certification) certificate. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-isaccredited"><code>isAccredited</code></dfn>
+       <td>Boolean
+       <td>M
+       <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with <a data-link-type="biblio" href="#biblio-iso14083" title="Greenhouse gases — Quantification and reporting of greenhouse gas emissions arising from transport chain operations">[ISO14083]</a>:2023, as declared in an Accreditation (=Certification) certificate.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-hubtype"><code>hubType</code></dfn> 
-       <td><code class="idl"><a data-link-type="idl" href="#enumdef-hubtype" id="ref-for-enumdef-hubtype">HubType</a></code> 
-       <td>M 
-       <td>Type of Hub 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-hubtype"><code>hubType</code></dfn>
+       <td><code class="idl"><a data-link-type="idl" href="#enumdef-hubtype" id="ref-for-enumdef-hubtype">HubType</a></code>
+       <td>M
+       <td>Type of Hub
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-temperaturecontrol"><code>temperatureControl</code></dfn> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-temperaturecontrol"><code>temperatureControl</code></dfn>
+       <td>String
+       <td>O
        <td>
-         Temperature control status of the hub. 
+         Temperature control status of the hub.
         <p>If defined, the value of this property MUST be set to one of the following values:</p>
         <ul>
          <li data-md>
@@ -3898,50 +3898,50 @@ or default value.</p>
           <p><code>mixed</code>: for HOCs comprising the handling of both ambient and refrigerated freight</p>
         </ul>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-hublocation"><code>hubLocation</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location②">Location</a></code> 
-       <td>O 
-       <td>The address of the hub. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-hublocation"><code>hubLocation</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location②">Location</a></code>
+       <td>O
+       <td>The address of the hub.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-inboundtransportmode"><code>inboundTransportMode</code></dfn>: <code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode①">TransportMode</a></code> 
-       <td><code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode②">TransportMode</a></code> 
-       <td>O 
-       <td>Indicates the transport mode upstream the hub for the hub operations the HOC is defined for. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-inboundtransportmode"><code>inboundTransportMode</code></dfn>: <code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode①">TransportMode</a></code>
+       <td><code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode②">TransportMode</a></code>
+       <td>O
+       <td>Indicates the transport mode upstream the hub for the hub operations the HOC is defined for.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-outboundtransportmode"><code>outboundTransportMode</code></dfn>: <code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode③">TransportMode</a></code> 
-       <td><code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode④">TransportMode</a></code> 
-       <td>O 
-       <td>Indicates the transport mode downstream the hub for the hub operations the HOC is defined for. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-outboundtransportmode"><code>outboundTransportMode</code></dfn>: <code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode③">TransportMode</a></code>
+       <td><code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode④">TransportMode</a></code>
+       <td>O
+       <td>Indicates the transport mode downstream the hub for the hub operations the HOC is defined for.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-packagingortreqtype"><code>packagingOrTrEqType</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <code><a data-link-type="element" href="#elementdef-packagingortreqtype" id="ref-for-elementdef-packagingortreqtype②">PackagingOrTrEqType</a></code> for further information. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-packagingortreqtype"><code>packagingOrTrEqType</code></dfn>
+       <td>String
+       <td>O
+       <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <code><a data-link-type="element" href="#elementdef-packagingortreqtype" id="ref-for-elementdef-packagingortreqtype②">PackagingOrTrEqType</a></code> for further information.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-packagingortreqamount"><code>packagingOrTrEqAmount</code></dfn> 
-       <td>Number 
-       <td>O 
-       <td>Number of packaging or transport equipment units utilized to transport the related consignment by the <a data-link-type="dfn" href="#transport-operator" id="ref-for-transport-operator②⑦">Transport Operator</a> or <a data-link-type="dfn" href="#transport-service-organizer" id="ref-for-transport-service-organizer②⑥">Transport Service Organizer</a>. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-packagingortreqamount"><code>packagingOrTrEqAmount</code></dfn>
+       <td>Number
+       <td>O
+       <td>Number of packaging or transport equipment units utilized to transport the related consignment by the <a data-link-type="dfn" href="#transport-operator" id="ref-for-transport-operator②⑦">Transport Operator</a> or <a data-link-type="dfn" href="#transport-service-organizer" id="ref-for-transport-service-organizer②⑥">Transport Service Organizer</a>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-energycarriers"><code>energyCarriers</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-energycarrier" id="ref-for-elementdef-energycarrier①">EnergyCarrier</a></code>[] 
-       <td>M 
-       <td> The non-empty array of <a data-link-type="dfn" href="#energycarrier" id="ref-for-energycarrier①">EnergyCarriers</a> used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-energycarriers"><code>energyCarriers</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-energycarrier" id="ref-for-elementdef-energycarrier①">EnergyCarrier</a></code>[]
+       <td>M
+       <td> The non-empty array of <a data-link-type="dfn" href="#energycarrier" id="ref-for-energycarrier①">EnergyCarriers</a> used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-co2eintensitywtw"><code>co2eIntensityWTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①②">Decimal</a> 
-       <td>String 
-       <td>M 
-       <td> The Coefficient relating specified transport activity with WTW GHG emissions with unit <code>kgCO2e</code> per <code><a data-link-type="element-sub" href="#element-attrdef-hoc-co2eintensitythroughput" id="ref-for-element-attrdef-hoc-co2eintensitythroughput">co2eIntensityThroughput</a></code> as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-co2eintensitywtw"><code>co2eIntensityWTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①②">Decimal</a>
+       <td>String
+       <td>M
+       <td> The Coefficient relating specified transport activity with WTW GHG emissions with unit <code>kgCO2e</code> per <code><a data-link-type="element-sub" href="#element-attrdef-hoc-co2eintensitythroughput" id="ref-for-element-attrdef-hoc-co2eintensitythroughput">co2eIntensityThroughput</a></code> as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-co2eintensityttw"><code>co2eIntensityTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①③">Decimal</a> 
-       <td>String 
-       <td>M 
-       <td> The Coefficient relating specified transport activity with TTW GHG emissions with unit <code>kgCO2e</code> per <code><a data-link-type="element-sub" href="#element-attrdef-hoc-co2eintensityttw" id="ref-for-element-attrdef-hoc-co2eintensityttw">co2eIntensityTTW</a></code> as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-co2eintensityttw"><code>co2eIntensityTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①③">Decimal</a>
+       <td>String
+       <td>M
+       <td> The Coefficient relating specified transport activity with TTW GHG emissions with unit <code>kgCO2e</code> per <code><a data-link-type="element-sub" href="#element-attrdef-hoc-co2eintensityttw" id="ref-for-element-attrdef-hoc-co2eintensityttw">co2eIntensityTTW</a></code> as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-co2eintensitythroughput"><code>co2eIntensityThroughput</code></dfn> 
-       <td>String 
-       <td>M 
-       <td> Indicates the freight transport activity unit at the denominator of the <code><a data-link-type="element-sub" href="#element-attrdef-hoc-co2eintensitywtw" id="ref-for-element-attrdef-hoc-co2eintensitywtw">co2eIntensityWTW</a></code> and at the denominator of the <code><a data-link-type="element-sub" href="#element-attrdef-hoc-co2eintensityttw" id="ref-for-element-attrdef-hoc-co2eintensityttw①">co2eIntensityTTW</a></code>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways. 
+       <td><dfn class="dfn-paneled" data-dfn-for="HOC" data-dfn-type="element-attr" data-export id="element-attrdef-hoc-co2eintensitythroughput"><code>co2eIntensityThroughput</code></dfn>
+       <td>String
+       <td>M
+       <td> Indicates the freight transport activity unit at the denominator of the <code><a data-link-type="element-sub" href="#element-attrdef-hoc-co2eintensitywtw" id="ref-for-element-attrdef-hoc-co2eintensitywtw">co2eIntensityWTW</a></code> and at the denominator of the <code><a data-link-type="element-sub" href="#element-attrdef-hoc-co2eintensityttw" id="ref-for-element-attrdef-hoc-co2eintensityttw①">co2eIntensityTTW</a></code>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways.
     </table>
     <figcaption>Properties of data type <code>HOC</code></figcaption>
    </figure>
@@ -3972,96 +3972,96 @@ encoded as a JSON object. See <a href="#action-tad">§ 7.1 Action TransportAct
     <table class="data">
      <thead>
       <tr>
-       <th>Attribute Id 
-       <th>Type 
-       <th>Req 
-       <th>Description 
+       <th>Attribute Id
+       <th>Type
+       <th>Req
+       <th>Description
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-activityid"><code>activityId</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>The non-empty unique ID of this activity relative to the <a data-link-type="dfn" href="#host-system" id="ref-for-host-system⑥">host system</a>. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-activityid"><code>activityId</code></dfn>
+       <td>String
+       <td>M
+       <td>The non-empty unique ID of this activity relative to the <a data-link-type="dfn" href="#host-system" id="ref-for-host-system⑥">host system</a>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-consignmentids"><code>consignmentIds</code></dfn> 
-       <td>String[] 
-       <td>M 
-       <td>The non-empty array of unique IDs of the consignments related to the activity. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-consignmentids"><code>consignmentIds</code></dfn>
+       <td>String[]
+       <td>M
+       <td>The non-empty array of unique IDs of the consignments related to the activity.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-distance"><code>distance</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-glecdistance" id="ref-for-elementdef-glecdistance①">GLECDistance</a></code> 
-       <td>M 
-       <td>The Distance between the origin and the destination of the activity 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-distance"><code>distance</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-glecdistance" id="ref-for-elementdef-glecdistance①">GLECDistance</a></code>
+       <td>M
+       <td>The Distance between the origin and the destination of the activity
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-mass"><code>mass</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①④">Decimal</a> 
-       <td>String 
-       <td>O 
-       <td>Mass of freight (SI derived Unit <code>kilograms</code>) 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-mass"><code>mass</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①④">Decimal</a>
+       <td>String
+       <td>O
+       <td>Mass of freight (SI derived Unit <code>kilograms</code>)
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-loadfactor"><code>loadFactor</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑤">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-loadfactor"><code>loadFactor</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑤">Decimal</a>
+       <td>String
+       <td>O
        <td>
          Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
-            It is applied to the loaded distance of the transport. 
+            It is applied to the loaded distance of the transport.
         <p>The value of this property must be between <code>0</code> (excluding) and <code>1</code> (including).</p>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-emptydistancefactor"><code>emptyDistanceFactor</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑥">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-emptydistancefactor"><code>emptyDistanceFactor</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑥">Decimal</a>
+       <td>String
+       <td>O
        <td>
-         Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level 
+         Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
         <p>The value of this property must be between <code>0</code> (including) and <code>1</code> (excluding).</p>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-origin"><code>origin</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location③">Location</a></code> 
-       <td>M 
-       <td>The origin of the activity related to the TCE 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-origin"><code>origin</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location③">Location</a></code>
+       <td>M
+       <td>The origin of the activity related to the TCE
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-destination"><code>destination</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location④">Location</a></code> 
-       <td>M 
-       <td>The destination of the activity related to the TCE 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-destination"><code>destination</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-location" id="ref-for-elementdef-location④">Location</a></code>
+       <td>M
+       <td>The destination of the activity related to the TCE
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-departureat"><code>departureAt</code></dfn> 
-       <td>String 
-       <td>M 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-departureat"><code>departureAt</code></dfn>
+       <td>String
+       <td>M
        <td> Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
-              NOTE: the original data model defined this as the "date of loading" 
+              NOTE: the original data model defined this as the "date of loading"
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-arrivalat"><code>arrivalAt</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-arrivalat"><code>arrivalAt</code></dfn>
+       <td>String
+       <td>M
+       <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-mode"><code>mode</code></dfn> 
-       <td><code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode⑤">TransportMode</a></code> 
-       <td>M 
-       <td>Mode of transport 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-mode"><code>mode</code></dfn>
+       <td><code class="idl"><a data-link-type="idl" href="#enumdef-transportmode" id="ref-for-enumdef-transportmode⑤">TransportMode</a></code>
+       <td>M
+       <td>Mode of transport
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-packagingortreqtype"><code>packagingOrTrEqType</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <code><a data-link-type="element" href="#elementdef-packagingortreqtype" id="ref-for-elementdef-packagingortreqtype③">PackagingOrTrEqType</a></code> for further information. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-packagingortreqtype"><code>packagingOrTrEqType</code></dfn>
+       <td>String
+       <td>O
+       <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <code><a data-link-type="element" href="#elementdef-packagingortreqtype" id="ref-for-elementdef-packagingortreqtype③">PackagingOrTrEqType</a></code> for further information.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-packagingortreqamount"><code>packagingOrTrEqAmount</code></dfn> 
-       <td>Number 
-       <td>O 
-       <td>Number of packaging or transport equipment units utilized to transport the related consignment by the <a data-link-type="dfn" href="#transport-operator" id="ref-for-transport-operator②⑨">Transport Operator</a> or <a data-link-type="dfn" href="#transport-service-organizer" id="ref-for-transport-service-organizer②⑧">Transport Service Organizer</a>. 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-packagingortreqamount"><code>packagingOrTrEqAmount</code></dfn>
+       <td>Number
+       <td>O
+       <td>Number of packaging or transport equipment units utilized to transport the related consignment by the <a data-link-type="dfn" href="#transport-operator" id="ref-for-transport-operator②⑨">Transport Operator</a> or <a data-link-type="dfn" href="#transport-service-organizer" id="ref-for-transport-service-organizer②⑧">Transport Service Organizer</a>.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-energycarrier"><code>energyCarrier</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-energycarriertype" id="ref-for-elementdef-energycarriertype">EnergyCarrierType</a></code> 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-energycarrier"><code>energyCarrier</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-energycarriertype" id="ref-for-elementdef-energycarriertype">EnergyCarrierType</a></code>
+       <td>O
        <td>
          The substance used to generate mechanical movement or heat and to generate chemical or
-            physical processes as per the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. See data type <code><a data-link-type="element" href="#elementdef-energycarriertype" id="ref-for-elementdef-energycarriertype①">EnergyCarrierType</a></code> for further information. 
+            physical processes as per the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. See data type <code><a data-link-type="element" href="#elementdef-energycarriertype" id="ref-for-elementdef-energycarriertype①">EnergyCarrierType</a></code> for further information.
         <p>If <code><a data-link-type="element-sub" href="#element-attrdef-tad-energycarrier" id="ref-for-element-attrdef-tad-energycarrier">energyCarrier</a></code> is not defined, then <code><a data-link-type="element-sub" href="#element-attrdef-tad-feedstocks" id="ref-for-element-attrdef-tad-feedstocks">feedstocks</a></code> MUST be defined. If possible, both SHOULD be defined.</p>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-feedstocks"><code>feedstocks</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-feedstock" id="ref-for-elementdef-feedstock">Feedstock</a></code>[] 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="TAD" data-dfn-type="element-attr" data-export id="element-attrdef-tad-feedstocks"><code>feedstocks</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-feedstock" id="ref-for-elementdef-feedstock">Feedstock</a></code>[]
+       <td>O
        <td>
-         If defined, the non-empty array of <a data-link-type="dfn" href="#feedstock" id="ref-for-feedstock">Feedstocks</a> of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1. 
+         If defined, the non-empty array of <a data-link-type="dfn" href="#feedstock" id="ref-for-feedstock">Feedstocks</a> of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
         <p>If <code><a data-link-type="element-sub" href="#element-attrdef-tad-feedstocks" id="ref-for-element-attrdef-tad-feedstocks①">feedstocks</a></code> is not defined, then <code><a data-link-type="element-sub" href="#element-attrdef-tad-energycarrier" id="ref-for-element-attrdef-tad-energycarrier①">energyCarrier</a></code> MUST be defined. If possible, both SHOULD be defined.</p>
     </table>
     <figcaption><code><a data-link-type="element" href="#elementdef-tad" id="ref-for-elementdef-tad①①">TAD</a></code> properties</figcaption>
@@ -4075,27 +4075,27 @@ encoded as a JSON object. See <a href="#action-tad">§ 7.1 Action TransportAct
     <table class="data">
      <thead>
       <tr>
-       <th>Attribute Id 
-       <th>Type 
-       <th>Req 
-       <th>Description 
+       <th>Attribute Id
+       <th>Type
+       <th>Req
+       <th>Description
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="GLECDistance" data-dfn-type="element-attr" data-export id="element-attrdef-glecdistance-actual"><code>actual</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑦">Decimal</a> 
-       <td>String 
-       <td>O 
+       <td><dfn class="dfn-paneled" data-dfn-for="GLECDistance" data-dfn-type="element-attr" data-export id="element-attrdef-glecdistance-actual"><code>actual</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑦">Decimal</a>
+       <td>String
+       <td>O
        <td>The distance between the origin and the destination of a consignment of
-              freight or a vehicle, along a specified route (or from telematics), as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework 
+              freight or a vehicle, along a specified route (or from telematics), as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="GLECDistance" data-dfn-type="element-attr" data-export id="element-attrdef-glecdistance-gcd"><code>gcd</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑧">Decimal</a> 
-       <td>String 
-       <td>O 
-       <td><a data-link-type="dfn" href="#great-circle-distance" id="ref-for-great-circle-distance">Great Circle Distance</a> between the origin and the destination, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework 
+       <td><dfn class="dfn-paneled" data-dfn-for="GLECDistance" data-dfn-type="element-attr" data-export id="element-attrdef-glecdistance-gcd"><code>gcd</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑧">Decimal</a>
+       <td>String
+       <td>O
+       <td><a data-link-type="dfn" href="#great-circle-distance" id="ref-for-great-circle-distance">Great Circle Distance</a> between the origin and the destination, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="GLECDistance" data-dfn-type="element-attr" data-export id="element-attrdef-glecdistance-sfd"><code>sfd</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑨">Decimal</a> 
-       <td>String 
-       <td>O 
-       <td><a data-link-type="dfn" href="#shortest-feasible-distance" id="ref-for-shortest-feasible-distance">Shortest Feasible Distance</a> between the origin and the destination, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework 
+       <td><dfn class="dfn-paneled" data-dfn-for="GLECDistance" data-dfn-type="element-attr" data-export id="element-attrdef-glecdistance-sfd"><code>sfd</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal①⑨">Decimal</a>
+       <td>String
+       <td>O
+       <td><a data-link-type="dfn" href="#shortest-feasible-distance" id="ref-for-shortest-feasible-distance">Shortest Feasible Distance</a> between the origin and the destination, as defined in the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework
     </table>
     <figcaption><code><a data-link-type="element" href="#elementdef-glecdistance" id="ref-for-elementdef-glecdistance②">GLECDistance</a></code> properties</figcaption>
    </figure>
@@ -4105,56 +4105,56 @@ encoded as a JSON object. See <a href="#action-tad">§ 7.1 Action TransportAct
     <table class="data">
      <thead>
       <tr>
-       <th>Attribute Id 
-       <th>Type 
-       <th>Req 
-       <th>Definition 
+       <th>Attribute Id
+       <th>Type
+       <th>Req
+       <th>Definition
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-street"><code>street</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Street of the location 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-street"><code>street</code></dfn>
+       <td>String
+       <td>O
+       <td>Street of the location
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-zip"><code>zip</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Postal code of the location 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-zip"><code>zip</code></dfn>
+       <td>String
+       <td>O
+       <td>Postal code of the location
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-city"><code>city</code></dfn> 
-       <td>String 
-       <td>M 
-       <td>City of the location 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-city"><code>city</code></dfn>
+       <td>String
+       <td>M
+       <td>City of the location
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-country"><code>country</code></dfn> 
-       <td>Country 
-       <td>M 
-       <td>An ISO 3166-2 alpha-2 country code. See <a href="https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc">https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc</a> for details. 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-country"><code>country</code></dfn>
+       <td>Country
+       <td>M
+       <td>An ISO 3166-2 alpha-2 country code. See <a href="https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc">https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc</a> for details.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-iata"><code>iata</code></dfn> 
-       <td>iataCode 
-       <td>O 
-       <td>IATA code of airport 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-iata"><code>iata</code></dfn>
+       <td>iataCode
+       <td>O
+       <td>IATA code of airport
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-locode"><code>locode</code></dfn> 
-       <td>locode 
-       <td>O 
-       <td>UN/LOCODE of the location 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-locode"><code>locode</code></dfn>
+       <td>locode
+       <td>O
+       <td>UN/LOCODE of the location
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-uic"><code>uic</code></dfn> 
-       <td>uic 
-       <td>O 
-       <td>UIC Code of the location 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-uic"><code>uic</code></dfn>
+       <td>uic
+       <td>O
+       <td>UIC Code of the location
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-lat"><code>lat</code></dfn> 
-       <td><a data-link-type="dfn" href="#decimal" id="ref-for-decimal②⓪">Decimal</a> 
-       <td>O 
-       <td>Latitude of the location. If <code><a data-link-type="element-sub" href="#element-attrdef-location-lng" id="ref-for-element-attrdef-location-lng">lng</a></code> is defined, so MUST <code><a data-link-type="element-sub" href="#element-attrdef-location-lat" id="ref-for-element-attrdef-location-lat">lat</a></code> be defined 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-lat"><code>lat</code></dfn>
+       <td><a data-link-type="dfn" href="#decimal" id="ref-for-decimal②⓪">Decimal</a>
+       <td>O
+       <td>Latitude of the location. If <code><a data-link-type="element-sub" href="#element-attrdef-location-lng" id="ref-for-element-attrdef-location-lng">lng</a></code> is defined, so MUST <code><a data-link-type="element-sub" href="#element-attrdef-location-lat" id="ref-for-element-attrdef-location-lat">lat</a></code> be defined
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-lng"><code>lng</code></dfn> 
-       <td><a data-link-type="dfn" href="#decimal" id="ref-for-decimal②①">Decimal</a> 
-       <td>O 
-       <td>Longitude of the location.  If <code><a data-link-type="element-sub" href="#element-attrdef-location-lat" id="ref-for-element-attrdef-location-lat①">lat</a></code> is defined, so MUST <code><a data-link-type="element-sub" href="#element-attrdef-location-lng" id="ref-for-element-attrdef-location-lng①">lng</a></code> be defined 
+       <td><dfn class="dfn-paneled" data-dfn-for="Location" data-dfn-type="element-attr" data-export id="element-attrdef-location-lng"><code>lng</code></dfn>
+       <td><a data-link-type="dfn" href="#decimal" id="ref-for-decimal②①">Decimal</a>
+       <td>O
+       <td>Longitude of the location.  If <code><a data-link-type="element-sub" href="#element-attrdef-location-lat" id="ref-for-element-attrdef-location-lat①">lat</a></code> is defined, so MUST <code><a data-link-type="element-sub" href="#element-attrdef-location-lng" id="ref-for-element-attrdef-location-lng①">lng</a></code> be defined
     </table>
     <figcaption><code><a data-link-type="element" href="#elementdef-glecdistance" id="ref-for-elementdef-glecdistance③">GLECDistance</a></code> properties</figcaption>
    </figure>
@@ -4204,7 +4204,7 @@ encoded as a JSON object. See <a href="#action-tad">§ 7.1 Action TransportAct
    <p>In JSON, a <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②②">Decimal</a> MUST be encoded as a JSON String.</p>
    <p class="note" role="note"><span class="marker">Note:</span> the JSON String encoding is necessary to avoid floating point rounding errors.</p>
    <div class="example" id="example-42a08974">
-    <a class="self-link" href="#example-42a08974"></a> Example of the decimal numbers <code>10</code> and <code>-0.123</code> encoded in JSON: 
+    <a class="self-link" href="#example-42a08974"></a> Example of the decimal numbers <code>10</code> and <code>-0.123</code> encoded in JSON:
 <pre class="language-json highlight"><c- u>"10"</c->
 </pre>
 <pre class="language-json highlight"><c- u>"-0.123"</c->
@@ -4218,42 +4218,42 @@ encoded as a JSON object. See <a href="#action-tad">§ 7.1 Action TransportAct
     <table class="data">
      <thead>
       <tr>
-       <th>Attribute Id 
-       <th>Type 
-       <th>Req 
-       <th>Definition 
+       <th>Attribute Id
+       <th>Type
+       <th>Req
+       <th>Definition
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-energycarrier"><code>energyCarrier</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-energycarriertype" id="ref-for-elementdef-energycarriertype②">EnergyCarrierType</a></code> 
-       <td>M 
+       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-energycarrier"><code>energyCarrier</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-energycarriertype" id="ref-for-elementdef-energycarriertype②">EnergyCarrierType</a></code>
+       <td>M
        <td>The substance used to generate mechanical movement or heat and to generate chemical or
-        physical processes as per the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. See data type <code><a data-link-type="element" href="#elementdef-energycarriertype" id="ref-for-elementdef-energycarriertype③">EnergyCarrierType</a></code> for further information. 
+        physical processes as per the <a data-link-type="biblio" href="#biblio-glec" title="Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).">[GLEC]</a> Framework. See data type <code><a data-link-type="element" href="#elementdef-energycarriertype" id="ref-for-elementdef-energycarriertype③">EnergyCarrierType</a></code> for further information.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-feedstocks"><code>feedstocks</code></dfn> 
-       <td><code><a data-link-type="element" href="#elementdef-feedstock" id="ref-for-elementdef-feedstock①">Feedstock</a></code>[] 
-       <td>O 
-       <td>If defined, theon-empty array of <a data-link-type="dfn" href="#feedstock" id="ref-for-feedstock①">Feedstocks</a> of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1. 
+       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-feedstocks"><code>feedstocks</code></dfn>
+       <td><code><a data-link-type="element" href="#elementdef-feedstock" id="ref-for-elementdef-feedstock①">Feedstock</a></code>[]
+       <td>O
+       <td>If defined, theon-empty array of <a data-link-type="dfn" href="#feedstock" id="ref-for-feedstock①">Feedstocks</a> of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-energyconsumption"><code>energyConsumption</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②③">Decimal</a> 
-       <td>String 
-       <td>O 
-       <td> Amount of energy carrier consumed per transport activity, as defined for the TOC or HOC. If defined, <code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumptionunit" id="ref-for-element-attrdef-energycarrier-energyconsumptionunit">energyConsumptionUnit</a></code> MUST be defined as well. 
+       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-energyconsumption"><code>energyConsumption</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②③">Decimal</a>
+       <td>String
+       <td>O
+       <td> Amount of energy carrier consumed per transport activity, as defined for the TOC or HOC. If defined, <code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumptionunit" id="ref-for-element-attrdef-energycarrier-energyconsumptionunit">energyConsumptionUnit</a></code> MUST be defined as well.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-energyconsumptionunit"><code>energyConsumptionUnit</code></dfn> 
-       <td>String 
-       <td>O 
-       <td> Unit of the energy consumed corresponding to the <code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumption" id="ref-for-element-attrdef-energycarrier-energyconsumption">energyConsumption</a></code> (e.g., <code>"l"</code>, <code>"kg"</code>, <code>"kWh"</code>, <code>"MJ"</code>). <code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumptionunit" id="ref-for-element-attrdef-energycarrier-energyconsumptionunit①">energyConsumptionUnit</a></code> MUST be defined if <code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumption" id="ref-for-element-attrdef-energycarrier-energyconsumption①">energyConsumption</a></code> is defined. 
+       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-energyconsumptionunit"><code>energyConsumptionUnit</code></dfn>
+       <td>String
+       <td>O
+       <td> Unit of the energy consumed corresponding to the <code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumption" id="ref-for-element-attrdef-energycarrier-energyconsumption">energyConsumption</a></code> (e.g., <code>"l"</code>, <code>"kg"</code>, <code>"kWh"</code>, <code>"MJ"</code>). <code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumptionunit" id="ref-for-element-attrdef-energycarrier-energyconsumptionunit①">energyConsumptionUnit</a></code> MUST be defined if <code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumption" id="ref-for-element-attrdef-energycarrier-energyconsumption①">energyConsumption</a></code> is defined.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-co2eintensitywtw"><code>co2eIntensityWTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②④">Decimal</a> 
-       <td>String 
-       <td>M 
-       <td> The WTW fuel emission factor (certified) with unit <code>kgCO2e / energy consumption unit</code> (<code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumptionunit" id="ref-for-element-attrdef-energycarrier-energyconsumptionunit②">energyConsumptionUnit</a></code>) 
+       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-co2eintensitywtw"><code>co2eIntensityWTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②④">Decimal</a>
+       <td>String
+       <td>M
+       <td> The WTW fuel emission factor (certified) with unit <code>kgCO2e / energy consumption unit</code> (<code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumptionunit" id="ref-for-element-attrdef-energycarrier-energyconsumptionunit②">energyConsumptionUnit</a></code>)
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-co2eintensityttw"><code>co2eIntensityTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②⑤">Decimal</a> 
-       <td>String 
-       <td>M 
-       <td> The TTW fuel emission factor (certified) with unit <code>kgCO2e / energy consumption unit</code> (<code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumptionunit" id="ref-for-element-attrdef-energycarrier-energyconsumptionunit③">energyConsumptionUnit</a></code>) 
+       <td><dfn class="dfn-paneled" data-dfn-for="EnergyCarrier" data-dfn-type="element-attr" data-export id="element-attrdef-energycarrier-co2eintensityttw"><code>co2eIntensityTTW</code></dfn> : <a data-link-type="dfn" href="#decimal" id="ref-for-decimal②⑤">Decimal</a>
+       <td>String
+       <td>M
+       <td> The TTW fuel emission factor (certified) with unit <code>kgCO2e / energy consumption unit</code> (<code><a data-link-type="element-sub" href="#element-attrdef-energycarrier-energyconsumptionunit" id="ref-for-element-attrdef-energycarrier-energyconsumptionunit③">energyConsumptionUnit</a></code>)
     </table>
    </figure>
    <h4 class="heading settled" data-level="6.6.7" id="dt-energy-carrier-type"><span class="secno">6.6.7. </span><span class="content">Data Type <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="energycarriertype">EnergyCarrierType</dfn></span><a class="self-link" href="#dt-energy-carrier-type"></a></h4>
@@ -4308,17 +4308,17 @@ Account for this when implementing the validation of this property.</strong></p>
     <table class="data">
      <thead>
       <tr>
-       <th>Attribute Id 
-       <th>Type 
-       <th>Req 
-       <th>Definition 
+       <th>Attribute Id
+       <th>Type
+       <th>Req
+       <th>Definition
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Feedstock" data-dfn-type="element-attr" data-export id="element-attrdef-feedstock-feedstock"><code>feedstock</code></dfn> 
-       <td>String 
-       <td>M 
+       <td><dfn class="dfn-paneled" data-dfn-for="Feedstock" data-dfn-type="element-attr" data-export id="element-attrdef-feedstock-feedstock"><code>feedstock</code></dfn>
+       <td>String
+       <td>M
        <td>
-        A feedstock of an <a data-link-type="dfn" href="#energycarrier" id="ref-for-energycarrier③">EnergyCarrier</a>. 
+        A feedstock of an <a data-link-type="dfn" href="#energycarrier" id="ref-for-energycarrier③">EnergyCarrier</a>.
         <p>The value MUST be one of the following:</p>
         <p><strong class="advisement"> The enumeration of feedstocks below will be evolved in future revisions.
             Account for this when implementing the validation of this property.</strong></p>
@@ -4340,15 +4340,15 @@ Account for this when implementing the validation of this property.</strong></p>
           <p>refers to cooking (e.g., vegetable) oil</p>
         </dl>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Feedstock" data-dfn-type="element-attr" data-export id="element-attrdef-feedstock-feedstockpercentage"><code>feedstockPercentage</code></dfn> : [0..1] 
-       <td>Number 
-       <td>O 
-       <td>Percentage of the feedstock in the total composition of energy carrier. 
+       <td><dfn class="dfn-paneled" data-dfn-for="Feedstock" data-dfn-type="element-attr" data-export id="element-attrdef-feedstock-feedstockpercentage"><code>feedstockPercentage</code></dfn> : [0..1]
+       <td>Number
+       <td>O
+       <td>Percentage of the feedstock in the total composition of energy carrier.
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-for="Feedstock" data-dfn-type="element-attr" data-export id="element-attrdef-feedstock-regionprovenance"><code>regionProvenance</code></dfn> 
-       <td>String 
-       <td>O 
-       <td>Country or region of provenance of the feedstock. 
+       <td><dfn class="dfn-paneled" data-dfn-for="Feedstock" data-dfn-type="element-attr" data-export id="element-attrdef-feedstock-regionprovenance"><code>regionProvenance</code></dfn>
+       <td>String
+       <td>O
+       <td>Country or region of provenance of the feedstock.
     </table>
    </figure>
    <h4 class="heading settled" data-level="6.6.9" id="dt-packaging-or-tr-eq-type"><span class="secno">6.6.9. </span><span class="content">Data Type <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="packagingortreqtype">PackagingOrTrEqType</dfn></span><a class="self-link" href="#dt-packaging-or-tr-eq-type"></a></h4>
@@ -4465,7 +4465,7 @@ Each filter pair has a <code>$name=$value</code> syntax where <code>$name</code>
 of the field to filter by, and <code>$value</code> the (case-insensitive) value to filter for.
 Filter pairs CAN be concatenated with <code>&amp;</code>.</p>
      <div class="example" id="example-d3fe5065">
-      <a class="self-link" href="#example-d3fe5065"></a> Get transport activity data with <a data-link-type="dfn" href="#feedstock" id="ref-for-feedstock②">Feedstock</a> <code>"Fossil"</code> and <code><a data-link-type="element-sub" href="#element-attrdef-tad-packagingortreqtype" id="ref-for-element-attrdef-tad-packagingortreqtype">packagingOrTrEqType</a></code> <code>"Pallet"</code> 
+      <a class="self-link" href="#example-d3fe5065"></a> Get transport activity data with <a data-link-type="dfn" href="#feedstock" id="ref-for-feedstock②">Feedstock</a> <code>"Fossil"</code> and <code><a data-link-type="element-sub" href="#element-attrdef-tad-packagingortreqtype" id="ref-for-element-attrdef-tad-packagingortreqtype">packagingOrTrEqType</a></code> <code>"Pallet"</code>
 <pre class="language-http highlight"><c- nf>GET</c-> <c- nn>/2/ileap/tad?feedstock=Fossil&amp;packagingOrTrEqType=pallet</c-> <c- kr>HTTP</c-><c- o>/</c-><c- m>1.1</c->
 </pre>
      </div>
@@ -4528,30 +4528,30 @@ The list below contains the properties that were omitted for this reason.</p>
     <table class="data">
      <thead>
       <tr>
-       <th>Attribute Id 
-       <th>Type 
-       <th>Req 
-       <th>Description 
-       <th>Source 
+       <th>Attribute Id
+       <th>Type
+       <th>Req
+       <th>Description
+       <th>Source
      <tbody>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="validityperiodstart">validityPeriodStart</dfn> : <a href="https://wbcsd.github.io/tr/data-exchange-protocol/#datetime">DateTime</a> 
-       <td>String 
-       <td>O 
-       <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient. 
-       <td><a href="https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart">ProductFootprint/validityPeriodStart</a> 
+       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="validityperiodstart">validityPeriodStart</dfn> : <a href="https://wbcsd.github.io/tr/data-exchange-protocol/#datetime">DateTime</a>
+       <td>String
+       <td>O
+       <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+       <td><a href="https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart">ProductFootprint/validityPeriodStart</a>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="validityperiodend">validityPeriodEnd</dfn> : <a href="https://wbcsd.github.io/tr/data-exchange-protocol/#datetime">DateTime</a> 
-       <td>String 
-       <td>O 
-       <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient. 
-       <td><a href="https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend">ProductFootprint/validityPeriodEnd</a> 
+       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="validityperiodend">validityPeriodEnd</dfn> : <a href="https://wbcsd.github.io/tr/data-exchange-protocol/#datetime">DateTime</a>
+       <td>String
+       <td>O
+       <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+       <td><a href="https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend">ProductFootprint/validityPeriodEnd</a>
       <tr>
-       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="assurance">assurance</dfn> : <a href="https://wbcsd.github.io/tr/data-exchange-protocol/#dt-assurance">Assurance</a> 
-       <td>Object 
-       <td>O 
-       <td>If present, the Assurance information in accordance with the <a data-link-type="biblio" href="#biblio-pathfinder-framework" title="Pathfinder Framework: Guidance for the Accounting and Exchange of Product Life Cycle Emissions (Version 2.0)">[PATHFINDER-FRAMEWORK]</a>. 
-       <td><a href="https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-carbonfootprint-assurance">CarbonFootprint/assurance</a> 
+       <td><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="assurance">assurance</dfn> : <a href="https://wbcsd.github.io/tr/data-exchange-protocol/#dt-assurance">Assurance</a>
+       <td>Object
+       <td>O
+       <td>If present, the Assurance information in accordance with the <a data-link-type="biblio" href="#biblio-pathfinder-framework" title="Pathfinder Framework: Guidance for the Accounting and Exchange of Product Life Cycle Emissions (Version 2.0)">[PATHFINDER-FRAMEWORK]</a>.
+       <td><a href="https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-carbonfootprint-assurance">CarbonFootprint/assurance</a>
     </table>
    </figure>
    <h4 class="heading settled" data-level="7.2.1" id="pcf-mapping-sf"><span class="secno">7.2.1. </span><span class="content">ShipmentFootprint</span><a class="self-link" href="#pcf-mapping-sf"></a></h4>
@@ -4563,15 +4563,15 @@ The list below contains the properties that were omitted for this reason.</p>
     <table class="data">
      <thead>
       <tr>
-       <th>PACT Data Type 
-       <th>Property 
-       <th>Value Derivation 
+       <th>PACT Data Type
+       <th>Property
+       <th>Value Derivation
      <tbody>
       <tr>
-       <td>ProductFootprint 
-       <td><code>productIds</code> 
+       <td>ProductFootprint
+       <td><code>productIds</code>
        <td>
-         MUST contain the shipment ID <code><a data-link-type="element-sub" href="#element-attrdef-shipmentfootprint-shipmentid" id="ref-for-element-attrdef-shipmentfootprint-shipmentid">shipmentId</a></code>, encoded as 
+         MUST contain the shipment ID <code><a data-link-type="element-sub" href="#element-attrdef-shipmentfootprint-shipmentid" id="ref-for-element-attrdef-shipmentfootprint-shipmentid">shipmentId</a></code>, encoded as
         <dl>
          <dt data-md><code>urn:pathfinder:product:customcode:vendor-assigned:shipment:&lt;shipment id></code>
          <dd data-md>
@@ -4584,47 +4584,47 @@ The list below contains the properties that were omitted for this reason.</p>
                       shipment ids are assigned to a single shipment, <code>productIds</code> CAN contain
                       all of them.</p>
       <tr>
-       <td>ProductFootprint 
-       <td><code>productCategoryCpc</code> 
-       <td> MUST be equal to <code>83117</code>, the CPC code of logistics services. 
+       <td>ProductFootprint
+       <td><code>productCategoryCpc</code>
+       <td> MUST be equal to <code>83117</code>, the CPC code of logistics services.
       <tr>
-       <td>CarbonFootprint 
-       <td><code>declaredUnit</code> 
+       <td>CarbonFootprint
+       <td><code>declaredUnit</code>
        <td>
-         MUST be set to <code>ton kilometer</code> conforming with the Pathfinder Tech Specs. 
+         MUST be set to <code>ton kilometer</code> conforming with the Pathfinder Tech Specs.
         <p>See <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> Chapter 4 for further details.</p>
       <tr>
-       <td>CarbonFootprint 
-       <td><code>unitaryProductAmount</code> 
+       <td>CarbonFootprint
+       <td><code>unitaryProductAmount</code>
        <td> MUST equal the total ton kilometers over all TCEs (<code><a data-link-type="element-sub" href="#element-attrdef-shipmentfootprint-tces" id="ref-for-element-attrdef-shipmentfootprint-tces">tces</a></code>),
-                    calculated by taking the sum of the ton kilometers over all TCEs (see property <code><a data-link-type="element-sub" href="#element-attrdef-tce-transportactivity" id="ref-for-element-attrdef-tce-transportactivity">transportActivity</a></code>) 
+                    calculated by taking the sum of the ton kilometers over all TCEs (see property <code><a data-link-type="element-sub" href="#element-attrdef-tce-transportactivity" id="ref-for-element-attrdef-tce-transportactivity">transportActivity</a></code>)
       <tr>
-       <td>CarbonFootprint 
-       <td><code>pCfExcludingBiogenic</code> 
+       <td>CarbonFootprint
+       <td><code>pCfExcludingBiogenic</code>
        <td> MUST be set to the total logistics emissions of the shipment, excluding biogenic emissions,
-              calculated by taking the sum of the <code><a data-link-type="element-sub" href="#element-attrdef-tce-co2ewtw" id="ref-for-element-attrdef-tce-co2ewtw">co2eWTW</a></code> over all TCEs (<code><a data-link-type="element-sub" href="#element-attrdef-shipmentfootprint-tces" id="ref-for-element-attrdef-shipmentfootprint-tces①">tces</a></code>). 
+              calculated by taking the sum of the <code><a data-link-type="element-sub" href="#element-attrdef-tce-co2ewtw" id="ref-for-element-attrdef-tce-co2ewtw">co2eWTW</a></code> over all TCEs (<code><a data-link-type="element-sub" href="#element-attrdef-shipmentfootprint-tces" id="ref-for-element-attrdef-shipmentfootprint-tces①">tces</a></code>).
       <tr>
-       <td>CarbonFootprint 
-       <td><code>pCfIncludingBiogenic</code> 
+       <td>CarbonFootprint
+       <td><code>pCfIncludingBiogenic</code>
        <td>
-         This property is OPTIONAL in the <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> data Model. 
+         This property is OPTIONAL in the <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> data Model.
         <p>It SHOULD be set to the total logistics emissions of the shipment,
               including biogenic emissions, calculated by taking the sum of the <code><a data-link-type="element-sub" href="#element-attrdef-tce-co2ewtw" id="ref-for-element-attrdef-tce-co2ewtw①">co2eWTW</a></code> over all TCEs (<code><a data-link-type="element-sub" href="#element-attrdef-shipmentfootprint-tces" id="ref-for-element-attrdef-shipmentfootprint-tces②">tces</a></code>).</p>
       <tr>
-       <td>CarbonFootprint 
-       <td><code>fossilGhgEmissions</code> 
-       <td> see the specification for <code>pCfExcludingBiogenic</code> in this table 
+       <td>CarbonFootprint
+       <td><code>fossilGhgEmissions</code>
+       <td> see the specification for <code>pCfExcludingBiogenic</code> in this table
       <tr>
-       <td>CarbonFootprint 
-       <td><code>packagingEmissionsIncluded</code> 
+       <td>CarbonFootprint
+       <td><code>packagingEmissionsIncluded</code>
        <td>
-         see <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> for further details 
+         see <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> for further details
         <p class="issue" id="issue-72d03327"> this property is pending input from the tech workshop(s)</p>
       <tr>
-       <td>CarbonFootprint 
-       <td><code>primaryDataShare</code> 
+       <td>CarbonFootprint
+       <td><code>primaryDataShare</code>
        <td>
-         The relative share of logistics emissions for which primary data has been used for the calculation. 
+         The relative share of logistics emissions for which primary data has been used for the calculation.
         <p>See <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> and the Pathfinder Framework (<a data-link-type="biblio" href="#biblio-pathfinder-framework" title="Pathfinder Framework: Guidance for the Accounting and Exchange of Product Life Cycle Emissions (Version 2.0)">[PATHFINDER-FRAMEWORK]</a>) for further details.</p>
     </table>
     <figcaption>Mapping of PACT Data Model properties to <code><a data-link-type="element" href="#elementdef-shipmentfootprint" id="ref-for-elementdef-shipmentfootprint①⑤">ShipmentFootprint</a></code> properties</figcaption>
@@ -4639,15 +4639,15 @@ extension (see <a data-link-type="biblio" href="#biblio-data-model-extensions" t
     <table class="data">
      <thead>
       <tr>
-       <th>PACT Data Type 
-       <th>Property 
-       <th>Value Derivation 
+       <th>PACT Data Type
+       <th>Property
+       <th>Value Derivation
      <tbody>
       <tr>
-       <td>ProductFootprint 
-       <td><code>productIds</code> 
+       <td>ProductFootprint
+       <td><code>productIds</code>
        <td>
-         MUST contain the TOC ID <code><a data-link-type="element-sub" href="#element-attrdef-toc-tocid" id="ref-for-element-attrdef-toc-tocid">tocId</a></code>, encoded as 
+         MUST contain the TOC ID <code><a data-link-type="element-sub" href="#element-attrdef-toc-tocid" id="ref-for-element-attrdef-toc-tocid">tocId</a></code>, encoded as
         <dl>
          <dt data-md><code>urn:pathfinder:product:customcode:vendor-assigned:toc:&lt;toc id></code>
          <dd data-md>
@@ -4660,52 +4660,52 @@ extension (see <a data-link-type="biblio" href="#biblio-data-model-extensions" t
                       toc ids are assigned to a single TOC, <code>productIds</code> CAN contain
                       all of them.</p>
       <tr>
-       <td>ProductFootprint 
-       <td><code>productCategoryCpc</code> 
-       <td> MUST be equal to <code>83117</code>, the CPC code of logistics services. 
+       <td>ProductFootprint
+       <td><code>productCategoryCpc</code>
+       <td> MUST be equal to <code>83117</code>, the CPC code of logistics services.
       <tr>
-       <td>CarbonFootprint 
-       <td><code>declaredUnit</code> 
+       <td>CarbonFootprint
+       <td><code>declaredUnit</code>
        <td>
-         MUST be set to <code>ton kilometer</code> conforming with the Pathfinder Tech Specs. 
+         MUST be set to <code>ton kilometer</code> conforming with the Pathfinder Tech Specs.
         <p>See <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> Chapter 4 for further details.</p>
       <tr>
-       <td>CarbonFootprint 
-       <td><code>unitaryProductAmount</code> 
-       <td> SHOULD be set to <code>"1"</code> so that the ProductFootprint represents the emissions per ton kilometer of the TOC. 
+       <td>CarbonFootprint
+       <td><code>unitaryProductAmount</code>
+       <td> SHOULD be set to <code>"1"</code> so that the ProductFootprint represents the emissions per ton kilometer of the TOC.
       <tr>
-       <td>CarbonFootprint 
-       <td><code>pCfExcludingBiogenic</code> 
+       <td>CarbonFootprint
+       <td><code>pCfExcludingBiogenic</code>
        <td> MUST be set to the logistics emissions intensity of the TOC, excluding biogenic emissions,
-              defined in &lt;{TOC/co2eIntensityWTW }>. 
+              defined in &lt;{TOC/co2eIntensityWTW }>.
       <tr>
-       <td>CarbonFootprint 
-       <td><code>pCfIncludingBiogenic</code> 
+       <td>CarbonFootprint
+       <td><code>pCfIncludingBiogenic</code>
        <td>
-         This property is OPTIONAL in the <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> data Model. 
+         This property is OPTIONAL in the <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> data Model.
         <p>It SHOULD be set to the logistics emissions intensity of the TOC,
               including biogenic emissions, found in <code><a data-link-type="element-sub" href="#element-attrdef-toc-co2eintensitywtw" id="ref-for-element-attrdef-toc-co2eintensitywtw②">co2eIntensityWTW</a></code>.</p>
       <tr>
-       <td>CarbonFootprint 
-       <td><code>fossilGhgEmissions</code> 
-       <td> see the specification for <code>pCfExcludingBiogenic</code> in this table 
+       <td>CarbonFootprint
+       <td><code>fossilGhgEmissions</code>
+       <td> see the specification for <code>pCfExcludingBiogenic</code> in this table
       <tr>
-       <td>CarbonFootprint 
-       <td><code>packagingEmissionsIncluded</code> 
+       <td>CarbonFootprint
+       <td><code>packagingEmissionsIncluded</code>
        <td>
-         see <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> for further details 
+         see <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> for further details
         <p>MUST be set to <code>false</code>.</p>
       <tr>
-       <td>CarbonFootprint 
-       <td><code>primaryDataShare</code> 
+       <td>CarbonFootprint
+       <td><code>primaryDataShare</code>
        <td>
-         The relative share of logistics emissions for which primary data has been used for the calculation. 
+         The relative share of logistics emissions for which primary data has been used for the calculation.
         <p>See <a data-link-type="biblio" href="#biblio-pactdx" title="Technical Specifications for PCF Data Exchange (Version 2.1.0)">[PACTDX]</a> and the Pathfinder Framework (<a data-link-type="biblio" href="#biblio-pathfinder-framework" title="Pathfinder Framework: Guidance for the Accounting and Exchange of Product Life Cycle Emissions (Version 2.0)">[PATHFINDER-FRAMEWORK]</a>) for further details.</p>
     </table>
     <figcaption>Mapping of PACT Data Model properties to <code><a data-link-type="element" href="#elementdef-toc" id="ref-for-elementdef-toc①⑦">TOC</a></code> properties</figcaption>
    </figure>
    <h2 class="heading settled" id="changelog"><span class="content">Appendix A: Changelog</span><a class="self-link" href="#changelog"></a></h2>
-   <h3 class="heading settled" id="version-20240603"><span class="content">Version 0.2.0 Release (2024-06-03)</span><a class="self-link" href="#version-20240603"></a></h3>
+   <h3 class="heading settled" id="version-20240604"><span class="content">Version 0.2.0 Release (2024-06-04)</span><a class="self-link" href="#version-20240604"></a></h3>
    <p>Stable Release including the following changes:</p>
    <ul>
     <li data-md>
@@ -4760,13 +4760,13 @@ taken as a link to the actual data schema. This will be updated as soon as possi
    <h3 class="heading settled" id="appendix-b-sf-example"><span class="content">ShipmentFootprint example</span><a class="self-link" href="#appendix-b-sf-example"></a></h3>
    <p>A Product Footprint with a <code><a data-link-type="element" href="#elementdef-shipmentfootprint" id="ref-for-elementdef-shipmentfootprint①⑦">ShipmentFootprint</a></code> highlighted:</p>
    <div class="example" id="example-d466118e">
-    <a class="self-link" href="#example-d466118e"></a> 
+    <a class="self-link" href="#example-d466118e"></a>
 <pre class="highlight line-numbered"><span class="line-no" data-line="1"></span><span class="line"><c- p>{</c-></span><span class="line-no" data-line="2"></span><span class="line">  <c- f>"id"</c-><c- p>:</c-> <c- u>"d9be4477-e351-45b3-acd9-e1da05e6f633"</c-><c- p>,</c-></span><span class="line-no" data-line="3"></span><span class="line">  <c- f>"specVersion"</c-><c- p>:</c-> <c- u>"2.0.0"</c-><c- p>,</c-></span><span class="line-no" data-line="4"></span><span class="line">  <c- f>"version"</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c-></span><span class="line-no" data-line="5"></span><span class="line">  <c- f>"created"</c-><c- p>:</c-> <c- u>"2022-05-22T21:47:32Z"</c-><c- p>,</c-></span><span class="line-no" data-line="6"></span><span class="line">  <c- f>"status"</c-><c- p>:</c-> <c- u>"Active"</c-><c- p>,</c-></span><span class="line-no" data-line="7"></span><span class="line">  <c- f>"companyName"</c-><c- p>:</c-> <c- u>"Super Duper Transport Co."</c-><c- p>,</c-></span><span class="line-no" data-line="8"></span><span class="line">  <c- f>"companyIds"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="9"></span><span class="line">      <c- u>"urn:epc:id:sgln:4063973.00000.8"</c-></span><span class="line-no" data-line="10"></span><span class="line">  <c- p>],</c-></span><span class="line-no" data-line="11"></span><span class="line">  <c- f>"productDescription"</c-><c- p>:</c-> <c- u>"Logistics emissions related to shipment with ID 1237890"</c-><c- p>,</c-></span><span class="line-no" data-line="12"></span><span class="line">  <c- f>"productIds"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="13"></span><span class="line">      <c- u>"urn:pathfinder:product:customcode:vendor-assigned:shipment:1237890"</c-></span><span class="line-no" data-line="14"></span><span class="line">  <c- p>],</c-></span><span class="line-no" data-line="15"></span><span class="line">  <c- f>"productCategoryCpc"</c-><c- p>:</c-> <c- u>"83117"</c-><c- p>,</c-></span><span class="line-no" data-line="16"></span><span class="line">  <c- f>"productNameCompany"</c-><c- p>:</c-> <c- u>"Shipment with ID 1237890"</c-><c- p>,</c-></span><span class="line-no" data-line="17"></span><span class="line">  <c- f>"comment"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c-></span><span class="line-no" data-line="18"></span><span class="line">  <c- f>"pcf"</c-><c- p>:</c-> <c- p>{</c-></span><span class="line-no" data-line="19"></span><span class="line">    <c- f>"declaredUnit"</c-><c- p>:</c-> <c- u>"ton kilometer"</c-><c- p>,</c-></span><span class="line-no" data-line="20"></span><span class="line">    <c- f>"unitaryProductAmount"</c-><c- p>:</c-> <c- u>"36.801"</c-><c- p>,</c-></span><span class="line-no" data-line="21"></span><span class="line">    <c- f>"pCfExcludingBiogenic"</c-><c- p>:</c-> <c- u>"3.6801"</c-><c- p>,</c-></span><span class="line-no" data-line="22"></span><span class="line">    <c- f>"fossilGhgEmissions"</c-><c- p>:</c-> <c- u>"3.6801"</c-><c- p>,</c-></span><span class="line-no" data-line="23"></span><span class="line">    <c- f>"fossilCarbonContent"</c-><c- p>:</c-> <c- u>"0"</c-><c- p>,</c-></span><span class="line-no" data-line="24"></span><span class="line">    <c- f>"biogenicCarbonContent"</c-><c- p>:</c-> <c- u>"0"</c-><c- p>,</c-></span><span class="line-no" data-line="25"></span><span class="line">    <c- f>"characterizationFactors"</c-><c- p>:</c-> <c- u>"AR6"</c-><c- p>,</c-></span><span class="line-no" data-line="26"></span><span class="line">    <c- f>"ipccCharacterizationFactorsSources"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="27"></span><span class="line">        <c- u>"AR6"</c-></span><span class="line-no" data-line="28"></span><span class="line">    <c- p>],</c-></span><span class="line-no" data-line="29"></span><span class="line">    <c- f>"crossSectoralStandardsUsed"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="30"></span><span class="line">        <c- u>"GHG Protocol Product standard"</c-></span><span class="line-no" data-line="31"></span><span class="line">    <c- p>],</c-></span><span class="line-no" data-line="32"></span><span class="line">    <c- f>"productOrSectorSpecificRules"</c-><c- p>:</c-> <c- p>[],</c-></span><span class="line-no" data-line="33"></span><span class="line">    <c- f>"boundaryProcessesDescription"</c-><c- p>:</c-> <c- u>"SFC GLEC Framework-conforming (W2W CO2e emissions)"</c-><c- p>,</c-></span><span class="line-no" data-line="34"></span><span class="line">    <c- f>"referencePeriodStart"</c-><c- p>:</c-> <c- u>"2021-01-01T00:00:00Z"</c-><c- p>,</c-></span><span class="line-no" data-line="35"></span><span class="line">    <c- f>"referencePeriodEnd"</c-><c- p>:</c-> <c- u>"2022-01-01T00:00:00Z"</c-><c- p>,</c-></span><span class="line-no" data-line="36"></span><span class="line">    <c- f>"secondaryEmissionFactorSources"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no highlight-line" data-line="37"></span><span class="line highlight-line">        <c- p>{</c-></span><span class="line-no highlight-line" data-line="38"></span><span class="line highlight-line">            <c- f>"name"</c-><c- p>:</c-> <c- u>"Ecoinvent"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="39"></span><span class="line highlight-line">            <c- f>"version"</c-><c- p>:</c-> <c- u>"3.9.1"</c-></span><span class="line-no highlight-line" data-line="40"></span><span class="line highlight-line">        <c- p>}</c-></span><span class="line-no highlight-line" data-line="41"></span><span class="line highlight-line">    <c- p>],</c-></span><span class="line-no highlight-line" data-line="42"></span><span class="line highlight-line">    <c- f>"exemptedEmissionsPercent"</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="43"></span><span class="line highlight-line">    <c- f>"exemptedEmissionsDescription"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="44"></span><span class="line highlight-line">    <c- f>"packagingEmissionsIncluded"</c-><c- p>:</c-> <c- kc>true</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="45"></span><span class="line highlight-line">    <c- f>"primaryDataShare"</c-><c- p>:</c-> <c- mf>56.12</c-></span><span class="line-no highlight-line" data-line="46"></span><span class="line highlight-line">  <c- p>},</c-></span><span class="line-no highlight-line" data-line="47"></span><span class="line highlight-line">  <c- f>"extensions"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no highlight-line" data-line="48"></span><span class="line highlight-line">    <c- p>{</c-></span><span class="line-no highlight-line" data-line="49"></span><span class="line highlight-line">      <c- f>"specVersion"</c-><c- p>:</c-> <c- u>"2.0.0"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="50"></span><span class="line highlight-line">      <c- f>"dataSchema"</c-><c- p>:</c-> <c- u>"https://api.ileap.sine.dev/shipment-footprint.json"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="51"></span><span class="line highlight-line">      <c- f>"documentation"</c-><c- p>:</c-> <c- u>"https://sine-fdn.github.io/ileap-extension/"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="52"></span><span class="line highlight-line">      <c- f>"data"</c-><c- p>:</c-> <c- p>{</c-></span><span class="line-no highlight-line" data-line="53"></span><span class="line highlight-line">          <c- f>"mass"</c-><c- p>:</c-> <c- u>"87"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="54"></span><span class="line highlight-line">          <c- f>"shipmentId"</c-><c- p>:</c-> <c- u>"1237890"</c-><c- p>,</c-></span><span class="line-no" data-line="55"></span><span class="line">          <c- f>"tces"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="56"></span><span class="line">              <c- p>{</c-></span><span class="line-no" data-line="57"></span><span class="line">                  <c- f>"tceId"</c-><c- p>:</c-> <c- u>"abcdef"</c-><c- p>,</c-></span><span class="line-no" data-line="58"></span><span class="line">                  <c- f>"tocId"</c-><c- p>:</c-> <c- u>"truck-40t-euro5-de"</c-><c- p>,</c-></span><span class="line-no" data-line="59"></span><span class="line">                  <c- f>"shipmentId"</c-><c- p>:</c-> <c- u>"1237890"</c-><c- p>,</c-></span><span class="line-no" data-line="60"></span><span class="line">                  <c- f>"mass"</c-><c- p>:</c-> <c- u>"87"</c-><c- p>,</c-></span><span class="line-no" data-line="61"></span><span class="line">                  <c- f>"distance"</c-><c- p>:</c-> <c- p>{</c-></span><span class="line-no" data-line="62"></span><span class="line">                      <c- f>"actual"</c-><c- p>:</c-> <c- u>"423"</c-></span><span class="line-no" data-line="63"></span><span class="line">                  <c- p>},</c-></span><span class="line-no" data-line="64"></span><span class="line">                  <c- f>"transportActivity"</c-><c- p>:</c-> <c- u>"3.6801"</c-><c- p>,</c-></span><span class="line-no" data-line="65"></span><span class="line">                  <c- f>"co2eWTW"</c-><c- p>:</c-> <c- u>"3.6801"</c-><c- p>,</c-></span><span class="line-no" data-line="66"></span><span class="line">                  <c- f>"co2eTTW"</c-><c- p>:</c-> <c- u>"3.2801"</c-></span><span class="line-no" data-line="67"></span><span class="line">              <c- p>}</c-></span><span class="line-no" data-line="68"></span><span class="line">          <c- p>]</c-></span><span class="line-no" data-line="69"></span><span class="line">      <c- p>}</c-></span><span class="line-no" data-line="70"></span><span class="line">    <c- p>}</c-></span><span class="line-no" data-line="71"></span><span class="line">  <c- p>]</c-></span><span class="line-no" data-line="72"></span><span class="line"><c- p>}</c-></span></pre>
    </div>
    <h3 class="heading settled" id="appendix-b-toc-example"><span class="content">TOC example</span><a class="self-link" href="#appendix-b-toc-example"></a></h3>
    <p>A Product Footprint with a <code><a data-link-type="element" href="#elementdef-toc" id="ref-for-elementdef-toc①⑨">TOC</a></code> highlighted:</p>
    <div class="example" id="example-772aadc1">
-    <a class="self-link" href="#example-772aadc1"></a> 
+    <a class="self-link" href="#example-772aadc1"></a>
 <pre class="highlight line-numbered"><span class="line-no" data-line="1"></span><span class="line"><c- p>{</c-></span><span class="line-no" data-line="2"></span><span class="line">  <c- f>"id"</c-><c- p>:</c-> <c- u>"f3c04ec8-b33a-43b1-9fa7-d6a448fd60af"</c-><c- p>,</c-></span><span class="line-no" data-line="3"></span><span class="line">  <c- f>"specVersion"</c-><c- p>:</c-> <c- u>"2.0.0"</c-><c- p>,</c-></span><span class="line-no" data-line="4"></span><span class="line">  <c- f>"version"</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c-></span><span class="line-no" data-line="5"></span><span class="line">  <c- f>"created"</c-><c- p>:</c-> <c- u>"2022-05-22T21:47:32Z"</c-><c- p>,</c-></span><span class="line-no" data-line="6"></span><span class="line">  <c- f>"status"</c-><c- p>:</c-> <c- u>"Active"</c-><c- p>,</c-></span><span class="line-no" data-line="7"></span><span class="line">  <c- f>"companyName"</c-><c- p>:</c-> <c- u>"Super Duper Transport Co."</c-><c- p>,</c-></span><span class="line-no" data-line="8"></span><span class="line">  <c- f>"companyIds"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="9"></span><span class="line">      <c- u>"urn:epc:id:sgln:4063973.00000.8"</c-></span><span class="line-no" data-line="10"></span><span class="line">  <c- p>],</c-></span><span class="line-no" data-line="11"></span><span class="line">  <c- f>"productDescription"</c-><c- p>:</c-> <c- u>"Logistics emissions related to TOC with ID 4561230"</c-><c- p>,</c-></span><span class="line-no" data-line="12"></span><span class="line">  <c- f>"productIds"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="13"></span><span class="line">      <c- u>"urn:pathfinder:product:customcode:vendor-assigned:toc:4561230"</c-></span><span class="line-no" data-line="14"></span><span class="line">  <c- p>],</c-></span><span class="line-no" data-line="15"></span><span class="line">  <c- f>"productCategoryCpc"</c-><c- p>:</c-> <c- u>"83117"</c-><c- p>,</c-></span><span class="line-no" data-line="16"></span><span class="line">  <c- f>"productNameCompany"</c-><c- p>:</c-> <c- u>"TOC with ID 4561230"</c-><c- p>,</c-></span><span class="line-no" data-line="17"></span><span class="line">  <c- f>"comment"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c-></span><span class="line-no" data-line="18"></span><span class="line">  <c- f>"pcf"</c-><c- p>:</c-> <c- p>{</c-></span><span class="line-no" data-line="19"></span><span class="line">    <c- f>"declaredUnit"</c-><c- p>:</c-> <c- u>"ton kilometer"</c-><c- p>,</c-></span><span class="line-no" data-line="20"></span><span class="line">    <c- f>"unitaryProductAmount"</c-><c- p>:</c-> <c- u>"1"</c-><c- p>,</c-></span><span class="line-no" data-line="21"></span><span class="line">    <c- f>"pCfExcludingBiogenic"</c-><c- p>:</c-> <c- u>"3.6801"</c-><c- p>,</c-></span><span class="line-no" data-line="22"></span><span class="line">    <c- f>"fossilGhgEmissions"</c-><c- p>:</c-> <c- u>"3.6801"</c-><c- p>,</c-></span><span class="line-no" data-line="23"></span><span class="line">    <c- f>"fossilCarbonContent"</c-><c- p>:</c-> <c- u>"0"</c-><c- p>,</c-></span><span class="line-no" data-line="24"></span><span class="line">    <c- f>"biogenicCarbonContent"</c-><c- p>:</c-> <c- u>"0"</c-><c- p>,</c-></span><span class="line-no" data-line="25"></span><span class="line">    <c- f>"characterizationFactors"</c-><c- p>:</c-> <c- u>"AR6"</c-><c- p>,</c-></span><span class="line-no" data-line="26"></span><span class="line">    <c- f>"ipccCharacterizationFactorsSources"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="27"></span><span class="line">        <c- u>"AR6"</c-></span><span class="line-no" data-line="28"></span><span class="line">    <c- p>],</c-></span><span class="line-no" data-line="29"></span><span class="line">    <c- f>"crossSectoralStandardsUsed"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="30"></span><span class="line">        <c- u>"GHG Protocol Product standard"</c-></span><span class="line-no" data-line="31"></span><span class="line">    <c- p>],</c-></span><span class="line-no" data-line="32"></span><span class="line">    <c- f>"productOrSectorSpecificRules"</c-><c- p>:</c-> <c- p>[],</c-></span><span class="line-no" data-line="33"></span><span class="line">    <c- f>"boundaryProcessesDescription"</c-><c- p>:</c-> <c- u>"SFC GLEC Framework-conforming (W2W CO2e emissions)"</c-><c- p>,</c-></span><span class="line-no" data-line="34"></span><span class="line">    <c- f>"referencePeriodStart"</c-><c- p>:</c-> <c- u>"2021-01-01T00:00:00Z"</c-><c- p>,</c-></span><span class="line-no" data-line="35"></span><span class="line">    <c- f>"referencePeriodEnd"</c-><c- p>:</c-> <c- u>"2022-01-01T00:00:00Z"</c-><c- p>,</c-></span><span class="line-no" data-line="36"></span><span class="line">    <c- f>"secondaryEmissionFactorSources"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no highlight-line" data-line="37"></span><span class="line highlight-line">        <c- p>{</c-></span><span class="line-no highlight-line" data-line="38"></span><span class="line highlight-line">            <c- f>"name"</c-><c- p>:</c-> <c- u>"Ecoinvent"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="39"></span><span class="line highlight-line">            <c- f>"version"</c-><c- p>:</c-> <c- u>"3.9.1"</c-></span><span class="line-no highlight-line" data-line="40"></span><span class="line highlight-line">        <c- p>}</c-></span><span class="line-no highlight-line" data-line="41"></span><span class="line highlight-line">    <c- p>],</c-></span><span class="line-no highlight-line" data-line="42"></span><span class="line highlight-line">    <c- f>"exemptedEmissionsPercent"</c-><c- p>:</c-> <c- mi>0</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="43"></span><span class="line highlight-line">    <c- f>"exemptedEmissionsDescription"</c-><c- p>:</c-> <c- u>""</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="44"></span><span class="line highlight-line">    <c- f>"packagingEmissionsIncluded"</c-><c- p>:</c-> <c- kc>false</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="45"></span><span class="line highlight-line">    <c- f>"primaryDataShare"</c-><c- p>:</c-> <c- mf>56.12</c-></span><span class="line-no highlight-line" data-line="46"></span><span class="line highlight-line">  <c- p>},</c-></span><span class="line-no highlight-line" data-line="47"></span><span class="line highlight-line">  <c- f>"extensions"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no highlight-line" data-line="48"></span><span class="line highlight-line">    <c- p>{</c-></span><span class="line-no highlight-line" data-line="49"></span><span class="line highlight-line">      <c- f>"specVersion"</c-><c- p>:</c-> <c- u>"2.0.0"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="50"></span><span class="line highlight-line">      <c- f>"dataSchema"</c-><c- p>:</c-> <c- u>"https://api.ileap.sine.dev/toc.json"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="51"></span><span class="line highlight-line">      <c- f>"documentation"</c-><c- p>:</c-> <c- u>"https://sine-fdn.github.io/ileap-extension/"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="52"></span><span class="line highlight-line">      <c- f>"data"</c-><c- p>:</c-> <c- p>{</c-></span><span class="line-no highlight-line" data-line="53"></span><span class="line highlight-line">          <c- f>"tocId"</c-><c- p>:</c-> <c- u>"4561230"</c-><c- p>,</c-></span><span class="line-no highlight-line" data-line="54"></span><span class="line highlight-line">          <c- f>"isVerified"</c-><c- p>:</c-> <c- kc>true</c-><c- p>,</c-></span><span class="line-no" data-line="55"></span><span class="line">          <c- f>"isAccredited"</c-><c- p>:</c-> <c- kc>true</c-><c- p>,</c-></span><span class="line-no" data-line="56"></span><span class="line">          <c- f>"mode"</c-><c- p>:</c-> <c- u>"Road"</c-><c- p>,</c-></span><span class="line-no" data-line="57"></span><span class="line">          <c- f>"temperatureControl"</c-><c- p>:</c-> <c- u>"refrigerated"</c-><c- p>,</c-></span><span class="line-no" data-line="58"></span><span class="line">          <c- f>"truckLoadingSequence"</c-><c- p>:</c-> <c- u>"FTL"</c-><c- p>,</c-></span><span class="line-no" data-line="59"></span><span class="line">          <c- f>"energyCarriers"</c-><c- p>:</c-> <c- p>[</c-></span><span class="line-no" data-line="60"></span><span class="line">              <c- p>{</c-></span><span class="line-no" data-line="61"></span><span class="line">                  <c- f>"energyCarrier"</c-><c- p>:</c-> <c- u>"Diesel"</c-><c- p>,</c-></span><span class="line-no" data-line="62"></span><span class="line">                  <c- f>"co2eIntensityWTW"</c-><c- p>:</c-> <c- u>"3.6801"</c-><c- p>,</c-></span><span class="line-no" data-line="63"></span><span class="line">                  <c- f>"co2eIntensityTTW"</c-><c- p>:</c-> <c- u>"3.2801"</c-></span><span class="line-no" data-line="64"></span><span class="line">              <c- p>}</c-></span><span class="line-no" data-line="65"></span><span class="line">          <c- p>],</c-></span><span class="line-no" data-line="66"></span><span class="line">          <c- f>"co2eIntensityWTW"</c-><c- p>:</c-> <c- u>"3.6801"</c-><c- p>,</c-></span><span class="line-no" data-line="67"></span><span class="line">          <c- f>"co2eIntensityTTW"</c-><c- p>:</c-> <c- u>"3.2801"</c-><c- p>,</c-></span><span class="line-no" data-line="68"></span><span class="line">          <c- f>"co2eIntensityThroughput"</c-><c- p>:</c-> <c- u>"tkm"</c-></span><span class="line-no" data-line="69"></span><span class="line">      <c- p>}</c-></span><span class="line-no" data-line="70"></span><span class="line">    <c- p>}</c-></span><span class="line-no" data-line="71"></span><span class="line">  <c- p>]</c-></span><span class="line-no" data-line="72"></span><span class="line"><c- p>}</c-></span></pre>
    </div>
   </main>
@@ -5488,7 +5488,7 @@ let dfnPanelData = {
 "element-attrdef-shipmentfootprint-volume": {"dfnID":"element-attrdef-shipmentfootprint-volume","dfnText":"volume","external":false,"refSections":[],"url":"#element-attrdef-shipmentfootprint-volume"},
 "element-attrdef-tad-activityid": {"dfnID":"element-attrdef-tad-activityid","dfnText":"activityId","external":false,"refSections":[],"url":"#element-attrdef-tad-activityid"},
 "element-attrdef-tad-arrivalat": {"dfnID":"element-attrdef-tad-arrivalat","dfnText":"arrivalAt","external":false,"refSections":[],"url":"#element-attrdef-tad-arrivalat"},
-"element-attrdef-tad-consignmentids": {"dfnID":"element-attrdef-tad-consignmentids","dfnText":"consignmentIds","external":false,"refSections":[{"refs":[{"id":"ref-for-element-attrdef-tad-consignmentids"}],"title":"Version 0.2.0 Release (2024-06-03)"}],"url":"#element-attrdef-tad-consignmentids"},
+"element-attrdef-tad-consignmentids": {"dfnID":"element-attrdef-tad-consignmentids","dfnText":"consignmentIds","external":false,"refSections":[{"refs":[{"id":"ref-for-element-attrdef-tad-consignmentids"}],"title":"Version 0.2.0 Release (2024-06-04)"}],"url":"#element-attrdef-tad-consignmentids"},
 "element-attrdef-tad-departureat": {"dfnID":"element-attrdef-tad-departureat","dfnText":"departureAt","external":false,"refSections":[],"url":"#element-attrdef-tad-departureat"},
 "element-attrdef-tad-destination": {"dfnID":"element-attrdef-tad-destination","dfnText":"destination","external":false,"refSections":[],"url":"#element-attrdef-tad-destination"},
 "element-attrdef-tad-distance": {"dfnID":"element-attrdef-tad-distance","dfnText":"distance","external":false,"refSections":[],"url":"#element-attrdef-tad-distance"},
@@ -5548,7 +5548,7 @@ let dfnPanelData = {
 "elementdef-location": {"dfnID":"elementdef-location","dfnText":"Location","external":false,"refSections":[{"refs":[{"id":"ref-for-elementdef-location"},{"id":"ref-for-elementdef-location\u2460"}],"title":"6.2.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-location\u2461"}],"title":"6.4.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-location\u2462"},{"id":"ref-for-elementdef-location\u2463"}],"title":"6.5.1. Data Attributes"}],"url":"#elementdef-location"},
 "elementdef-packagingortreqtype": {"dfnID":"elementdef-packagingortreqtype","dfnText":"PackagingOrTrEqType","external":false,"refSections":[{"refs":[{"id":"ref-for-elementdef-packagingortreqtype"},{"id":"ref-for-elementdef-packagingortreqtype\u2460"}],"title":"6.2.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-packagingortreqtype\u2461"}],"title":"6.4.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-packagingortreqtype\u2462"}],"title":"6.5.1. Data Attributes"}],"url":"#elementdef-packagingortreqtype"},
 "elementdef-shipmentfootprint": {"dfnID":"elementdef-shipmentfootprint","dfnText":"ShipmentFootprint","external":false,"refSections":[{"refs":[{"id":"ref-for-elementdef-shipmentfootprint"}],"title":"4.1. Data Transaction 1: TCE Data Exchange"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2460"}],"title":"5.2.1. Data Collection by Transport Service Organizer Z"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2461"},{"id":"ref-for-elementdef-shipmentfootprint\u2462"},{"id":"ref-for-elementdef-shipmentfootprint\u2463"}],"title":"6. Data Model"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2464"},{"id":"ref-for-elementdef-shipmentfootprint\u2465"},{"id":"ref-for-elementdef-shipmentfootprint\u2466"}],"title":"6.1. ShipmentFootprint"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2467"},{"id":"ref-for-elementdef-shipmentfootprint\u2468"}],"title":"6.1.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2460\u24ea"}],"title":"7. HTTP REST API"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2460\u2460"},{"id":"ref-for-elementdef-shipmentfootprint\u2460\u2461"}],"title":"7.2. Pathfinder Integration"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2460\u2462"},{"id":"ref-for-elementdef-shipmentfootprint\u2460\u2463"},{"id":"ref-for-elementdef-shipmentfootprint\u2460\u2464"}],"title":"7.2.1. ShipmentFootprint"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2460\u2465"}],"title":"Version 0.2.0-20240513 (2024-05-13)"},{"refs":[{"id":"ref-for-elementdef-shipmentfootprint\u2460\u2466"}],"title":"ShipmentFootprint example"}],"url":"#elementdef-shipmentfootprint"},
-"elementdef-tad": {"dfnID":"elementdef-tad","dfnText":"TAD","external":false,"refSections":[{"refs":[{"id":"ref-for-elementdef-tad"},{"id":"ref-for-elementdef-tad\u2460"},{"id":"ref-for-elementdef-tad\u2461"}],"title":"4.3. Data Transaction 3: Transport Activity Data Exchange"},{"refs":[{"id":"ref-for-elementdef-tad\u2462"}],"title":"5. End-to-End Example"},{"refs":[{"id":"ref-for-elementdef-tad\u2463"},{"id":"ref-for-elementdef-tad\u2464"}],"title":"5.1.1. Data Collection by Transport Service Organizer Z"},{"refs":[{"id":"ref-for-elementdef-tad\u2465"},{"id":"ref-for-elementdef-tad\u2466"}],"title":"6. Data Model"},{"refs":[{"id":"ref-for-elementdef-tad\u2467"}],"title":"6.1. ShipmentFootprint"},{"refs":[{"id":"ref-for-elementdef-tad\u2468"}],"title":"6.5. Transport Activity Data (TAD)"},{"refs":[{"id":"ref-for-elementdef-tad\u2460\u24ea"},{"id":"ref-for-elementdef-tad\u2460\u2460"}],"title":"6.5.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-tad\u2460\u2461"}],"title":"Version 0.2.0 Release (2024-06-03)"}],"url":"#elementdef-tad"},
+"elementdef-tad": {"dfnID":"elementdef-tad","dfnText":"TAD","external":false,"refSections":[{"refs":[{"id":"ref-for-elementdef-tad"},{"id":"ref-for-elementdef-tad\u2460"},{"id":"ref-for-elementdef-tad\u2461"}],"title":"4.3. Data Transaction 3: Transport Activity Data Exchange"},{"refs":[{"id":"ref-for-elementdef-tad\u2462"}],"title":"5. End-to-End Example"},{"refs":[{"id":"ref-for-elementdef-tad\u2463"},{"id":"ref-for-elementdef-tad\u2464"}],"title":"5.1.1. Data Collection by Transport Service Organizer Z"},{"refs":[{"id":"ref-for-elementdef-tad\u2465"},{"id":"ref-for-elementdef-tad\u2466"}],"title":"6. Data Model"},{"refs":[{"id":"ref-for-elementdef-tad\u2467"}],"title":"6.1. ShipmentFootprint"},{"refs":[{"id":"ref-for-elementdef-tad\u2468"}],"title":"6.5. Transport Activity Data (TAD)"},{"refs":[{"id":"ref-for-elementdef-tad\u2460\u24ea"},{"id":"ref-for-elementdef-tad\u2460\u2460"}],"title":"6.5.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-tad\u2460\u2461"}],"title":"Version 0.2.0 Release (2024-06-04)"}],"url":"#elementdef-tad"},
 "elementdef-tce": {"dfnID":"elementdef-tce","dfnText":"TCE","external":false,"refSections":[{"refs":[{"id":"ref-for-elementdef-tce"},{"id":"ref-for-elementdef-tce\u2460"}],"title":"4.1. Data Transaction 1: TCE Data Exchange"},{"refs":[{"id":"ref-for-elementdef-tce\u2461"},{"id":"ref-for-elementdef-tce\u2462"},{"id":"ref-for-elementdef-tce\u2463"},{"id":"ref-for-elementdef-tce\u2464"}],"title":"5. End-to-End Example"},{"refs":[{"id":"ref-for-elementdef-tce\u2465"},{"id":"ref-for-elementdef-tce\u2466"}],"title":"5.1.1. Data Collection by Transport Service Organizer Z"},{"refs":[{"id":"ref-for-elementdef-tce\u2467"},{"id":"ref-for-elementdef-tce\u2468"},{"id":"ref-for-elementdef-tce\u2460\u24ea"},{"id":"ref-for-elementdef-tce\u2460\u2460"},{"id":"ref-for-elementdef-tce\u2460\u2461"}],"title":"5.1.2. Data Collection by Transport Service User S"},{"refs":[{"id":"ref-for-elementdef-tce\u2460\u2462"},{"id":"ref-for-elementdef-tce\u2460\u2463"}],"title":"5.2.1. Data Collection by Transport Service Organizer Z"},{"refs":[{"id":"ref-for-elementdef-tce\u2460\u2464"}],"title":"5.2.2. Data Collection by Transport Service User S"},{"refs":[{"id":"ref-for-elementdef-tce\u2460\u2465"}],"title":"6. Data Model"},{"refs":[{"id":"ref-for-elementdef-tce\u2460\u2466"},{"id":"ref-for-elementdef-tce\u2460\u2467"},{"id":"ref-for-elementdef-tce\u2460\u2468"},{"id":"ref-for-elementdef-tce\u2461\u24ea"},{"id":"ref-for-elementdef-tce\u2461\u2460"}],"title":"6.1. ShipmentFootprint"},{"refs":[{"id":"ref-for-elementdef-tce\u2461\u2461"}],"title":"6.1.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-tce\u2461\u2462"}],"title":"6.2. Transport Chain Element ( TCE )"},{"refs":[{"id":"ref-for-elementdef-tce\u2461\u2463"},{"id":"ref-for-elementdef-tce\u2461\u2464"},{"id":"ref-for-elementdef-tce\u2461\u2465"},{"id":"ref-for-elementdef-tce\u2461\u2466"},{"id":"ref-for-elementdef-tce\u2461\u2467"},{"id":"ref-for-elementdef-tce\u2461\u2468"}],"title":"6.2.1. Data Attributes"}],"url":"#elementdef-tce"},
 "elementdef-toc": {"dfnID":"elementdef-toc","dfnText":"TOC","external":false,"refSections":[{"refs":[{"id":"ref-for-elementdef-toc"}],"title":"4.2. Data Transaction 2: TOC Data Exchange"},{"refs":[{"id":"ref-for-elementdef-toc\u2460"},{"id":"ref-for-elementdef-toc\u2461"}],"title":"5. End-to-End Example"},{"refs":[{"id":"ref-for-elementdef-toc\u2462"}],"title":"5.1.2. Data Collection by Transport Service User S"},{"refs":[{"id":"ref-for-elementdef-toc\u2463"},{"id":"ref-for-elementdef-toc\u2464"},{"id":"ref-for-elementdef-toc\u2465"}],"title":"6. Data Model"},{"refs":[{"id":"ref-for-elementdef-toc\u2466"}],"title":"6.1. ShipmentFootprint"},{"refs":[{"id":"ref-for-elementdef-toc\u2467"},{"id":"ref-for-elementdef-toc\u2468"},{"id":"ref-for-elementdef-toc\u2460\u24ea"}],"title":"6.3. Transport Operation Category ( TOC )"},{"refs":[{"id":"ref-for-elementdef-toc\u2460\u2460"}],"title":"6.3.1. Data Attributes"},{"refs":[{"id":"ref-for-elementdef-toc\u2460\u2461"}],"title":"7. HTTP REST API"},{"refs":[{"id":"ref-for-elementdef-toc\u2460\u2462"},{"id":"ref-for-elementdef-toc\u2460\u2463"}],"title":"7.2. Pathfinder Integration"},{"refs":[{"id":"ref-for-elementdef-toc\u2460\u2464"},{"id":"ref-for-elementdef-toc\u2460\u2465"},{"id":"ref-for-elementdef-toc\u2460\u2466"}],"title":"7.2.2. TOC"},{"refs":[{"id":"ref-for-elementdef-toc\u2460\u2467"}],"title":"Version 0.2.0-20240513 (2024-05-13)"},{"refs":[{"id":"ref-for-elementdef-toc\u2460\u2468"}],"title":"TOC example"}],"url":"#elementdef-toc"},
 "energycarrier": {"dfnID":"energycarrier","dfnText":"EnergyCarrier","external":false,"refSections":[{"refs":[{"id":"ref-for-energycarrier"}],"title":"6.3.1. Data Attributes"},{"refs":[{"id":"ref-for-energycarrier\u2460"}],"title":"6.4.1. Data Attributes"},{"refs":[{"id":"ref-for-energycarrier\u2461"},{"id":"ref-for-energycarrier\u2462"}],"title":"6.6.8. Data Type Feedstock"}],"url":"#energycarrier"},
