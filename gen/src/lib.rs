@@ -152,6 +152,45 @@ pub enum FlightLength {
 pub struct GlecDataQualityIndex(pub u8);
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
+#[serde(rename_all = "camelCase", rename = "HOC")]
+pub struct Hoc {
+    pub hoc_id: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+    pub is_verified: bool,
+    pub is_accredited: bool,
+    pub hub_type: HubType,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub temperature_control: Option<TemperatureControl>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hub_location: Option<Location>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub inbound_transport_mode: Option<TransportMode>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub outbound_transport_mode: Option<TransportMode>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub packaging_or_tr_eq_type: Option<PackagingOrTrEqType>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub packaging_or_tr_eq_amount: Option<usize>,
+    pub energy_carriers: Vec<EnergyCarrier>,
+    #[serde(rename = "co2eIntensityWTW")]
+    pub co2e_intensity_wtw: WrappedDecimal,
+    #[serde(rename = "co2eIntensityTTW")]
+    pub co2e_intensity_ttw: WrappedDecimal,
+    pub co2e_intensity_throughput: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
+#[serde(rename_all = "camelCase")]
+pub enum HubType {
+    Transshipment,
+    StorageAndTransshipment,
+    Warehouse,
+    LiquidBulkterminal,
+    MaritimeContainerterminal,
+}
+
+#[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
 #[serde(rename_all = "camelCase", rename = "TAD")]
 /// Data Type "Transport Activity Data" of the iLEAP Technical Specifications
 pub struct Tad {
