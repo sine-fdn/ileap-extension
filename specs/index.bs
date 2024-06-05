@@ -1190,7 +1190,7 @@ The Data Type <{HOC}> has the following properties:
             Advisement: The enumeration of throughputs will be evolved in future revisions.
 
             : `TEU`
-            :: leaving the hub for sea and inland waterways
+            :: leaving the hub for sea and inland waterways as outbound transport mode
 
             : `tonnes`
             :: leaving the hub
