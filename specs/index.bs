@@ -4,7 +4,7 @@ Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
 URL: https://sine-fdn.github.io/ileap-extension/
-ED: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240604/
+ED: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/
 Editor: Violetta Matzoros, https://www.smartfreightcentre.org, violetta.matzoros@smartfreightcentre.org
 Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rubiodomingo@smartfreightcentre.org
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
@@ -1522,13 +1522,13 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
             Unit of the energy consumed corresponding to the <{EnergyCarrier/energyConsumption}> (e.g., `"l"`, `"kg"`, `"kWh"`, `"MJ"`).
            <{EnergyCarrier/energyConsumptionUnit}> MUST be defined if <{EnergyCarrier/energyConsumption}> is defined.
       <tr>
-        <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
+        <td><dfn>emissionFactorWTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
             The WTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
       <tr>
-        <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
+        <td><dfn>emissionFactorTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
@@ -2033,7 +2033,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.0 Release (2024-06-04) ## {#version-20240604}
+## Version 0.2.0 Release (2024-06-05) ## {#version-20240605}
 
 Stable Release including the following changes:
 
@@ -2047,6 +2047,9 @@ Stable Release including the following changes:
 - updated the introduction to the [[#data-model]] chapter
 - Consolidate American spelling
 - Consolidate terminology in [[#txns]] diagram
+- Renamed 2 properties in <{EnergyCarrier}>
+    - `co2eIntensityWTW` renamed to <{EnergyCarrier/emissionFactorWTW}>
+    - `co2eIntensityTTW` renamed to <{EnergyCarrier/emissionFactorTTW}>
 
 ## Version 0.2.0 Draft (2024-05-21) ## {#version-20240501}
 
