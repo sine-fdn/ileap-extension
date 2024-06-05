@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report bugs (typos, mistakes, etc.) you have indentified in the Technical Specifications
+about: Report bugs (typos, errors, etc.) you have indentified in the Technical Specifications
 title: ''
 labels: ''
 assignees: ''
