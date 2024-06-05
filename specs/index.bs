@@ -2047,6 +2047,9 @@ Stable Release including the following changes:
 - updated the introduction to the [[#data-model]] chapter
 - Consolidate American spelling
 - Consolidate terminology in [[#txns]] diagram
+- Renamed 2 properties in <{EnergyCarrier}>
+    - `co2eIntensityWTW` renamed to <{EnergyCarrier/emissionFactorWTW}>
+    - `co2eIntensityTTW` renamed to <{EnergyCarrier/emissionFactorTTW}>
 
 ## Version 0.2.0 Draft (2024-05-21) ## {#version-20240501}
 
