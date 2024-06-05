@@ -11,13 +11,11 @@ If you have feedback you would like to raise, we encourage you to [open an issue
 
 ### Bug report
 
-In case you have identified a typo, an error (such as a broken link), etc., in the Technical Specifications, please [open an issue with the bug report template](https://github.com/sine-fdn/ileap-extension/issues/new).
-<!-- TODO: update link -->
+In case you have identified a typo, an error (such as a broken link), etc., in the Technical Specifications, please [open an issue with the bug report template](https://github.com/sine-fdn/ileap-extension/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=).
 
 ### Feature addition or improvement request
 
-In case you would like to propose the addition of new properties, the improvement of existing properties (either their definition or their name), or the addition or improvement of API actions, please [open an issue with the feature addition or improvement request template](https://github.com/sine-fdn/ileap-extension/issues/new)
-<!-- TODO: update link -->
+In case you would like to propose the addition of new properties, the improvement of existing properties (either their definition or their name), or the addition or improvement of API actions, please [open an issue with the feature addition or improvement request template](https://github.com/sine-fdn/ileap-extension/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=)
 
 ## Propose concrete changes to the text
 
