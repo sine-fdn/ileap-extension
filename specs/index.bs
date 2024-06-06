@@ -2098,7 +2098,8 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 - addition of section [[#document-statuses]]
 - rewording of the introduction paragraphs of [[#introduction]]
 - turn definition of <{EnergyCarrier/energyConsumption}> into "open" enumeration
-
+- turn definition of <{TOC/co2eIntensityThroughput}> and <{HOC/co2eIntensityThroughput}> into "open"
+    enumeration
 
 ## Version 0.2.0 Release (2024-06-05) ## {#version-20240605}
 
