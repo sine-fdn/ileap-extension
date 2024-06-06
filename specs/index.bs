@@ -15,6 +15,7 @@ Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
 Previous Version: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/
 Local Boilerplate: header yes
+Local Boilerplate: computed-metadata yes
 </pre>
 
 # Introduction # {#introduction}
