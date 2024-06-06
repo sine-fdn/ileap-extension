@@ -1547,7 +1547,10 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
             Unit of the energy consumed corresponding to the <{EnergyCarrier/energyConsumption}>.
             <{EnergyCarrier/energyConsumptionUnit}> MUST be defined if <{EnergyCarrier/energyConsumption}> is defined.
 
-            Possible values are
+            Possible values are:
+
+            Advisement: The enumeration of energy consumption units will be evolved in future revisions.
+            Account for this when implementing the validation of this property.
 
             : `l`
             :: for liters
@@ -1560,10 +1563,6 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
 
             : `MJ`
             :: for MegaJoules
-
-            Advisement: The enumeration of energy consumption units will be evolved in future revisions.
-            Account for this when implementing the validation of this property.
-
       <tr>
         <td><dfn>emissionFactorWTW</dfn> : [=Decimal=]
         <td>String
