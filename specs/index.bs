@@ -1544,8 +1544,26 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>String
         <td>O
         <td>
-            Unit of the energy consumed corresponding to the <{EnergyCarrier/energyConsumption}> (e.g., `"l"`, `"kg"`, `"kWh"`, `"MJ"`).
-           <{EnergyCarrier/energyConsumptionUnit}> MUST be defined if <{EnergyCarrier/energyConsumption}> is defined.
+            Unit of the energy consumed corresponding to the <{EnergyCarrier/energyConsumption}>.
+            <{EnergyCarrier/energyConsumptionUnit}> MUST be defined if <{EnergyCarrier/energyConsumption}> is defined.
+
+            Possible values are
+
+            : `l`
+            :: for liters
+
+            : `kg`
+            :: for kilograms
+
+            : `kWh`
+            :: for kiloWhat/hour
+
+            : `MJ`
+            :: for MegaJoules
+
+            Advisement: The enumeration of energy consumption units will be evolved in future revisions.
+            Account for this when implementing the validation of this property.
+
       <tr>
         <td><dfn>emissionFactorWTW</dfn> : [=Decimal=]
         <td>String
@@ -2062,6 +2080,8 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 - addition of section [[#document-statuses]]
 - rewording of the introduction paragraphs of [[#introduction]]
+- turn definition of <{EnergyCarrier/energyConsumption}> into "open" enumeration
+
 
 ## Version 0.2.0 Release (2024-06-05) ## {#version-20240605}
 
