@@ -110,15 +110,15 @@
     "EnergyCarrier": {
       "type": "object",
       "required": [
-        "co2eIntensityTTW",
-        "co2eIntensityWTW",
+        "emissionFactorTTW",
+        "emissionFactorWTW",
         "energyCarrier"
       ],
       "properties": {
-        "co2eIntensityTTW": {
+        "emissionFactorTTW": {
           "$ref": "#/definitions/Decimal"
         },
-        "co2eIntensityWTW": {
+        "emissionFactorWTW": {
           "$ref": "#/definitions/Decimal"
         },
         "energyCarrier": {

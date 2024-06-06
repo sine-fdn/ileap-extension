@@ -17,13 +17,12 @@ jobs:
           cache-name: cache-default-target-and-lockfile
         with:
           path: |
-            endpoint/target
-            endpoint/Cargo.lock
+            gen/target
+            gen/Cargo.lock
             ~/.rustup
           key: ${{ env.cache-name }}-${{ hashFiles('**/Cargo.toml') }}
       - name: CI
         working-directory: ./gen
         run: |
-          cargo run --release > schema.gen.json
-          # assert the generated and versioned file equal
-          diff ../specs/locode_schema.json schema.gen.json
+          cargo build
+          cargo test

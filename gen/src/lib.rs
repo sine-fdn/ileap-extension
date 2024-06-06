@@ -282,10 +282,10 @@ pub struct EnergyCarrier {
     pub energy_consumption: Option<WrappedDecimal>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub energy_consumption_unit: Option<String>,
-    #[serde(rename = "co2eIntensityWTW")]
-    pub co2e_intensity_wtw: WrappedDecimal,
-    #[serde(rename = "co2eIntensityTTW")]
-    pub co2e_intensity_ttw: WrappedDecimal,
+    #[serde(rename = "emissionFactorWTW")]
+    pub emission_factor_wtw: WrappedDecimal,
+    #[serde(rename = "emissionFactorTTW")]
+    pub emission_factor_ttw: WrappedDecimal,
 }
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]

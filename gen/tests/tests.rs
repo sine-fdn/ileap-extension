@@ -48,7 +48,7 @@ fn test_temperature_control_deser() {
 #[test]
 fn test_toc_deser() {
     let (json, expected) = (
-        r#"{"tocId":"4561230","isVerified":true,"isAccredited":true,"mode":"Road","temperatureControl":"refrigerated","truckLoadingSequence":"FTL","energyCarriers":[{"energyCarrier":"Diesel","co2eIntensityWTW":"3.6801","co2eIntensityTTW":"3.2801"}],"co2eIntensityWTW":"3.6801","co2eIntensityTTW":"3.2801","co2eIntensityThroughput":"tkm"}"#,
+        r#"{"tocId":"4561230","isVerified":true,"isAccredited":true,"mode":"Road","temperatureControl":"refrigerated","truckLoadingSequence":"FTL","energyCarriers":[{"energyCarrier":"Diesel","emissionFactorWTW":"3.6801","emissionFactorTTW":"3.2801"}],"co2eIntensityWTW":"3.6801","co2eIntensityTTW":"3.2801","co2eIntensityThroughput":"tkm"}"#,
         Toc {
             toc_id: "4561230".to_string(),
             is_verified: true,
@@ -58,8 +58,8 @@ fn test_toc_deser() {
             truck_loading_sequence: Some(TruckLoadingSequence::Ftl),
             energy_carriers: vec![EnergyCarrier {
                 energy_carrier: EnergyCarrierType::Diesel,
-                co2e_intensity_wtw: dec!(3.6801).into(),
-                co2e_intensity_ttw: dec!(3.2801).into(),
+                emission_factor_wtw: dec!(3.6801).into(),
+                emission_factor_ttw: dec!(3.2801).into(),
                 feedstocks: None,
                 energy_consumption: None,
                 energy_consumption_unit: None,
