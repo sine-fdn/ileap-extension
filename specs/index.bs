@@ -1056,14 +1056,13 @@ The Data Type <{TOC}> has the following properties:
         <td>
             Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}> and at the denominator of the <{TOC/co2eIntensityTTW}>. At the TOC level, the possible values are
 
-            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
-
-
             : `TEUkm`
             :: for sea and inland waterways
 
             : tkm
             :: for everything else
+
+            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>glecDataQualityIndex</dfn> : [0..4]
         <td>Number
@@ -1190,13 +1189,13 @@ The Data Type <{HOC}> has the following properties:
         <td>
             Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}> and at the denominator of the <{HOC/co2eIntensityTTW}>. At the HOC level, the possible values are
 
-            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
-
             : `TEU`
             :: leaving the hub for sea and inland waterways as outbound transport mode
 
             : `tonnes`
             :: leaving the hub
+
+            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
 
   </table>
   <figcaption>Properties of data type `HOC`</figcaption>
