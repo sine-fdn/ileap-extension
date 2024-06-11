@@ -19,11 +19,13 @@ Local Boilerplate: header yes
 
 # Introduction # {#introduction}
 
-
 - Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision.
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring they are structured to facilitate the calculation of Product Carbon Footprints (PCFs)
 - Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms the foundational semantics framework for the [=SFC=] Exchange Network project.
 - The adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=Transport Chain Element|TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
+
+Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses.
+
 
 ## Out of Scope ## {#out-of-scope}
 
@@ -40,8 +42,6 @@ This specifcation does not cover the following topics or aspects as they are cov
 9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is supported, but detailed parameters for modelling are excluded from the current version.
 10. Modes of transport cable car and pipelines. These could be considered for future versions of these technical specifications.
 11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
-
-Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses. Certain subsections intentionally remain blank and will be filled in during subsequent stages of the iLEAP project.
 
 ## Document Statuses ## {#document-statuses}
 
@@ -69,8 +69,6 @@ status tags are:
     included in subsequent versions. Every Release is assigned a stable, permanent, URL, e.g.,
     [https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/](https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/).
 
-Advisement: While the major version of these Technical Specifications is `0`, they are considered
-`beta` and may undergo substantive changes from Consultation Draft to Release.
 
 # Definitions # {#definitions}
 
