@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240606)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240611)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -19,12 +19,12 @@ Local Boilerplate: header yes
 
 # Introduction # {#introduction}
 
-- Corporates have a growing need to calculate and report logistics emissions data with increased degrees of accuracy and transparency. With this purpose, they aim to shift from default and modeled data towards primary data that reflect their supply chain emissions with precision.
-- This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring they are structured to facilitate the calculation of Product Carbon Footprints (PCFs)
-- Grounded in the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms the foundational semantics framework for the [=SFC=] Exchange Network project.
-- The adoption of this specification enables various stakeholders within the logistics value chain to exchange data, facilitating emissions calculations at the [=shipment=], [=Transport Chain Element|TCE=], and [=TOC=] levels, and integration of these calculations at the [=PCF=] level.
+- Companies have a growing need to calculate and report logistics emissions data with greater accuracy and transparency. They want to move from standard and modeled data to primary data that accurately reflects their supply chain emissions.
+- This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
+- Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms to the basic semantics framework for the [=SFC=] Exchange Network project.
+- Adoption of this specification will enable the exchange of data between different actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
 
-Advisement: The current technical specifications are undergoing continuous refinement as part of the ongoing iLEAP project. Significant modifications may be introduced as the project progresses.
+Advisement: The iLEAP Technical Specifications will be continuously refined as part of the ongoing iLEAP project. Significant changes may be introduced as the project progresses.
 
 
 ## Out of Scope ## {#out-of-scope}
@@ -2058,9 +2058,10 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.1-20240606 (2024-06-06) ## {#version-20240606}
+## Version 0.2.1-20240611 (2024-06-11) ## {#version-20240611}
 
-- addition of introductory section [[#document-statuses]]
+- addition of section [[#document-statuses]]
+- rewording of the introduction paragraphs of [[#introduction]]
 
 ## Version 0.2.0 Release (2024-06-05) ## {#version-20240605}
 
