@@ -1055,7 +1055,15 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}> and at the denominator of the <{TOC/co2eIntensityTTW}>. At the TOC level, possible throughputs are tkm, or TEUkm for sea and inland waterways.
+            Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}> and at the denominator of the <{TOC/co2eIntensityTTW}>. At the TOC level, the possible values are
+
+            : `TEUkm`
+            :: for sea and inland waterways
+
+            : tkm
+            :: for everything else
+
+            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>glecDataQualityIndex</dfn> : [0..4]
         <td>Number
@@ -1180,7 +1188,16 @@ The Data Type <{HOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}> and at the denominator of the <{HOC/co2eIntensityTTW}>. At the HOC level, preferred throughputs are tonnes leaving the hub, or TEU leaving the hub for sea and inland waterways.
+            Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}> and at the denominator of the <{HOC/co2eIntensityTTW}>. At the HOC level, the possible values are
+
+            : `TEU`
+            :: leaving the hub for sea and inland waterways as outbound transport mode
+
+            : `tonnes`
+            :: leaving the hub
+
+            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
+
   </table>
   <figcaption>Properties of data type `HOC`</figcaption>
 </figure>
@@ -2081,7 +2098,8 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 - addition of section [[#document-statuses]]
 - rewording of the introduction paragraphs of [[#introduction]]
 - turn definition of <{EnergyCarrier/energyConsumption}> into "open" enumeration
-
+- turn definition of <{TOC/co2eIntensityThroughput}> and <{HOC/co2eIntensityThroughput}> into "open"
+    enumeration
 
 ## Version 0.2.0 Release (2024-06-05) ## {#version-20240605}
 
