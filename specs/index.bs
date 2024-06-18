@@ -708,7 +708,13 @@ If the property is empty, the current TCE is the first TCE of the shipment.
       For both TCEs, <{TCE/prevTceIds}> must equal `[]` (the empty array).
   2. one TCE with ID `tce890` for the second leg of the shipment, which is the transport of the 2 containers from the port in Shanghai to the port of Rotterdam.
       For this TCE, <{TCE/prevTceIds}> must equal `["tce1234", "tce567"]`.
-  3. And, last but not least, another TCE for the hub operations at Rotterdam. For this TCE, <{TCE/prevTceIds}> must equal `["tce890"]`.
+  3. And, last but not least, another TCE with ID `tceABC` for the hub operations at Rotterdam. For this TCE, <{TCE/prevTceIds}> must equal `["tce890"]`.
+
+
+<figure>
+  <img src="diagrams/tce-ordering.svg" height="80%" width="80%" >
+  <figcaption>TCE happened-before relationship graph</figcaption>
+</figure>
 
 </div>
 
