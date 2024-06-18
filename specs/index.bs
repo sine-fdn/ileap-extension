@@ -696,8 +696,9 @@ on the order in which they TCEs occurred during the transport of the shipment.
 
 Order here means "happens-before" relationship between TCEs relative to other TCEs of the same <{ShipmentFootprint}>.
 
-To facilitate this, the data model of TCEs includes the property <{TCE/prevTceIds}>. If defined, <{TCE/prevTceIds}> MUST reference all the IDs (<{TCE/tceId}>) of the TCEs which happened before the current TCE.
-If the property is empty, the current TCE is the first TCE of the shipment.
+To facilitate this, the data model of TCEs includes the property <{TCE/prevTceIds}>.
+If defined, <{TCE/prevTceIds}> MUST reference all the IDs (<{TCE/tceId}>) of the TCEs which happened *immediately* before the current TCE and <{ShipmentFootprint}>.
+If the property is empty, the current TCE is the first TCE of the shipment in relation to the <{ShipmentFootprint}>.
 
 <div class=example>
 
