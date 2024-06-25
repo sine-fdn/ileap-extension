@@ -97,6 +97,7 @@ fn test_ship_foot_deser() {
             shipment_id: "1237890".to_string(),
             tces: NonEmptyVec::<Tce>::from(vec![Tce {
                 tce_id: "abcdef".to_string(),
+                prev_tce_ids: Some(vec![]),
                 toc_id: Some("truck-40t-euro5-de".to_string()),
                 hoc_id: None,
                 shipment_id: "1237890".to_string(),
