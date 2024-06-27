@@ -249,7 +249,7 @@
         "transshipment",
         "storageAndTransshipment",
         "warehouse",
-        "liquidBulkterminal",
+        "liquidBulkTerminal",
         "maritimeContainerterminal"
       ]
     },
