@@ -385,6 +385,15 @@
             }
           ]
         },
+        "prevTceIds": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
         "shipmentId": {
           "type": "string"
         },
