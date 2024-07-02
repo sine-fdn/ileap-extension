@@ -1,6 +1,8 @@
 //! iLEAP Data Model Extension data model
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, Duration, Utc};
 use pact_data_model::{GeographicScope, WrappedDecimal};
+use quickcheck::Arbitrary;
+use rust_decimal::Decimal;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -374,7 +376,7 @@ impl From<String> for Locode {
         if s.len() == 5 {
             Locode(s)
         } else {
-            panic!("LOCODE must be 5 characters long")
+            panic!("LOCODE must be 5 characters long, got '{s}'")
         }
     }
 }
@@ -411,5 +413,154 @@ impl From<u8> for GlecDataQualityIndex {
         } else {
             GlecDataQualityIndex(v)
         }
+    }
+}
+
+impl Arbitrary for Tce {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        Tce {
+            tce_id: String::arbitrary(g),
+            toc_id: Option::<String>::arbitrary(g),
+            hoc_id: Option::<String>::arbitrary(g),
+            shipment_id: String::arbitrary(g),
+            consignment_id: Option::<String>::arbitrary(g),
+            mass: Decimal::from(u32::arbitrary(g)).into(),
+            packaging_or_tr_eq_type: Option::<String>::arbitrary(g),
+            packaging_or_tr_eq_amount: Option::<usize>::arbitrary(g),
+            distance: GlecDistance::arbitrary(g),
+            origin: Option::<Location>::arbitrary(g),
+            destination: Option::<Location>::arbitrary(g),
+            transport_activity: arbitrary_wrapped_decimal(g),
+            departure_at: Option::<DateTime<Utc>>::from(
+                Utc::now() + Duration::days(u8::arbitrary(g) as i64),
+            ),
+            arrival_at: Option::<DateTime<Utc>>::from(
+                Utc::now() + Duration::days(u8::arbitrary(g) as i64),
+            ),
+            flight_no: Option::<String>::arbitrary(g),
+            voyage_no: Option::<String>::arbitrary(g),
+            incoterms: Option::<Incoterms>::arbitrary(g),
+            co2e_wtw: Decimal::from(u32::arbitrary(g)).into(),
+            co2e_ttw: Decimal::from(u32::arbitrary(g)).into(),
+            nox_ttw: arbitrary_option_wrapped_decimal(g),
+            sox_ttw: arbitrary_option_wrapped_decimal(g),
+            ch4_ttw: arbitrary_option_wrapped_decimal(g),
+            pm_ttw: arbitrary_option_wrapped_decimal(g),
+        }
+    }
+}
+
+impl Arbitrary for GlecDistance {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let glec_distance = &[
+            GlecDistance::Actual(Decimal::from(u32::arbitrary(g)).into()),
+            GlecDistance::Gcd(Decimal::from(u32::arbitrary(g)).into()),
+            GlecDistance::Sfd(Decimal::from(u32::arbitrary(g)).into()),
+        ];
+
+        g.choose(glec_distance).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for Location {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        Location {
+            street: Option::<String>::arbitrary(g),
+            zip: Option::<String>::arbitrary(g),
+            city: String::arbitrary(g),
+            country: GeographicScope::Country {
+                geography_country: pact_data_model::ISO3166CC(String::arbitrary(g)),
+            },
+            iata: Option::<IataCode>::arbitrary(g),
+            locode: Option::<Locode>::arbitrary(g),
+            uic: Option::<UicCode>::arbitrary(g),
+            lat: arbitrary_option_wrapped_decimal(g),
+            lng: arbitrary_option_wrapped_decimal(g),
+        }
+    }
+}
+
+impl Arbitrary for IataCode {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let mut s = String::new();
+
+        for _ in 0..3 {
+            let ascii_capital = ((u8::arbitrary(g) % 26) + 65) as char;
+            s.push(ascii_capital)
+        }
+
+        IataCode::from(s)
+    }
+}
+
+impl Arbitrary for Locode {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let mut s = String::new();
+
+        for _ in 0..5 {
+            // 65..90 - ASCII A to Z
+            let ascii_capital = ((u8::arbitrary(g) % 26) + 65) as char;
+            s.push(ascii_capital)
+        }
+
+        Locode::from(s)
+    }
+}
+
+impl Arbitrary for UicCode {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let mut s = String::new();
+
+        for _ in 0..2 {
+            let ascii_capital = ((u8::arbitrary(g) % 26) + 65) as char;
+            s.push(ascii_capital)
+        }
+
+        UicCode::from(s)
+    }
+}
+
+fn arbitrary_wrapped_decimal(g: &mut quickcheck::Gen) -> WrappedDecimal {
+    Decimal::from(u32::arbitrary(g)).into()
+}
+
+fn arbitrary_option_wrapped_decimal(g: &mut quickcheck::Gen) -> Option<WrappedDecimal> {
+    let option = &[Some(arbitrary_wrapped_decimal(g)), None];
+
+    g.choose(option).unwrap().to_owned()
+}
+
+impl Arbitrary for Incoterms {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let incoterms = &[
+            Incoterms::Exw,
+            Incoterms::Fca,
+            Incoterms::Cpt,
+            Incoterms::Cip,
+            Incoterms::Dap,
+            Incoterms::Dpu,
+            Incoterms::Ddp,
+            Incoterms::Fas,
+            Incoterms::Fob,
+            Incoterms::Cfr,
+            Incoterms::Cif,
+        ];
+
+        g.choose(incoterms).unwrap().to_owned()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::Tce;
+    use quickcheck_macros::quickcheck;
+
+    #[quickcheck]
+    fn serialize_and_deserialize(tce: Tce) -> bool {
+        let serialized = serde_json::to_string(&tce).unwrap();
+        let deserialized = serde_json::from_str::<Tce>(&serialized).unwrap();
+
+        deserialized == tce
+        // true
     }
 }
