@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240701)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240702)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2133,7 +2133,7 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`declaredUnit`
         <td>
-              MUST be set to `ton kilometer` conforming with the Pathfinder Tech Specs.
+              MUST be set to `kilogram` conforming with the Pathfinder Tech Specs.
 
               See [[!PACTDX]] Chapter 4 for further details.
 
@@ -2141,7 +2141,7 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`unitaryProductAmount`
         <td>
-              MUST be set to `"0"` because an HOC is static by definition.
+              MUST be set to `"1000"` so that the ProductFootprint represents the emissions of the HOC per tonne.
 
       <tr>
         <td>CarbonFootprint
@@ -2187,7 +2187,7 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.1-20240701 (2024-07-01) ## {#version-20240701}
+## Version 0.2.1-20240702 (2024-07-01) ## {#version-20240702}
 
 - addition of section [[#pcf-mapping-hoc]] and corresponding example [[#appendix-b-hoc-example]]
 - small typo fixes (broken link in [[#pcf-mapping-toc]] and wrong highlights in [[#appendix-b]])
@@ -2434,8 +2434,8 @@ A Product Footprint with a <{HOC}> highlighted:
       "productNameCompany": "HOC with ID 7890123",
       "comment": "",
       "pcf": {
-        "declaredUnit": "ton kilometer",
-        "unitaryProductAmount": "0",
+        "declaredUnit": "kilogram",
+        "unitaryProductAmount": "1000",
         "pCfExcludingBiogenic": "3.6801",
         "fossilGhgEmissions": "3.6801",
         "fossilCarbonContent": "0",
