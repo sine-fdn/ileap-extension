@@ -692,7 +692,7 @@ the <{ShipmentFootprint}> data type and the Pathfinder Data Exchange Protocol. S
 
 For reasons of transparency, traceability, auditability, and comprehensibility,
 the recipients of TCE data ([=Transport Service User=] or [=Transport Service Organizer=]) SHOULD also receive the information
-on the order in which they TCEs occurred during the transport of the shipment.
+on the order in which the TCEs occurred during the transport of the shipment.
 
 Order here means "happens-before" relationship between TCEs relative to other TCEs of the same <{ShipmentFootprint}>.
 
