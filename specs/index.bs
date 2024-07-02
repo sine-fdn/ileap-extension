@@ -2150,6 +2150,9 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
               MUST be set to the logistics emissions intensity of the HOC, excluding biogenic emissions,
               defined in <{HOC/co2eIntensityWTW}>.
 
+              Note: In case the `co2eIntensityThroughput` of the `HOC` is `TEU`, a conversion to tonnes is required.
+              In the absence of primary data please use the [[!GLEC]] default values.
+
       <tr>
         <td>CarbonFootprint
         <td>`pCfIncludingBiogenic`
