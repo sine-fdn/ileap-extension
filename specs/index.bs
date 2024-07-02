@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240618)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240702)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2136,9 +2136,9 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.1-20240618 (2024-06-18) ## {#version-20240618}
+## Version 0.2.1-20240702 (2024-07-02) ## {#version-20240702}
 
-- New "feature": happened-before relationship between <{TCE|TCEs}> relative to a single shipment and <{ShipmentFootprint}>, enabled through the new property <{TCE/prevTceIds}>. 
+- New "feature": OPTIONAL happened-before relationship between <{TCE|TCEs}> relative to a single shipment and <{ShipmentFootprint}>, enabled through the new property <{TCE/prevTceIds}>. 
 - Addition of the guidance chapter [[#tce-ordering]] to define the <{TCE/prevTceIds}> semantics
 
 
