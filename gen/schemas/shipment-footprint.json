@@ -255,6 +255,14 @@
         "$ref": "#/definitions/TCE"
       }
     },
+    "PackagingOrTrEqType": {
+      "type": "string",
+      "enum": [
+        "Box",
+        "Pallet",
+        "Container"
+      ]
+    },
     "TCE": {
       "type": "object",
       "required": [
@@ -370,9 +378,13 @@
           "minimum": 0.0
         },
         "packagingOrTrEqType": {
-          "type": [
-            "string",
-            "null"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/PackagingOrTrEqType"
+            },
+            {
+              "type": "null"
+            }
           ]
         },
         "pmTTW": {

@@ -35,7 +35,7 @@ pub struct Tce {
     pub consignment_id: Option<String>,
     pub mass: WrappedDecimal,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub packaging_or_tr_eq_type: Option<String>,
+    pub packaging_or_tr_eq_type: Option<PackagingOrTrEqType>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub packaging_or_tr_eq_amount: Option<usize>,
     pub distance: GlecDistance,
@@ -186,7 +186,7 @@ pub enum HubType {
     Transshipment,
     StorageAndTransshipment,
     Warehouse,
-    LiquidBulkterminal,
+    LiquidBulkTerminal,
     MaritimeContainerterminal,
 }
 
