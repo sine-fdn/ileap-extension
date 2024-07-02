@@ -16,6 +16,10 @@ the folder [gen/](gen/).
 
 This code is also used to generate the JSON schema files for the iLEAP data model, which can be accessed from the folder [gen/schemas](gen/schemas/).
 
+## SQL-based Data Model
+
+You can access a SQL-based realization of the iLEAP data model in the file [ileap.sql](sql-example/ileap.sql).
+
 ## Contribute
 
 We welcome external contributions. 
