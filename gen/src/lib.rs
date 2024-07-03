@@ -164,6 +164,7 @@ pub enum FlightLength {
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
+// TODO: use a floating point or a decimal instead.
 pub struct GlecDataQualityIndex(pub u8);
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
@@ -421,48 +422,202 @@ impl From<u8> for GlecDataQualityIndex {
     }
 }
 
-// #[derive(Clone)]
-// pub struct AToZAndNumString(String);
+#[derive(Clone)]
+pub struct LowerAToZNumDash(String);
 
-// impl AToZAndNumString {
-//     pub fn as_bytes(&self) -> &[u8] {
-//         self.0.as_bytes()
-//     }
+impl LowerAToZNumDash {
+    pub fn as_bytes(&self) -> &[u8] {
+        self.0.as_bytes()
+    }
 
-//     pub fn len(&self) -> usize {
-//         self.0.len()
-//     }
-// }
+    pub fn len(&self) -> usize {
+        self.0.len()
+    }
+}
 
-// impl Arbitrary for AToZAndNumString {
-//     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
-//         let s: Vec<u8> = Vec::arbitrary(g);
-//         let s: String = s
-//             .into_iter()
-//             .map(|_| g.choose(&['a'..='z', '0'..='9']).unwrap())
-//             .collect();
-//         Self(s)
-//     }
+impl Arbitrary for LowerAToZNumDash {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let s: Vec<()> = Vec::arbitrary(g);
+        let s: String = s
+            .into_iter()
+            .map(|_| {
+                // ASCII characters -, 0..9, a..z
+                let i = u8::arbitrary(g) % 37;
+                match i {
+                    0 => '-',
+                    1..=10 => (i as u8 + 47) as char,
+                    _ => (i as u8 + 86) as char,
+                }
+            })
+            .collect();
+        Self(s)
+    }
 
-//     fn shrink(&self) -> Box<dyn Iterator<Item = Self>> {
-//         let s = self.0.clone();
-//         let range = 0..self.len();
-//         let shrunk: Vec<_> = range
-//             .into_iter()
-//             .map(|len| Self(s[0..len].to_string()))
-//             .collect();
-//         Box::new(shrunk.into_iter())
-//     }
-// }
+    fn shrink(&self) -> Box<dyn Iterator<Item = Self>> {
+        let s = self.0.clone();
+        let range = 0..self.len();
+        let shrunk: Vec<_> = range
+            .into_iter()
+            .map(|len| Self(s[0..len].to_string()))
+            .collect();
+        Box::new(shrunk.into_iter())
+    }
+}
 
-fn formatted_arbitrary_string(fixed: String, g: &mut quickcheck::Gen) -> String {
-    fixed + &String::arbitrary(g)
+fn formatted_arbitrary_string(fixed: &str, g: &mut quickcheck::Gen) -> String {
+    fixed.to_string() + &LowerAToZNumDash::arbitrary(g).0
+}
+
+impl Arbitrary for Toc {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        Toc {
+            toc_id: formatted_arbitrary_string("toc-", g),
+            is_verified: bool::arbitrary(g),
+            is_accredited: bool::arbitrary(g),
+            description: Option::<String>::arbitrary(g),
+            mode: TransportMode::arbitrary(g),
+            load_factor: Option::<String>::arbitrary(g),
+            empty_distance_factor: Option::<String>::arbitrary(g),
+            temperature_control: Option::<TemperatureControl>::arbitrary(g),
+            truck_loading_sequence: Option::<TruckLoadingSequence>::arbitrary(g),
+            air_shipping_option: Option::<AirShippingOption>::arbitrary(g),
+            flight_length: Option::<FlightLength>::arbitrary(g),
+            energy_carriers: NonEmptyVec::<EnergyCarrier>::arbitrary(g),
+            co2e_intensity_wtw: arbitrary_wrapped_decimal(g),
+            co2e_intensity_ttw: arbitrary_wrapped_decimal(g),
+            co2e_intensity_throughput: String::arbitrary(g),
+            glec_data_quality_index: Option::<GlecDataQualityIndex>::arbitrary(g),
+        }
+    }
+}
+
+impl<T: Arbitrary> Arbitrary for NonEmptyVec<T> {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        NonEmptyVec(vec![T::arbitrary(g)])
+    }
+}
+
+impl Arbitrary for TransportMode {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let transport_mode = &[
+            TransportMode::Road,
+            TransportMode::Rail,
+            TransportMode::Air,
+            TransportMode::Sea,
+            TransportMode::InlandWaterway,
+        ];
+
+        g.choose(transport_mode).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for TemperatureControl {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let temperature_control = &[
+            TemperatureControl::Ambient,
+            TemperatureControl::Refrigerated,
+            TemperatureControl::Mixed,
+        ];
+
+        g.choose(temperature_control).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for TruckLoadingSequence {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let truck_loading_sequence = &[TruckLoadingSequence::Ftl, TruckLoadingSequence::Ltl];
+
+        g.choose(truck_loading_sequence).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for AirShippingOption {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let air_shipping_option = &[
+            AirShippingOption::BellyFreight,
+            AirShippingOption::Freighter,
+        ];
+
+        g.choose(air_shipping_option).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for FlightLength {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let flight_length = &[FlightLength::ShortHaul, FlightLength::LongHaul];
+
+        g.choose(flight_length).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for EnergyCarrier {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        EnergyCarrier {
+            energy_carrier: EnergyCarrierType::arbitrary(g),
+            feedstocks: Option::<Vec<Feedstock>>::arbitrary(g),
+            energy_consumption: arbitrary_option_wrapped_decimal(g),
+            energy_consumption_unit: Option::<String>::arbitrary(g),
+            emission_factor_wtw: arbitrary_wrapped_decimal(g),
+            emission_factor_ttw: arbitrary_wrapped_decimal(g),
+        }
+    }
+}
+
+impl Arbitrary for EnergyCarrierType {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let energy_carrier = &[
+            EnergyCarrierType::Diesel,
+            EnergyCarrierType::Hvo,
+            EnergyCarrierType::Petrol,
+            EnergyCarrierType::Cng,
+            EnergyCarrierType::Lng,
+            EnergyCarrierType::Lpg,
+            EnergyCarrierType::Hfo,
+            EnergyCarrierType::Mgo,
+            EnergyCarrierType::AviationFuel,
+            EnergyCarrierType::Hydrogen,
+            EnergyCarrierType::Methanol,
+            EnergyCarrierType::Electric,
+        ];
+
+        g.choose(energy_carrier).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for Feedstock {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        Feedstock {
+            feedstock: FeedstockType::arbitrary(g),
+            feedstock_percentage: Option::<f64>::arbitrary(g),
+            region_provenance: Option::<String>::arbitrary(g),
+        }
+    }
+}
+
+impl Arbitrary for FeedstockType {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let feedstock = &[
+            FeedstockType::Fossil,
+            FeedstockType::NaturalGas,
+            FeedstockType::Grid,
+            FeedstockType::RenewableElectricity,
+            FeedstockType::CookingOil,
+        ];
+
+        g.choose(feedstock).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for GlecDataQualityIndex {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        GlecDataQualityIndex(u8::arbitrary(g) % 5)
+    }
 }
 
 impl Arbitrary for Tce {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         Tce {
-            tce_id: formatted_arbitrary_string("tce-".to_string(), g),
+            tce_id: formatted_arbitrary_string("tce-", g),
             toc_id: Option::<String>::arbitrary(g),
             hoc_id: Option::<String>::arbitrary(g),
             shipment_id: String::arbitrary(g),
@@ -595,21 +750,34 @@ impl Arbitrary for Incoterms {
 
 #[cfg(test)]
 mod tests {
-    use crate::Tce;
+    use crate::{Tce, Toc};
     use quickcheck_macros::quickcheck;
 
     #[quickcheck]
-    fn serialize_and_deserialize(tce: Tce) -> bool {
+    fn ser_and_deser_tce(tce: Tce) -> bool {
         let serialized = serde_json::to_string(&tce).unwrap();
         let deserialized = serde_json::from_str::<Tce>(&serialized).unwrap();
 
-        if deserialized != tce {
-            println!("tce: {tce:?}");
-            println!("serialized: {serialized}");
+        println!("tce: {tce:?}");
+        println!("serialized: {serialized}");
+        println!("deserialized: {deserialized:?}");
+
+        deserialized == tce
+        // true
+    }
+
+    #[quickcheck]
+    fn ser_and_deser_toc(toc: Toc) -> bool {
+        let serialized = serde_json::to_string(&toc).unwrap();
+        let deserialized = serde_json::from_str::<Toc>(&serialized).unwrap();
+
+        if deserialized != toc {
+            println!("toc: {toc:?}");
+            // println!("serialized: {serialized}");
             println!("deserialized: {deserialized:?}");
         }
 
-        deserialized == tce
+        deserialized == toc
         // true
     }
 }
