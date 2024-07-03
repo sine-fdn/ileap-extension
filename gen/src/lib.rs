@@ -1,10 +1,13 @@
 //! iLEAP Data Model Extension data model
+use std::iter;
+
 use chrono::{DateTime, Duration, Utc};
 use pact_data_model::{GeographicScope, WrappedDecimal};
 use quickcheck::Arbitrary;
 use rust_decimal::Decimal;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
+use serde_json::map::Iter;
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
 #[serde(rename_all = "camelCase")]
@@ -71,7 +74,7 @@ pub struct Tce {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
-#[serde(untagged, rename_all = "UPPERCASE")]
+#[serde(rename_all = "UPPERCASE")]
 pub enum Incoterms {
     Exw,
     Fca,
@@ -416,10 +419,48 @@ impl From<u8> for GlecDataQualityIndex {
     }
 }
 
+// #[derive(Clone)]
+// pub struct AToZAndNumString(String);
+
+// impl AToZAndNumString {
+//     pub fn as_bytes(&self) -> &[u8] {
+//         self.0.as_bytes()
+//     }
+
+//     pub fn len(&self) -> usize {
+//         self.0.len()
+//     }
+// }
+
+// impl Arbitrary for AToZAndNumString {
+//     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+//         let s: Vec<u8> = Vec::arbitrary(g);
+//         let s: String = s
+//             .into_iter()
+//             .map(|_| g.choose(&['a'..='z', '0'..='9']).unwrap())
+//             .collect();
+//         Self(s)
+//     }
+
+//     fn shrink(&self) -> Box<dyn Iterator<Item = Self>> {
+//         let s = self.0.clone();
+//         let range = 0..self.len();
+//         let shrunk: Vec<_> = range
+//             .into_iter()
+//             .map(|len| Self(s[0..len].to_string()))
+//             .collect();
+//         Box::new(shrunk.into_iter())
+//     }
+// }
+
+fn formatted_arbitrary_string(fixed: String, g: &mut quickcheck::Gen) -> String {
+    fixed + &String::arbitrary(g)
+}
+
 impl Arbitrary for Tce {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         Tce {
-            tce_id: String::arbitrary(g),
+            tce_id: formatted_arbitrary_string("tce-".to_string(), g),
             toc_id: Option::<String>::arbitrary(g),
             hoc_id: Option::<String>::arbitrary(g),
             shipment_id: String::arbitrary(g),
@@ -512,8 +553,8 @@ impl Arbitrary for UicCode {
         let mut s = String::new();
 
         for _ in 0..2 {
-            let ascii_capital = ((u8::arbitrary(g) % 26) + 65) as char;
-            s.push(ascii_capital)
+            let int = (u8::arbitrary(g) % 9) + 1;
+            s.push(int as char)
         }
 
         UicCode::from(s)
@@ -559,6 +600,12 @@ mod tests {
     fn serialize_and_deserialize(tce: Tce) -> bool {
         let serialized = serde_json::to_string(&tce).unwrap();
         let deserialized = serde_json::from_str::<Tce>(&serialized).unwrap();
+
+        if deserialized != tce {
+            println!("tce: {tce:?}");
+            println!("serialized: {serialized}");
+            println!("deserialized: {deserialized:?}");
+        }
 
         deserialized == tce
         // true
