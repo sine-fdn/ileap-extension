@@ -108,13 +108,10 @@
   },
   "definitions": {
     "AirShippingOption": {
-      "anyOf": [
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        }
+      "type": "string",
+      "enum": [
+        "belly freight",
+        "freighter"
       ]
     },
     "Decimal": {
@@ -192,11 +189,14 @@
           "$ref": "#/definitions/FeedstockType"
         },
         "feedstockPercentage": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Decimal"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "regionProvenance": {
           "type": [
@@ -217,13 +217,10 @@
       ]
     },
     "FlightLength": {
-      "anyOf": [
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        }
+      "type": "string",
+      "enum": [
+        "short-haul",
+        "long-haul"
       ]
     },
     "GlecDataQualityIndex": {

@@ -1,13 +1,12 @@
 //! iLEAP Data Model Extension data model
 use std::iter;
 
-use chrono::{DateTime, Duration, Utc};
+use chrono::{format, DateTime, Duration, Utc};
 use pact_data_model::{GeographicScope, WrappedDecimal};
 use quickcheck::Arbitrary;
 use rust_decimal::Decimal;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use serde_json::map::Iter;
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
 #[serde(rename_all = "camelCase")]
@@ -338,7 +337,7 @@ pub enum EnergyCarrierType {
 pub struct Feedstock {
     pub feedstock: FeedstockType,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub feedstock_percentage: Option<f64>,
+    pub feedstock_percentage: Option<WrappedDecimal>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub region_provenance: Option<String>,
 }
@@ -466,6 +465,67 @@ fn formatted_arbitrary_string(fixed: &str, g: &mut quickcheck::Gen) -> String {
     fixed.to_string() + &LowerAToZNumDash::arbitrary(g).0
 }
 
+impl Arbitrary for ShipmentFootprint {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        ShipmentFootprint {
+            mass: String::arbitrary(g),
+            volume: Option::<String>::arbitrary(g),
+            number_of_items: Option::<String>::arbitrary(g),
+            type_of_items: Option::<String>::arbitrary(g),
+            shipment_id: formatted_arbitrary_string("shipment-", g),
+            tces: NonEmptyVec::<Tce>::arbitrary(g),
+        }
+    }
+}
+
+impl Arbitrary for Hoc {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        Hoc {
+            hoc_id: formatted_arbitrary_string("hoc-", g),
+            description: Option::<String>::arbitrary(g),
+            is_verified: bool::arbitrary(g),
+            is_accredited: bool::arbitrary(g),
+            hub_type: HubType::arbitrary(g),
+            temperature_control: Option::<TemperatureControl>::arbitrary(g),
+            hub_location: Option::<Location>::arbitrary(g),
+            inbound_transport_mode: Option::<TransportMode>::arbitrary(g),
+            outbound_transport_mode: Option::<TransportMode>::arbitrary(g),
+            packaging_or_tr_eq_type: Option::<PackagingOrTrEqType>::arbitrary(g),
+            packaging_or_tr_eq_amount: Option::<usize>::arbitrary(g),
+            energy_carriers: NonEmptyVec::<EnergyCarrier>::arbitrary(g),
+            co2e_intensity_wtw: arbitrary_wrapped_decimal(g),
+            co2e_intensity_ttw: arbitrary_wrapped_decimal(g),
+            co2e_intensity_throughput: String::arbitrary(g),
+        }
+    }
+}
+
+impl Arbitrary for HubType {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let hub_type = &[
+            HubType::Transshipment,
+            HubType::StorageAndTransshipment,
+            HubType::Warehouse,
+            HubType::LiquidBulkterminal,
+            HubType::MaritimeContainerterminal,
+        ];
+
+        g.choose(hub_type).unwrap().to_owned()
+    }
+}
+
+impl Arbitrary for PackagingOrTrEqType {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let packaging_or_tr_eq_type = &[
+            PackagingOrTrEqType::Box,
+            PackagingOrTrEqType::Pallet,
+            PackagingOrTrEqType::Container,
+        ];
+
+        g.choose(packaging_or_tr_eq_type).unwrap().to_owned()
+    }
+}
+
 impl Arbitrary for Toc {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         Toc {
@@ -586,7 +646,7 @@ impl Arbitrary for Feedstock {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         Feedstock {
             feedstock: FeedstockType::arbitrary(g),
-            feedstock_percentage: Option::<f64>::arbitrary(g),
+            feedstock_percentage: arbitrary_option_wrapped_decimal(g),
             region_provenance: Option::<String>::arbitrary(g),
         }
     }
@@ -748,7 +808,7 @@ impl Arbitrary for Incoterms {
 
 #[cfg(test)]
 mod tests {
-    use crate::{Tce, Toc};
+    use crate::{Hoc, ShipmentFootprint, Tce, Toc};
     use quickcheck_macros::quickcheck;
 
     #[quickcheck]
@@ -777,5 +837,34 @@ mod tests {
 
         deserialized == toc
         // true
+    }
+
+    #[quickcheck]
+    fn ser_and_deser_hoc(hoc: Hoc) -> bool {
+        let serialized = serde_json::to_string(&hoc).unwrap();
+        let deserialized = serde_json::from_str::<Hoc>(&serialized).unwrap();
+
+        if deserialized != hoc {
+            println!("toc: {hoc:?}");
+            // println!("serialized: {serialized}");
+            println!("deserialized: {deserialized:?}");
+        }
+
+        deserialized == hoc
+        // true
+    }
+
+    #[quickcheck]
+    fn ser_and_deser_ship_foot(ship_foot: ShipmentFootprint) {
+        let serialized = serde_json::to_string(&ship_foot).unwrap();
+        let deserialized = serde_json::from_str::<ShipmentFootprint>(&serialized).unwrap();
+
+        if deserialized != ship_foot {
+            println!("ship_foot: {ship_foot:?}");
+            // println!("serialized: {serialized}");
+            println!("deserialized: {deserialized:?}");
+        }
+
+        assert_eq!(deserialized, ship_foot);
     }
 }
