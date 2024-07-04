@@ -1,22 +1,22 @@
 use ileap_extension::*;
+use quickcheck::{Arbitrary, Gen};
 use regex::Regex;
 use schemars::schema_for;
 use serde_json::to_string_pretty;
 use std::fs::File;
 use std::io::{Error, Write};
-use quickcheck::{Arbitrary, Gen};
 
 fn main() -> Result<(), Error> {
-    // generate_schema::<ShipmentFootprint>()?;
-    // generate_schema::<Toc>()?;
-    // generate_schema::<Tad>()?;
-    // generate_schema::<Hoc>()?;
+    generate_schema::<ShipmentFootprint>()?;
+    generate_schema::<Toc>()?;
+    generate_schema::<Tad>()?;
+    generate_schema::<Hoc>()?;
 
-    let mut og = Gen::new(10);
+    // let mut og = Gen::new(10);
 
-    let tce = Tce::arbitrary(&mut og);
+    // let tce = Tce::arbitrary(&mut og);
 
-    println!("tce: {tce:?}");
+    // println!("tce: {tce:?}");
 
     Ok(())
 }

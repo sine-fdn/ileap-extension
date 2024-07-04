@@ -189,11 +189,14 @@
           "$ref": "#/definitions/FeedstockType"
         },
         "feedstockPercentage": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Decimal"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "regionProvenance": {
           "type": [
