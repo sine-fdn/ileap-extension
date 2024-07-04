@@ -7,16 +7,16 @@ use std::fs::File;
 use std::io::{Error, Write};
 
 fn main() -> Result<(), Error> {
-    generate_schema::<ShipmentFootprint>()?;
-    generate_schema::<Toc>()?;
-    generate_schema::<Tad>()?;
-    generate_schema::<Hoc>()?;
+    // generate_schema::<ShipmentFootprint>()?;
+    // generate_schema::<Toc>()?;
+    // generate_schema::<Tad>()?;
+    // generate_schema::<Hoc>()?;
 
-    // let mut og = Gen::new(10);
+    let mut og = Gen::new(10);
 
-    // let tce = Tce::arbitrary(&mut og);
+    let tce = Tce::arbitrary(&mut og);
 
-    // println!("tce: {tce:?}");
+    println!("tce: {tce:?}");
 
     Ok(())
 }
