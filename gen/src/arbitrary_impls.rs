@@ -107,21 +107,41 @@ impl Arbitrary for PackagingOrTrEqType {
     }
 }
 
+fn arbitrary_option_factor(g: &mut quickcheck::Gen) -> Option<String> {
+    let rand_num = u8::arbitrary(g) % 10 + 1;
+    let rand_factor: Decimal = Decimal::new(rand_num as i64, 1);
+
+    Some(rand_factor.to_string())
+}
+
 impl Arbitrary for Toc {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let mode = TransportMode::arbitrary(g);
+
+        let (air_shipping_option, flight_length) = match mode {
+            TransportMode::Air => (
+                Option::<AirShippingOption>::arbitrary(g),
+                Option::<FlightLength>::arbitrary(g),
+            ),
+            _ => (None, None),
+        };
+
+        let energy_carriers = NonEmptyVec::<EnergyCarrier>::arbitrary(g);
+
         Toc {
             toc_id: formatted_arbitrary_string("toc-", g),
             is_verified: bool::arbitrary(g),
             is_accredited: bool::arbitrary(g),
-            description: Option::<String>::arbitrary(g),
-            mode: TransportMode::arbitrary(g),
-            load_factor: Option::<String>::arbitrary(g),
-            empty_distance_factor: Option::<String>::arbitrary(g),
+            // TODO: description is currently None for simplicity.
+            description: None,
+            mode,
+            load_factor: arbitrary_option_factor(g),
+            empty_distance_factor: arbitrary_option_factor(g),
             temperature_control: Option::<TemperatureControl>::arbitrary(g),
             truck_loading_sequence: Option::<TruckLoadingSequence>::arbitrary(g),
-            air_shipping_option: Option::<AirShippingOption>::arbitrary(g),
-            flight_length: Option::<FlightLength>::arbitrary(g),
-            energy_carriers: NonEmptyVec::<EnergyCarrier>::arbitrary(g),
+            air_shipping_option,
+            flight_length,
+            energy_carriers,
             co2e_intensity_wtw: arbitrary_wrapped_decimal(g),
             co2e_intensity_ttw: arbitrary_wrapped_decimal(g),
             co2e_intensity_throughput: String::arbitrary(g),
@@ -191,9 +211,84 @@ impl Arbitrary for FlightLength {
 
 impl Arbitrary for EnergyCarrier {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let energy_carrier = EnergyCarrierType::arbitrary(g);
+
+        let feedstocks = Option::<Vec<Feedstock>>::arbitrary(g);
+
+        let Some(mut feedstocks) = feedstocks else {
+            return EnergyCarrier {
+                energy_carrier,
+                feedstocks,
+                // TODO: energy_consumption and energy_consumption_unit are currently None for simplicity.
+                energy_consumption: None,
+                energy_consumption_unit: None,
+                emission_factor_wtw: arbitrary_wrapped_decimal(g),
+                emission_factor_ttw: arbitrary_wrapped_decimal(g),
+            };
+        };
+
+        // TODO: verify which feedstocks make sense for each energy carrier.
+        feedstocks = feedstocks
+            .iter()
+            .filter(|f| match energy_carrier {
+                EnergyCarrierType::Diesel => f.feedstock == FeedstockType::Fossil,
+                EnergyCarrierType::Hvo => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::Petrol => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::Cng => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::Lng => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::Lpg => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::Hfo => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::Mgo => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::AviationFuel => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::Hydrogen => f.feedstock == FeedstockType::CookingOil,
+                EnergyCarrierType::Methanol => {
+                    f.feedstock == FeedstockType::Fossil
+                        || f.feedstock == FeedstockType::NaturalGas
+                        || f.feedstock == FeedstockType::CookingOil
+                }
+                EnergyCarrierType::Electric => {
+                    f.feedstock == FeedstockType::Grid
+                        || f.feedstock == FeedstockType::RenewableElectricity
+                }
+            })
+            .cloned()
+            .collect::<Vec<Feedstock>>();
+
         EnergyCarrier {
-            energy_carrier: EnergyCarrierType::arbitrary(g),
-            feedstocks: Option::<Vec<Feedstock>>::arbitrary(g),
+            energy_carrier,
+            feedstocks: Some(feedstocks),
             energy_consumption: arbitrary_option_wrapped_decimal(g),
             energy_consumption_unit: Option::<String>::arbitrary(g),
             emission_factor_wtw: arbitrary_wrapped_decimal(g),

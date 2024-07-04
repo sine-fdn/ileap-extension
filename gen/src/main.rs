@@ -51,6 +51,8 @@ fn main() -> Result<(), Error> {
     let mut tce_1 = Tce::arbitrary(&mut og);
     let toc = Toc::arbitrary(&mut og);
 
+    print!("toc: {toc:?}");
+
     let mut tce_2 = Tce::arbitrary(&mut og);
     let hoc = Hoc::arbitrary(&mut og);
 
