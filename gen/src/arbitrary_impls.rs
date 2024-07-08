@@ -61,23 +61,76 @@ impl Arbitrary for ShipmentFootprint {
 
 impl Arbitrary for Hoc {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        fn gen_diff_transport_modes(
+            g: &mut quickcheck::Gen,
+        ) -> (Option<TransportMode>, Option<TransportMode>) {
+            let inbound = Some(TransportMode::arbitrary(g));
+            let outbound = Some(TransportMode::arbitrary(g));
+
+            // TODO: verify if this requirement is correct.
+            if inbound == outbound {
+                (inbound, Some(TransportMode::arbitrary(g)))
+            } else {
+                (inbound, outbound)
+            }
+        }
+
+        let hub_type = HubType::arbitrary(g);
+
+        let (inbound_transport_mode, outbound_transport_mode) = match hub_type {
+            HubType::Transshipment => gen_diff_transport_modes(g),
+
+            HubType::StorageAndTransshipment => gen_diff_transport_modes(g),
+            HubType::Warehouse => (Some(TransportMode::Road), Some(TransportMode::Road)),
+            HubType::LiquidBulkTerminal => (
+                Some(TransportMode::arbitrary(g)),
+                Some(TransportMode::arbitrary(g)),
+            ),
+            HubType::MaritimeContainerterminal => {
+                let inbound = Option::<TransportMode>::arbitrary(g);
+                let outbound = Option::<TransportMode>::arbitrary(g);
+
+                if inbound.clone().unwrap() != TransportMode::Sea
+                    && outbound.clone().unwrap() != TransportMode::Sea
+                {
+                    (Some(TransportMode::Sea), Some(TransportMode::Sea))
+                } else {
+                    (inbound, outbound)
+                }
+            }
+        };
+
         Hoc {
             hoc_id: formatted_arbitrary_string("hoc-", g),
-            description: Option::<String>::arbitrary(g),
+            // TODO: description is currently None for simplicity.
+            description: None,
             is_verified: bool::arbitrary(g),
             is_accredited: bool::arbitrary(g),
-            hub_type: HubType::arbitrary(g),
+            hub_type,
             temperature_control: Option::<TemperatureControl>::arbitrary(g),
-            hub_location: Option::<Location>::arbitrary(g),
-            inbound_transport_mode: Option::<TransportMode>::arbitrary(g),
-            outbound_transport_mode: Option::<TransportMode>::arbitrary(g),
+            // TODO: hub_location is currently None for simplicity.
+            hub_location: None,
+            inbound_transport_mode,
+            outbound_transport_mode,
             packaging_or_tr_eq_type: Option::<PackagingOrTrEqType>::arbitrary(g),
-            packaging_or_tr_eq_amount: Option::<usize>::arbitrary(g),
+            // TODO: packaging_or_tr_eq_amount is currently None for simplicity.
+            packaging_or_tr_eq_amount: None,
             energy_carriers: NonEmptyVec::<EnergyCarrier>::arbitrary(g),
             co2e_intensity_wtw: arbitrary_wrapped_decimal(g),
             co2e_intensity_ttw: arbitrary_wrapped_decimal(g),
-            co2e_intensity_throughput: String::arbitrary(g),
+            co2e_intensity_throughput: HocCo2eIntensityThroughput::arbitrary(g),
         }
+    }
+}
+
+impl Arbitrary for HocCo2eIntensityThroughput {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let hoc_co2e_intensity_throughput = &[
+            HocCo2eIntensityThroughput::TEU,
+            HocCo2eIntensityThroughput::Tonnes,
+        ];
+
+        g.choose(hoc_co2e_intensity_throughput).unwrap().to_owned()
     }
 }
 
@@ -87,7 +140,7 @@ impl Arbitrary for HubType {
             HubType::Transshipment,
             HubType::StorageAndTransshipment,
             HubType::Warehouse,
-            HubType::LiquidBulkterminal,
+            HubType::LiquidBulkTerminal,
             HubType::MaritimeContainerterminal,
         ];
 
@@ -126,8 +179,6 @@ impl Arbitrary for Toc {
             _ => (None, None),
         };
 
-        let energy_carriers = NonEmptyVec::<EnergyCarrier>::arbitrary(g);
-
         Toc {
             toc_id: formatted_arbitrary_string("toc-", g),
             is_verified: bool::arbitrary(g),
@@ -141,12 +192,24 @@ impl Arbitrary for Toc {
             truck_loading_sequence: Option::<TruckLoadingSequence>::arbitrary(g),
             air_shipping_option,
             flight_length,
-            energy_carriers,
+            energy_carriers: NonEmptyVec::<EnergyCarrier>::arbitrary(g),
             co2e_intensity_wtw: arbitrary_wrapped_decimal(g),
             co2e_intensity_ttw: arbitrary_wrapped_decimal(g),
-            co2e_intensity_throughput: String::arbitrary(g),
-            glec_data_quality_index: Option::<GlecDataQualityIndex>::arbitrary(g),
+            co2e_intensity_throughput: TocCo2eIntensityThroughput::arbitrary(g),
+            // TODO: glec_data_quality_index is currently None for simplicity.
+            glec_data_quality_index: None,
         }
+    }
+}
+
+impl Arbitrary for TocCo2eIntensityThroughput {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let toc_co2e_intensity_throughput = &[
+            TocCo2eIntensityThroughput::Tkm,
+            TocCo2eIntensityThroughput::TEUkm,
+        ];
+
+        g.choose(toc_co2e_intensity_throughput).unwrap().to_owned()
     }
 }
 
