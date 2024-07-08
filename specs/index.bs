@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240702)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240708)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -684,7 +684,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
 
 The data related to TCEs can be obtained from direct measurement (see [=Primary Data=]) or other measurements (see [=Secondary Data=]).
 
-<{TCE|TCEs}> are typically calculated by [=Transport Operators=] and [=Transport Service Organizers=]. They are made available to [=Transport Service Users=] through 
+<{TCE|TCEs}> are typically calculated by [=Transport Operators=] and [=Transport Service Organizers=]. They are made available to [=Transport Service Users=] through
 the <{ShipmentFootprint}> data type and the Pathfinder Data Exchange Protocol. See [[#dt-sf]] and [[#pcf-mapping]] for details.
 
 
@@ -703,7 +703,7 @@ If the property is defined and the array is empty, the current TCE MUST be the f
 
 <div class=example>
 
-  A [=Transport Service User=] procured the shipment of 2 containers to Rotterdam through a [=Transport Service Organizer=]. The organizer then makes a 
+  A [=Transport Service User=] procured the shipment of 2 containers to Rotterdam through a [=Transport Service Organizer=]. The organizer then makes a
   <{ShipmentFootprint}> available to the [=Transport Service User=], consisting of the following TCEs:
 
   1. two TCEs with IDs `tce1234` and `tce567` for the first leg of the shipment, which is the transport of the 2 containers from the warehouse to the port.
@@ -2136,9 +2136,9 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.1-20240702 (2024-07-02) ## {#version-20240702}
+## Version 0.2.1-20240708 (2024-07-08) ## {#version-20240708}
 
-- New "feature": OPTIONAL happened-before relationship between <{TCE|TCEs}> relative to a single shipment and <{ShipmentFootprint}>, enabled through the new property <{TCE/prevTceIds}>. 
+- New "feature": OPTIONAL happened-before relationship between <{TCE|TCEs}> relative to a single shipment and <{ShipmentFootprint}>, enabled through the new property <{TCE/prevTceIds}>.
 - Addition of the guidance chapter [[#tce-ordering]] to define the <{TCE/prevTceIds}> semantics
 
 
