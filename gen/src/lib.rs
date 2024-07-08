@@ -110,9 +110,17 @@ pub struct Toc {
     pub co2e_intensity_wtw: WrappedDecimal,
     #[serde(rename = "co2eIntensityTTW")]
     pub co2e_intensity_ttw: WrappedDecimal,
-    pub co2e_intensity_throughput: String,
+    pub co2e_intensity_throughput: TocCo2eIntensityThroughput,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub glec_data_quality_index: Option<GlecDataQualityIndex>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub enum TocCo2eIntensityThroughput {
+    #[serde(rename = "TEUkm")]
+    TEUkm,
+    Tkm,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
@@ -178,6 +186,14 @@ pub struct Hoc {
     #[serde(rename = "co2eIntensityTTW")]
     pub co2e_intensity_ttw: WrappedDecimal,
     pub co2e_intensity_throughput: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub enum HocCo2eIntensityThroughput {
+    #[serde(rename = "TEU")]
+    TEU,
+    Tonnes,
 }
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
