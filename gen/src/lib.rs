@@ -184,7 +184,7 @@ pub struct Hoc {
     pub packaging_or_tr_eq_amount: Option<usize>,
     pub energy_carriers: NonEmptyVec<EnergyCarrier>,
     #[serde(rename = "co2eIntensityWTW")]
-    pub co2e_intensity_wtw: WrappedDecimal,
+    pub co2e_intensity_wtw: HocCo2eIntensityThroughput,
     #[serde(rename = "co2eIntensityTTW")]
     pub co2e_intensity_ttw: WrappedDecimal,
     pub co2e_intensity_throughput: HocCo2eIntensityThroughput,
