@@ -312,7 +312,7 @@ checksum = "3fdb12b2476b595f9358c5161aa467c2438859caa136dec86c26fdd2efe17b92"
 [[package]]
 name = "pact-data-model"
 version = "0.1.0"
-source = "git+https://github.com/sine-fdn/pact-data-model.git?branch=wrapped_decimal#5ef50003b0c71c8d509e6a30ccecc030e9a661e2"
+source = "git+https://github.com/sine-fdn/pact-data-model.git#e7454aa722db1e2c43076fe051a727c953df0b73"
 dependencies = [
  "chrono",
  "rust_decimal",
