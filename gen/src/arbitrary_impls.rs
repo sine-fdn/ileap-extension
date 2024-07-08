@@ -90,13 +90,17 @@ impl Arbitrary for Hoc {
                 let inbound = Option::<TransportMode>::arbitrary(g);
                 let outbound = Option::<TransportMode>::arbitrary(g);
 
-                if inbound.clone().unwrap() != TransportMode::Sea
-                    && outbound.clone().unwrap() != TransportMode::Sea
-                {
-                    (Some(TransportMode::Sea), Some(TransportMode::Sea))
-                } else {
-                    (inbound, outbound)
-                }
+                let (inbound, outbound) = match (inbound.clone(), outbound.clone()) {
+                    (None, None) => (inbound, outbound),
+                    (Some(TransportMode::Sea), _) => (inbound, outbound),
+                    (_, Some(TransportMode::Sea)) => (inbound, outbound),
+                    _ => (
+                        Option::<TransportMode>::arbitrary(g),
+                        Option::<TransportMode>::arbitrary(g),
+                    ),
+                };
+
+                (inbound, outbound)
             }
         };
 
@@ -383,9 +387,19 @@ impl Arbitrary for EnergyCarrierType {
 
 impl Arbitrary for Feedstock {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let feedstock_percentage = arbitrary_option_wrapped_decimal(g);
+
+        let feedstock_percentage = match feedstock_percentage {
+            None => None,
+            Some(f) => {
+                let decimal = (f.0 / Decimal::from(u16::MAX)).round_dp(1);
+                Some(WrappedDecimal::from(decimal))
+            }
+        };
+
         Feedstock {
             feedstock: FeedstockType::arbitrary(g),
-            feedstock_percentage: arbitrary_option_wrapped_decimal(g),
+            feedstock_percentage,
             region_provenance: Option::<String>::arbitrary(g),
         }
     }
