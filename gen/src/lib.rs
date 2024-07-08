@@ -185,7 +185,7 @@ pub struct Hoc {
     pub co2e_intensity_wtw: WrappedDecimal,
     #[serde(rename = "co2eIntensityTTW")]
     pub co2e_intensity_ttw: WrappedDecimal,
-    pub co2e_intensity_throughput: String,
+    pub co2e_intensity_throughput: HocCo2eIntensityThroughput,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]

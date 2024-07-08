@@ -67,7 +67,7 @@ fn test_toc_deser() {
             .into(),
             co2e_intensity_wtw: dec!(3.6801).into(),
             co2e_intensity_ttw: dec!(3.2801).into(),
-            co2e_intensity_throughput: "tkm".to_string(),
+            co2e_intensity_throughput: TocCo2eIntensityThroughput::Tkm,
             glec_data_quality_index: None,
             description: None,
             load_factor: None,
