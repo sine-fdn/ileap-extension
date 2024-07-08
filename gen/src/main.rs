@@ -51,10 +51,12 @@ fn main() -> Result<(), Error> {
     let mut tce_1 = Tce::arbitrary(&mut og);
     let toc = Toc::arbitrary(&mut og);
 
-    print!("toc: {toc:?}");
+    println!("toc: {toc:?}");
 
     let mut tce_2 = Tce::arbitrary(&mut og);
     let hoc = Hoc::arbitrary(&mut og);
+
+    println!("hoc: {hoc:?}");
 
     let tce_toc = update_arbitrary_tce(&mut tce_1, Some(toc), None);
     let tce_hoc = update_arbitrary_tce(&mut tce_2, None, Some(hoc));
