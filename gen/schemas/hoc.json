@@ -20,7 +20,7 @@
       "$ref": "#/definitions/HocCo2eIntensityThroughput"
     },
     "co2eIntensityWTW": {
-      "$ref": "#/definitions/Decimal"
+      "$ref": "#/definitions/HocCo2eIntensityThroughput"
     },
     "description": {
       "type": [
