@@ -1,0 +1,70 @@
+{
+  "id": "f3c04ec8-b33a-43b1-9fa7-d6a448fd60af",
+  "specVersion": "2.0.0",
+  "version": 0,
+  "created": "2022-05-22T21:47:32Z",
+  "status": "Active",
+  "companyName": "Super Duper Transport Co.",
+  "companyIds": [
+    "urn:epc:id:sgln:4063973.00000.8"
+  ],
+  "productDescription": "Logistics emissions related to TOC with ID 4561230",
+  "productIds": [
+    "urn:pathfinder:product:customcode:vendor-assigned:toc:4561230"
+  ],
+  "productCategoryCpc": "83117",
+  "productNameCompany": "TOC with ID 4561230",
+  "comment": "",
+  "pcf": {
+    "declaredUnit": "ton kilometer",
+    "unitaryProductAmount": "1",
+    "pCfExcludingBiogenic": "3.6801",
+    "fossilGhgEmissions": "3.6801",
+    "fossilCarbonContent": "0",
+    "biogenicCarbonContent": "0",
+    "characterizationFactors": "AR6",
+    "ipccCharacterizationFactorsSources": [
+      "AR6"
+    ],
+    "crossSectoralStandardsUsed": [
+      "GHG Protocol Product standard"
+    ],
+    "productOrSectorSpecificRules": [],
+    "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+    "referencePeriodStart": "2021-01-01T00:00:00Z",
+    "referencePeriodEnd": "2022-01-01T00:00:00Z",
+    "secondaryEmissionFactorSources": [
+      {
+        "name": "Ecoinvent",
+        "version": "3.9.1"
+      }
+    ],
+    "exemptedEmissionsPercent": 0.0,
+    "exemptedEmissionsDescription": "",
+    "packagingEmissionsIncluded": false,
+    "primaryDataShare": 56.12
+  },
+  "extensions": [
+    {
+      "specVersion": "2.0.0",
+      "dataSchema": "https://api.ileap.sine.dev/toc.json",
+      "documentation": "https://sine-fdn.github.io/ileap-extension/",
+      "tocId": "4561230",
+      "isVerified": true,
+      "isAccredited": true,
+      "mode": "Road",
+      "temperatureControl": "refrigerated",
+      "truckLoadingSequence": "FTL",
+      "energyCarriers": [
+        {
+          "energyCarrier": "Diesel",
+          "co2eIntensityWTW": "3.6801",
+          "co2eIntensityTTW": "3.2801"
+        }
+      ],
+      "co2eIntensityWTW": "3.6801",
+      "co2eIntensityTTW": "3.2801",
+      "co2eIntensityThroughput": "tkm"
+    }
+  ]
+}
