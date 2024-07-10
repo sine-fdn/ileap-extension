@@ -108,13 +108,10 @@
   },
   "definitions": {
     "AirShippingOption": {
-      "anyOf": [
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        }
+      "type": "string",
+      "enum": [
+        "belly freight",
+        "freighter"
       ]
     },
     "Decimal": {
@@ -217,13 +214,10 @@
       ]
     },
     "FlightLength": {
-      "anyOf": [
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        }
+      "type": "string",
+      "enum": [
+        "short-haul",
+        "long-haul"
       ]
     },
     "GlecDataQualityIndex": {
