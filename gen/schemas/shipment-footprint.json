@@ -129,40 +129,19 @@
       "type": "string"
     },
     "Incoterms": {
-      "anyOf": [
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        },
-        {
-          "type": "null"
-        }
+      "type": "string",
+      "enum": [
+        "EXW",
+        "FCA",
+        "CPT",
+        "CIP",
+        "DAP",
+        "DPU",
+        "DDP",
+        "FAS",
+        "FOB",
+        "CFR",
+        "CIF"
       ]
     },
     "Location": {

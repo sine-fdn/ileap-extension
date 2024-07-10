@@ -71,7 +71,7 @@ pub struct Tce {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
-#[serde(untagged, rename_all = "UPPERCASE")]
+#[serde(rename_all = "UPPERCASE")]
 pub enum Incoterms {
     Exw,
     Fca,
@@ -141,7 +141,7 @@ pub enum TruckLoadingSequence {
 }
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
-#[serde(rename_all = "camelCase", untagged)]
+#[serde(rename_all = "camelCase")]
 pub enum AirShippingOption {
     #[serde(rename = "belly freight")]
     BellyFreight,
@@ -149,7 +149,7 @@ pub enum AirShippingOption {
 }
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
-#[serde(rename_all = "camelCase", untagged)]
+#[serde(rename_all = "camelCase")]
 pub enum FlightLength {
     #[serde(rename = "short-haul")]
     ShortHaul,
