@@ -27,7 +27,7 @@
       "$ref": "#/definitions/Decimal"
     },
     "co2eIntensityThroughput": {
-      "type": "string"
+      "$ref": "#/definitions/TocCo2eIntensityThroughput"
     },
     "co2eIntensityWTW": {
       "$ref": "#/definitions/Decimal"
@@ -243,6 +243,13 @@
         "ambient",
         "refrigerated",
         "mixed"
+      ]
+    },
+    "TocCo2eIntensityThroughput": {
+      "type": "string",
+      "enum": [
+        "TEUkm",
+        "tkm"
       ]
     },
     "TransportMode": {
