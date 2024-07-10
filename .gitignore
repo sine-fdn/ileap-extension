@@ -2,3 +2,5 @@ specs/index.html
 gen/target
 out/
 *.svg
+node_modules/
+package*.json

@@ -27,6 +27,8 @@ pub struct NonEmptyVec<T>(pub Vec<T>);
 pub struct Tce {
     pub tce_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub prev_tce_ids: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub toc_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub hoc_id: Option<String>,
