@@ -49,10 +49,12 @@ fn formatted_arbitrary_string(fixed: &str, g: &mut quickcheck::Gen) -> String {
 impl Arbitrary for ShipmentFootprint {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         ShipmentFootprint {
-            mass: String::arbitrary(g),
-            volume: Option::<String>::arbitrary(g),
-            number_of_items: Option::<String>::arbitrary(g),
-            type_of_items: Option::<String>::arbitrary(g),
+            // TODO: the max of u32 is 4_294_967_295. Would this be too large a mass (in kg)?
+            mass: format!("{}", u32::arbitrary(g)),
+            // TODO: volume, number_of_items, and type_of_items are currently None for simplicity.
+            volume: None,
+            number_of_items: None,
+            type_of_items: None,
             shipment_id: formatted_arbitrary_string("shipment-", g),
             tces: NonEmptyVec::<Tce>::arbitrary(g),
         }
@@ -219,7 +221,13 @@ impl Arbitrary for TocCo2eIntensityThroughput {
 
 impl<T: Arbitrary> Arbitrary for NonEmptyVec<T> {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
-        NonEmptyVec(vec![T::arbitrary(g)])
+        let num = u8::arbitrary(g) % 10 + 1;
+
+        let mut vec = vec![];
+        for _ in 0..num {
+            vec.push(T::arbitrary(g));
+        }
+        NonEmptyVec(vec)
     }
 }
 
@@ -282,17 +290,35 @@ impl Arbitrary for EnergyCarrier {
 
         let feedstocks = Option::<Vec<Feedstock>>::arbitrary(g);
 
+        // let mut total_percentage: Decimal = Decimal::from(0);
+
+        // TODO: refactor to make drier.
         let Some(mut feedstocks) = feedstocks else {
             return EnergyCarrier {
                 energy_carrier,
                 feedstocks,
-                // TODO: energy_consumption and energy_consumption_unit are currently None for simplicity.
-                energy_consumption: None,
-                energy_consumption_unit: None,
+                energy_consumption: arbitrary_option_wrapped_decimal(g),
+                energy_consumption_unit: Option::<EnergyConsumptionUnit>::arbitrary(g),
                 emission_factor_wtw: arbitrary_wrapped_decimal(g),
                 emission_factor_ttw: arbitrary_wrapped_decimal(g),
             };
         };
+
+        let total_percentage: Decimal = feedstocks
+            .iter()
+            .map(|f| {
+                f.feedstock_percentage
+                    .as_ref()
+                    .map(|p| p.0)
+                    .unwrap_or(Decimal::from(0))
+            })
+            .sum();
+
+        if total_percentage > Decimal::from(1) {
+            for feedstock in &mut feedstocks {
+                feedstock.feedstock_percentage = None
+            }
+        }
 
         // TODO: verify which feedstocks make sense for each energy carrier.
         feedstocks = feedstocks
@@ -357,7 +383,7 @@ impl Arbitrary for EnergyCarrier {
             energy_carrier,
             feedstocks: Some(feedstocks),
             energy_consumption: arbitrary_option_wrapped_decimal(g),
-            energy_consumption_unit: Option::<String>::arbitrary(g),
+            energy_consumption_unit: Option::<EnergyConsumptionUnit>::arbitrary(g),
             emission_factor_wtw: arbitrary_wrapped_decimal(g),
             emission_factor_ttw: arbitrary_wrapped_decimal(g),
         }
@@ -385,6 +411,19 @@ impl Arbitrary for EnergyCarrierType {
     }
 }
 
+impl Arbitrary for EnergyConsumptionUnit {
+    fn arbitrary(g: &mut quickcheck::Gen) -> Self {
+        let energy_consumption_unit = &[
+            EnergyConsumptionUnit::KWh,
+            EnergyConsumptionUnit::MJ,
+            EnergyConsumptionUnit::Kg,
+            EnergyConsumptionUnit::L,
+        ];
+
+        g.choose(energy_consumption_unit).unwrap().to_owned()
+    }
+}
+
 impl Arbitrary for Feedstock {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         let feedstock_percentage = arbitrary_option_wrapped_decimal(g);
@@ -400,7 +439,8 @@ impl Arbitrary for Feedstock {
         Feedstock {
             feedstock: FeedstockType::arbitrary(g),
             feedstock_percentage,
-            region_provenance: Option::<String>::arbitrary(g),
+            // TODO: region_provenance is currently None for simplicity.
+            region_provenance: None,
         }
     }
 }

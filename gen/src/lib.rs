@@ -302,7 +302,7 @@ pub struct EnergyCarrier {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub energy_consumption: Option<WrappedDecimal>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub energy_consumption_unit: Option<String>,
+    pub energy_consumption_unit: Option<EnergyConsumptionUnit>,
     #[serde(rename = "emissionFactorWTW")]
     pub emission_factor_wtw: WrappedDecimal,
     #[serde(rename = "emissionFactorTTW")]
@@ -330,6 +330,15 @@ pub enum EnergyCarrierType {
     Hydrogen,
     Methanol,
     Electric,
+}
+
+#[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
+#[serde(rename_all = "camelCase")]
+pub enum EnergyConsumptionUnit {
+    L,
+    Kg,
+    KWh,
+    MJ,
 }
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]

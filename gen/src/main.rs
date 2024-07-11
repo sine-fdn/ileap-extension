@@ -2,67 +2,20 @@ use ileap_extension::*;
 use pact_data_model::WrappedDecimal;
 use quickcheck::{Arbitrary, Gen};
 use regex::Regex;
+use rust_decimal::Decimal;
 use schemars::schema_for;
 use serde_json::to_string_pretty;
 use std::fs::File;
 use std::io::{Error, Write};
-
-pub(crate) fn update_arbitrary_tce(tce: &mut Tce, toc: Option<Toc>, hoc: Option<Hoc>) -> Tce {
-    tce.toc_id = match toc.clone() {
-        Some(toc) => Some(toc.toc_id),
-        None => None,
-    };
-
-    tce.hoc_id = match hoc.clone() {
-        Some(hoc) => Some(hoc.hoc_id),
-        None => None,
-    };
-
-    if (toc.is_none() && hoc.is_none()) && toc.is_some() && hoc.is_some() {
-        panic!("Either Toc or Hoc, but not both, must be provided");
-    }
-
-    match tce.toc_id {
-        Some(_) => {
-            let toc = toc.unwrap();
-            tce.co2e_wtw =
-                WrappedDecimal::from(toc.co2e_intensity_wtw.0 * tce.transport_activity.0);
-            tce.co2e_ttw =
-                WrappedDecimal::from(toc.co2e_intensity_ttw.0 * tce.transport_activity.0);
-        }
-        None => {
-            let hoc = hoc.unwrap();
-            tce.co2e_wtw = WrappedDecimal::from(hoc.co2e_intensity_wtw);
-            tce.co2e_ttw = WrappedDecimal::from(hoc.co2e_intensity_ttw);
-        }
-    }
-
-    tce.to_owned()
-}
+use std::str::FromStr;
 
 fn main() -> Result<(), Error> {
-    // generate_schema::<ShipmentFootprint>()?;
-    // generate_schema::<Toc>()?;
-    // generate_schema::<Tad>()?;
-    // generate_schema::<Hoc>()?;
+    generate_schema::<ShipmentFootprint>()?;
+    generate_schema::<Toc>()?;
+    generate_schema::<Tad>()?;
+    generate_schema::<Hoc>()?;
 
-    let mut og = Gen::new(10);
-
-    let mut tce_1 = Tce::arbitrary(&mut og);
-    let toc = Toc::arbitrary(&mut og);
-
-    println!("toc: {toc:?}");
-
-    let mut tce_2 = Tce::arbitrary(&mut og);
-    let hoc = Hoc::arbitrary(&mut og);
-
-    println!("hoc: {hoc:?}");
-
-    let tce_toc = update_arbitrary_tce(&mut tce_1, Some(toc), None);
-    let tce_hoc = update_arbitrary_tce(&mut tce_2, None, Some(hoc));
-
-    println!("tce_toc: {tce_toc:?}");
-    println!("tce_hoc: {tce_hoc:?}");
+    generate_demo_data()?;
 
     Ok(())
 }
@@ -89,6 +42,61 @@ fn generate_schema<T: schemars::JsonSchema>() -> Result<(), Error> {
     schema_file.write_all(schema_json.as_bytes())?;
 
     println!("{schema_name}.json successfully created");
+
+    Ok(())
+}
+
+fn generate_demo_data() -> Result<(), Error> {
+    let mut og = Gen::new(10);
+
+    let mut shipment_footprints = vec![];
+    let mut tocs = vec![];
+    let mut hocs = vec![];
+    for _ in 0..1 {
+        let mut ship_foot = ShipmentFootprint::arbitrary(&mut og);
+
+        let mut tces = vec![];
+        for tce in ship_foot.tces.0.iter() {
+            let mut tce = tce.to_owned();
+            tce.shipment_id = ship_foot.shipment_id.clone();
+
+            tce.mass = WrappedDecimal::from(Decimal::from_str(&ship_foot.mass).unwrap());
+
+            if (tce.toc_id.is_none() && tce.hoc_id.is_none())
+                || tce.toc_id.is_some() && tce.hoc_id.is_some()
+            {
+                panic!("Either Toc or Hoc, but not both, must be provided");
+            } else if tce.toc_id.is_some() {
+                let mut toc = Toc::arbitrary(&mut og);
+                toc.toc_id = tce.toc_id.clone().unwrap();
+                tocs.push(toc.clone());
+
+                tce.toc_id = Some(toc.toc_id.clone());
+                tce.co2e_wtw =
+                    WrappedDecimal::from(toc.co2e_intensity_wtw.0 * tce.transport_activity.0);
+                tce.co2e_ttw =
+                    WrappedDecimal::from(toc.co2e_intensity_ttw.0 * tce.transport_activity.0);
+            } else {
+                let mut hoc = Hoc::arbitrary(&mut og);
+                hoc.hoc_id = tce.hoc_id.clone().unwrap();
+                hocs.push(hoc.clone());
+
+                tce.hoc_id = Some(hoc.hoc_id.clone());
+
+                // TODO: Implement TCE HOC emissions calculations.
+                tce.co2e_wtw = WrappedDecimal::from(hoc.co2e_intensity_wtw);
+                tce.co2e_ttw = WrappedDecimal::from(hoc.co2e_intensity_ttw);
+            }
+
+            tces.push(tce);
+        }
+        ship_foot.tces = NonEmptyVec::from(tces);
+        shipment_footprints.push(ship_foot);
+    }
+
+    println!("{shipment_footprints:?}");
+    println!("{tocs:?}");
+    println!("{hocs:?}");
 
     Ok(())
 }
