@@ -146,9 +146,13 @@
           ]
         },
         "energyConsumptionUnit": {
-          "type": [
-            "string",
-            "null"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EnergyConsumptionUnit"
+            },
+            {
+              "type": "null"
+            }
           ]
         },
         "feedstocks": {
@@ -177,6 +181,15 @@
         "Hydrogen",
         "Methanol",
         "Electric"
+      ]
+    },
+    "EnergyConsumptionUnit": {
+      "type": "string",
+      "enum": [
+        "l",
+        "kg",
+        "kWh",
+        "mJ"
       ]
     },
     "Feedstock": {
