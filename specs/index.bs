@@ -2184,7 +2184,7 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`unitaryProductAmount`
         <td>
-              MUST be set to `"1000"` so that the ProductFootprint represents the emissions of the HOC per tonne.
+              MUST be set to `"1000"` so that the ProductFootprint represents the emissions of the HOC per tonne leaving the hub.
 
       <tr>
         <td>CarbonFootprint
