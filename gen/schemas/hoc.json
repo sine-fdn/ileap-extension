@@ -17,7 +17,7 @@
       "$ref": "#/definitions/Decimal"
     },
     "co2eIntensityThroughput": {
-      "type": "string"
+      "$ref": "#/definitions/HocCo2eIntensityThroughput"
     },
     "co2eIntensityWTW": {
       "$ref": "#/definitions/Decimal"
@@ -243,13 +243,20 @@
         }
       ]
     },
+    "HocCo2eIntensityThroughput": {
+      "type": "string",
+      "enum": [
+        "TEU",
+        "tonnes"
+      ]
+    },
     "HubType": {
       "type": "string",
       "enum": [
         "transshipment",
         "storageAndTransshipment",
         "warehouse",
-        "liquidBulkterminal",
+        "liquidBulkTerminal",
         "maritimeContainerterminal"
       ]
     },

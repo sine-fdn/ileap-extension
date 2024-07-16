@@ -27,6 +27,8 @@ pub struct NonEmptyVec<T>(pub Vec<T>);
 pub struct Tce {
     pub tce_id: String,
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub prev_tce_ids: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub toc_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub hoc_id: Option<String>,
@@ -35,7 +37,7 @@ pub struct Tce {
     pub consignment_id: Option<String>,
     pub mass: WrappedDecimal,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub packaging_or_tr_eq_type: Option<String>,
+    pub packaging_or_tr_eq_type: Option<PackagingOrTrEqType>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub packaging_or_tr_eq_amount: Option<usize>,
     pub distance: GlecDistance,
@@ -69,7 +71,7 @@ pub struct Tce {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
-#[serde(untagged, rename_all = "UPPERCASE")]
+#[serde(rename_all = "UPPERCASE")]
 pub enum Incoterms {
     Exw,
     Fca,
@@ -110,9 +112,17 @@ pub struct Toc {
     pub co2e_intensity_wtw: WrappedDecimal,
     #[serde(rename = "co2eIntensityTTW")]
     pub co2e_intensity_ttw: WrappedDecimal,
-    pub co2e_intensity_throughput: String,
+    pub co2e_intensity_throughput: TocCo2eIntensityThroughput,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub glec_data_quality_index: Option<GlecDataQualityIndex>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub enum TocCo2eIntensityThroughput {
+    #[serde(rename = "TEUkm")]
+    TEUkm,
+    Tkm,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
@@ -131,7 +141,7 @@ pub enum TruckLoadingSequence {
 }
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
-#[serde(rename_all = "camelCase", untagged)]
+#[serde(rename_all = "camelCase")]
 pub enum AirShippingOption {
     #[serde(rename = "belly freight")]
     BellyFreight,
@@ -139,7 +149,7 @@ pub enum AirShippingOption {
 }
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
-#[serde(rename_all = "camelCase", untagged)]
+#[serde(rename_all = "camelCase")]
 pub enum FlightLength {
     #[serde(rename = "short-haul")]
     ShortHaul,
@@ -177,7 +187,15 @@ pub struct Hoc {
     pub co2e_intensity_wtw: WrappedDecimal,
     #[serde(rename = "co2eIntensityTTW")]
     pub co2e_intensity_ttw: WrappedDecimal,
-    pub co2e_intensity_throughput: String,
+    pub co2e_intensity_throughput: HocCo2eIntensityThroughput,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
+#[serde(rename_all = "camelCase")]
+pub enum HocCo2eIntensityThroughput {
+    #[serde(rename = "TEU")]
+    TEU,
+    Tonnes,
 }
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
@@ -186,7 +204,7 @@ pub enum HubType {
     Transshipment,
     StorageAndTransshipment,
     Warehouse,
-    LiquidBulkterminal,
+    LiquidBulkTerminal,
     MaritimeContainerterminal,
 }
 

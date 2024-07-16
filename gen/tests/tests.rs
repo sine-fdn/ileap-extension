@@ -67,7 +67,7 @@ fn test_toc_deser() {
             .into(),
             co2e_intensity_wtw: dec!(3.6801).into(),
             co2e_intensity_ttw: dec!(3.2801).into(),
-            co2e_intensity_throughput: "tkm".to_string(),
+            co2e_intensity_throughput: TocCo2eIntensityThroughput::Tkm,
             glec_data_quality_index: None,
             description: None,
             load_factor: None,
@@ -88,7 +88,7 @@ fn test_toc_deser() {
 #[test]
 fn test_ship_foot_deser() {
     let (json, expected) = (
-        r#"{"mass":"87","shipmentId":"1237890","tces":[{"tceId":"abcdef","tocId":"truck-40t-euro5-de","shipmentId":"1237890","mass":"87","distance":{"actual":"423"},"transportActivity":"36.801","co2eWTW":"36.801","co2eTTW":"3.2801"}]}"#,
+        r#"{"mass":"87","shipmentId":"1237890","tces":[{"tceId":"abcdef", "prevTceIds": [], "tocId":"truck-40t-euro5-de","shipmentId":"1237890","mass":"87","distance":{"actual":"423"},"transportActivity":"36.801","co2eWTW":"36.801","co2eTTW":"3.2801"}]}"#,
         ShipmentFootprint {
             mass: "87".to_string(),
             volume: None,
@@ -97,6 +97,7 @@ fn test_ship_foot_deser() {
             shipment_id: "1237890".to_string(),
             tces: NonEmptyVec::<Tce>::from(vec![Tce {
                 tce_id: "abcdef".to_string(),
+                prev_tce_ids: Some(vec![]),
                 toc_id: Some("truck-40t-euro5-de".to_string()),
                 hoc_id: None,
                 shipment_id: "1237890".to_string(),

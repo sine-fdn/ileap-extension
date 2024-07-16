@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240702)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240716)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -478,6 +478,7 @@ The highlighted lines show the data exchanged according to the <{ShipmentFootpri
             "tces": [
               {
                 "tceId": "abcdef",
+                "prevTceIds": [],
                 "tocId": "truck-40t-euro5-de",
                 "shipmentId": "1237890",
                 "mass": "87",
@@ -559,6 +560,7 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
             "tces": [
               {
                 "tceId": "abcdef",
+                "prevTceIds": [],
                 "tocId": "truck-40t-euro5-de",
                 "shipmentId": "1237890",
                 "mass": "87",
@@ -571,6 +573,7 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
               },
               {
                 "tceId": "ghijkl",
+                "prevTceIds": [ "abcdef" ],
                 "tocId": "operator-z-truck-89sdff",
                 "shipmentId": "1237890",
                 "mass": "87",
@@ -679,11 +682,43 @@ Issue: <{ShipmentFootprint/numberOfItems}> and <{ShipmentFootprint/typeOfItems}>
 
 The Data Type <{TCE}> models information related to a single [=Transport Chain Element=].
 
-[=TCEs=] are the building blocks to construct a Transport Chain ([=TC=]), enabling the calculation of logistics emissions.
+The data related to TCEs can be obtained from direct measurement (see [=Primary Data=]) or other measurements (see [=Secondary Data=]).
 
-Transport Chain Element Data can be obtained from direct measurement
-(see [=Primary Data=] or other measurements
-(see [=Secondary Data=]).
+<{TCE|TCEs}> are typically calculated by [=Transport Operators=] and [=Transport Service Organizers=]. They are made available to [=Transport Service Users=] through
+the <{ShipmentFootprint}> data type and the Pathfinder Data Exchange Protocol. See [[#dt-sf]] and [[#pcf-mapping]] for details.
+
+
+### Ordering of TCEs ### {#tce-ordering}
+
+For reasons of transparency, traceability, auditability, and comprehensibility,
+the recipients of TCE data ([=Transport Service User=] or [=Transport Service Organizer=]) SHOULD also receive the information
+on the order in which the TCEs occurred during the transport of the shipment.
+
+Order here means "happens-before" relationship between TCEs relative to other TCEs of the same <{ShipmentFootprint}>.
+
+To facilitate this, the data model of TCEs includes the property <{TCE/prevTceIds}>.
+
+If defined, <{TCE/prevTceIds}> MUST reference all the IDs (<{TCE/tceId}>) of the TCEs which happened *immediately* before the current TCE and <{ShipmentFootprint}>.
+If the property is defined and the array is empty, the current TCE MUST be the first TCE of the shipment in relation to the <{ShipmentFootprint}>.
+
+<div class=example>
+
+  A [=Transport Service User=] procured the shipment of 2 containers to Rotterdam through a [=Transport Service Organizer=]. The organizer then makes a
+  <{ShipmentFootprint}> available to the [=Transport Service User=], consisting of the following TCEs:
+
+  1. two TCEs with IDs `tce1234` and `tce567` for the first leg of the shipment, which is the transport of the 2 containers from the warehouse to the port.
+      For both TCEs, <{TCE/prevTceIds}> must equal `[]` (the empty array).
+  2. one TCE with ID `tce890` for the second leg of the shipment, which is the transport of the 2 containers from the port in Shanghai to the port of Rotterdam.
+      For this TCE, <{TCE/prevTceIds}> must equal `["tce1234", "tce567"]`.
+  3. And, last but not least, another TCE with ID `tceABC` for the hub operations at Rotterdam. For this TCE, <{TCE/prevTceIds}> must equal `["tce890"]`.
+
+
+<figure>
+  <img src="diagrams/tce-ordering.svg" height="80%" width="80%" >
+  <figcaption>TCE happened-before relationship graph</figcaption>
+</figure>
+
+</div>
 
 
 ### Data Attributes ### {#tce-attributes}
@@ -706,6 +741,14 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>String
         <td>M
         <td>The id of the [=Transport Chain Element=]
+
+      <tr>
+        <td><dfn>prevTceIds</dfn>
+        <td>String[]
+        <td>O
+        <td>
+              If defined, the <{TCE/tceId|tceIds}> of [=Transport Chain Element=] preceding the current TCE.
+              See [[#tce-ordering]] for more information.
 
       <tr>
         <td><dfn>tocId</dfn>
@@ -2191,10 +2234,15 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.1-20240702 (2024-07-01) ## {#version-20240702}
+## Version 0.2.1-20240716 (2024-07-16) ## {#version-20240716}
 
 - addition of section [[#pcf-mapping-hoc]] and corresponding example [[#appendix-b-hoc-example]]
 - small typo fixes (broken link in [[#pcf-mapping-toc]] and wrong highlights in [[#appendix-b]])
+
+## Version 0.2.1-20240708 (2024-07-08) ## {#version-20240708}
+
+- New "feature": OPTIONAL happened-before relationship between <{TCE|TCEs}> relative to a single shipment and <{ShipmentFootprint}>, enabled through the new property <{TCE/prevTceIds}>.
+- Addition of the guidance chapter [[#tce-ordering]] to define the <{TCE/prevTceIds}> semantics
 
 ## Version 0.2.1-20240611 (2024-06-11) ## {#version-20240611}
 
@@ -2315,6 +2363,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
               "tces": [
                   {
                       "tceId": "abcdef",
+                      "prevTceIds": [],
                       "tocId": "truck-40t-euro5-de",
                       "shipmentId": "1237890",
                       "mass": "87",
