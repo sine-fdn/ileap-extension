@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240708)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240716)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2097,7 +2097,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>`pCfExcludingBiogenic`
         <td>
               MUST be set to the logistics emissions intensity of the TOC, excluding biogenic emissions,
-              defined in <{TOC/co2eIntensityWTW }>.
+              defined in <{TOC/co2eIntensityWTW}>.
 
       <tr>
         <td>CarbonFootprint
@@ -2133,14 +2133,116 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
   <figcaption>Mapping of PACT Data Model properties to <{TOC}> properties</figcaption>
 </figure>
 
+### HOC ### {#pcf-mapping-hoc}
+
+Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
+
+An HOC CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing an <{HOC}> as an
+extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
+
+For interoperability reasons, several attributes of a `ProductFootprint` MUST be derived from the
+<{HOC}>. This is specified in the [table](#pact-hoc-mapping-table) below.
+
+Note: Section [[#appendix-b-hoc-example]] contains an example.
+
+<figure id="pact-hoc-mapping-table">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>PACT Data Type
+        <th>Property
+        <th>Value Derivation
+    <tbody>
+      <tr>
+        <td>ProductFootprint
+        <td>`productIds`
+        <td>
+              MUST contain the HOC ID <{HOC/hocId}>, encoded as
+              : `urn:pathfinder:product:customcode:vendor-assigned:hoc:<hoc id>`
+              :: in case the [=transport service organizer=] has assigned an hoc id, or
+              : `urn:pathfinder:product:customcode:buyer-assigned:hoc:<hoc id>`
+              :: in case the [=transport service user=] has assigned an hoc id
+
+              Note: `productIds` can contain multiple entries. If multiple or different
+                      hoc ids are assigned to a single HOC, `productIds` CAN contain
+                      all of them.
+      <tr>
+        <td>ProductFootprint
+        <td>`productCategoryCpc`
+        <td>
+              MUST be equal to `83117`, the CPC code of logistics services.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`declaredUnit`
+        <td>
+              MUST be set to `kilogram` conforming with the Pathfinder Tech Specs.
+
+              See [[!PACTDX]] Chapter 4 for further details.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`unitaryProductAmount`
+        <td>
+              MUST be set to `"1000"` so that the ProductFootprint represents the emissions of the HOC per tonne leaving the hub.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`pCfExcludingBiogenic`
+        <td>
+              MUST be set to the logistics emissions intensity of the HOC, excluding biogenic emissions,
+              defined in <{HOC/co2eIntensityWTW}>.
+
+              Note: In case the `co2eIntensityThroughput` of the `HOC` is `TEU`, per the [[!GLEC]] framework, "an average
+              weight of 10 tonnes per TEU can be assumed. If the containers are light, then 6 tonnes can be used as approximation,
+              and if they are heavy, an average weight of 14.5 tonnes can be assumed."
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`pCfIncludingBiogenic`
+        <td>
+              This property is OPTIONAL in the [[!PACTDX]] data Model.
+
+              It SHOULD be set to the logistics emissions intensity of the HOC,
+              including biogenic emissions, found in <{HOC/co2eIntensityWTW}>.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`fossilGhgEmissions`
+        <td>
+              see the specification for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`packagingEmissionsIncluded`
+        <td>
+              see [[!PACTDX]] for further details
+
+              MUST be set to `false`.
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`primaryDataShare`
+        <td>
+              The relative share of logistics emissions for which primary data has been used for the calculation.
+
+              See [[!PACTDX]] and the Pathfinder Framework ([[!PATHFINDER-FRAMEWORK]]) for further details.
+  </table>
+  <figcaption>Mapping of PACT Data Model properties to <{HOC}> properties</figcaption>
+</figure>
+
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20240716 (2024-07-16) ## {#version-20240716}
+
+- addition of section [[#pcf-mapping-hoc]] and corresponding example [[#appendix-b-hoc-example]]
+- small typo fixes (broken link in [[#pcf-mapping-toc]] and wrong highlights in [[#appendix-b]])
 
 ## Version 0.2.1-20240708 (2024-07-08) ## {#version-20240708}
 
 - New "feature": OPTIONAL happened-before relationship between <{TCE|TCEs}> relative to a single shipment and <{ShipmentFootprint}>, enabled through the new property <{TCE/prevTceIds}>.
 - Addition of the guidance chapter [[#tce-ordering]] to define the <{TCE/prevTceIds}> semantics
-
 
 ## Version 0.2.1-20240611 (2024-06-11) ## {#version-20240611}
 
@@ -2203,7 +2305,7 @@ taken as a link to the actual data schema. This will be updated as soon as possi
 A Product Footprint with a <{ShipmentFootprint}> highlighted:
 
 <div class=example>
-  <pre highlight='json' line-highlight="37-54" line-numbers>
+  <pre highlight='json' line-highlight="47-71" line-numbers>
     {
       "id": "d9be4477-e351-45b3-acd9-e1da05e6f633",
       "specVersion": "2.0.0",
@@ -2285,7 +2387,7 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
 A Product Footprint with a <{TOC}> highlighted:
 
 <div class=example>
-  <pre highlight='json' line-highlight="37-54" line-numbers>
+  <pre highlight='json' line-highlight="47-71" line-numbers>
     {
       "id": "f3c04ec8-b33a-43b1-9fa7-d6a448fd60af",
       "specVersion": "2.0.0",
@@ -2354,6 +2456,86 @@ A Product Footprint with a <{TOC}> highlighted:
               "co2eIntensityWTW": "3.6801",
               "co2eIntensityTTW": "3.2801",
               "co2eIntensityThroughput": "tkm"
+          }
+        }
+      ]
+    }
+  </pre>
+</div>
+
+## HOC example ## {#appendix-b-hoc-example}
+
+A Product Footprint with a <{HOC}> highlighted:
+
+<div class=example>
+  <pre highlight='json' line-highlight="47-70" line-numbers>
+    {
+      "id": "f3c04ec8-b33a-43b1-9fa7-d6a448fd60af",
+      "specVersion": "2.0.0",
+      "version": 0,
+      "created": "2022-05-22T21:47:32Z",
+      "status": "Active",
+      "companyName": "Super Duper Transport Co.",
+      "companyIds": [
+          "urn:epc:id:sgln:4063973.00000.8"
+      ],
+      "productDescription": "Logistics emissions related to HOC with ID 7890123",
+      "productIds": [
+          "urn:pathfinder:product:customcode:vendor-assigned:hoc:7890123"
+      ],
+      "productCategoryCpc": "83117",
+      "productNameCompany": "HOC with ID 7890123",
+      "comment": "",
+      "pcf": {
+        "declaredUnit": "kilogram",
+        "unitaryProductAmount": "1000",
+        "pCfExcludingBiogenic": "3.6801",
+        "fossilGhgEmissions": "3.6801",
+        "fossilCarbonContent": "0",
+        "biogenicCarbonContent": "0",
+        "characterizationFactors": "AR6",
+        "ipccCharacterizationFactorsSources": [
+            "AR6"
+        ],
+        "crossSectoralStandardsUsed": [
+            "GHG Protocol Product standard"
+        ],
+        "productOrSectorSpecificRules": [],
+        "boundaryProcessesDescription": "SFC GLEC Framework-conforming (W2W CO2e emissions)",
+        "referencePeriodStart": "2021-01-01T00:00:00Z",
+        "referencePeriodEnd": "2022-01-01T00:00:00Z",
+        "secondaryEmissionFactorSources": [
+            {
+                "name": "Ecoinvent",
+                "version": "3.9.1"
+            }
+        ],
+        "exemptedEmissionsPercent": 0,
+        "exemptedEmissionsDescription": "",
+        "packagingEmissionsIncluded": false,
+        "primaryDataShare": 56.12
+      },
+      "extensions": [
+        {
+          "specVersion": "2.0.0",
+          "dataSchema": "https://api.ileap.sine.dev/toc.json",
+          "documentation": "https://sine-fdn.github.io/ileap-extension/",
+          "data": {
+              "hocId": "7890123",
+              "isVerified": true,
+              "isAccredited": true,
+              "hubType": "Warehouse",
+              "temperatureControl": "refrigerated",
+              "energyCarriers": [
+                  {
+                      "energyCarrier": "Diesel",
+                      "co2eIntensityWTW": "3.6801",
+                      "co2eIntensityTTW": "3.2801"
+                  }
+              ],
+              "co2eIntensityWTW": "3.6801",
+              "co2eIntensityTTW": "3.2801",
+              "co2eIntensityThroughput": "tonnes"
           }
         }
       ]
