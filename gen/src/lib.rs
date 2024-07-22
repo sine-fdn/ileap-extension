@@ -4,6 +4,8 @@ use pact_data_model::{GeographicScope, WrappedDecimal};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
+mod arbitrary_impls;
+
 #[derive(Debug, Serialize, Deserialize, Clone, JsonSchema, PartialEq)]
 #[serde(rename_all = "camelCase")]
 pub struct ShipmentFootprint {
@@ -159,6 +161,7 @@ pub enum FlightLength {
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
+// TODO: use a floating point or a decimal instead.
 pub struct GlecDataQualityIndex(pub u8);
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
@@ -299,7 +302,7 @@ pub struct EnergyCarrier {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub energy_consumption: Option<WrappedDecimal>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub energy_consumption_unit: Option<String>,
+    pub energy_consumption_unit: Option<EnergyConsumptionUnit>,
     #[serde(rename = "emissionFactorWTW")]
     pub emission_factor_wtw: WrappedDecimal,
     #[serde(rename = "emissionFactorTTW")]
@@ -331,10 +334,19 @@ pub enum EnergyCarrierType {
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
+pub enum EnergyConsumptionUnit {
+    L,
+    Kg,
+    KWh,
+    MJ,
+}
+
+#[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct Feedstock {
     pub feedstock: FeedstockType,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub feedstock_percentage: Option<f64>,
+    pub feedstock_percentage: Option<WrappedDecimal>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub region_provenance: Option<String>,
 }
@@ -376,7 +388,7 @@ impl From<String> for Locode {
         if s.len() == 5 {
             Locode(s)
         } else {
-            panic!("LOCODE must be 5 characters long")
+            panic!("LOCODE must be 5 characters long, got '{s}'")
         }
     }
 }
