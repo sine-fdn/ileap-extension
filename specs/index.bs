@@ -641,17 +641,17 @@ A <{ShipmentFootprint}> has the following properties:
         <th>Specification
     <tbody>
       <tr>
-        <td><dfn>mass</dfn>
+        <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the [=Transport Service User=], excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer
       <tr>
-        <td><dfn>volume</dfn>
+        <td><dfn>volume</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and any packaging provided by the [=Transport Service User=].
       <tr>
-        <td><dfn>numberOfItems</dfn>
+        <td><dfn>numberOfItems</dfn> : [=Decimal=]
         <td>String
         <td>O
         <td>The number of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of.
