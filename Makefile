@@ -1,16 +1,12 @@
 RELEASE_DIR:=out
 MMDC := ./node_modules/.bin/mmdc
-DIAGRAMS := $(patsubst %.mmd,%.svg,$(wildcard specs/diagrams/*.mmd))
+DIAGRAMS := $(patsubst specs/%.mmd,${RELEASE_DIR}/%.svg,$(wildcard specs/diagrams/*.mmd))
+HTMLS := $(patsubst specs/%.bs,${RELEASE_DIR}/%.html,$(wildcard specs/*.bs))
 
-build: specs/index.html faq.html
-	mkdir -p ${RELEASE_DIR}
-	cp -r $< specs/diagrams ${RELEASE_DIR}/
+build: ${HTMLS} ${DIAGRAMS}
 	cp -r TR ${RELEASE_DIR}/
 
-specs/index.html: specs/index.bs ${DIAGRAMS}
-	bikeshed spec $< $@
-
-specs/faq.html: specs/faq.bs
+${RELEASE_DIR}/%.html: specs/%.bs ${DIAGRAMS} ${RELEASE_DIR}
 	bikeshed spec $< $@
 
 serve: ${DIAGRAMS}
@@ -19,8 +15,11 @@ serve: ${DIAGRAMS}
 clean:
 	rm -f ${DIAGRAMS}
 
-%.svg: %.mmd ${MMDC}
+%.svg: %.mmd ${MMDC} ${RELEASE_DIR}
 	${MMDC} -i $< -o $@
+
+${RELEASE_DIR}:
+	mkdir -p $@
 
 ${MMDC}:
 	npm install @mermaid-js/mermaid-cli
