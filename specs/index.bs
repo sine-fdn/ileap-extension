@@ -148,7 +148,7 @@ status tags are:
 
 : <dfn>Consignment id</dfn>
 ::
-    A digital identifier which uniquely identifies a [=Consignment=].
+    A digital identifier which uniquely identifies a [=Consignment=] relative to the [=Host system=] and to the [=Data recipient=].
 
 : <dfn>Data Owner</dfn>
 :: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-owner) for the definition.
@@ -175,7 +175,7 @@ status tags are:
 
 : <dfn>Shipment id</dfn>
 ::
-    A digital identifier which uniquely identifies a [=Shipment=].
+    A digital identifier which uniquely identifies a [=Shipment=] relative to the [=Host system=] and to the [=Data recipient=].
 
 : <dfn>Shipper</dfn>
 :: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
@@ -1298,7 +1298,7 @@ encoded as a JSON object. See [[#action-tad]] for details.
         <td><dfn>consignmentIds</dfn>
         <td>String[]
         <td>M
-        <td>The non-empty array of unique IDs of the consignments related to the activity.
+        <td>The non-empty array of unique IDs of the consignments related to the activity (relative to the [=Host system=] and to the [=Data recipient=]).
       <tr>
         <td><dfn>distance</dfn>
         <td><{GLECDistance}>
