@@ -2,7 +2,7 @@ RELEASE_DIR:=out
 MMDC := ./node_modules/.bin/mmdc
 DIAGRAMS := $(patsubst %.mmd,%.svg,$(wildcard specs/diagrams/*.mmd))
 
-build: specs/index.html
+build: specs/index.html specs/faq.html
 	mkdir -p ${RELEASE_DIR}
 	cp -r $< specs/diagrams ${RELEASE_DIR}/
 	cp -r TR ${RELEASE_DIR}/
@@ -10,12 +10,14 @@ build: specs/index.html
 specs/index.html: specs/index.bs ${DIAGRAMS}
 	bikeshed spec $< $@
 
+specs/faq.html: specs/faq.bs
+	bikeshed spec $< $@
+
 serve: ${DIAGRAMS}
 	cd specs && bikeshed serve
 
 clean:
 	rm -f ${DIAGRAMS}
-
 
 %.svg: %.mmd ${MMDC}
 	${MMDC} -i $< -o $@

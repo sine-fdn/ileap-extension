@@ -1,4 +1,4 @@
-specs/index.html
+specs/*.html
 gen/target
 out/
 *.svg
