@@ -4,7 +4,7 @@ DIAGRAMS := $(patsubst %.mmd,%.svg,$(wildcard specs/diagrams/*.mmd))
 
 build: specs/index.html specs/faq.html
 	mkdir -p ${RELEASE_DIR}
-	cp -r $< specs/diagrams ${RELEASE_DIR}/
+	cp -r $^ specs/diagrams ${RELEASE_DIR}/
 	cp -r TR ${RELEASE_DIR}/
 
 specs/index.html: specs/index.bs ${DIAGRAMS}
