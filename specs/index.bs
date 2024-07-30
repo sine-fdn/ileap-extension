@@ -11,7 +11,7 @@ Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rub
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
 Repository: sine-fdn/ileap-extension
-Abstract: This document outlines the semantics for logistics emissions data exchange as part of the SFC iLEAP Project. Its format is based on the Pathfinder Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the Pathfinder Network. Implementing this specification enables stakeholders within the supply chain to exchange data on logistics emissions. This facilitates the tracking of logistics emissions and the computation of their contribution to product carbon footprints.
+Abstract: This document outlines the semantics for logistics emissions data exchange as part of the SFC iLEAP Project. Its format is based on the PACT Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the PACT Network. Implementing this specification enables stakeholders within the supply chain to exchange data on logistics emissions. This facilitates the tracking of logistics emissions and the computation of their contribution to product carbon footprints.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
 Previous Version: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/
@@ -22,7 +22,7 @@ Local Boilerplate: header yes
 
 - Companies have a growing need to calculate and report logistics emissions data with greater accuracy and transparency. They want to move from standard and modeled data to primary data that accurately reflects their supply chain emissions.
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
-- Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the Pathfinder Framework and Pathfinder Technical Specifications. It conforms to the basic semantics framework for the [=SFC=] Exchange Network project.
+- Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the PACT Framework and PACT Technical Specifications. It conforms to the basic semantics framework for the [=SFC=] Exchange Network project.
 - Adoption of this specification will enable the exchange of data between different actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
 
 Advisement: The iLEAP Technical Specifications will be continuously refined as part of the ongoing iLEAP project. Significant changes may be introduced as the project progresses.
@@ -144,23 +144,23 @@ status tags are:
 ## Auxillary Definitions ## {#auxillary-definitions}
 
 : <dfn>Access Token</dfn>
-:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
+:: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
 
 : <dfn>Consignment id</dfn>
 ::
     A digital identifier which uniquely identifies a [=Consignment=].
 
 : <dfn>Data Owner</dfn>
-:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-owner) for the definition.
+:: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-owner) for the definition.
 
 : <dfn>Data Recipient</dfn>
-:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
+:: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
 
 : Data Transaction
 :: see [[#txns]]
 
 : <dfn>Host System</dfn>
-:: See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
+:: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
 : <dfn>Hub Operator</dfn>
@@ -168,7 +168,7 @@ status tags are:
 
 : <dfn>PCF</dfn>
 ::
-    Product Carbon Footprint. See [Pathfinder Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
+    Product Carbon Footprint. See [PACT Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
 
 : <dfn>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
@@ -247,9 +247,9 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
     A [=Transport Service User=] is requested to disclose logistics emissions as part of a [=PCF=].
     A Transport Service User can disclose this data as a data model extension (see [[#pcf-mapping-sf]])
 
-    This is enabled through the usage of the Pathfinder Technical Specification
+    This is enabled through the usage of the PACT Technical Specifications
     and disclosing through so-called Data Model Extensions based on the iLEAP
-    Data Model ([[#data-model]]) . See the Pathfinder [[!DATA-MODEL-EXTENSIONS]] specification.
+    Data Model ([[#data-model]]) . See the PACT [[!DATA-MODEL-EXTENSIONS]] specification.
 
 
 : Forecasting
@@ -267,7 +267,7 @@ A <dfn>data transaction</dfn> is an abstraction for the exchange of data between
 
 Its function is to facilitate interoperability between different parties by explaining the context and their intention(s).
 
-Each transaction combines the iLEAP data model ([[#data-model]]) with the Pathfinder
+Each transaction combines the iLEAP data model ([[#data-model]]) with the PACT
 Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=host systems=].
 
 The following diagram shows how the three data transactions (defined below) are related:
@@ -287,7 +287,7 @@ This data transaction enables a [=Transport Service User=] (for example, a [=shi
 For this, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 
 1. first calculate 1 or more TCEs emissions related data in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
-2. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the Pathfinder
+2. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the PACT
     Network API (see [[#pcf-mapping-sf]]).
 
 The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) using the [=shipment id=], by
@@ -308,7 +308,7 @@ It could also facilitate the inclusion of emission intensity in procurement proc
 For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
 1. first calculate 1 or more TOCs in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
-2. make the resulting <{TOC|TOCs}> available through the Pathfinder Network API (see [[#pcf-mapping]]).
+2. make the resulting <{TOC|TOCs}> available through the PACT Network API (see [[#pcf-mapping]]).
 
 Note:
     The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
@@ -324,7 +324,7 @@ For this, the [=Transport Operator=] MUST
 
 1. first collect Transport Activity Data belonging to a consignment identified by the [=consignment id=]
 2. calculate the <{TAD}> (see [[#dt-tad]]) given the [=consignment id=]
-3. make the resulting <{TAD}> available through the Pathfinder Network API.
+3. make the resulting <{TAD}> available through the PACT Network API.
 
 The [=Transport Service Organizer=] or [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
 
@@ -605,7 +605,7 @@ Please, find more details on emissions calculation and the relantionship between
 The iLEAP Data Model is composed by five main data types: <{ShipmentFootprint}>, <{TCE}>, <{TOC}>,
 <{HOC}>, and <{TAD}>.
 
-<{ShipmentFootprint|ShipmentFootprints}> and <{TOC|TOCs}> can be exchanged independently as extensions to the Pathfinder
+<{ShipmentFootprint|ShipmentFootprints}> and <{TOC|TOCs}> can be exchanged independently as extensions to the PACT
 Data Model ([[!PACTDX]]) (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
 <{TAD|TADs}> can be exchanged through a dedicated endpoint. These should only be used by [=Transport
@@ -685,7 +685,7 @@ The Data Type <{TCE}> models information related to a single [=Transport Chain E
 The data related to TCEs can be obtained from direct measurement (see [=Primary Data=]) or other measurements (see [=Secondary Data=]).
 
 <{TCE|TCEs}> are typically calculated by [=Transport Operators=] and [=Transport Service Organizers=]. They are made available to [=Transport Service Users=] through
-the <{ShipmentFootprint}> data type and the Pathfinder Data Exchange Protocol. See [[#dt-sf]] and [[#pcf-mapping]] for details.
+the <{ShipmentFootprint}> data type and the PACT Data Exchange Protocol. See [[#dt-sf]] and [[#pcf-mapping]] for details.
 
 
 ### Ordering of TCEs ### {#tce-ordering}
@@ -957,7 +957,7 @@ The Data Type <{TOC}> contains transport operation category data.
 
 The [=Transport Operator=] or [=Transport Service Organizer=] MUST calculate the <{TOC}> in accordance with the [[!GLEC]] Framework.
 
-The [=Transport Operator=] or [=Transport Service Organizer=] CAN then make the <{TOC}> available through the Pathfinder Network API as a `ProductFootprint` (see [[#pcf-mapping-toc]]).
+The [=Transport Operator=] or [=Transport Service Organizer=] CAN then make the <{TOC}> available through the PACT Network API as a `ProductFootprint` (see [[#pcf-mapping-toc]]).
 
 Transport Operation Category data can be obtained from direct measurement
 (see `primary data` definition of [[!ISO14083]]) or other measurements
@@ -1775,7 +1775,7 @@ If a [=host system=] does not implement filtering, it MUST process the request a
 If a [=host system=] implements filtering, it CAN process the filter statement on a best-effort basis:
 
 1. it CAN ignore the filter statement or parts of the filter statement, or
-1. it CAN return an error response as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses).
+1. it CAN return an error response as defined in the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses).
     For instance, a host system CAN return an error with code `NotImplemented` if it does not support a specific filter pair.
 1. it CAN treat concatenated filters disjunctively, i.e., returning the union of the results of the individual filters.
 
@@ -1877,7 +1877,7 @@ With response parameters
 ::
     If the host system returns transport activity data, the `HttpStatusCode` MUST be 200.
 
-    If the host system responds with an error response, the `HttpStatusCode` MUST match the HTTP Status Code of the respective error response code, as defined in the [Pathfinder Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responsesm).
+    If the host system responds with an error response, the `HttpStatusCode` MUST match the HTTP Status Code of the respective error response code, as defined in the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responsesm).
 
 : <dfn>TadStatusText</dfn>
 ::
@@ -1901,13 +1901,13 @@ With response parameters
 :: see [=pagination link=] and [[#pagination]].
 
 
-## Pathfinder Integration ## {#pcf-mapping}
+## PACT Integration ## {#pcf-mapping}
 
 The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
 
-This section specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the Pathfinder Data Model ([[!PACTDX]] Chapter 4).
+This section specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the PACT Data Model ([[!PACTDX]] Chapter 4).
 
-The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the Pathfinder Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
+The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the PACT Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
 Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
 The list below contains the properties that were omitted for this reason.
 
@@ -1938,7 +1938,7 @@ The list below contains the properties that were omitted for this reason.
           <td><dfn>assurance</dfn> : [Assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-assurance)
           <td>Object
           <td>O
-          <td>If present, the Assurance information in accordance with the [[!PATHFINDER-FRAMEWORK]].
+          <td>If present, the Assurance information in accordance with the [[!PACT-FRAMEWORK]].
           <td>[CarbonFootprint/assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-carbonfootprint-assurance)
     </table>
 </figure>
@@ -1947,7 +1947,7 @@ The list below contains the properties that were omitted for this reason.
 
 Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
-A ShipmentFootprint CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
+A ShipmentFootprint CAN be integrated into the PACT Data Model ([[!PACTDX]]) by storing a <{ShipmentFootprint}> as an extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
 For interoperability reasons, [[!PACTDX]]-related attributes MUST be derived from the <{ShipmentFootprint}> where possible. Details are specified in the [table](#pact-sf-mapping-table) below.
 
@@ -1985,7 +1985,7 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>CarbonFootprint
         <td>`declaredUnit`
         <td>
-              MUST be set to `ton kilometer` conforming with the Pathfinder Tech Specs.
+              MUST be set to `ton kilometer` conforming with the PACT Tech Specs.
 
               See [[!PACTDX]] Chapter 4 for further details.
 
@@ -2033,7 +2033,7 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>
               The relative share of logistics emissions for which primary data has been used for the calculation.
 
-              See [[!PACTDX]] and the Pathfinder Framework ([[!PATHFINDER-FRAMEWORK]]) for further details.
+              See [[!PACTDX]] and the PACT Framework ([[!PACT-FRAMEWORK]]) for further details.
 
     </table>
     <figcaption>Mapping of PACT Data Model properties to <{ShipmentFootprint}> properties</figcaption>
@@ -2043,7 +2043,7 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
 
 Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
-A TOC CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing a <{TOC}> as an
+A TOC CAN be integrated into the PACT Data Model ([[!PACTDX]]) by storing a <{TOC}> as an
 extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
 For interoperability reasons, several attributes of a `ProductFootprint` MUST be derived from the
@@ -2082,7 +2082,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>CarbonFootprint
         <td>`declaredUnit`
         <td>
-              MUST be set to `ton kilometer` conforming with the Pathfinder Tech Specs.
+              MUST be set to `ton kilometer` conforming with the PACT Tech Specs.
 
               See [[!PACTDX]] Chapter 4 for further details.
 
@@ -2128,7 +2128,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>
               The relative share of logistics emissions for which primary data has been used for the calculation.
 
-              See [[!PACTDX]] and the Pathfinder Framework ([[!PATHFINDER-FRAMEWORK]]) for further details.
+              See [[!PACTDX]] and the PACT Framework ([[!PACT-FRAMEWORK]]) for further details.
   </table>
   <figcaption>Mapping of PACT Data Model properties to <{TOC}> properties</figcaption>
 </figure>
@@ -2137,7 +2137,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 Note: This chapter refers to the PACT Data Model. See [[!PACTDX]] Chapter 4 for further details.
 
-An HOC CAN be integrated into the Pathfinder Data Model ([[!PACTDX]]) by storing an <{HOC}> as an
+An HOC CAN be integrated into the PACT Data Model ([[!PACTDX]]) by storing an <{HOC}> as an
 extension (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
 
 For interoperability reasons, several attributes of a `ProductFootprint` MUST be derived from the
@@ -2176,7 +2176,7 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`declaredUnit`
         <td>
-              MUST be set to `kilogram` conforming with the Pathfinder Tech Specs.
+              MUST be set to `kilogram` conforming with the PACT Tech Specs.
 
               See [[!PACTDX]] Chapter 4 for further details.
 
@@ -2226,7 +2226,7 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>
               The relative share of logistics emissions for which primary data has been used for the calculation.
 
-              See [[!PACTDX]] and the Pathfinder Framework ([[!PATHFINDER-FRAMEWORK]]) for further details.
+              See [[!PACTDX]] and the PACT Framework ([[!PACT-FRAMEWORK]]) for further details.
   </table>
   <figcaption>Mapping of PACT Data Model properties to <{HOC}> properties</figcaption>
 </figure>
@@ -2286,8 +2286,8 @@ Release Consultation Draft
 
 Summary of changes:
 
-- updated the mapping of a shipment id of a <{ShipmentFootprint}> into the Pathfinder Data Model
-- updated the mapping of a shipment id of a <{TOC}> into the Pathfinder Data Model
+- updated the mapping of a shipment id of a <{ShipmentFootprint}> into the PACT Data Model
+- updated the mapping of a shipment id of a <{TOC}> into the PACT Data Model
 
 
 ## Version 0.1.0 (2024-05-13) ## {#version-0-1-0}
@@ -2569,10 +2569,10 @@ A Product Footprint with a <{HOC}> highlighted:
       "publisher": "WBCSD",
       "status": "CR"
     },
-    "PATHFINDER-FRAMEWORK": {
+    "PACT-FRAMEWORK": {
       "authors": [],
-      "href": "https://www.carbon-transparency.com/media/srhhloun/pathfinder-framework.pdf",
-      "title": "Pathfinder Framework: Guidance for the Accounting and Exchange of Product Life Cycle Emissions (Version 2.0)",
+      "href": "https://www.wbcsd.org/wp-content/uploads/2023/01/Pathfinder-Framework-Version-2.0.pdf",
+      "title": "PACT Framework: Guidance for the Accounting and Exchange of Product Life Cycle Emissions (Version 2.0)",
       "status": "LS",
       "publisher": "WBCSD"
     },
