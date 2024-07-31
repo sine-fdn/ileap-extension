@@ -2747,6 +2747,8 @@ A Product Footprint with a <{HOC}> highlighted:
 
 # Appendix C: iLEAP Conformance Testing # {#appendix-c}
 
+Advisement: This appendix is a work in progress. All feedback is welcome.
+
 In order to test the conformance of an iLEAP implementation, the following tests must be performed:
 
 ## PACT Conformance Tests ## {#pact-conformance-tests}
