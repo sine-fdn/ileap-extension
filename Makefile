@@ -2,7 +2,11 @@ RELEASE_DIR:=out
 MMDC := ./node_modules/.bin/mmdc
 DIAGRAMS := $(patsubst %.mmd,%.svg,$(wildcard specs/diagrams/*.mmd))
 
-build: specs/index.html specs/faq.html
+AZURE_STORAGE_ACCOUNT := ghpreview
+AZURE_STORAGE_CONTAINER := preview
+
+
+build: specs/index.html
 	mkdir -p ${RELEASE_DIR}
 	cp -r $^ specs/diagrams ${RELEASE_DIR}/
 	cp -r TR ${RELEASE_DIR}/
@@ -25,4 +29,12 @@ clean:
 ${MMDC}:
 	npm install @mermaid-js/mermaid-cli
 
-.PHONY: serve build
+
+azure-upload-preview: build
+	az storage blob upload-batch \
+		-d ${AZURE_STORAGE_CONTAINER} \
+		--account-name ${AZURE_STORAGE_ACCOUNT} \
+		-s ${RELEASE_DIR} --destination-path ileap/$(shell date -u "+%Y%m%dT%H%M%SZ")
+
+
+.PHONY: serve build azure-upload-preview clean
