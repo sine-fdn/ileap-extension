@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240716)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240807)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2235,6 +2235,13 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20240807 (2024-08-07) ## {#version-20240807}
+
+- improved uniqueness definition in [=consignment id=] and [=shipment id=]
+- use [=Decimal=] data type consistently
+- add issues to <{ShipmentFootprint/numberOfItems}> and <{ShipmentFootprint/typeOfItems}> instead of
+    common issue
 
 ## Version 0.2.1-20240716 (2024-07-16) ## {#version-20240716}
 
