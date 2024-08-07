@@ -6,7 +6,7 @@ AZURE_STORAGE_ACCOUNT := ghpreview
 AZURE_STORAGE_CONTAINER := preview
 
 
-build: specs/index.html
+build: specs/index.html specs/faq.html
 	mkdir -p ${RELEASE_DIR}
 	cp -r $^ specs/diagrams ${RELEASE_DIR}/
 	cp -r TR ${RELEASE_DIR}/
