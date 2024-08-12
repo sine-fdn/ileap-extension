@@ -298,17 +298,17 @@ The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) usin
 Note: For an example exchange, see [[#example]]
 
 
-## Data Transaction 2: TOC Data Exchange ## {#txn2}
+## Data Transaction 2: TOC or HOC Data Exchange ## {#txn2}
 
-This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] emission intensity related data from a [=Transport Operator=].
+This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] or [=HOC=] emission intensity related data from a [=Transport Operator=].
 
-The provision of emission intensity data at the [=TOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
+The provision of emission intensity data at the [=TOC=] or [=HOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
 It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
 
 For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
-1. first calculate 1 or more TOCs in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
-2. make the resulting <{TOC|TOCs}> available through the PACT Network API (see [[#pcf-mapping]]).
+1. first calculate 1 or more TOC or HOC emission profiles in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
+2. make the resulting <{TOC|TOCs}> or <{HOC|HOCs}> available through the PACT Network API (see [[#pcf-mapping]]).
 
 Note:
     The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
