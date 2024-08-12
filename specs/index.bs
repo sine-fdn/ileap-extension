@@ -2195,9 +2195,9 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
               MUST be set to the logistics emissions intensity of the HOC, excluding biogenic emissions,
               defined in <{HOC/co2eIntensityWTW}>.
 
-              Note: In case the `co2eIntensityThroughput` of the `HOC` is `TEU`, per the [[!GLEC]] framework, "an average
-              weight of 10 tonnes per TEU can be assumed. If the containers are light, then 6 tonnes can be used as approximation,
-              and if they are heavy, an average weight of 14.5 tonnes can be assumed."
+              Note: The average weight of a container can be considered as 10 tonnes per `TEU`. For light containers, an
+              estimate of 6 tonnes per `TEU` is appropriate, while heavy containers can be assumed to average 14.5 tonnes
+              per `TEU`.
 
       <tr>
         <td>CarbonFootprint
