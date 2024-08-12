@@ -1907,11 +1907,12 @@ With response parameters
 
 The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
 
-This section specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the PACT Data Model ([[!PACTDX]] Chapter 4).
-
+This section specifies the integration of the data types <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> into the PACT Data Model ([[!PACTDX]] Chapter 4).
 The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the PACT Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
 Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
 The list below contains the properties that were omitted for this reason.
+
+Note: The extensions of one `ProductFootprint` CANNOT contain more than one iLEAP Data Type.
 
 <figure id="ileap-pact-properties-mapping">
   <table class="data">
