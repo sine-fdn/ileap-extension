@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240807)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240813)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -298,17 +298,17 @@ The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) usin
 Note: For an example exchange, see [[#example]]
 
 
-## Data Transaction 2: TOC Data Exchange ## {#txn2}
+## Data Transaction 2: TOC or HOC Data Exchange ## {#txn2}
 
-This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] emission intensity related data from a [=Transport Operator=].
+This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] or [=HOC=] emission intensity related data from a [=Transport Operator=].
 
-The provision of emission intensity data at the [=TOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
+The provision of emission intensity data at the [=TOC=] or [=HOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
 It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
 
 For this, the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
-1. first calculate 1 or more TOCs in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
-2. make the resulting <{TOC|TOCs}> available through the PACT Network API (see [[#pcf-mapping]]).
+1. first calculate 1 or more TOC or HOC emission profiles in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
+2. make the resulting <{TOC|TOCs}> or <{HOC|HOCs}> available through the PACT Network API (see [[#pcf-mapping]]).
 
 Note:
     The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
@@ -1907,11 +1907,12 @@ With response parameters
 
 The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
 
-This section specifies the integration of the data types <{ShipmentFootprint}> and <{TOC}> into the PACT Data Model ([[!PACTDX]] Chapter 4).
-
+This section specifies the integration of the data types <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> into the PACT Data Model ([[!PACTDX]] Chapter 4).
 The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the PACT Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
 Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
 The list below contains the properties that were omitted for this reason.
+
+Note: The extensions of one `ProductFootprint` CANNOT contain more than one iLEAP Data Type.
 
 <figure id="ileap-pact-properties-mapping">
   <table class="data">
@@ -2195,9 +2196,9 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
               MUST be set to the logistics emissions intensity of the HOC, excluding biogenic emissions,
               defined in <{HOC/co2eIntensityWTW}>.
 
-              Note: In case the `co2eIntensityThroughput` of the `HOC` is `TEU`, per the [[!GLEC]] framework, "an average
-              weight of 10 tonnes per TEU can be assumed. If the containers are light, then 6 tonnes can be used as approximation,
-              and if they are heavy, an average weight of 14.5 tonnes can be assumed."
+              Note: The average weight of a container can be considered as 10 tonnes per `TEU`. For light containers, an
+              estimate of 6 tonnes per `TEU` is appropriate, while heavy containers can be assumed to average 14.5 tonnes
+              per `TEU`.
 
       <tr>
         <td>CarbonFootprint
@@ -2235,6 +2236,12 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20240813 (2024-08-13) ## {#version-20240813}
+
+- add mentions to `HOC`s in [[#txn2]]
+- add note to [[#pcf-mapping]] stating that one footprint cannot contain more than one iLEAP data type
+- update note on `TEU` averages in [[#pcf-mapping-hoc]]
 
 ## Version 0.2.1-20240807 (2024-08-07) ## {#version-20240807}
 
