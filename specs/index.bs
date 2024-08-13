@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240807)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240813)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2236,6 +2236,12 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20240813 (2024-08-13) ## {#version-20240813}
+
+- add mentions to `HOC`s in [[#txn2]]
+- add note to [[#pcf-mapping]] stating that one footprint cannot contain more than one iLEAP data type
+- update note on `TEU` averages in [[#pcf-mapping-hoc]]
 
 ## Version 0.2.1-20240807 (2024-08-07) ## {#version-20240807}
 
