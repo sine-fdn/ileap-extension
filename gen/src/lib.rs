@@ -555,18 +555,138 @@ pub fn hoc_to_pcf(
         comment: "".to_string(), // Kept empty for simplicty
         extensions: Some(vec![DataModelExtension {
             spec_version: "0.2.1".to_string().into(), // TODO: verify if this should be the extension's or the PACT version
-            data_schema: "https://api.ileap.sine.dev/toc.json".to_string(),
+            data_schema: "https://api.ileap.sine.dev/hoc.json".to_string(),
             documentation: Some("https://sine-fdn.github.io/ileap-extension/".to_string()),
             data: serde_json::from_str(&serde_json::to_string(&hoc).unwrap()).unwrap(),
         }]),
         pcf: CarbonFootprint {
-            declared_unit: DeclaredUnit::TonKilometer,
-            unitary_product_amount: Decimal::from(1).into(),
+            declared_unit: DeclaredUnit::Kilogram,
+            unitary_product_amount: Decimal::from(1000).into(),
             p_cf_excluding_biogenic: hoc.co2e_intensity_wtw.0.into(),
             p_cf_including_biogenic: None, // Kept None for simplicity until more clarity is gained
             fossil_ghg_emissions: hoc.co2e_intensity_wtw.0.into(),
             fossil_carbon_content: hoc.co2e_intensity_wtw.0.into(), // No guidance in Tech Specs
             biogenic_carbon_content: hoc.co2e_intensity_wtw.0.into(), // No guidance in Tech Specs
+            d_luc_ghg_emissions: None, // Kept None for simplicity; no guidance in the Tech Specs
+            land_management_ghg_emissions: None, // Kept None for simplicity; no guidance in the Tech Specs
+            other_biogenic_ghg_emissions: None, // Kept None for simplicity; no guidance in the Tech Specs
+            i_luc_ghg_emissions: None, // Kept None for simplicity; no guidance in the Tech Specs
+            biogenic_carbon_withdrawal: None, // Kept None for simplicity; no guidance in the Tech Specs
+            aircraft_ghg_emissions: None, // Kept None for simplicity; no guidance in the Tech Specs
+            characterization_factors: CharacterizationFactors::Ar5, // Conservative option
+            ipcc_characterization_factors_sources: IpccCharacterizationFactorsSources(vec![
+                "AR5".to_string().into(),
+                "AR6".to_string().into(),
+            ]), // Assume the more general option for simplicity
+            cross_sectoral_standards_used: CrossSectoralStandardSet(vec![
+                CrossSectoralStandard::Ghgp,
+            ]), // Assume one variant until more clarity is gained, no guidance in the Tech Specs
+            product_or_sector_specific_rules: ProductOrSectorSpecificRuleSet(vec![
+                ProductOrSectorSpecificRule {
+                    operator: ProductOrSectorSpecificRuleOperator::Other,
+                    rule_names: vec!["ISO 14083".to_string().into()].into(),
+                    other_operator_name: Some("SFC".to_string().into()),
+                },
+            ]), // Further clarification is needed
+            biogenic_accounting_methodology: None, // Kept None for simplicity; no guidance in the Tech Specs
+            boundary_processes_description: "".to_string(), // Kept empty for simplicity; will become optional in v3
+            reference_period_start: Utc
+                .with_ymd_and_hms(
+                    Utc::now().year() - 1,
+                    Utc::now().month(),
+                    Utc::now().day(),
+                    0,
+                    0,
+                    0,
+                )
+                .unwrap(), // Kept as one year before the creation date for simplicity
+            reference_period_end: Utc
+                .with_ymd_and_hms(
+                    Utc::now().year(),
+                    Utc::now().month(),
+                    Utc::now().day() - 1,
+                    0,
+                    0,
+                    0,
+                )
+                .unwrap(), // Kept as one day before the creation date for simplicity
+            geographic_scope: None,                         // Assume global for simplicity
+            secondary_emission_factor_sources: None, // Kept None for simplicity; no guidance in the Tech Specs
+            exempted_emissions_percent: ExemptedEmissionsPercent(0.0), // Kept at 0% for simplicity
+            exempted_emissions_description: "".to_string(), // Kept empty for simplicity
+            packaging_emissions_included: false,
+            packaging_ghg_emissions: None,
+            allocation_rules_description: None, // Kept None for simplicity; no guidance in the Tech Specs
+            uncertainty_assessment_description: None, // Kept None for simplicity; no guidance in the Tech Specs
+            primary_data_share: None, // Kept None for simplicity; no guidance in the Tech Specs
+            dqi: None,                // Kept None for simplicity; no guidance in the Tech Specs
+            assurance: None,          // Kept None for simplicity; no guidance in the Tech Specs
+        },
+    }
+}
+
+pub fn shipment_to_pcf(
+    shipment: ShipmentFootprint,
+    pf_id: Option<PfId>,
+    company_name: NonEmptyString,
+    company_ids: CompanyIdSet,
+) -> ProductFootprint {
+    let total_ton_km = shipment
+        .tces
+        .0
+        .iter()
+        .fold(Decimal::from(0), |acc, tce| acc + tce.transport_activity.0);
+
+    let total_emissions = shipment
+        .tces
+        .0
+        .iter()
+        .fold(Decimal::from(0), |acc, tce| acc + tce.co2e_wtw.0)
+        .round_dp(2);
+
+    ProductFootprint {
+        id: pf_id.unwrap_or(PfId(Uuid::new_v4())),
+        spec_version: SpecVersionString("2.2.0".to_string()),
+        preceding_pf_ids: None, // Kept None for simplicity
+        version: VersionInteger(1),
+        created: Utc::now(),
+        updated: None, // Kept None for simplicity
+        status: PfStatus::Active,
+        status_comment: None,        // Kept None for simplicity
+        validity_period_start: None, // Kept None for simplicity
+        validity_period_end: None,   // Kept None for simplicity
+        company_name,
+        company_ids,
+        product_description: format!(
+            "ShipmentFootprint emissions with id {}",
+            shipment.shipment_id
+        )
+        .into(),
+        product_ids: ProductIdSet(vec![Urn(format!(
+            "urn:pathfinder:product:customcode:vendor-assigned:shipment:{}",
+            shipment.shipment_id
+        ))]), // Kept as vendor assigned only for simplicity
+        product_category_cpc: "83117".to_string().into(),
+        product_name_company: format!(
+            "ShipmentFootprint emissions with id {}",
+            shipment.shipment_id
+        )
+        .into(), // Assuming that ShipmentFootprints do not usually have trade names
+        comment: "".to_string(), // Kept empty for simplicty
+        extensions: Some(vec![DataModelExtension {
+            spec_version: "0.2.1".to_string().into(), // TODO: verify if this should be the extension's or the PACT version
+            data_schema: "https://api.ileap.sine.dev/shipment-footprint.json".to_string(),
+            documentation: Some("https://sine-fdn.github.io/ileap-extension/".to_string()),
+            data: serde_json::from_str(&serde_json::to_string(&shipment).unwrap()).unwrap(),
+        }]),
+        pcf: CarbonFootprint {
+            declared_unit: DeclaredUnit::TonKilometer,
+            unitary_product_amount: total_ton_km.into(),
+            p_cf_excluding_biogenic: total_emissions.into(),
+            p_cf_including_biogenic: None, // Kept None for simplicity until more clarity is gained
+            fossil_ghg_emissions: total_emissions.into(),
+            fossil_carbon_content: total_emissions.into(), // No guidance in Tech Specs
+            biogenic_carbon_content: total_emissions.into(), // No guidance in Tech Specs
             d_luc_ghg_emissions: None, // Kept None for simplicity; no guidance in the Tech Specs
             land_management_ghg_emissions: None, // Kept None for simplicity; no guidance in the Tech Specs
             other_biogenic_ghg_emissions: None, // Kept None for simplicity; no guidance in the Tech Specs
