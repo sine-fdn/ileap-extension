@@ -1391,7 +1391,7 @@ encoded as a JSON object. See [[#action-tad]] for details.
 
 ### Data Type GLECDistance ### {#dt-glecdistance}
 
-Data type `GLECDistance` represents a distance measured in kilometers between origin and destination as defined in the [[!GLEC]] Framework.
+Data type `GLECDistance` represents a distance in kilometers between origin and destination as defined in the [[!GLEC]] Framework.
 
 In JSON an `GLECDistance` MUST be encoded as a JSON Object.
 
