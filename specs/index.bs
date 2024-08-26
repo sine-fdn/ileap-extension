@@ -2175,19 +2175,19 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>CarbonFootprint
         <td>`fossilGhgEmissions`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              Note: see the specification for `pCfIncludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
         <td>`fossilCarbonContent`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              Note: see the specification for `pCfIncludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
         <td>`biogenicCarbonContent`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              Note: see the specification for `pCfIncludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
@@ -2324,19 +2324,19 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`fossilGhgEmissions`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              Note: see the specification for `pCfExcludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
         <td>`fossilCarbonContent`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              Note: see the specification for `pCfExcludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
         <td>`biogenicCarbonContent`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              Note: see the specification for `pCfIncludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
