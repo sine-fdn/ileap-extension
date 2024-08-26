@@ -1910,7 +1910,7 @@ With response parameters
 The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
 
 This section specifies the integration of the data types <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> into the PACT Data Model ([[!PACTDX]] Chapter 4).
-The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the PACT Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
+The integration of the data types <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> is achieved by storing them as extensions to the PACT Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
 Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
 The list below contains the properties that were omitted for this reason.
 
@@ -2003,6 +2003,12 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
 
       <tr>
         <td>CarbonFootprint
+        <td>`productMassPerDeclaredUnit`
+        <td>
+              MUST equal the mass of the shipment (<{ShipmentFootprint/mass}>)
+
+      <tr>
+        <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
               MUST be set to the total logistics emissions of the shipment, excluding biogenic emissions,
@@ -2026,6 +2032,18 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
 
       <tr>
         <td>CarbonFootprint
+        <td>`fossilCarbonContent`
+        <td>
+              see the specification for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`biogenicCarbonContent`
+        <td>
+              see the specification for `pCfIncludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
         <td>`packagingEmissionsIncluded`
         <td>
               see [[!PACTDX]] for further details
@@ -2043,6 +2061,36 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
     </table>
     <figcaption>Mapping of PACT Data Model properties to <{ShipmentFootprint}> properties</figcaption>
 </figure>
+
+The `ProductFootprint` mandatory properties
+[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+and
+[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+cannot be derived from the `ShipmentFootprint` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+The `CarbonFootprint` mandatory properties
+[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+and
+[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+cannot be derived from the `ShipmentFootprint` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
+properties that cannot be derived from `ShipmentFootprint` CAN be populated in a best-effort manner.
 
 ### TOC ### {#pcf-mapping-toc}
 
@@ -2097,6 +2145,13 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>
               SHOULD be set to `"1"` so that the ProductFootprint represents the emissions per ton kilometer of the TOC.
 
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`productMassPerDeclaredUnit`
+        <td>
+              MUST be set to `"1"`.
+
       <tr>
         <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
@@ -2121,6 +2176,18 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
       <tr>
         <td>CarbonFootprint
+        <td>`fossilCarbonContent`
+        <td>
+              see the specification for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`biogenicCarbonContent`
+        <td>
+              see the specification for `pCfIncludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
         <td>`packagingEmissionsIncluded`
         <td>
               see [[!PACTDX]] for further details
@@ -2137,6 +2204,37 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
   </table>
   <figcaption>Mapping of PACT Data Model properties to <{TOC}> properties</figcaption>
 </figure>
+
+
+The `ProductFootprint` mandatory properties
+[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+and
+[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+cannot be derived from the `TOC` and MUST be provided by the data owner. Please follow the links
+above for further details.
+
+The `CarbonFootprint` mandatory properties
+[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+and
+[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+cannot be derived from the `TOC` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
+properties that cannot be derived from `TOC` CAN be populated in a best-effort manner.
 
 ### HOC ### {#pcf-mapping-hoc}
 
@@ -2193,6 +2291,12 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
       <tr>
         <td>CarbonFootprint
+        <td>`productMassPerDeclaredUnit`
+        <td>
+              MUST be set to `"1000"`.
+
+      <tr>
+        <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
               MUST be set to the logistics emissions intensity of the HOC, excluding biogenic emissions,
@@ -2219,6 +2323,18 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
       <tr>
         <td>CarbonFootprint
+        <td>`fossilCarbonContent`
+        <td>
+              see the specification for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`biogenicCarbonContent`
+        <td>
+              see the specification for `pCfIncludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
         <td>`packagingEmissionsIncluded`
         <td>
               see [[!PACTDX]] for further details
@@ -2236,6 +2352,36 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
   <figcaption>Mapping of PACT Data Model properties to <{HOC}> properties</figcaption>
 </figure>
 
+
+The `ProductFootprint` mandatory properties
+[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+and
+[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+cannot be derived from the `HOC` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+The `CarbonFootprint` mandatory properties
+[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+and
+[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+cannot be derived from the `HOC` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
+properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
 # Appendix A: Changelog # {#changelog}
 
