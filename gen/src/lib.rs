@@ -473,11 +473,15 @@ pub fn ileap_to_pact(
                         })
                         .collect();
 
-                    if cf.contains(&IpccCharacterizationFactorsSource::from("AR5".to_string())) {
-                        (CharacterizationFactors::Ar5, cf)
+                    let characterization_factors = if cf
+                        .contains(&IpccCharacterizationFactorsSource::from("AR5".to_string()))
+                    {
+                        CharacterizationFactors::Ar5
                     } else {
-                        (CharacterizationFactors::Ar6, cf)
-                    }
+                        CharacterizationFactors::Ar6
+                    };
+
+                    (characterization_factors, cf)
                 }
             }
         };
@@ -525,34 +529,35 @@ pub fn ileap_to_pact(
             unitary_product_amount: Decimal::from(1),
             p_cf_excluding_biogenic: toc.co2e_intensity_wtw.0,
         },
-        ILeapType::Hoc(ref hoc) => {
-            MappedFields {
-                product_id_type: "hoc".to_string(),
-                id: hoc.hoc_id.clone(),
-                product_name_company: format!("HOC with ID {}", hoc.hoc_id),
-                declared_unit: DeclaredUnit::Kilogram,
-                unitary_product_amount: Decimal::from(1000),
-                p_cf_excluding_biogenic: match hoc.co2e_intensity_throughput {
-                    HocCo2eIntensityThroughput::TEU => match hoc_container_size {
-                        Some(HocTeuContainerSize::Normal) => {
-                            hoc.co2e_intensity_wtw.0 * Decimal::from(10000)
-                        }
-                        Some(HocTeuContainerSize::Light) => {
-                            hoc.co2e_intensity_wtw.0 * Decimal::from(6000)
-                        }
-                        Some(HocTeuContainerSize::Heavy) => {
-                            hoc.co2e_intensity_wtw.0 * Decimal::from(14050)
-                        }
-                        None => {
-                            println!("Warning: HOC TEU container size not specified, using normal container");
-                            hoc.co2e_intensity_wtw.0 * Decimal::from(10000)
-                        }
-                    },
-                    HocCo2eIntensityThroughput::Tonnes => hoc.co2e_intensity_wtw.0,
-                },
+        ILeapType::Hoc(ref hoc) => MappedFields {
+            product_id_type: "hoc".to_string(),
+            id: hoc.hoc_id.clone(),
+            product_name_company: format!("HOC with ID {}", hoc.hoc_id),
+            declared_unit: DeclaredUnit::Kilogram,
+            unitary_product_amount: Decimal::from(1000),
+            p_cf_excluding_biogenic: match hoc.co2e_intensity_throughput {
+                HocCo2eIntensityThroughput::TEU => {
+                    get_teu_co2e_intensity_wtw(hoc.co2e_intensity_wtw.0, hoc_container_size)
+                }
+                HocCo2eIntensityThroughput::Tonnes => hoc.co2e_intensity_wtw.0,
+            },
+        },
+    };
+
+    fn get_teu_co2e_intensity_wtw(
+        hoc_co2e_intensity_wtw: Decimal,
+        hoc_container_size: Option<HocTeuContainerSize>,
+    ) -> Decimal {
+        match hoc_container_size {
+            Some(HocTeuContainerSize::Normal) => hoc_co2e_intensity_wtw * Decimal::from(10000),
+            Some(HocTeuContainerSize::Light) => hoc_co2e_intensity_wtw * Decimal::from(6000),
+            Some(HocTeuContainerSize::Heavy) => hoc_co2e_intensity_wtw * Decimal::from(14050),
+            None => {
+                println!("Warning: HOC TEU container size not specified, using normal container");
+                hoc_co2e_intensity_wtw * Decimal::from(10000)
             }
         }
-    };
+    }
 
     let data_schema_id = if product_id_type == "shipment" {
         "shipment-footprint"
