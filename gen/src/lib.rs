@@ -441,7 +441,7 @@ pub enum CharFactors {
     Ar6,
 }
 
-pub fn ileap_to_pact(
+pub fn to_pcf(
     ileap_type: ILeapType,
     company_name: &str,
     company_urn: &str,
