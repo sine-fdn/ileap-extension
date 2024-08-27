@@ -55,6 +55,7 @@ fn generate_demo_data() -> Result<(), Error> {
     for _ in 0..1 {
         let mut ship_foot = ShipmentFootprint::arbitrary(&mut og);
 
+        // TODO: ensure that two HOCs do not follow one another.
         let mut tces: Vec<Tce> = vec![];
         let mut prev_tces: Vec<String> = vec![];
         for (i, tce) in ship_foot.tces.0.iter().enumerate() {
@@ -89,9 +90,16 @@ fn generate_demo_data() -> Result<(), Error> {
 
                 tce.hoc_id = Some(hoc.hoc_id.clone());
 
-                // TODO: Implement TCE HOC emissions calculations.
-                tce.co2e_wtw = WrappedDecimal::from(hoc.co2e_intensity_wtw);
-                tce.co2e_ttw = WrappedDecimal::from(hoc.co2e_intensity_ttw);
+                tce.distance = GlecDistance::Actual(Decimal::from(0).into());
+                tce.transport_activity = Decimal::from(0).into();
+
+                // TODO: Double-check divisor
+                tce.co2e_wtw = WrappedDecimal::from(
+                    (hoc.co2e_intensity_wtw.0 * tce.mass.0) / Decimal::from(1000000),
+                );
+                tce.co2e_ttw = WrappedDecimal::from(
+                    (hoc.co2e_intensity_ttw.0 * tce.mass.0) / Decimal::from(1000000),
+                );
             }
 
             tces.push(tce);

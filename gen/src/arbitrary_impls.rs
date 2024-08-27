@@ -49,8 +49,8 @@ fn formatted_arbitrary_string(fixed: &str, g: &mut quickcheck::Gen) -> String {
 impl Arbitrary for ShipmentFootprint {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         ShipmentFootprint {
-            // TODO: the max of u32 is 4_294_967_295. Would this be too large a mass (in kg)?
-            mass: format!("{}", u32::arbitrary(g)),
+            // Using u16 to avoid unreadably large
+            mass: format!("{}", u16::arbitrary(g)),
             // TODO: volume, number_of_items, and type_of_items are currently None for simplicity.
             volume: None,
             number_of_items: None,
@@ -221,7 +221,8 @@ impl Arbitrary for TocCo2eIntensityThroughput {
 
 impl<T: Arbitrary> Arbitrary for NonEmptyVec<T> {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
-        let num = u8::arbitrary(g) % 10 + 1;
+        // Restricting to 1..5 elements in order to avoid unreadably large data.
+        let num = u8::arbitrary(g) % 5 + 1;
 
         let mut vec = vec![];
         for _ in 0..num {
@@ -503,24 +504,6 @@ impl Arbitrary for Tce {
             }
         };
 
-        let co2e_wtw = WrappedDecimal::from(match toc_id {
-            // TODO: toc.co2e_intensity_wtw is currently hardcoded, based on the toc-road-1 example.
-            Some(_) => Decimal::new(116, 3) * transport_activity.0,
-            // TODO: if toc_id is None, then we must use hoc.co2e_intensity_wtw; this is currently
-            // hardcoded, based on the hoc-transshipment-1 example. However, I do not know how to
-            // calculate it.
-            None => Decimal::new(33, 0),
-        });
-
-        let co2e_ttw = WrappedDecimal::from(match toc_id {
-            // TODO: toc.co2e_intensity_ttw is currently hardcoded, based on the toc-road-1 example.
-            Some(_) => Decimal::new(89, 3) * transport_activity.0,
-            // TODO: if toc_id is None, then we must use hoc.co2e_intensity_ttw; this is currently
-            // hardcoded, based on the hoc-transshipment-1 example. However, I do not know how to
-            // calculate it.
-            None => Decimal::new(10, 0),
-        });
-
         Tce {
             tce_id: formatted_arbitrary_string("tce-", g),
             // Empty vec by default, populated by the generator function on main.
@@ -528,8 +511,7 @@ impl Arbitrary for Tce {
             toc_id,
             hoc_id,
             shipment_id: formatted_arbitrary_string("shipment-", g),
-            // TODO: consignment_id is currently None for simplicity.
-            consignment_id: None,
+            consignment_id: Some(formatted_arbitrary_string("consignment-", g)),
             mass,
             packaging_or_tr_eq_type: Option::<PackagingOrTrEqType>::arbitrary(g),
             packaging_or_tr_eq_amount: Option::<usize>::arbitrary(g),
@@ -543,13 +525,14 @@ impl Arbitrary for Tce {
             transport_activity,
             departure_at,
             arrival_at,
-            // TODO: flight_no and voyage_no are currently None for simplicity.
+            incoterms: Option::<Incoterms>::arbitrary(g),
+            // co2eWTW and co2eTTW are populated by the generator function on main, based on the
+            // emissions profile of the TOC/HOC.
+            co2e_wtw: Decimal::from(0).into(),
+            co2e_ttw: Decimal::from(0).into(),
+            // TODO: the following fields are currently None for simplicity.
             flight_no: None,
             voyage_no: None,
-            incoterms: Option::<Incoterms>::arbitrary(g),
-            co2e_wtw,
-            co2e_ttw,
-            // TODO: all the following fields are currently None for simplicity.
             nox_ttw: None,
             sox_ttw: None,
             ch4_ttw: None,
