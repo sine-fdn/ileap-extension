@@ -10,10 +10,10 @@ use std::io::{Error, Write};
 use std::str::FromStr;
 
 fn main() -> Result<(), Error> {
-    generate_schema::<ShipmentFootprint>()?;
-    generate_schema::<Toc>()?;
-    generate_schema::<Tad>()?;
-    generate_schema::<Hoc>()?;
+    // generate_schema::<ShipmentFootprint>()?;
+    // generate_schema::<Toc>()?;
+    // generate_schema::<Tad>()?;
+    // generate_schema::<Hoc>()?;
 
     generate_demo_data()?;
 
@@ -55,10 +55,16 @@ fn generate_demo_data() -> Result<(), Error> {
     for _ in 0..1 {
         let mut ship_foot = ShipmentFootprint::arbitrary(&mut og);
 
-        let mut tces = vec![];
-        for tce in ship_foot.tces.0.iter() {
+        let mut tces: Vec<Tce> = vec![];
+        let mut prev_tces: Vec<String> = vec![];
+        for (i, tce) in ship_foot.tces.0.iter().enumerate() {
             let mut tce = tce.to_owned();
             tce.shipment_id = ship_foot.shipment_id.clone();
+
+            if i != 0 {
+                prev_tces.push(tces[i - 1].tce_id.clone());
+                tce.prev_tce_ids = Some(prev_tces.clone());
+            }
 
             tce.mass = WrappedDecimal::from(Decimal::from_str(&ship_foot.mass).unwrap());
 
@@ -94,9 +100,9 @@ fn generate_demo_data() -> Result<(), Error> {
         shipment_footprints.push(ship_foot);
     }
 
-    println!("{shipment_footprints:?}");
-    println!("{tocs:?}");
-    println!("{hocs:?}");
+    println!("{shipment_footprints:#?}");
+    // println!("{tocs:?}");
+    // println!("{hocs:?}");
 
     Ok(())
 }

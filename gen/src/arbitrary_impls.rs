@@ -523,6 +523,8 @@ impl Arbitrary for Tce {
 
         Tce {
             tce_id: formatted_arbitrary_string("tce-", g),
+            // Empty vec by default, populated by the generator function on main.
+            prev_tce_ids: Some(vec![]),
             toc_id,
             hoc_id,
             shipment_id: formatted_arbitrary_string("shipment-", g),
