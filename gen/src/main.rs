@@ -1,5 +1,5 @@
 use ileap_extension::*;
-use pact_data_model::WrappedDecimal;
+use pact_data_model::{Urn, WrappedDecimal};
 use quickcheck::{Arbitrary, Gen};
 use regex::Regex;
 use rust_decimal::Decimal;
@@ -34,8 +34,8 @@ fn generate_schema<T: schemars::JsonSchema>() -> Result<(), Error> {
 
     let schema = schema_for!(T);
 
-    let schema_json =
-        to_string_pretty(&schema).unwrap_or_else(|_| panic!("Failed to serialize {type_name} schema"));
+    let schema_json = to_string_pretty(&schema)
+        .unwrap_or_else(|_| panic!("Failed to serialize {type_name} schema"));
 
     let mut schema_file = File::create(format!("./schemas/{schema_name}.json"))?;
 
@@ -105,6 +105,15 @@ fn generate_demo_data() -> Result<(), Error> {
             tces.push(tce);
         }
         ship_foot.tces = NonEmptyVec::from(tces);
+
+        let ship_foot = to_pcf(
+            ILeapType::ShipmentFootprint(ship_foot),
+            "SINE Foundation",
+            "urn:sine:example",
+            Some(HocTeuContainerSize::Normal),
+            Some(vec![CharFactors::Ar6]),
+        );
+
         shipment_footprints.push(ship_foot);
     }
 

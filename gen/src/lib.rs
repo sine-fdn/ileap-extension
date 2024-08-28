@@ -524,7 +524,7 @@ pub fn to_pcf(
                 .tces
                 .0
                 .iter()
-                .fold(Decimal::from(0), |acc, tce| acc + tce.co2e_wtw.0)
+                .fold(Decimal::from(0), |acc, tce| acc + tce.transport_activity.0)
                 .into(),
             p_cf_excluding_biogenic: shipment
                 .tces
