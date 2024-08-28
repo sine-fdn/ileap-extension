@@ -23,8 +23,8 @@ impl Arbitrary for LowerAToZNumDash {
                 let i = u8::arbitrary(g) % 37;
                 match i {
                     0 => '-',
-                    1..=10 => (i as u8 + 47) as char,
-                    _ => (i as u8 + 86) as char,
+                    1..=10 => (i + 47) as char,
+                    _ => (i + 86) as char,
                 }
             })
             .collect();

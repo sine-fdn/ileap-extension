@@ -1,5 +1,5 @@
 use ileap_extension::*;
-use pact_data_model::{Urn, WrappedDecimal};
+use pact_data_model::WrappedDecimal;
 use quickcheck::{Arbitrary, Gen};
 use regex::Regex;
 use rust_decimal::Decimal;
@@ -7,7 +7,6 @@ use schemars::schema_for;
 use serde_json::to_string_pretty;
 use std::fs::File;
 use std::io::{Error, Write};
-use std::str::FromStr;
 
 fn main() -> Result<(), Error> {
     generate_schema::<ShipmentFootprint>()?;
