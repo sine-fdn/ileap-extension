@@ -10,10 +10,10 @@ use std::io::{Error, Write};
 use std::str::FromStr;
 
 fn main() -> Result<(), Error> {
-    // generate_schema::<ShipmentFootprint>()?;
-    // generate_schema::<Toc>()?;
-    // generate_schema::<Tad>()?;
-    // generate_schema::<Hoc>()?;
+    generate_schema::<ShipmentFootprint>()?;
+    generate_schema::<Toc>()?;
+    generate_schema::<Tad>()?;
+    generate_schema::<Hoc>()?;
 
     generate_demo_data()?;
 

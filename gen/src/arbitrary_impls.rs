@@ -51,12 +51,12 @@ impl Arbitrary for ShipmentFootprint {
         ShipmentFootprint {
             // Using u16 to avoid unreadably large
             mass: format!("{}", u16::arbitrary(g)),
-            // TODO: volume, number_of_items, and type_of_items are currently None for simplicity.
+            shipment_id: formatted_arbitrary_string("shipment-", g),
+            tces: NonEmptyVec::<Tce>::arbitrary(g),
+            // Currently None for simplicity.
             volume: None,
             number_of_items: None,
             type_of_items: None,
-            shipment_id: formatted_arbitrary_string("shipment-", g),
-            tces: NonEmptyVec::<Tce>::arbitrary(g),
         }
     }
 }
@@ -69,7 +69,6 @@ impl Arbitrary for Hoc {
             let inbound = Some(TransportMode::arbitrary(g));
             let outbound = Some(TransportMode::arbitrary(g));
 
-            // TODO: verify if this requirement is correct.
             if inbound == outbound {
                 (inbound, Some(TransportMode::arbitrary(g)))
             } else {
@@ -80,8 +79,9 @@ impl Arbitrary for Hoc {
         let hub_type = HubType::arbitrary(g);
 
         let (inbound_transport_mode, outbound_transport_mode) = match hub_type {
+            // TODO: verify whether Transshipment and StorageAndTransshipment require different
+            // inbound and outbound transport modes.
             HubType::Transshipment => gen_diff_transport_modes(g),
-
             HubType::StorageAndTransshipment => gen_diff_transport_modes(g),
             HubType::Warehouse => (Some(TransportMode::Road), Some(TransportMode::Road)),
             HubType::LiquidBulkTerminal => (
@@ -108,23 +108,21 @@ impl Arbitrary for Hoc {
 
         Hoc {
             hoc_id: formatted_arbitrary_string("hoc-", g),
-            // TODO: description is currently None for simplicity.
-            description: None,
             is_verified: bool::arbitrary(g),
             is_accredited: bool::arbitrary(g),
             hub_type,
             temperature_control: Option::<TemperatureControl>::arbitrary(g),
-            // TODO: hub_location is currently None for simplicity.
-            hub_location: None,
             inbound_transport_mode,
             outbound_transport_mode,
             packaging_or_tr_eq_type: Option::<PackagingOrTrEqType>::arbitrary(g),
-            // TODO: packaging_or_tr_eq_amount is currently None for simplicity.
-            packaging_or_tr_eq_amount: None,
             energy_carriers: NonEmptyVec::<EnergyCarrier>::arbitrary(g),
             co2e_intensity_wtw: arbitrary_wrapped_decimal(g),
             co2e_intensity_ttw: arbitrary_wrapped_decimal(g),
             co2e_intensity_throughput: HocCo2eIntensityThroughput::arbitrary(g),
+            // Currently None for simplicity.
+            description: None,
+            hub_location: None,
+            packaging_or_tr_eq_amount: None,
         }
     }
 }
@@ -189,8 +187,6 @@ impl Arbitrary for Toc {
             toc_id: formatted_arbitrary_string("toc-", g),
             is_verified: bool::arbitrary(g),
             is_accredited: bool::arbitrary(g),
-            // TODO: description is currently None for simplicity.
-            description: None,
             mode,
             load_factor: arbitrary_option_factor(g),
             empty_distance_factor: arbitrary_option_factor(g),
@@ -202,7 +198,8 @@ impl Arbitrary for Toc {
             co2e_intensity_wtw: arbitrary_wrapped_decimal(g),
             co2e_intensity_ttw: arbitrary_wrapped_decimal(g),
             co2e_intensity_throughput: TocCo2eIntensityThroughput::arbitrary(g),
-            // TODO: glec_data_quality_index is currently None for simplicity.
+            // Currently None for simplicity.
+            description: None,
             glec_data_quality_index: None,
         }
     }
@@ -289,100 +286,91 @@ impl Arbitrary for EnergyCarrier {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         let energy_carrier = EnergyCarrierType::arbitrary(g);
 
-        let feedstocks = Option::<Vec<Feedstock>>::arbitrary(g);
+        let feedstocks = match Option::<Vec<Feedstock>>::arbitrary(g) {
+            Some(mut feedstocks) => {
+                let total_percentage: Decimal = feedstocks
+                    .iter()
+                    .map(|f| {
+                        f.feedstock_percentage
+                            .as_ref()
+                            .map(|p| p.0)
+                            .unwrap_or(Decimal::from(0))
+                    })
+                    .sum();
 
-        // let mut total_percentage: Decimal = Decimal::from(0);
+                if total_percentage > Decimal::from(1) {
+                    for feedstock in &mut feedstocks {
+                        feedstock.feedstock_percentage = None
+                    }
+                }
 
-        // TODO: refactor to make drier.
-        let Some(mut feedstocks) = feedstocks else {
-            return EnergyCarrier {
-                energy_carrier,
-                feedstocks,
-                energy_consumption: arbitrary_option_wrapped_decimal(g),
-                energy_consumption_unit: Option::<EnergyConsumptionUnit>::arbitrary(g),
-                emission_factor_wtw: arbitrary_wrapped_decimal(g),
-                emission_factor_ttw: arbitrary_wrapped_decimal(g),
-            };
-        };
+                // TODO: verify which feedstocks make sense for each energy carrier.
+                feedstocks = feedstocks
+                    .iter()
+                    .filter(|f| match energy_carrier {
+                        EnergyCarrierType::Diesel => f.feedstock == FeedstockType::Fossil,
+                        EnergyCarrierType::Hvo => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::Petrol => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::Cng => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::Lng => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::Lpg => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::Hfo => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::Mgo => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::AviationFuel => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::Hydrogen => f.feedstock == FeedstockType::CookingOil,
+                        EnergyCarrierType::Methanol => {
+                            f.feedstock == FeedstockType::Fossil
+                                || f.feedstock == FeedstockType::NaturalGas
+                                || f.feedstock == FeedstockType::CookingOil
+                        }
+                        EnergyCarrierType::Electric => {
+                            f.feedstock == FeedstockType::Grid
+                                || f.feedstock == FeedstockType::RenewableElectricity
+                        }
+                    })
+                    .cloned()
+                    .collect::<Vec<Feedstock>>();
 
-        let total_percentage: Decimal = feedstocks
-            .iter()
-            .map(|f| {
-                f.feedstock_percentage
-                    .as_ref()
-                    .map(|p| p.0)
-                    .unwrap_or(Decimal::from(0))
-            })
-            .sum();
-
-        if total_percentage > Decimal::from(1) {
-            for feedstock in &mut feedstocks {
-                feedstock.feedstock_percentage = None
+                Some(feedstocks)
             }
-        }
-
-        // TODO: verify which feedstocks make sense for each energy carrier.
-        feedstocks = feedstocks
-            .iter()
-            .filter(|f| match energy_carrier {
-                EnergyCarrierType::Diesel => f.feedstock == FeedstockType::Fossil,
-                EnergyCarrierType::Hvo => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::Petrol => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::Cng => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::Lng => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::Lpg => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::Hfo => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::Mgo => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::AviationFuel => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::Hydrogen => f.feedstock == FeedstockType::CookingOil,
-                EnergyCarrierType::Methanol => {
-                    f.feedstock == FeedstockType::Fossil
-                        || f.feedstock == FeedstockType::NaturalGas
-                        || f.feedstock == FeedstockType::CookingOil
-                }
-                EnergyCarrierType::Electric => {
-                    f.feedstock == FeedstockType::Grid
-                        || f.feedstock == FeedstockType::RenewableElectricity
-                }
-            })
-            .cloned()
-            .collect::<Vec<Feedstock>>();
+            None => None,
+        };
 
         EnergyCarrier {
             energy_carrier,
-            feedstocks: Some(feedstocks),
+            feedstocks,
             energy_consumption: arbitrary_option_wrapped_decimal(g),
             energy_consumption_unit: Option::<EnergyConsumptionUnit>::arbitrary(g),
             emission_factor_wtw: arbitrary_wrapped_decimal(g),
@@ -440,7 +428,7 @@ impl Arbitrary for Feedstock {
         Feedstock {
             feedstock: FeedstockType::arbitrary(g),
             feedstock_percentage,
-            // TODO: region_provenance is currently None for simplicity.
+            // Currently None for simplicity.
             region_provenance: None,
         }
     }
@@ -530,7 +518,7 @@ impl Arbitrary for Tce {
             // emissions profile of the TOC/HOC.
             co2e_wtw: Decimal::from(0).into(),
             co2e_ttw: Decimal::from(0).into(),
-            // TODO: the following fields are currently None for simplicity.
+            // Currently None for simplicity.
             flight_no: None,
             voyage_no: None,
             nox_ttw: None,
@@ -657,7 +645,6 @@ mod tests {
         println!("deserialized: {deserialized:?}");
 
         deserialized == tce
-        // true
     }
 
     #[quickcheck]
@@ -667,7 +654,6 @@ mod tests {
 
         if deserialized != toc {
             println!("toc: {toc:?}");
-            // println!("serialized: {serialized}");
             println!("deserialized: {deserialized:?}");
         }
 
@@ -682,12 +668,10 @@ mod tests {
 
         if deserialized != hoc {
             println!("toc: {hoc:?}");
-            // println!("serialized: {serialized}");
             println!("deserialized: {deserialized:?}");
         }
 
         deserialized == hoc
-        // true
     }
 
     #[quickcheck]
@@ -697,7 +681,6 @@ mod tests {
 
         if deserialized != ship_foot {
             println!("ship_foot: {ship_foot:?}");
-            // println!("serialized: {serialized}");
             println!("deserialized: {deserialized:?}");
         }
 
