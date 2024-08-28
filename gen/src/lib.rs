@@ -262,6 +262,16 @@ pub enum GlecDistance {
     Sfd(WrappedDecimal),
 }
 
+impl GlecDistance {
+    pub fn get_distance(&self) -> Decimal {
+        match self {
+            GlecDistance::Actual(decimal) => decimal.0,
+            GlecDistance::Gcd(decimal) => decimal.0,
+            GlecDistance::Sfd(decimal) => decimal.0,
+        }
+    }
+}
+
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
 #[serde(rename_all = "camelCase")]
 pub struct Location {
@@ -531,6 +541,7 @@ pub fn to_pcf(
                 .0
                 .iter()
                 .fold(Decimal::from(0), |acc, tce| acc + tce.co2e_wtw.0)
+                .round_dp(2)
                 .into(),
         },
         ILeapType::Toc(ref toc) => MappedFields {

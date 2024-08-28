@@ -221,7 +221,7 @@ impl Arbitrary for TocCo2eIntensityThroughput {
 
 impl<T: Arbitrary> Arbitrary for NonEmptyVec<T> {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
-        // Restricting to 1..5 elements in order to avoid unreadably large data.
+        // Restricting to 1..5 elements.
         let num = u8::arbitrary(g) % 5 + 1;
 
         let mut vec = vec![];
@@ -544,9 +544,10 @@ impl Arbitrary for Tce {
 impl Arbitrary for GlecDistance {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         let glec_distance = &[
-            GlecDistance::Actual(Decimal::from(u16::arbitrary(g)).into()),
-            GlecDistance::Gcd(Decimal::from(u16::arbitrary(g)).into()),
-            GlecDistance::Sfd(Decimal::from(u16::arbitrary(g)).into()),
+            // Dividing u16 by 2 to avoid unreadably large data.
+            GlecDistance::Actual(Decimal::from(u16::arbitrary(g) / 2).into()),
+            GlecDistance::Gcd(Decimal::from(u16::arbitrary(g) / 2).into()),
+            GlecDistance::Sfd(Decimal::from(u16::arbitrary(g) / 2).into()),
         ];
 
         g.choose(glec_distance).unwrap().to_owned()
@@ -612,7 +613,7 @@ impl Arbitrary for UicCode {
 }
 
 fn arbitrary_wrapped_decimal(g: &mut quickcheck::Gen) -> WrappedDecimal {
-    Decimal::from(u16::arbitrary(g)).into()
+    Decimal::from(u16::arbitrary(g)).round_dp(2).into()
 }
 
 fn arbitrary_option_wrapped_decimal(g: &mut quickcheck::Gen) -> Option<WrappedDecimal> {

@@ -55,38 +55,39 @@ fn generate_demo_data() -> Result<(), Error> {
     for _ in 0..1 {
         let mut ship_foot = ShipmentFootprint::arbitrary(&mut og);
 
-        // TODO: ensure that two HOCs do not follow one another.
         let mut tces: Vec<Tce> = vec![];
         let mut prev_tces: Vec<String> = vec![];
-        for (i, tce) in ship_foot.tces.0.iter().enumerate() {
-            let mut tce = tce.to_owned();
-            tce.shipment_id = ship_foot.shipment_id.clone();
 
-            if i != 0 {
-                prev_tces.push(tces[i - 1].tce_id.clone());
-                tce.prev_tce_ids = Some(prev_tces.clone());
-            }
-
-            tce.mass = WrappedDecimal::from(Decimal::from_str(&ship_foot.mass).unwrap());
+        let mut i = 0;
+        let limit = u8::arbitrary(&mut og) % 5 + 1;
+        loop {
+            let mut tce = Tce::arbitrary(&mut og);
 
             if (tce.toc_id.is_none() && tce.hoc_id.is_none())
                 || tce.toc_id.is_some() && tce.hoc_id.is_some()
             {
                 panic!("Either Toc or Hoc, but not both, must be provided");
-            } else if tce.toc_id.is_some() {
-                let mut toc = Toc::arbitrary(&mut og);
-                toc.toc_id = tce.toc_id.clone().unwrap();
-                tocs.push(toc.clone());
+            }
 
-                tce.toc_id = Some(toc.toc_id.clone());
-                tce.co2e_wtw =
-                    WrappedDecimal::from(toc.co2e_intensity_wtw.0 * tce.transport_activity.0);
-                tce.co2e_ttw =
-                    WrappedDecimal::from(toc.co2e_intensity_ttw.0 * tce.transport_activity.0);
-            } else {
+            if let Some(prev_tce) = tces.last() {
+                // Updates prevTceIds for the current TCE
+                prev_tces.push(prev_tce.tce_id.clone());
+                tce.prev_tce_ids = Some(prev_tces.clone());
+
+                // Avoids having two HOCs follow one another
+                if prev_tce.hoc_id.is_some() && tce.hoc_id.is_some() {
+                    continue;
+                }
+            };
+
+            if tce.hoc_id.is_some() {
+                // Avoids having an HOC as the first or the last TCE
+                if i == 0 || i == limit - 1 {
+                    continue;
+                }
+
                 let mut hoc = Hoc::arbitrary(&mut og);
                 hoc.hoc_id = tce.hoc_id.clone().unwrap();
-                hocs.push(hoc.clone());
 
                 tce.hoc_id = Some(hoc.hoc_id.clone());
 
@@ -95,15 +96,57 @@ fn generate_demo_data() -> Result<(), Error> {
 
                 // TODO: Double-check divisor
                 tce.co2e_wtw = WrappedDecimal::from(
-                    (hoc.co2e_intensity_wtw.0 * tce.mass.0) / Decimal::from(1000000),
+                    ((hoc.co2e_intensity_wtw.0 * tce.mass.0) / Decimal::from(1000000)).round_dp(2),
                 );
                 tce.co2e_ttw = WrappedDecimal::from(
-                    (hoc.co2e_intensity_ttw.0 * tce.mass.0) / Decimal::from(1000000),
+                    ((hoc.co2e_intensity_ttw.0 * tce.mass.0) / Decimal::from(1000000)).round_dp(2),
                 );
+
+                let hoc = to_pcf(
+                    ILeapType::Hoc(hoc),
+                    "SINE Foundation",
+                    "urn:sine:example",
+                    Some(HocTeuContainerSize::Normal),
+                    Some(vec![CharFactors::Ar6]),
+                );
+
+                hocs.push(hoc);
+            }
+
+            if tce.toc_id.is_some() {
+                let mut toc = Toc::arbitrary(&mut og);
+                toc.toc_id = tce.toc_id.clone().unwrap();
+
+                tce.transport_activity = (tce.mass.0 * tce.distance.get_distance())
+                    .round_dp(2)
+                    .into();
+
+                tce.toc_id = Some(toc.toc_id.clone());
+                tce.co2e_wtw = WrappedDecimal::from(
+                    (toc.co2e_intensity_wtw.0 * tce.transport_activity.0).round_dp(2),
+                );
+                tce.co2e_ttw = WrappedDecimal::from(
+                    (toc.co2e_intensity_ttw.0 * tce.transport_activity.0).round_dp(2),
+                );
+
+                let toc = to_pcf(
+                    ILeapType::Toc(toc),
+                    "SINE Foundation",
+                    "urn:sine:example",
+                    None,
+                    Some(vec![CharFactors::Ar6]),
+                );
+
+                tocs.push(toc.clone());
             }
 
             tces.push(tce);
+            i += 1;
+            if i == limit {
+                break;
+            }
         }
+
         ship_foot.tces = NonEmptyVec::from(tces);
 
         let ship_foot = to_pcf(
@@ -118,8 +161,8 @@ fn generate_demo_data() -> Result<(), Error> {
     }
 
     println!("{shipment_footprints:#?}");
-    // println!("{tocs:?}");
-    // println!("{hocs:?}");
+    println!("{tocs:#?}");
+    println!("{hocs:#?}");
 
     Ok(())
 }
