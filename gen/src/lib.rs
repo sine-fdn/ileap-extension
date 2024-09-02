@@ -1,5 +1,4 @@
 //! iLEAP Data Model Extension data model
-use core::num;
 use std::error::Error;
 
 use chrono::{DateTime, Utc};
@@ -709,12 +708,11 @@ pub fn gen_rnd_demo_data() -> Result<Vec<ProductFootprint>, Box<dyn Error>> {
                 tce.distance = GlecDistance::Actual(Decimal::from(0).into());
                 tce.transport_activity = Decimal::from(0).into();
 
-                // TODO: Double-check divisor
                 tce.co2e_wtw = WrappedDecimal::from(
-                    ((hoc.co2e_intensity_wtw.0 * tce.mass.0) / Decimal::from(1000000)).round_dp(2),
+                    ((hoc.co2e_intensity_wtw.0 * tce.mass.0)).round_dp(2),
                 );
                 tce.co2e_ttw = WrappedDecimal::from(
-                    ((hoc.co2e_intensity_ttw.0 * tce.mass.0) / Decimal::from(1000000)).round_dp(2),
+                    ((hoc.co2e_intensity_ttw.0 * tce.mass.0)).round_dp(2),
                 );
 
                 let hoc = to_pcf(
