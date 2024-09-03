@@ -2021,9 +2021,10 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>
               This property is OPTIONAL in the [[!PACTDX]] data Model.
 
-              It SHOULD be set to the total logistics emissions of the shipment,
-              including biogenic emissions, calculated by taking the sum of the <{TCE/co2eWTW}> over all TCEs (<{ShipmentFootprint/tces}>).
+              It SHOULD be kept undefined.
 
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
       <tr>
         <td>CarbonFootprint
         <td>`fossilGhgEmissions`
@@ -2040,7 +2041,7 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>CarbonFootprint
         <td>`biogenicCarbonContent`
         <td>
-              see the specification for `pCfIncludingBiogenic` in this table
+              see the specification for `pCfExcludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
@@ -2165,8 +2166,10 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>
               This property is OPTIONAL in the [[!PACTDX]] data Model.
 
-              It SHOULD be set to the logistics emissions intensity of the TOC,
-              including biogenic emissions, found in <{TOC/co2eIntensityWTW}>.
+              It SHOULD be kept undefined.
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2184,7 +2187,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>CarbonFootprint
         <td>`biogenicCarbonContent`
         <td>
-              see the specification for `pCfIncludingBiogenic` in this table
+              see the specification for `pCfExcludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
@@ -2312,8 +2315,10 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>
               This property is OPTIONAL in the [[!PACTDX]] data Model.
 
-              It SHOULD be set to the logistics emissions intensity of the HOC,
-              including biogenic emissions, found in <{HOC/co2eIntensityWTW}>.
+              It SHOULD be kept undefined.
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2331,7 +2336,7 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`biogenicCarbonContent`
         <td>
-              see the specification for `pCfIncludingBiogenic` in this table
+              see the specification for `pCfExcludingBiogenic` in this table
 
       <tr>
         <td>CarbonFootprint
