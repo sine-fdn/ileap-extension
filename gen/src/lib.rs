@@ -1,12 +1,12 @@
 //! iLEAP Data Model Extension data model
-use chrono::{Date, DateTime, Utc};
+use chrono::{DateTime, Utc};
 use pact_data_model::{
     CarbonFootprint, CharacterizationFactors, CompanyIdSet, CrossSectoralStandard,
     CrossSectoralStandardSet, DataModelExtension, DeclaredUnit, ExemptedEmissionsPercent,
     GeographicScope, IpccCharacterizationFactorsSource, PfId, PfStatus, ProductFootprint,
     ProductIdSet, SpecVersionString, Urn, VersionInteger, WrappedDecimal,
 };
-use rust_decimal::{prelude::ToPrimitive, Decimal};
+use rust_decimal::Decimal;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
@@ -447,7 +447,7 @@ pub fn to_pcf(
     company_urn: &str,
     hoc_container_size: Option<HocTeuContainerSize>,
     characterization_factors: Option<Vec<CharFactors>>,
-) -> ProductFootprint {
+) -> ProductFootprint<ILeapType> {
     let (characterization_factors, characterization_factors_sources) =
         match characterization_factors {
             None => (
@@ -625,11 +625,7 @@ pub fn to_pcf(
             spec_version: SpecVersionString::from("0.2.0".to_string()),
             data_schema: format!("https://api.ileap.sine.dev/{data_schema_id}.json"),
             documentation: Some("https://sine-fdn.github.io/ileap-extension/".to_string()),
-            data: serde_json::to_value(&ileap_type)
-                .unwrap()
-                .as_object()
-                .unwrap()
-                .to_owned(),
+            data: ileap_type,
         }]),
     }
 }
