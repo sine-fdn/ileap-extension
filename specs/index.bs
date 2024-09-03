@@ -2054,7 +2054,7 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>
               see [[!PACTDX]] for further details
 
-              Issue: this property is pending input from the tech workshop(s)
+              MUST be set to `false`.
 
       <tr>
         <td>CarbonFootprint
