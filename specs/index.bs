@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240813)
+Title: iLEAP Technical Specifications (Version 0.2.1-20240903)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2238,6 +2238,10 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20240903 (2024-09-03) ## {#version-20240903}
+
+- make application of <{Location/iata}> and <{Location/uic}> more explicit
 
 ## Version 0.2.1-20240813 (2024-08-13) ## {#version-20240813}
 
