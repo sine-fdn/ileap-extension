@@ -2005,7 +2005,9 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>CarbonFootprint
         <td>`productMassPerDeclaredUnit`
         <td>
-              MUST equal the mass of the shipment (<{ShipmentFootprint/mass}>)
+              This property is OPTIONAL in the [[!PACTDX]] data Model but will become MANDATORY in v3.
+
+              MUST equal the mass of the shipment (<{ShipmentFootprint/mass}>).
 
       <tr>
         <td>CarbonFootprint
@@ -2041,7 +2043,10 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>CarbonFootprint
         <td>`biogenicCarbonContent`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              SHOULD be set to `"0"`
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2151,6 +2156,8 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>CarbonFootprint
         <td>`productMassPerDeclaredUnit`
         <td>
+              This property is OPTIONAL in the [[!PACTDX]] data Model but will become MANDATORY in v3.
+
               MUST be set to `"1"`.
 
       <tr>
@@ -2187,7 +2194,10 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>CarbonFootprint
         <td>`biogenicCarbonContent`
         <td>
-              Note: see the specification for `pCfIncludingBiogenic` in this table
+              SHOULD be set to `"0"` (zero encoded as a string)
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2296,6 +2306,8 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`productMassPerDeclaredUnit`
         <td>
+              This property is OPTIONAL in the [[!PACTDX]] data Model but will become MANDATORY in v3.
+
               MUST be set to `"1000"`.
 
       <tr>
@@ -2336,7 +2348,10 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`biogenicCarbonContent`
         <td>
-              Note: see the specification for `pCfIncludingBiogenic` in this table
+              SHOULD be set to `"0"` (zero encoded as a string)
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
