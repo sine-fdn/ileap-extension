@@ -1,12 +1,12 @@
 //! iLEAP Data Model Extension data model
-use chrono::{Date, DateTime, Utc};
+use chrono::{DateTime, Utc};
 use pact_data_model::{
     CarbonFootprint, CharacterizationFactors, CompanyIdSet, CrossSectoralStandard,
     CrossSectoralStandardSet, DataModelExtension, DeclaredUnit, ExemptedEmissionsPercent,
     GeographicScope, IpccCharacterizationFactorsSource, PfId, PfStatus, ProductFootprint,
     ProductIdSet, SpecVersionString, Urn, VersionInteger, WrappedDecimal,
 };
-use rust_decimal::{prelude::ToPrimitive, Decimal};
+use rust_decimal::Decimal;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
@@ -512,14 +512,12 @@ pub fn to_pcf(
                 .tces
                 .0
                 .iter()
-                .fold(Decimal::from(0), |acc, tce| acc + tce.co2e_wtw.0)
-                .into(),
+                .fold(Decimal::from(0), |acc, tce| acc + tce.co2e_wtw.0),
             p_cf_excluding_biogenic: shipment
                 .tces
                 .0
                 .iter()
-                .fold(Decimal::from(0), |acc, tce| acc + tce.co2e_wtw.0)
-                .into(),
+                .fold(Decimal::from(0), |acc, tce| acc + tce.co2e_wtw.0),
         },
         ILeapType::Toc(ref toc) => MappedFields {
             product_id_type: "toc".to_string(),
@@ -570,7 +568,7 @@ pub fn to_pcf(
         spec_version: SpecVersionString("2.2.0".to_string()),
         preceding_pf_ids: None,
         version: VersionInteger(1),
-        created: DateTime::from(Utc::now()),
+        created: Utc::now(),
         updated: None,
         status: PfStatus::Active,
         status_comment: None,
@@ -599,7 +597,7 @@ pub fn to_pcf(
             i_luc_ghg_emissions: None,
             biogenic_carbon_withdrawal: None,
             aircraft_ghg_emissions: None,
-            characterization_factors: characterization_factors,
+            characterization_factors,
             ipcc_characterization_factors_sources: characterization_factors_sources.into(),
             cross_sectoral_standards_used: CrossSectoralStandardSet(vec![
                 CrossSectoralStandard::ISO14083,
@@ -607,8 +605,8 @@ pub fn to_pcf(
             product_or_sector_specific_rules: None, // TODO: get clarity on whether GLEC should be specified
             biogenic_accounting_methodology: None,
             boundary_processes_description: "".to_string(),
-            reference_period_start: DateTime::from(Utc::now()),
-            reference_period_end: DateTime::from(Utc::now() + chrono::Duration::days(364)),
+            reference_period_start: Utc::now(),
+            reference_period_end: (Utc::now() + chrono::Duration::days(364)),
             geographic_scope: None,
             secondary_emission_factor_sources: None,
             exempted_emissions_percent: ExemptedEmissionsPercent(0.into()),

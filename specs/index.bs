@@ -1467,7 +1467,8 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>iata</dfn>
         <td>iataCode
         <td>O
-        <td>IATA code of airport
+        <td>IATA code of airport. Applies only to (i) <{TCE|TCEs}> referring to a <{TOC}> with <{TOC/mode}> `Air`
+            and (ii) <{TAD}> with <{TAD/mode}> `Air`
       <tr>
         <td><dfn>locode</dfn>
         <td>locode
@@ -1477,7 +1478,8 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>uic</dfn>
         <td>uic
         <td>O
-        <td>UIC Code of the location
+        <td>UIC Code of the location. Applies only to (i) <{TCE|TCEs}> referring to a <{TOC}> with <{TOC/mode}> `Rail`
+            and (ii) <{TAD}> with <{TAD/mode}> `Rail`
       <tr>
         <td><dfn>lat</dfn>
         <td>[=Decimal=]
