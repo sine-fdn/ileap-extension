@@ -78,7 +78,7 @@ Has the following attributes...
         <td>The of the shipment related to this
       <tr>
         <td><dfn>tces</dfn>
-        <td>xxx[]
+        <td>agri-food-properties-table
         <td>M
         <td>The non-empty array of relating to this shipment.
 
@@ -93,7 +93,7 @@ Short description...
 
 Refs to HESTIA.
 
-<figure id="agri-food-properties-table" dfn-type="element-attr" dfn-for="DataModelExtension">
+<figure id="activity-data-table" dfn-type="element-attr" dfn-for="ActivityData">
   <table class="data">
     <thead>
       <tr>
@@ -113,7 +113,7 @@ Refs to HESTIA.
         <td>O
         <td>The volume of the freight and any packaging.
       <tr>
-        <td><xxx
+        <td>xxx
         <td>String
         <td>O
         <td>The number of units the shipment, including the goods transported and any packaging provided .
