@@ -1,6 +1,7 @@
 <pre class='metadata'>
 Title: PACT Agri-Food Extension Technical Specification (Version 0.0.0-20240905)
 Shortname: agri-food-extension
+Status: LD
 Status Text: Draft Technical Specification
 ED: https://hestia-earth.github.io/pact-agri-food-extension/
 Canonical URL: ED
@@ -10,7 +11,7 @@ Repository: hestia-earth/pact-agri-food-extension
 Abstract: This document outlines the semantics for agri-food data exchange. Its is an extension of the PACT Technical Specifications and supports the integration of agri-food data exchange into the PACT Network. Implementing this specification enables stakeholders within agri-food supply chains to exchange activity and product footprint data.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
-Previous Version: none
+Previous Version: https://hestia-earth.github.io/pact-agri-food-extension/
 Local Boilerplate: header yes
 </pre>
 
@@ -19,7 +20,7 @@ Local Boilerplate: header yes
 - Companies want to move from generic and modeled environmental impact data to primary data that accurately reflects their supply chains.
 - The standard PACT data model does not include fields of sufficient granularity for the agri-food industry.
 - This document specifies a PACT data model extension.
-- It includes mandatory additional fields from the [HESTIA](https://hestia.earth/schema) data model in order to meet these criteria.
+- It includes mandatory additional fields from the HESTIA data model in order to meet these criteria.
 - In addition it includes further optional reference fields to include agricultural activity data (data on inputs, products, practices, and site measurements) from HESTIA, which would provide the level of detail required to assess potential interventions and decarbonisation opportunities, as well as to recalculate impacts.
 - Adoption of this specification enables the exchange of data between different actors in the agriculture value chain at a sufficient level of granularity to accurately reflect supply chain emissions and support facilitate interventions.
 
@@ -102,36 +103,36 @@ Refs to HESTIA.
         <th>Specification
     <tbody>
       <tr>
-        <td><dfn>mass</dfn> : [=Decimal=]
+        <td>xxx : [=Decimal=]
         <td>String
         <td>M
         <td>The mass of the good  and the packaging provided for transport, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer
       <tr>
-        <td><dfn>volume</dfn> : [=Decimal=]
+        <td>xxx : [=Decimal=]
         <td>String
         <td>O
         <td>The volume of the freight and any packaging.
       <tr>
-        <td><dfn>numberOfItems</dfn>
+        <td><xxx
         <td>String
         <td>O
         <td>The number of units the shipment, including the goods transported and any packaging provided .
 
             Issue: is currently underspecified and needs to be re-visited / revised soon.
       <tr>
-        <td><dfn>typeOfItems</dfn>
+        <td>xxx
         <td>String
         <td>O
         <td>The type of units the shipment, including the goods transported and any packaging provided by , is composed of. For example, boxes, pallets, bottles, etc.
 
             Issue: is currently underspecified and need to be re-visited / revised soon.
       <tr>
-        <td><dfn>shipmentId</dfn>
+        <td>xxx
         <td>String
         <td>M
         <td>The of the shipment related to this
       <tr>
-        <td><dfn>tces</dfn>
+        <td>xxx
         <td>xxx
         <td>M
         <td>The non-empty array of relating to this shipment.
@@ -163,3 +164,27 @@ Note: the JSON String encoding is necessary to avoid floating point rounding err
   "-0.123"
   ```
 </div>
+
+
+## Document Statuses ## {#document-statuses}
+
+The Agri-Food Data Model Extension adheres to the [SemVer](https://semver.org/) standard and are
+published according to a flow that clearly distinguishes work-in-progress from pre-releases and
+stable releases. These are indicated by the status tag below at the top of the document. Possible
+status tags are:
+
+: Living Document
+
+:: Work-in-progress. The version number is typically extended with the date on which the most recent
+    changes were made (e.g., 0.2.1-20240523).
+
+: Consultation Draft
+
+:: Pre-release. Distributed for the purpose of obtaining community feedback. No further significant
+    changes will be made until the release. Minor corrections may still be possible. Every
+    Consultation Draft is assigned a stable, permanent, URL.
+
+: Release
+
+:: Stable release. No further changes will be made to this version. Any additional changes will be
+    included in subsequent versions. Every Release is assigned a stable, permanent, URL.
