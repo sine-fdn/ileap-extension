@@ -2013,10 +2013,11 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
-              MUST be set to the total logistics emissions of the shipment, excluding biogenic emissions,
-              calculated by taking the sum of the <{TCE/co2eWTW}> over all TCEs (<{ShipmentFootprint/tces}>).
+              MUST be set to the total logistics emissions of the shipment calculated by taking the sum of the <{TCE/co2eWTW}>
+              over all TCEs (<{ShipmentFootprint/tces}>).
 
-
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
       <tr>
         <td>CarbonFootprint
         <td>`pCfIncludingBiogenic`
@@ -2164,8 +2165,10 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
-              MUST be set to the logistics emissions intensity of the TOC, excluding biogenic emissions,
-              defined in <{TOC/co2eIntensityWTW}>.
+              MUST be set to the logistics emissions intensity of the TOC defined in <{TOC/co2eIntensityWTW}>.
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2314,12 +2317,14 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
-              MUST be set to the logistics emissions intensity of the HOC, excluding biogenic emissions,
-              defined in <{HOC/co2eIntensityWTW}>.
+              MUST be set to the logistics emissions intensity of the HOC defined in <{HOC/co2eIntensityWTW}>.
 
               Note: The average weight of a container can be considered as 10 tonnes per `TEU`. For light containers, an
               estimate of 6 tonnes per `TEU` is appropriate, while heavy containers can be assumed to average 14.5 tonnes
               per `TEU`.
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
