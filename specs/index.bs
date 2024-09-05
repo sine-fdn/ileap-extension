@@ -22,48 +22,24 @@ Local Boilerplate: header yes
 
 - Companies want to move from generic and modeled data to primary environmental impact data that accurately reflects their supply chains.
 - The standard PACT data model does not include fields of sufficient granularity for the agri-food industry.
-- This document specifies a PACT [[#data-model]] extension and the relevant [=data transactions=].
+- This document specifies a PACT data model extension and the relevant [=data transactions=].
 - It includes mandatory additional fields from the [HESTIA](https://hestia.earth/schema) data model in order to meet these criteria.
 - In addition it includes further optional reference fields to include agricultural activity data (data on inputs, products, practices, and site measurements) from HESTIA, which would provide the level of detail required to assess potential interventions and decarbonisation opportunities, as well as to recalculate impacts.
 - Adoption of this specification enables the exchange of data between different actors in the agriculture value chain at a sufficient level of granularity to accurately reflect supply chain emissions and support facilitate interventions.
 
 
-# Data Model # {#data-model}
+# PACT data model # {#data-model}
 
-The iLEAP data model of this chapter together with the data transactions ([[#txns]]) build on top of the [[!ISO14083|ISO 14083]] concepts of TOC, HOC, TCE, TC.
+Link to the PACT data model + short description.
 
-Additionally, the concept of transport activity data ([[#dt-tad|TAD]]) is added to facilitate reporting in case of missing data or limited emissions calculation capabilities from e.g. [=Transport Operators=].
-
-Please, find more details on emissions calculation and the relantionship between the different concepts in the [[!GLEC]] Framework and [[!ISO14083]]).
-
-The iLEAP Data Model is composed by five main data types: <{ShipmentFootprint}>, <{TCE}>, <{TOC}>,
-<{HOC}>, and <{TAD}>.
-
-<{ShipmentFootprint|ShipmentFootprints}> and <{TOC|TOCs}> can be exchanged independently as extensions to the PACT
-Data Model ([[!PACTDX]]) (see [[!DATA-MODEL-EXTENSIONS]]) in a `ProductFootprint`.
-
-<{TAD|TADs}> can be exchanged through a dedicated endpoint. These should only be used by [=Transport
-Operators=] who cannot yet provide <{ShipmentFootprint|ShipmentFootprints}>, <{TOC|TOCs}>, nor <{HOC|HOCs}>.
-
-## ShipmentFootprint ## {#dt-sf}
-
-<dfn element>ShipmentFootprint</dfn> is a collection of 1
-or more [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>)
-for a single [=shipment=] and from a single entity (a [=Transport Operator=] or a [=Transport Service Organizer=]).
-
-By collecting 1 or more <{TCE|TCEs}> for a shipment from [=Transport Operators=] and [=Transport Service Organizer=],
-a [=Transport Service User=] can construct the <{ShipmentFootprint}>. The <{ShipmentFootprint}> corresponds to the logistics emissions related to a full Transport Chain ([=TC=]).
-
-To calculate a ShipmentFootprint, the [=Transport Service User=] MUST
-
-- first receive <{TCE|TCEs}>  from [=Transport Operators=] and [=Transport Service Organizers=], linked to the shipment ID for a single shipment in accordance with [[#dt-tce]],
-    OR calculate <{TCE|TCEs}> from <{TOC|TOCs}> or <{TAD|TADs}> from [=Transport Operators=] and [=Transport Service Organizers=].
-- and then add up all <{TCE|TCEs}> that compose the full Transport Chain ([=TC=]) to derive the <{ShipmentFootprint}>.
+Need to follow this as a minimum.
 
 
-### Data Attributes ### {#sf-attributes}
+# Agri-food data model extension data model # {#data-model-extension}
 
-A <{ShipmentFootprint}> has the following properties:
+Short description...
+
+Has the following attributes...
 
 <figure id="sf-properties-table" dfn-type="element-attr" dfn-for="ShipmentFootprint">
   <table class="data">
@@ -114,23 +90,13 @@ A <{ShipmentFootprint}> has the following properties:
 </figure>
 
 
-## xxx
+# Agri-food activity data model # {#activity-data-model}
 
+Short description...
 
+Refs to HESTIA.
 
-
-## Hub Operation Category ( <dfn element>HOC</dfn> ) ## {#dt-hoc}
-
-The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport Chain Element=] through the <{TCE/hocId}> property.
-
-Advisement: Please, note that variables pertaining to the HOC Data Type have not been validated and are subject to undergo major updates.
-
-[=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=] with hub operations.
-
-### Data Attributes ### {#hoc-attributes}
-The Data Type <{HOC}> has the following properties:
-
-<figure id="hoc-properties-table" dfn-type="element-attr" dfn-for="HOC">
+<figure id="sf-properties-table" dfn-type="element-attr" dfn-for="ShipmentFootprint">
   <table class="data">
     <thead>
       <tr>
@@ -140,499 +106,40 @@ The Data Type <{HOC}> has the following properties:
         <th>Specification
     <tbody>
       <tr>
-        <td><dfn>hocId</dfn>
-        <td>String
-        <td>M
-        <td>The id of the <{HOC}>
-      <tr>
-        <td><dfn>description</dfn>
-        <td>String
-        <td>O
-        <td>Text description of the applicable HOC. Reflect on hub type, contract type, equipment type, freight temperature, etc
-      <tr>
-        <td><dfn>isVerified</dfn>
-        <td>Boolean
-        <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
-      <tr>
-        <td><dfn>isAccredited</dfn>
-        <td>Boolean
-        <td>M
-        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
-      <tr>
-        <td><dfn>hubType</dfn>
-        <td>{{HubType}}
-        <td>M
-        <td>Type of Hub
-      <tr>
-        <td><dfn>temperatureControl</dfn>
-        <td>String
-        <td>O
-        <td>
-            Temperature control status of the hub.
-
-            If defined, the value of this property MUST be set to one of the following values:
-            - `ambient`: for HOCs comprising the handling of non-temperature controlled freight only
-            - `refrigerated`: for HOCs comprising the handling of refrigerated freight only
-            - `mixed`: for HOCs comprising the handling of both ambient and refrigerated freight
-
-       <tr>
-        <td><dfn>hubLocation</dfn>
-        <td><{Location}>
-        <td>O
-        <td>The address of the hub.
-      <tr>
-        <td><dfn>inboundTransportMode</dfn>: {{TransportMode}}
-        <td>{{TransportMode}}
-        <td>O
-        <td>Indicates the transport mode upstream the hub for the hub operations the HOC is defined for.
-      <tr>
-        <td><dfn>outboundTransportMode</dfn>: {{TransportMode}}
-        <td>{{TransportMode}}
-        <td>O
-        <td>Indicates the transport mode downstream the hub for the hub operations the HOC is defined for.
-      <tr>
-        <td><dfn>packagingOrTrEqType</dfn>
-        <td>String
-        <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
-
-      <tr>
-        <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
-        <td>O
-        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
-
-      <tr>
-        <td><dfn>energyCarriers</dfn>
-        <td><{EnergyCarrier}>[]
-        <td>M
-        <td>
-            The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
-      <tr>
-        <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
-        <td>String
-        <td>M
-        <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{HOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework
- <tr>
-        <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
-        <td>String
-        <td>M
-        <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
-
-      <tr>
-        <td><dfn>co2eIntensityThroughput</dfn>
-        <td>String
-        <td>M
-        <td>
-            Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}> and at the denominator of the <{HOC/co2eIntensityTTW}>. At the HOC level, the possible values are
-
-            : `TEU`
-            :: leaving the hub for sea and inland waterways as outbound transport mode
-
-            : `tonnes`
-            :: leaving the hub
-
-            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
-
-  </table>
-  <figcaption>Properties of data type `HOC`</figcaption>
-</figure>
-
-
-## Transport Activity Data (<dfn element>TAD</dfn>) ## {#dt-tad}
-
-The <dfn>Transport Activity Data </dfn> (<{TAD}>) data type contains activity
-data, referring to a single consignment, leg, and mode of transport, or to a
-single transshipment within a hub.
-
-Each TAD CAN contain values for attributes which are categorial to the
-operations of a fleet or hub (such as load factor or mix of feedstock(s)).
-In this case, the values CAN be calculated from the actual data of more
-than one consignment (“representative” or “average data”).
-
-<div class=example>
-  Instead of exchanging the load factor for a single assignment,
-  the load factor can be calculated from a multitude of consignments
-  following the principles of TOC calculation.
-</div>
-
-The TAD data type is designed for entities
-([=Transport Operators=] or [=Transport Service Organizers=]) that lack
-the capabilities to perform carbon emission calculations
-(see [[#business-case-3|Business Case 3]]) or are
-contractually obliged to exchange activity data with another party.
-
-It can also be used by the service providers (Transport Operator or
-Transport Service Organizer) to provide additional transparency
-to their business partners where relevant.
-
-### Data Attributes ### {#tad-attributes}
-
-Below table lists the properties defined for the <{TAD}> data type.
-
-When exchanging it through the Action TransportActivityData, it MUST be
-encoded as a JSON object. See [[#action-tad]] for details.
-
-<figure id="tad-properties-table" dfn-type="element-attr" dfn-for="TAD">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Attribute Id
-        <th>Type
-        <th>Req
-        <th>Description
-    <tbody>
-      <tr>
-        <td><dfn>activityId</dfn>
-        <td>String
-        <td>M
-        <td>The non-empty unique ID of this activity relative to the [=host system=].
-      <tr>
-        <td><dfn>consignmentIds</dfn>
-        <td>String[]
-        <td>M
-        <td>The non-empty array of unique IDs of the consignments related to the activity (relative to the [=Host system=] and to the [=Data recipient=]).
-      <tr>
-        <td><dfn>distance</dfn>
-        <td><{GLECDistance}>
-        <td>M
-        <td>The Distance between the origin and the destination of the activity
-      <tr>
         <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
-        <td>O
-        <td>Mass of freight (SI derived Unit `kilograms`)
+        <td>M
+        <td>The mass of the good (SI Unit `kilograms`) and the packaging provided for transport by the [=Transport Service User=], excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer
       <tr>
-        <td><dfn>loadFactor</dfn> : [=Decimal=]
+        <td><dfn>volume</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>
-            Ratio of the mass of the actual load to the maximum legally authorized load of a particular vehicle on a TOC level.
-            It is applied to the loaded distance of the transport.
-
-            The value of this property must be between `0` (excluding) and `1` (including).
+        <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and any packaging provided by the [=Transport Service User=].
       <tr>
-        <td><dfn>emptyDistanceFactor</dfn> : [=Decimal=]
+        <td><dfn>numberOfItems</dfn>
         <td>String
         <td>O
-        <td>
-            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
+        <td>The number of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of.
 
-            The value of this property must be between `0` (including) and `1` (excluding).
+            Issue: <{ShipmentFootprint/numberOfItems}> is currently underspecified and needs to be re-visited / revised soon.
       <tr>
-        <td><dfn>origin</dfn>
-        <td><{Location}>
-        <td>M
-        <td>The origin of the activity related to the TCE
+        <td><dfn>typeOfItems</dfn>
+        <td>String
+        <td>O
+        <td>The type of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of. For example, boxes, pallets, bottles, etc.
+
+            Issue: <{ShipmentFootprint/typeOfItems}> is currently underspecified and need to be re-visited / revised soon.
       <tr>
-        <td><dfn>destination</dfn>
-        <td><{Location}>
-        <td>M
-        <td>The destination of the activity related to the TCE
-      <tr>
-        <td><dfn>departureAt</dfn>
+        <td><dfn>shipmentId</dfn>
         <td>String
         <td>M
-        <td>
-              Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
-              NOTE: the original data model defined this as the "date of loading"
+        <td>The [=shipment id=] of the shipment related to this <{ShipmentFootprint}>
       <tr>
-        <td><dfn>arrivalAt</dfn>
-        <td>String
+        <td><dfn>tces</dfn>
+        <td><{TCE}>[]
         <td>M
-        <td>Timestamp of arrival. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
-      <tr>
-        <td><dfn>mode</dfn>
-        <td>{{TransportMode}}
-        <td>M
-        <td>Mode of transport
-      <tr>
-        <td><dfn>packagingOrTrEqType</dfn>
-        <td>String
-        <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
-      <tr>
-        <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
-        <td>O
-        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
-      <tr>
-        <td><dfn>energyCarrier</dfn>
-        <td><{EnergyCarrierType}>
-        <td>O
-        <td>
-            The substance used to generate mechanical movement or heat and to generate chemical or
-            physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
-
-            If <{TAD/energyCarrier}> is not defined, then <{TAD/feedstocks}> MUST be defined. If possible, both SHOULD be defined.
-      <tr>
-        <td><dfn>feedstocks</dfn>
-        <td><{Feedstock}>[]
-        <td>O
-        <td>
-            If defined, the non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
-
-            If <{TAD/feedstocks}> is not defined, then <{TAD/energyCarrier}> MUST be defined. If possible, both SHOULD be defined.
-    </table>
-    <figcaption><{TAD}> properties</figcaption>
-</figure>
-
-
-## Additional Utility Data Types ## {#dt-utility-section}
-
-### Data Type GLECDistance ### {#dt-glecdistance}
-
-Data type `GLECDistance` represents a distance in kilometers between origin and destination as defined in the [[!GLEC]] Framework.
-
-In JSON an `GLECDistance` MUST be encoded as a JSON Object.
-
-At least one of the following properties of data type <dfn element>GLECDistance</dfn> the MUST be defined:
-
-<figure id="glecdistance-properties-table" dfn-type="element-attr" dfn-for="GLECDistance">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Attribute Id
-        <th>Type
-        <th>Req
-        <th>Description
-    <tbody>
-      <tr>
-        <td><dfn>actual</dfn> : [=Decimal=]
-        <td>String
-        <td>O
-        <td>The distance between the origin and the destination of a consignment of
-              freight or a vehicle, along a specified route (or from telematics), as defined in the [[!GLEC]] Framework
-      <tr>
-        <td><dfn>gcd</dfn> : [=Decimal=]
-        <td>String
-        <td>O
-        <td>[=Great Circle Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework
-      <tr>
-        <td><dfn>sfd</dfn> : [=Decimal=]
-        <td>String
-        <td>O
-        <td>[=Shortest Feasible Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework
+        <td>The non-empty array of [=TCEs=] relating to this shipment.
 
     </table>
-    <figcaption><{GLECDistance}> properties</figcaption>
-</figure>
-
-
-
-### Data Type Location ### {#dt-location}
-
-Properties of data type <dfn element>Location</dfn>:
-
-<figure id="location-properties-table" dfn-type="element-attr" dfn-for="Location">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Attribute Id
-        <th>Type
-        <th>Req
-        <th>Definition
-    <tbody>
-      <tr>
-        <td><dfn>street</dfn>
-        <td>String
-        <td>O
-        <td>Street of the location
-
-      <tr>
-        <td><dfn>zip</dfn>
-        <td>String
-        <td>O
-        <td>Postal code of the location
-      <tr>
-        <td><dfn>city</dfn>
-        <td>String
-        <td>M
-        <td>City of the location
-      <tr>
-        <td><dfn>country</dfn>
-        <td>Country
-        <td>M
-        <td>An ISO 3166-2 alpha-2 country code. See [https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc](https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc) for details.
-      <tr>
-        <td><dfn>iata</dfn>
-        <td>iataCode
-        <td>O
-        <td>IATA code of airport. Applies only to (i) <{TCE|TCEs}> referring to a <{TOC}> with <{TOC/mode}> `Air`
-            and (ii) <{TAD}> with <{TAD/mode}> `Air`
-      <tr>
-        <td><dfn>locode</dfn>
-        <td>locode
-        <td>O
-        <td>UN/LOCODE of the location
-      <tr>
-        <td><dfn>uic</dfn>
-        <td>uic
-        <td>O
-        <td>UIC Code of the location. Applies only to (i) <{TCE|TCEs}> referring to a <{TOC}> with <{TOC/mode}> `Rail`
-            and (ii) <{TAD}> with <{TAD/mode}> `Rail`
-      <tr>
-        <td><dfn>lat</dfn>
-        <td>[=Decimal=]
-        <td>O
-        <td>Latitude of the location. If <{Location/lng}> is defined, so MUST <{Location/lat}> be defined
-      <tr>
-        <td><dfn>lng</dfn>
-        <td>[=Decimal=]
-        <td>O
-        <td>Longitude of the location.  If <{Location/lat}> is defined, so MUST <{Location/lng}> be defined
-
-    </table>
-    <figcaption><{GLECDistance}> properties</figcaption>
-</figure>
-
-
-### Data Type <dfn enum>TransportMode</dfn> ### {#dt-transport-mode}
-
-The Data Type {{TransportMode}} is an enumeration of the transport modes as defined in the [[!GLEC]] Framework.
-
-It MUST be encoded as a String using one of the following values:
-
-<dl dfn-type="enum-value" dfn-for="TransportMode">
-
-: <dfn>Road</dfn>
-:: for transport mode `road`
-
-: <dfn>Rail</dfn>
-:: for transport mode `rail`
-
-: <dfn>Air</dfn>
-:: for transport mode `air`
-
-: <dfn>Sea</dfn>
-:: for transport mode `sea`
-
-: <dfn>InlandWaterway</dfn>
-:: for transport mode `inland waterway`
-
-</dl>
-
-NOTE: : Hub operations are excluded from here, as these transport modes are defined for TOC, and HOC is defined separately
-
-### Data Type <dfn enum>HubType</dfn> ### {#dt-hub-type}
-
-The Data Type {{HubType}} is an enumeration of the main hub types as defined in the [[!GLEC]] Framework.
-
-It MUST be encoded as a String using one of the following values:
-
-<dl dfn-type="enum-value" dfn-for="HubType">
-
-: <dfn>Transshipment</dfn>
-:: refers to hubs where transshipment is the main service (>80% of goods handled)
-
-: <dfn>StorageAndTransshipment</dfn>
-:: refers to hubs where both transshipment and warehousing are relevant services
-
-: <dfn>Warehouse</dfn>
-:: refers to hubs where warehousing is the main service (>80% of goods handled)
-
-: <dfn>LiquidBulkTerminal</dfn>
-:: refers to terminals equiped to handle cargo in liquid and gaseous forms
-
-: <dfn>MaritimeContainerTerminal</dfn>
-:: refers to hubs where maritime containers are handled
-
-</dl>
-
-### Data Type <dfn>Decimal</dfn> ### {#dt-decimal}
-
-A decimal number.
-
-In JSON, a [=Decimal=] MUST be encoded as a JSON String.
-
-Note: the JSON String encoding is necessary to avoid floating point rounding errors.
-
-
-<div class=example>
-  Example of the decimal numbers `10` and `-0.123` encoded in JSON:
-
-  ```json
-  "10"
-  ```
-
-  ```json
-  "-0.123"
-  ```
-</div>
-
-### Data Type <dfn>EnergyCarrier</dfn> ### {#dt-energy-carrier}
-
-Data type `EnergyCarrier` represents an energy carrier, including its feedstocks.
-
-In JSON an `EnergyCarrier` MUST be encoded as a JSON Object.
-
-The following properties are defined for data type <dfn element>EnergyCarrier</dfn>:
-
-<figure id="energy-carrier-properties-table" dfn-type="element-attr" dfn-for="EnergyCarrier">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Attribute Id
-        <th>Type
-        <th>Req
-        <th>Definition
-    <tbody>
-      <tr>
-        <td><dfn>energyCarrier</dfn>
-        <td><{EnergyCarrierType}>
-        <td>M
-        <td>The substance used to generate mechanical movement or heat and to generate chemical or
-        physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
-      <tr>
-        <td><dfn>feedstocks</dfn>
-        <td><{Feedstock}>[]
-        <td>O
-        <td>If defined, theon-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
-      <tr>
-        <td><dfn>energyConsumption</dfn> : [=Decimal=]
-        <td>String
-        <td>O
-        <td>
-            Amount of energy carrier consumed per transport activity, as defined for the TOC or HOC. If defined, <{EnergyCarrier/energyConsumptionUnit}>
-            MUST be defined as well.
-      <tr>
-        <td><dfn>energyConsumptionUnit</dfn>
-        <td>String
-        <td>O
-        <td>
-            Unit of the energy consumed corresponding to the <{EnergyCarrier/energyConsumption}>.
-            <{EnergyCarrier/energyConsumptionUnit}> MUST be defined if <{EnergyCarrier/energyConsumption}> is defined.
-
-            Possible values are:
-
-            Advisement: The enumeration of energy consumption units will be evolved in future revisions.
-            Account for this when implementing the validation of this property.
-
-            : `l`
-            :: for liters
-
-            : `kg`
-            :: for kilograms
-
-            : `kWh`
-            :: for kiloWhat/hour
-
-            : `MJ`
-            :: for MegaJoules
-      <tr>
-        <td><dfn>emissionFactorWTW</dfn> : [=Decimal=]
-        <td>String
-        <td>M
-        <td>
-            The WTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
-      <tr>
-        <td><dfn>emissionFactorTTW</dfn> : [=Decimal=]
-        <td>String
-        <td>M
-        <td>
-             The TTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
-    </table>
+    <figcaption>ShipmentFootprint properties</figcaption>
 </figure>
