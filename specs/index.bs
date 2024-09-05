@@ -1,20 +1,18 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20240903)
-Shortname: ileap-extension
+Title: PACT Agri-Food Extension Technical Specifications (Version 0.0.0-20240905)
+Shortname: agri-food-extension
 Status: LD
 Status Text: Draft Technical Specification
 ED: https://sine-fdn.github.io/ileap-extension/
 TR: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/
 Canonical URL: ED
-Editor: Violetta Matzoros, https://www.smartfreightcentre.org, violetta.matzoros@smartfreightcentre.org
-Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rubiodomingo@smartfreightcentre.org
-Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
-Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
-Repository: sine-fdn/ileap-extension
-Abstract: This document outlines the semantics for logistics emissions data exchange as part of the SFC iLEAP Project. Its format is based on the PACT Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the PACT Network. Implementing this specification enables stakeholders within the supply chain to exchange data on logistics emissions. This facilitates the tracking of logistics emissions and the computation of their contribution to product carbon footprints.
+Editor: Joseph Poore, https://hestia.earth, joseph.poore@biology.ox.ac.uk
+Editor: Caroline Wood, https://altruistiq.com/, caroline@altruistiq.com
+Repository: hestia-earth/pact-agri-food-extension
+Abstract: This document outlines the semantics for agri-food data exchange PACT extension. Its format is based on the PACT Technical Specifications and supports the integration of Agri-Food Environmental Impact Data Exchange into the PACT Network. Implementing this specification enables stakeholders within the supply chain to exchange data on agricultural and food related environmental impacts. This facilitates the tracking of agri-food emissions and other impacts and the computation of their contribution to product footprints.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
-Previous Version: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/
+Previous Version: none
 Local Boilerplate: header yes
 </pre>
 
@@ -24,8 +22,6 @@ Local Boilerplate: header yes
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
 - Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the PACT Framework and PACT Technical Specifications. It conforms to the basic semantics framework for the [=SFC=] Exchange Network project.
 - Adoption of this specification will enable the exchange of data between different actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
-
-Advisement: The iLEAP Technical Specifications will be continuously refined as part of the ongoing iLEAP project. Significant changes may be introduced as the project progresses.
 
 
 ## Out of Scope ## {#out-of-scope}
