@@ -1,6 +1,4 @@
 //! iLEAP Data Model Extension data model
-use std::error::Error;
-
 use chrono::{DateTime, Utc};
 use pact_data_model::{
     CarbonFootprint, CharacterizationFactors, CompanyIdSet, CrossSectoralStandard,
@@ -631,7 +629,7 @@ pub fn to_pcf(
             product_or_sector_specific_rules: None, // TODO: get clarity on whether GLEC should be specified
             biogenic_accounting_methodology: None,
             boundary_processes_description: "".to_string(),
-            reference_period_start: Utc::now(),
+            reference_period_start: Utc::now(), // TODO: turn into parameter.
             reference_period_end: (Utc::now() + chrono::Duration::days(364)),
             geographic_scope: None,
             secondary_emission_factor_sources: None,
@@ -658,8 +656,8 @@ pub fn to_pcf(
     }
 }
 
-pub fn gen_rnd_demo_data() -> Result<Vec<ProductFootprint>, Box<dyn Error>> {
-    let mut og = Gen::new(10);
+pub fn gen_rnd_demo_data(size: usize) -> Vec<ProductFootprint> {
+    let mut og = Gen::new(size);
 
     let mut shipment_footprints = vec![];
     let mut tocs = vec![];
@@ -674,6 +672,7 @@ pub fn gen_rnd_demo_data() -> Result<Vec<ProductFootprint>, Box<dyn Error>> {
 
         let mut i = 0;
         let limit = u8::arbitrary(&mut og) % 5 + 1;
+        // TODO: improve code through pair programming with Martin.
         loop {
             let mut tce = Tce::arbitrary(&mut og);
 
@@ -708,12 +707,10 @@ pub fn gen_rnd_demo_data() -> Result<Vec<ProductFootprint>, Box<dyn Error>> {
                 tce.distance = GlecDistance::Actual(Decimal::from(0).into());
                 tce.transport_activity = Decimal::from(0).into();
 
-                tce.co2e_wtw = WrappedDecimal::from(
-                    ((hoc.co2e_intensity_wtw.0 * tce.mass.0)).round_dp(2),
-                );
-                tce.co2e_ttw = WrappedDecimal::from(
-                    ((hoc.co2e_intensity_ttw.0 * tce.mass.0)).round_dp(2),
-                );
+                tce.co2e_wtw =
+                    WrappedDecimal::from((hoc.co2e_intensity_wtw.0 * tce.mass.0).round_dp(2));
+                tce.co2e_ttw =
+                    WrappedDecimal::from((hoc.co2e_intensity_ttw.0 * tce.mass.0).round_dp(2));
 
                 let hoc = to_pcf(
                     ILeapType::Hoc(hoc),
@@ -773,14 +770,20 @@ pub fn gen_rnd_demo_data() -> Result<Vec<ProductFootprint>, Box<dyn Error>> {
         shipment_footprints.push(ship_foot);
     }
 
-    println!("{shipment_footprints:#?}");
-    println!("{tocs:#?}");
-    println!("{hocs:#?}");
-
-    let footprints: Vec<ProductFootprint> = vec![shipment_footprints, tocs, hocs]
+    vec![shipment_footprints, tocs, hocs]
         .into_iter()
         .flatten()
-        .collect();
+        .collect()
+}
 
-    Ok(footprints)
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_gen_rnd_demo_data() {
+        let footprints = gen_rnd_demo_data(10);
+
+        println!("{footprints:#?}");
+    }
 }

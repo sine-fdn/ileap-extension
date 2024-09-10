@@ -51,7 +51,7 @@ fn formatted_arbitrary_string(fixed: &str, g: &mut quickcheck::Gen) -> String {
 impl Arbitrary for ShipmentFootprint {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
         ShipmentFootprint {
-            // Using u16 to avoid unreadably large
+            // Using u16 to avoid unreadably large numbers.
             mass: format!("{}", u16::arbitrary(g)),
             shipment_id: formatted_arbitrary_string("shipment-", g),
             tces: NonEmptyVec::<Tce>::arbitrary(g),
