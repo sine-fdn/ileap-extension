@@ -244,9 +244,8 @@ pub struct Tad {
     pub packaging_or_tr_eq_type: Option<PackagingOrTrEqType>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub packaging_or_tr_eq_amount: Option<usize>,
-    // TODO: verify whether the absence of this property is intended.
-    // #[serde(skip_serializing_if = "Option::is_none")]
-    // pub energy_carrier: EnergyCarrier,
+    // TODO: verify whether the absence of this property is intended. #[serde(skip_serializing_if =
+    // "Option::is_none")] pub energy_carrier: EnergyCarrier,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub feedstocks: Option<Vec<Feedstock>>,
 }
@@ -656,14 +655,16 @@ pub fn to_pcf(
     }
 }
 
-pub fn gen_rnd_demo_data(size: usize) -> Vec<ProductFootprint> {
-    let mut og = Gen::new(size);
+// TODO: invert logic to generate a list of HOCs and TOCs and only then generate TCEs, improving
+// readability and demo data quality, as suggested by Martin.
+pub fn gen_rnd_demo_data(size: u8) -> Vec<ProductFootprint> {
+    let mut og = Gen::new(size as usize);
 
     let mut shipment_footprints = vec![];
     let mut tocs = vec![];
     let mut hocs = vec![];
 
-    let num_of_shipments = u8::arbitrary(&mut og) % 5 + 1;
+    let num_of_shipments = u8::arbitrary(&mut og) % size + 1;
     for _ in 0..num_of_shipments {
         let mut ship_foot = ShipmentFootprint::arbitrary(&mut og);
 
@@ -671,16 +672,10 @@ pub fn gen_rnd_demo_data(size: usize) -> Vec<ProductFootprint> {
         let mut prev_tces: Vec<String> = vec![];
 
         let mut i = 0;
-        let limit = u8::arbitrary(&mut og) % 5 + 1;
+        let limit = u8::arbitrary(&mut og) % size + 1;
         // TODO: improve code through pair programming with Martin.
         loop {
             let mut tce = Tce::arbitrary(&mut og);
-
-            if (tce.toc_id.is_none() && tce.hoc_id.is_none())
-                || tce.toc_id.is_some() && tce.hoc_id.is_some()
-            {
-                panic!("Either Toc or Hoc, but not both, must be provided");
-            }
 
             if let Some(prev_tce) = tces.last() {
                 // Updates prevTceIds for the current TCE
@@ -689,17 +684,19 @@ pub fn gen_rnd_demo_data(size: usize) -> Vec<ProductFootprint> {
 
                 // Avoids having two HOCs follow one another
                 if prev_tce.hoc_id.is_some() && tce.hoc_id.is_some() {
-                    continue;
+                    tce = Tce::arbitrary(&mut og);
                 }
             };
 
+            if i == 0 || i == limit - 1 && tce.hoc_id.is_some() {
+                tce = Tce::arbitrary(&mut og);
+            }
+
             if tce.hoc_id.is_some() {
                 // Avoids having an HOC as the first or the last TCE
-                if i == 0 || i == limit - 1 {
-                    continue;
-                }
 
                 let mut hoc = Hoc::arbitrary(&mut og);
+
                 hoc.hoc_id = tce.hoc_id.clone().unwrap();
 
                 tce.hoc_id = Some(hoc.hoc_id.clone());
@@ -732,6 +729,7 @@ pub fn gen_rnd_demo_data(size: usize) -> Vec<ProductFootprint> {
                     .into();
 
                 tce.toc_id = Some(toc.toc_id.clone());
+
                 tce.co2e_wtw = WrappedDecimal::from(
                     (toc.co2e_intensity_wtw.0 * tce.transport_activity.0).round_dp(2),
                 );
@@ -783,6 +781,24 @@ mod tests {
     #[test]
     fn test_gen_rnd_demo_data() {
         let footprints = gen_rnd_demo_data(10);
+
+        for footprint in footprints.iter() {
+            if let Some(extensions) = &footprint.extensions {
+                for extension in extensions.iter() {
+                    if let Some(ship_foot) = extension.data.get("ShipmentFootprint") {
+                        let ship_foot =
+                            serde_json::from_value::<ShipmentFootprint>(ship_foot.to_owned())
+                                .unwrap();
+                        for tce in ship_foot.tces.0.iter() {
+                            assert!(
+                                tce.toc_id.is_some() ^ tce.hoc_id.is_some(),
+                                "Either tocId or hocId, but not both, must be provided."
+                            );
+                        }
+                    }
+                }
+            }
+        }
 
         println!("{footprints:#?}");
     }
