@@ -1,3 +1,5 @@
+use core::str;
+
 use crate::*;
 use chrono::Duration;
 use quickcheck::Arbitrary;
@@ -15,20 +17,20 @@ impl LowerAToZNumDash {
 
 impl Arbitrary for LowerAToZNumDash {
     fn arbitrary(g: &mut quickcheck::Gen) -> Self {
-        let s: Vec<()> = Vec::arbitrary(g);
-        let s: String = s
+        let maybe_string: Vec<u8> = Vec::arbitrary(g)
             .into_iter()
-            .map(|_| {
-                // ASCII characters -, 0..9, a..z
-                let i = u8::arbitrary(g) % 37;
+            .map(|v: u8| {
+                let i = v % 37;
+
                 match i {
-                    0 => '-',
-                    1..=10 => (i + 47) as char,
-                    _ => (i + 86) as char,
+                    0 => '-' as u8,
+                    1..=10 => i + 47,
+                    _ => i + 86,
                 }
             })
             .collect();
-        Self(s)
+
+        Self(str::from_utf8(&maybe_string).unwrap().to_string())
     }
 
     fn shrink(&self) -> Box<dyn Iterator<Item = Self>> {
