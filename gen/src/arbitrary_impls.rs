@@ -69,13 +69,13 @@ impl Arbitrary for Hoc {
             g: &mut quickcheck::Gen,
         ) -> (Option<TransportMode>, Option<TransportMode>) {
             let inbound = Some(TransportMode::arbitrary(g));
-            let outbound = Some(TransportMode::arbitrary(g));
+            let mut outbound = Some(TransportMode::arbitrary(g));
 
-            if inbound == outbound {
-                (inbound, Some(TransportMode::arbitrary(g)))
-            } else {
-                (inbound, outbound)
+            while inbound == outbound {
+                outbound = Some(TransportMode::arbitrary(g));
             }
+
+            (inbound, outbound)
         }
 
         let hub_type = HubType::arbitrary(g);
