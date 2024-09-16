@@ -122,10 +122,10 @@ where
 
     // extract the properties necessary to turn the iLEAP type into a ProductFootprint
     // Note: this conversion at this point is "static" and does not require any additional data.
-    //        However it seems that the current HOC data type (when throughput is declared in `TEU`
-    //        the current implementation bails out drastically. We are investingating whether
-    //        this is indicates a lack in the iLEAP Data Model. This function will be updated
-    //        once we have more information.
+    //        However, the current implementation requires the HOC data type to declare its throughput
+    //        in tonnes (i.e. /not/ in `TEU`) – otherwise the current implementation goes nuclear.
+    //        We are investingating whether the iLEAP Data model needs to be updated for the `TEU` unit case.
+    //        This function will be updated as we move along.
     let PACTMappedFields {
         product_id_type,
         data_schema_id,
