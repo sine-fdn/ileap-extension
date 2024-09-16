@@ -32,7 +32,7 @@ use crate::{Hoc, HocCo2eIntensityThroughput, ShipmentFootprint, Toc};
     }
 } */
 
-pub struct MappedFields {
+pub struct PACTMappedFields {
     product_id_type: &'static str,
     data_schema_id: &'static str,
     id: String,
@@ -42,9 +42,9 @@ pub struct MappedFields {
     p_cf_excluding_biogenic: Decimal,
 }
 
-impl From<&ShipmentFootprint> for MappedFields {
+impl From<&ShipmentFootprint> for PACTMappedFields {
     fn from(shipment: &ShipmentFootprint) -> Self {
-        MappedFields {
+        PACTMappedFields {
             product_id_type: "shipment",
             data_schema_id: "shipment-footprint",
             id: shipment.shipment_id.clone(),
@@ -64,9 +64,9 @@ impl From<&ShipmentFootprint> for MappedFields {
     }
 }
 
-impl From<&Hoc> for MappedFields {
+impl From<&Hoc> for PACTMappedFields {
     fn from(hoc: &Hoc) -> Self {
-        MappedFields {
+        PACTMappedFields {
             product_id_type: "hoc",
             data_schema_id: "hoc",
             id: hoc.hoc_id.clone(),
@@ -83,9 +83,9 @@ impl From<&Hoc> for MappedFields {
     }
 }
 
-impl From<&Toc> for MappedFields {
+impl From<&Toc> for PACTMappedFields {
     fn from(toc: &Toc) -> Self {
-        MappedFields {
+        PACTMappedFields {
             product_id_type: "toc",
             data_schema_id: "toc",
             id: toc.toc_id.clone(),
@@ -114,7 +114,7 @@ pub fn to_pcf<T>(
 ) -> ProductFootprint
 where
     T: Serialize,
-    MappedFields: for<'a> From<&'a T>,
+    PACTMappedFields: for<'a> From<&'a T>,
 {
     // massage the optional IPCC characterization factors into a tuple of the actual factors and the IPCC Characterization Factor sources
     let (characterization_factors, characterization_factors_sources) =
@@ -126,7 +126,7 @@ where
     //        the current implementation bails out drastically. We are investingating whether
     //        this is indicates a lack in the iLEAP Data Model. This function will be updated
     //        once we have more information.
-    let MappedFields {
+    let PACTMappedFields {
         product_id_type,
         data_schema_id,
         id,
