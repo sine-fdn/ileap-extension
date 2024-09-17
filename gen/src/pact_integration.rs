@@ -106,12 +106,12 @@ impl From<&Toc> for PactMappedFields {
  * - characterization_factors: the optional IPCC characterization factors that were used in the calculation of the carbon footprint (TOC, HOC, ShipmentFootprint). If not defined `AR5` will be used.
  */
 pub fn to_pcf<T>(
-    ileap_type: &T,
+    ileap_type: T,
     company_name: &str,
     company_urn: &str,
     //    hoc_container_size: Option<HocTeuContainerSize>,
     characterization_factors: Option<Vec<CharacterizationFactors>>,
-) -> ProductFootprint
+) -> ProductFootprint<T>
 where
     T: Serialize,
     PactMappedFields: for<'a> From<&'a T>,
@@ -135,7 +135,7 @@ where
         declared_unit,
         unitary_product_amount,
         p_cf_excluding_biogenic,
-    } = ileap_type.into();
+    } = (&ileap_type).into();
 
     // Fasten your seatbelts, we are about to create a ProductFootprint...
     ProductFootprint {
@@ -198,11 +198,7 @@ where
             spec_version: SpecVersionString::from("0.2.0".to_string()),
             data_schema: format!("https://api.ileap.sine.dev/{data_schema_id}.json"),
             documentation: Some("https://sine-fdn.github.io/ileap-extension/".to_string()),
-            data: serde_json::to_value(ileap_type)
-                .unwrap()
-                .as_object()
-                .unwrap()
-                .to_owned(),
+            data: ileap_type,
         }]),
     }
 }
@@ -347,7 +343,7 @@ fn ship_foot_to_pfc() {
         type_of_items: None,
     };
 
-    let pfc = to_pcf(&ship_foot, "test", "urn:test", None);
+    let pfc = to_pcf(ship_foot, "test", "urn:test", None);
 
     assert_eq!(
         pfc.product_name_company.0,
@@ -397,7 +393,7 @@ fn toc_to_pcf() {
         glec_data_quality_index: None,
     };
 
-    let pfc = to_pcf(&toc, "test", "urn:test", None);
+    let pfc = to_pcf(toc, "test", "urn:test", None);
 
     assert_eq!(pfc.product_name_company.0, "TOC with ID toc-test");
     assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::TonKilometer);
@@ -448,7 +444,7 @@ fn hoc_to_pfc() {
         co2e_intensity_throughput: HocCo2eIntensityThroughput::Tonnes,
     };
 
-    let pfc = to_pcf(&hoc, "test", "urn:test", None);
+    let pfc = to_pcf(hoc, "test", "urn:test", None);
 
     assert_eq!(pfc.product_name_company.0, "HOC with ID hoc-test");
     assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::Kilogram);
