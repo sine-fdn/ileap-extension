@@ -14,7 +14,7 @@ build: specs/index.html specs/faq.html
 	## and now build the rust docs...
 	make gen/target/doc/ileap_extension/index.html
 	mkdir -p ${RELEASE_DIR}/rustdocs
-	cp -r gen/target/doc/ileap_extension/ ${RELEASE_DIR}/rustdocs/
+	cp -r gen/target/doc/ ${RELEASE_DIR}/rustdocs/
 
 specs/index.html: specs/index.bs ${DIAGRAMS}
 	bikeshed spec $< $@
