@@ -827,7 +827,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
 
             <div class=example>
                 If the transport [=distance=] is `700` `kilometers` and the mass is `230` `kilograms`,
-                then the value of this property MUST be `161000` (`700` `kilometers` * `230` `kilograms`).
+                then the value of this property MUST be `161` (`(700 kilometers * 230 kilograms) / 1000`).
             </div>
 
       <tr>
