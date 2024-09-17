@@ -15,6 +15,7 @@ use serde::{Deserialize, Serialize};
 
 mod pact_integration;
 pub use pact_integration::*;
+use uuid::Uuid;
 
 mod arbitrary_impls;
 
