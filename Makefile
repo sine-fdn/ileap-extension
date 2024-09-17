@@ -13,8 +13,7 @@ build: specs/index.html specs/faq.html
 
 	## and now build the rust docs...
 	make gen/target/doc/ileap_extension/index.html
-	mkdir -p ${RELEASE_DIR}/rustdocs
-	cp -r gen/target/doc/ ${RELEASE_DIR}/rustdocs/
+	cp -r gen/target/doc ${RELEASE_DIR}/rustdocs
 
 specs/index.html: specs/index.bs ${DIAGRAMS}
 	bikeshed spec $< $@
@@ -35,7 +34,7 @@ ${MMDC}:
 	npm install @mermaid-js/mermaid-cli
 
 gen/target/doc/ileap_extension/index.html:
-	cd gen && cargo doc --no-deps --document-private-items --all-features --open
+	cd gen && cargo doc --no-deps --document-private-items --all-features
 
 .PHONY: gen/target/doc/ileap_extension/index.html
 
