@@ -683,8 +683,6 @@ pub fn gen_rnd_demo_data(size: u8) -> Vec<ProductFootprint> {
         loop {
             let mut tce = Tce::arbitrary(&mut og);
 
-            tce.shipment_id = ship_foot.shipment_id.clone();
-
             if let Some(prev_tce) = tces.last() {
                 // Updates prevTceIds for the current TCE
                 prev_tces.push(prev_tce.tce_id.clone());
@@ -756,7 +754,10 @@ pub fn gen_rnd_demo_data(size: u8) -> Vec<ProductFootprint> {
                 tocs.push(toc.clone());
             }
 
+            tce.shipment_id.clone_from(&ship_foot.shipment_id);
+
             tces.push(tce);
+
             i += 1;
             if i == limit {
                 break;

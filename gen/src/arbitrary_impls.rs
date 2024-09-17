@@ -23,7 +23,7 @@ impl Arbitrary for LowerAToZNumDash {
                 let i = v % 37;
 
                 match i {
-                    0 => '-' as u8,
+                    0 => b'-',
                     1..=10 => i + 47,
                     _ => i + 86,
                 }

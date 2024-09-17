@@ -354,8 +354,8 @@ fn ship_foot_to_pfc() {
         "ShipmentFootprint with id shipment-test"
     );
     assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::TonKilometer);
-    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(33840).into());
-    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(3131.06).into());
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(33840));
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(3131.06));
 }
 
 #[test]
@@ -401,8 +401,8 @@ fn toc_to_pcf() {
 
     assert_eq!(pfc.product_name_company.0, "TOC with ID toc-test");
     assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::TonKilometer);
-    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1).into());
-    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(0.007).into());
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1));
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(0.007));
 }
 
 #[test]
@@ -452,6 +452,6 @@ fn hoc_to_pfc() {
 
     assert_eq!(pfc.product_name_company.0, "HOC with ID hoc-test");
     assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::Kilogram);
-    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1000).into());
-    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(33).into());
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1000));
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(33));
 }
