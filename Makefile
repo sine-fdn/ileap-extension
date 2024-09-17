@@ -6,10 +6,13 @@ AZURE_STORAGE_ACCOUNT := ghpreview
 AZURE_STORAGE_CONTAINER := preview
 
 
-build: specs/index.html specs/faq.html gen/target/doc/ileap_extension/index.html
+build: specs/index.html specs/faq.html
 	mkdir -p ${RELEASE_DIR}
 	cp -r $^ specs/diagrams ${RELEASE_DIR}/
 	cp -r TR ${RELEASE_DIR}/
+
+	## and now build the rust docs...
+	make gen/target/doc/ileap_extension/index.html
 	mkdir -p ${RELEASE_DIR}/rustdocs
 	cp -r gen/target/doc/ileap_extension/ ${RELEASE_DIR}/rustdocs/
 
