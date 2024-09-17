@@ -135,9 +135,13 @@
           ]
         },
         "energyConsumptionUnit": {
-          "type": [
-            "string",
-            "null"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/EnergyConsumptionUnit"
+            },
+            {
+              "type": "null"
+            }
           ]
         },
         "feedstocks": {
@@ -168,6 +172,15 @@
         "Electric"
       ]
     },
+    "EnergyConsumptionUnit": {
+      "type": "string",
+      "enum": [
+        "l",
+        "kg",
+        "kWh",
+        "MJ"
+      ]
+    },
     "Feedstock": {
       "type": "object",
       "required": [
@@ -178,11 +191,14 @@
           "$ref": "#/definitions/FeedstockType"
         },
         "feedstockPercentage": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "format": "double"
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Decimal"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "regionProvenance": {
           "type": [

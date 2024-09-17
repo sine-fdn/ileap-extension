@@ -354,8 +354,8 @@ fn ship_foot_to_pfc() {
         "ShipmentFootprint with id shipment-test"
     );
     assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::TonKilometer);
-    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(33840).into());
-    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(3131.06).into());
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(33840));
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(3131.06));
 }
 
 #[test]
@@ -381,7 +381,7 @@ fn toc_to_pcf() {
                 region_provenance: Some("Europe".to_string()),
             }]),
             energy_consumption: None,
-            energy_consumption_unit: Some("MJ".to_string()),
+            energy_consumption_unit: Some(crate::EnergyConsumptionUnit::MJ),
             emission_factor_wtw: dec!(97).into(),
             emission_factor_ttw: dec!(0).into(),
         }]
@@ -401,8 +401,8 @@ fn toc_to_pcf() {
 
     assert_eq!(pfc.product_name_company.0, "TOC with ID toc-test");
     assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::TonKilometer);
-    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1).into());
-    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(0.007).into());
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1));
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(0.007));
 }
 
 #[test]
@@ -429,7 +429,7 @@ fn hoc_to_pfc() {
                 energy_carrier: EnergyCarrierType::Diesel,
                 feedstocks: None,
                 energy_consumption: None,
-                energy_consumption_unit: Some("kg".to_string()),
+                energy_consumption_unit: Some(crate::EnergyConsumptionUnit::Kg),
                 emission_factor_wtw: dec!(4.13).into(),
                 emission_factor_ttw: dec!(3.17).into(),
             },
@@ -437,7 +437,7 @@ fn hoc_to_pfc() {
                 energy_carrier: EnergyCarrierType::Electric,
                 feedstocks: None,
                 energy_consumption: None,
-                energy_consumption_unit: Some("MJ".to_string()),
+                energy_consumption_unit: Some(crate::EnergyConsumptionUnit::MJ),
                 emission_factor_wtw: dec!(97).into(),
                 emission_factor_ttw: dec!(0).into(),
             },
@@ -452,6 +452,6 @@ fn hoc_to_pfc() {
 
     assert_eq!(pfc.product_name_company.0, "HOC with ID hoc-test");
     assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::Kilogram);
-    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1000).into());
-    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(33).into());
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1000));
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(33));
 }

@@ -28,8 +28,8 @@ fn generate_schema<T: schemars::JsonSchema>() -> Result<(), Error> {
 
     let schema = schema_for!(T);
 
-    let schema_json =
-        to_string_pretty(&schema).unwrap_or_else(|_| panic!("Failed to serialize {type_name} schema"));
+    let schema_json = to_string_pretty(&schema)
+        .unwrap_or_else(|_| panic!("Failed to serialize {type_name} schema"));
 
     let mut schema_file = File::create(format!("./schemas/{schema_name}.json"))?;
 
