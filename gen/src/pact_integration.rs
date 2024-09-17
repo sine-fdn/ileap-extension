@@ -32,7 +32,7 @@ use crate::{Hoc, HocCo2eIntensityThroughput, ShipmentFootprint, Toc};
     }
 } */
 
-pub struct PACTMappedFields {
+pub struct PactMappedFields {
     product_id_type: &'static str,
     data_schema_id: &'static str,
     id: String,
@@ -42,9 +42,9 @@ pub struct PACTMappedFields {
     p_cf_excluding_biogenic: Decimal,
 }
 
-impl From<&ShipmentFootprint> for PACTMappedFields {
+impl From<&ShipmentFootprint> for PactMappedFields {
     fn from(shipment: &ShipmentFootprint) -> Self {
-        PACTMappedFields {
+        PactMappedFields {
             product_id_type: "shipment",
             data_schema_id: "shipment-footprint",
             id: shipment.shipment_id.clone(),
@@ -54,7 +54,7 @@ impl From<&ShipmentFootprint> for PACTMappedFields {
                 .tces
                 .0
                 .iter()
-                .fold(Decimal::from(0), |acc, tce| acc + tce.co2e_wtw.0),
+                .fold(Decimal::from(0), |acc, tce| acc + tce.transport_activity.0),
             p_cf_excluding_biogenic: shipment
                 .tces
                 .0
@@ -64,9 +64,9 @@ impl From<&ShipmentFootprint> for PACTMappedFields {
     }
 }
 
-impl From<&Hoc> for PACTMappedFields {
+impl From<&Hoc> for PactMappedFields {
     fn from(hoc: &Hoc) -> Self {
-        PACTMappedFields {
+        PactMappedFields {
             product_id_type: "hoc",
             data_schema_id: "hoc",
             id: hoc.hoc_id.clone(),
@@ -83,9 +83,9 @@ impl From<&Hoc> for PACTMappedFields {
     }
 }
 
-impl From<&Toc> for PACTMappedFields {
+impl From<&Toc> for PactMappedFields {
     fn from(toc: &Toc) -> Self {
-        PACTMappedFields {
+        PactMappedFields {
             product_id_type: "toc",
             data_schema_id: "toc",
             id: toc.toc_id.clone(),
@@ -98,7 +98,7 @@ impl From<&Toc> for PACTMappedFields {
 }
 
 /**
- * converts an iLEAP type into a PACT Data Model's ProductFootprint.
+ * Converts an iLEAP type into a PACT Data Model's ProductFootprint.
  *
  * To do so, additional propertiers are needed:
  * - company_name: the name of the company that is responsible for the product
@@ -114,19 +114,20 @@ pub fn to_pcf<T>(
 ) -> ProductFootprint
 where
     T: Serialize,
-    PACTMappedFields: for<'a> From<&'a T>,
+    PactMappedFields: for<'a> From<&'a T>,
 {
-    // massage the optional IPCC characterization factors into a tuple of the actual factors and the IPCC Characterization Factor sources
+    // Massage the optional IPCC characterization factors into a tuple of the actual factors and the
+    // IPCC Characterization Factor sources
     let (characterization_factors, characterization_factors_sources) =
         to_char_factors(characterization_factors);
 
-    // extract the properties necessary to turn the iLEAP type into a ProductFootprint
+    // Extract the properties necessary to turn the iLEAP type into a ProductFootprint.
     // Note: this conversion at this point is "static" and does not require any additional data.
     //        However, the current implementation requires the HOC data type to declare its throughput
     //        in tonnes (i.e. /not/ in `TEU`) – otherwise the current implementation goes nuclear.
     //        We are investingating whether the iLEAP Data model needs to be updated for the `TEU` unit case.
     //        This function will be updated as we move along.
-    let PACTMappedFields {
+    let PactMappedFields {
         product_id_type,
         data_schema_id,
         id,
@@ -136,7 +137,7 @@ where
         p_cf_excluding_biogenic,
     } = ileap_type.into();
 
-    // fasten your seatbelts, we are about to create a ProductFootprint...
+    // Fasten your seatbelts, we are about to create a ProductFootprint...
     ProductFootprint {
         id: PfId(Uuid::new_v4()),
         spec_version: SpecVersionString("2.2.0".to_string()),
@@ -250,4 +251,207 @@ fn to_char_factors(
             }
         };
     (characterization_factors, characterization_factors_sources)
+}
+
+#[test]
+fn ship_foot_to_pfc() {
+    use crate::{GlecDistance, Tce};
+    use rust_decimal_macros::dec;
+
+    let ship_foot = ShipmentFootprint {
+        shipment_id: "shipment-test".to_string(),
+        tces: vec![
+            Tce {
+                tce_id: "tce-1-toc-rail-1".to_string(),
+                prev_tce_ids: Some(vec![]),
+                toc_id: Some("toc-rail-1".to_string()),
+                hoc_id: None,
+                shipment_id: "shipment-test".to_string(),
+                mass: dec!(40000).into(),
+                distance: GlecDistance::Actual(dec!(423).into()),
+                transport_activity: dec!(16920).into(),
+                co2e_wtw: dec!(118.44).into(),
+                co2e_ttw: dec!(0).into(),
+                consignment_id: None,
+                packaging_or_tr_eq_type: None,
+                packaging_or_tr_eq_amount: None,
+                origin: None,
+                destination: None,
+                departure_at: None,
+                arrival_at: None,
+                flight_no: None,
+                voyage_no: None,
+                incoterms: None,
+                nox_ttw: None,
+                sox_ttw: None,
+                ch4_ttw: None,
+                pm_ttw: None,
+            },
+            Tce {
+                tce_id: "tce-2-hoc-transshipment-1".to_string(),
+                prev_tce_ids: Some(vec!["tce-1-toc-rail-1".to_string()]),
+                toc_id: None,
+                hoc_id: Some("hoc-transshipment-1".to_string()),
+                shipment_id: "shipment-test".to_string(),
+                mass: dec!(40000).into(),
+                distance: GlecDistance::Actual(dec!(0).into()),
+                transport_activity: dec!(0).into(),
+                co2e_wtw: dec!(1320).into(),
+                co2e_ttw: dec!(400).into(),
+                consignment_id: None,
+                packaging_or_tr_eq_type: None,
+                packaging_or_tr_eq_amount: None,
+                origin: None,
+                destination: None,
+                departure_at: None,
+                arrival_at: None,
+                flight_no: None,
+                voyage_no: None,
+                incoterms: None,
+                nox_ttw: None,
+                sox_ttw: None,
+                ch4_ttw: None,
+                pm_ttw: None,
+            },
+            Tce {
+                tce_id: "tce-3-toc-road-1".to_string(),
+                prev_tce_ids: Some(vec!["tce-2-hoc-transshipment-1".to_string()]),
+                toc_id: Some("toc-road-1".to_string()),
+                hoc_id: None,
+                shipment_id: "shipment-test".to_string(),
+                mass: dec!(40000).into(),
+                distance: GlecDistance::Actual(dec!(423).into()),
+                transport_activity: dec!(16920).into(),
+                co2e_wtw: dec!(1692.62).into(),
+                co2e_ttw: dec!(1505.88).into(),
+                consignment_id: None,
+                packaging_or_tr_eq_type: None,
+                packaging_or_tr_eq_amount: None,
+                origin: None,
+                destination: None,
+                departure_at: None,
+                arrival_at: None,
+                flight_no: None,
+                voyage_no: None,
+                incoterms: None,
+                nox_ttw: None,
+                sox_ttw: None,
+                ch4_ttw: None,
+                pm_ttw: None,
+            },
+        ]
+        .into(),
+        mass: "40000".to_string(),
+        volume: None,
+        number_of_items: None,
+        type_of_items: None,
+    };
+
+    let pfc = to_pcf(&ship_foot, "test", "urn:test", None);
+
+    assert_eq!(
+        pfc.product_name_company.0,
+        "ShipmentFootprint with id shipment-test"
+    );
+    assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::TonKilometer);
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(33840).into());
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(3131.06).into());
+}
+
+#[test]
+fn toc_to_pcf() {
+    use crate::{
+        EnergyCarrier, EnergyCarrierType, Feedstock, FeedstockType, TemperatureControl, Toc,
+        TocCo2eIntensityThroughput, TransportMode,
+    };
+    use rust_decimal_macros::dec;
+
+    let toc = Toc {
+        toc_id: "toc-test".to_string(),
+        mode: TransportMode::Rail,
+        load_factor: Some(dec!(0.6).to_string()),
+        empty_distance_factor: Some(dec!(0.33).to_string()),
+        temperature_control: Some(TemperatureControl::Ambient),
+        truck_loading_sequence: None,
+        energy_carriers: vec![EnergyCarrier {
+            energy_carrier: EnergyCarrierType::Electric,
+            feedstocks: Some(vec![Feedstock {
+                feedstock: FeedstockType::Grid,
+                feedstock_percentage: None,
+                region_provenance: Some("Europe".to_string()),
+            }]),
+            energy_consumption: None,
+            energy_consumption_unit: Some("MJ".to_string()),
+            emission_factor_wtw: dec!(97).into(),
+            emission_factor_ttw: dec!(0).into(),
+        }]
+        .into(),
+        co2e_intensity_wtw: dec!(0.007).into(),
+        co2e_intensity_ttw: dec!(0).into(),
+        co2e_intensity_throughput: TocCo2eIntensityThroughput::Tkm,
+        is_verified: true,
+        is_accredited: true,
+        description: None,
+        air_shipping_option: None,
+        flight_length: None,
+        glec_data_quality_index: None,
+    };
+
+    let pfc = to_pcf(&toc, "test", "urn:test", None);
+
+    assert_eq!(pfc.product_name_company.0, "TOC with ID toc-test");
+    assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::TonKilometer);
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1).into());
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(0.007).into());
+}
+
+#[test]
+fn hoc_to_pfc() {
+    use crate::{
+        EnergyCarrier, EnergyCarrierType, Hoc, HubType, TemperatureControl, TransportMode,
+    };
+    use rust_decimal_macros::dec;
+
+    let hoc = Hoc {
+        hoc_id: "hoc-test".to_string(),
+        hub_type: HubType::Transshipment,
+        temperature_control: Some(TemperatureControl::Refrigerated),
+        inbound_transport_mode: Some(TransportMode::Road),
+        outbound_transport_mode: Some(TransportMode::Rail),
+        is_verified: true,
+        is_accredited: true,
+        hub_location: None,
+        packaging_or_tr_eq_type: None,
+        packaging_or_tr_eq_amount: None,
+        description: None,
+        energy_carriers: vec![
+            EnergyCarrier {
+                energy_carrier: EnergyCarrierType::Diesel,
+                feedstocks: None,
+                energy_consumption: None,
+                energy_consumption_unit: Some("kg".to_string()),
+                emission_factor_wtw: dec!(4.13).into(),
+                emission_factor_ttw: dec!(3.17).into(),
+            },
+            EnergyCarrier {
+                energy_carrier: EnergyCarrierType::Electric,
+                feedstocks: None,
+                energy_consumption: None,
+                energy_consumption_unit: Some("MJ".to_string()),
+                emission_factor_wtw: dec!(97).into(),
+                emission_factor_ttw: dec!(0).into(),
+            },
+        ]
+        .into(),
+        co2e_intensity_wtw: dec!(33).into(),
+        co2e_intensity_ttw: dec!(10).into(),
+        co2e_intensity_throughput: HocCo2eIntensityThroughput::Tonnes,
+    };
+
+    let pfc = to_pcf(&hoc, "test", "urn:test", None);
+
+    assert_eq!(pfc.product_name_company.0, "HOC with ID hoc-test");
+    assert_eq!(pfc.pcf.declared_unit, DeclaredUnit::Kilogram);
+    assert_eq!(pfc.pcf.unitary_product_amount.0, dec!(1000).into());
+    assert_eq!(pfc.pcf.p_cf_excluding_biogenic.0, dec!(33).into());
 }
