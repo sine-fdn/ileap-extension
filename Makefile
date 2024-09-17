@@ -11,6 +11,10 @@ build: specs/index.html specs/faq.html
 	cp -r $^ specs/diagrams ${RELEASE_DIR}/
 	cp -r TR ${RELEASE_DIR}/
 
+	## and now build the rust docs...
+	make gen/target/doc/ileap_extension/index.html
+	cp -r gen/target/doc ${RELEASE_DIR}/rustdocs
+
 specs/index.html: specs/index.bs ${DIAGRAMS}
 	bikeshed spec $< $@
 
@@ -29,6 +33,10 @@ clean:
 ${MMDC}:
 	npm install @mermaid-js/mermaid-cli
 
+gen/target/doc/ileap_extension/index.html:
+	cd gen && cargo doc --no-deps --document-private-items --all-features
+
+.PHONY: gen/target/doc/ileap_extension/index.html
 
 azure-upload-preview: build
 	az storage blob upload-batch \

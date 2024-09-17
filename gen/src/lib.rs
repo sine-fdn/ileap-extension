@@ -1,5 +1,6 @@
 //! iLEAP Data Model Extension data model
 use chrono::{DateTime, Utc};
+
 use pact_data_model::{
     CarbonFootprint, CharacterizationFactors, CompanyIdSet, CrossSectoralStandard,
     CrossSectoralStandardSet, DataModelExtension, DeclaredUnit, ExemptedEmissionsPercent,
@@ -8,9 +9,12 @@ use pact_data_model::{
 };
 use quickcheck::{Arbitrary, Gen};
 use rust_decimal::Decimal;
+
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
-use uuid::Uuid;
+
+mod pact_integration;
+pub use pact_integration::*;
 
 mod arbitrary_impls;
 
