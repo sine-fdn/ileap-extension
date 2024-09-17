@@ -355,6 +355,7 @@ pub enum EnergyConsumptionUnit {
     L,
     Kg,
     KWh,
+    #[serde(rename = "MJ")]
     MJ,
 }
 

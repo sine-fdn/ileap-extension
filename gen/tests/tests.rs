@@ -127,3 +127,18 @@ fn test_ship_foot_deser() {
     let ship_foot: ShipmentFootprint = serde_json::from_str(json).unwrap();
     assert_eq!(ship_foot, expected)
 }
+
+#[test]
+fn test_energyconsumptionunit_deser() {
+    use EnergyConsumptionUnit::*;
+    let test_vectors = vec![
+        ("\"l\"", L),
+        ("\"kg\"", Kg),
+        ("\"kWh\"", KWh),
+        ("\"MJ\"", MJ),
+    ];
+
+    for (expect, input) in &test_vectors {
+        assert_eq!(expect, &serde_json::to_string(input).unwrap());
+    }
+}
