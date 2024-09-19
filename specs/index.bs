@@ -2753,7 +2753,7 @@ In order to test the conformance of an iLEAP implementation, the following tests
 
 ## PACT Conformance Tests ## {#pact-conformance-tests}
 
-Sine the iLEAP Technical Specifications were conceived as an extension to the PACT Data Model and
+Since the iLEAP Technical Specifications were conceived as an extension to the PACT Data Model and
 Data Exchange Protocol, any iLEAP conformant implementation must also be PACT Conformant. For that
 reason, the tests in the [PACT Conformance Testing
 Checklist](https://wbcsd.github.io/pact-conformance-testing/checklist.html) must be performed.
