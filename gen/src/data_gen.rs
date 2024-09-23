@@ -11,6 +11,7 @@ use crate::{
 };
 
 #[derive(Debug, Serialize, Deserialize, JsonSchema, PartialEq, Clone)]
+#[serde(rename_all = "camelCase", untagged)]
 pub enum ILeapType {
     ShipmentFootprint(ShipmentFootprint),
     Toc(Toc),
