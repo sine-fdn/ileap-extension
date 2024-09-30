@@ -6,6 +6,7 @@ use pact_data_model::{
     ProductIdSet, SpecVersionString, Urn, VersionInteger,
 };
 use rust_decimal::Decimal;
+use schemars::JsonSchema;
 use serde::Serialize;
 use uuid::Uuid;
 
@@ -113,7 +114,7 @@ pub fn to_pcf<T>(
     characterization_factors: Option<Vec<CharacterizationFactors>>,
 ) -> ProductFootprint<T>
 where
-    T: Serialize,
+    T: JsonSchema + Serialize,
     PactMappedFields: for<'a> From<&'a T>,
 {
     // Massage the optional IPCC characterization factors into a tuple of the actual factors and the
