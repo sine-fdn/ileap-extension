@@ -1,5 +1,9 @@
 <pre class='metadata'>
+<<<<<<< HEAD
 Title: iLEAP Technical Specifications (Version 0.2.1-20240903)
+=======
+Title: iLEAP Technical Specifications (Version 0.2.1-20240930)
+>>>>>>> e086402 (chore: add changelog entry)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -1910,7 +1914,7 @@ With response parameters
 The Data types defined in [[#data-model]] are specific to [[!ISO14083]] and the [[!GLEC]] Framework.
 
 This section specifies the integration of the data types <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> into the PACT Data Model ([[!PACTDX]] Chapter 4).
-The integration of the data types <{ShipmentFootprint}> and <{TOC}> is achieved by storing them as extensions to the PACT Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
+The integration of the data types <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> is achieved by storing them as extensions to the PACT Data Model (see [[!DATA-MODEL-EXTENSIONS]]).
 Therefore, all properties defined in the latter are also properties of the former. As a result, some properties relevant to logistics do not need to be defined in the [[#data-model]].
 The list below contains the properties that were omitted for this reason.
 
@@ -2003,21 +2007,31 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
 
       <tr>
         <td>CarbonFootprint
+        <td>`productMassPerDeclaredUnit`
+        <td>
+              This property is OPTIONAL in the [[!PACTDX]] data Model but will become MANDATORY in v3.
+
+              MUST equal the mass of the shipment (<{ShipmentFootprint/mass}>).
+
+      <tr>
+        <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
-              MUST be set to the total logistics emissions of the shipment, excluding biogenic emissions,
-              calculated by taking the sum of the <{TCE/co2eWTW}> over all TCEs (<{ShipmentFootprint/tces}>).
+              MUST be set to the total logistics emissions of the shipment calculated by taking the sum of the <{TCE/co2eWTW}>
+              over all TCEs (<{ShipmentFootprint/tces}>).
 
-
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
       <tr>
         <td>CarbonFootprint
         <td>`pCfIncludingBiogenic`
         <td>
               This property is OPTIONAL in the [[!PACTDX]] data Model.
 
-              It SHOULD be set to the total logistics emissions of the shipment,
-              including biogenic emissions, calculated by taking the sum of the <{TCE/co2eWTW}> over all TCEs (<{ShipmentFootprint/tces}>).
+              It SHOULD be kept undefined.
 
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
       <tr>
         <td>CarbonFootprint
         <td>`fossilGhgEmissions`
@@ -2026,11 +2040,26 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
 
       <tr>
         <td>CarbonFootprint
+        <td>`fossilCarbonContent`
+        <td>
+              see the specification for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`biogenicCarbonContent`
+        <td>
+              SHOULD be set to `"0"`
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
+
+      <tr>
+        <td>CarbonFootprint
         <td>`packagingEmissionsIncluded`
         <td>
               see [[!PACTDX]] for further details
 
-              Issue: this property is pending input from the tech workshop(s)
+              MUST be set to `false`.
 
       <tr>
         <td>CarbonFootprint
@@ -2043,6 +2072,36 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
     </table>
     <figcaption>Mapping of PACT Data Model properties to <{ShipmentFootprint}> properties</figcaption>
 </figure>
+
+The `ProductFootprint` mandatory properties
+[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+and
+[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+cannot be derived from the `ShipmentFootprint` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+The `CarbonFootprint` mandatory properties
+[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+and
+[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+cannot be derived from the `ShipmentFootprint` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
+properties that cannot be derived from `ShipmentFootprint` CAN be populated in a best-effort manner.
 
 ### TOC ### {#pcf-mapping-toc}
 
@@ -2097,12 +2156,23 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>
               SHOULD be set to `"1"` so that the ProductFootprint represents the emissions per ton kilometer of the TOC.
 
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`productMassPerDeclaredUnit`
+        <td>
+              This property is OPTIONAL in the [[!PACTDX]] data Model but will become MANDATORY in v3.
+
+              MUST be set to `"1"`.
+
       <tr>
         <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
-              MUST be set to the logistics emissions intensity of the TOC, excluding biogenic emissions,
-              defined in <{TOC/co2eIntensityWTW}>.
+              MUST be set to the logistics emissions intensity of the TOC defined in <{TOC/co2eIntensityWTW}>.
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2110,14 +2180,31 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>
               This property is OPTIONAL in the [[!PACTDX]] data Model.
 
-              It SHOULD be set to the logistics emissions intensity of the TOC,
-              including biogenic emissions, found in <{TOC/co2eIntensityWTW}>.
+              It SHOULD be kept undefined.
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
         <td>`fossilGhgEmissions`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              Note: see the specification for `pCfIncludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`fossilCarbonContent`
+        <td>
+              Note: see the specification for `pCfIncludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`biogenicCarbonContent`
+        <td>
+              SHOULD be set to `"0"` (zero encoded as a string)
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2137,6 +2224,37 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
   </table>
   <figcaption>Mapping of PACT Data Model properties to <{TOC}> properties</figcaption>
 </figure>
+
+
+The `ProductFootprint` mandatory properties
+[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+and
+[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+cannot be derived from the `TOC` and MUST be provided by the data owner. Please follow the links
+above for further details.
+
+The `CarbonFootprint` mandatory properties
+[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+and
+[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+cannot be derived from the `TOC` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
+properties that cannot be derived from `TOC` CAN be populated in a best-effort manner.
 
 ### HOC ### {#pcf-mapping-hoc}
 
@@ -2193,14 +2311,24 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
       <tr>
         <td>CarbonFootprint
+        <td>`productMassPerDeclaredUnit`
+        <td>
+              This property is OPTIONAL in the [[!PACTDX]] data Model but will become MANDATORY in v3.
+
+              MUST be set to `"1000"`.
+
+      <tr>
+        <td>CarbonFootprint
         <td>`pCfExcludingBiogenic`
         <td>
-              MUST be set to the logistics emissions intensity of the HOC, excluding biogenic emissions,
-              defined in <{HOC/co2eIntensityWTW}>.
+              MUST be set to the logistics emissions intensity of the HOC defined in <{HOC/co2eIntensityWTW}>.
 
               Note: The average weight of a container can be considered as 10 tonnes per `TEU`. For light containers, an
               estimate of 6 tonnes per `TEU` is appropriate, while heavy containers can be assumed to average 14.5 tonnes
               per `TEU`.
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2208,14 +2336,31 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>
               This property is OPTIONAL in the [[!PACTDX]] data Model.
 
-              It SHOULD be set to the logistics emissions intensity of the HOC,
-              including biogenic emissions, found in <{HOC/co2eIntensityWTW}>.
+              It SHOULD be kept undefined.
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
         <td>`fossilGhgEmissions`
         <td>
-              see the specification for `pCfExcludingBiogenic` in this table
+              Note: see the specification for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`fossilCarbonContent`
+        <td>
+              Note: see the specification for `pCfExcludingBiogenic` in this table
+
+      <tr>
+        <td>CarbonFootprint
+        <td>`biogenicCarbonContent`
+        <td>
+              SHOULD be set to `"0"` (zero encoded as a string)
+
+              Advisement: Version 4 of the GLEC Framework will provide guidance on biogenic emissions. Updates to this property
+              will be made after its release.
 
       <tr>
         <td>CarbonFootprint
@@ -2237,7 +2382,41 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 </figure>
 
 
+The `ProductFootprint` mandatory properties
+[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+and
+[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+cannot be derived from the `HOC` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+The `CarbonFootprint` mandatory properties
+[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+and
+[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+cannot be derived from the `HOC` and MUST be provided by the data owner. Please follow
+the links above for further details.
+
+Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
+properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
+
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20240930 (2024-09-30) ## {#version-20240930}
+
+- provide better guidance on [[#pcf-mapping]]
 
 ## Version 0.2.1-20240903 (2024-09-03) ## {#version-20240903}
 
