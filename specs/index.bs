@@ -1,9 +1,5 @@
 <pre class='metadata'>
-<<<<<<< HEAD
-Title: iLEAP Technical Specifications (Version 0.2.1-20240903)
-=======
 Title: iLEAP Technical Specifications (Version 0.2.1-20240930)
->>>>>>> e086402 (chore: add changelog entry)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
