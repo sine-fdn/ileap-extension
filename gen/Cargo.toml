@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-pact-data-model = { git = "https://github.com/sine-fdn/pact-data-model.git", branch = "extensions-type" }
+pact-data-model = { git = "https://github.com/sine-fdn/pact-data-model.git", commit = "73ba24f6aef83eeb933b730d3a0c1d90405906bd" }
 chrono = { version = "0.4", features = ["serde"] }
 schemars = { version = "0.8", features = ["chrono"] }
 serde = { version = "1.0.203", features = ["derive"] }
