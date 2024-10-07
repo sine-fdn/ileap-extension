@@ -197,7 +197,7 @@ SINE is implementing ACT, an Automated Conformance Testing tool that will allow 
 
 The Web version of ACT is available at [https://act.sine.dev](https://act.sine.dev). You can also integrate ACT in your CI/CD pipeline. Please find more information [here](https://github.com/sine-fdn/act).
 
-Please note that ACT is currently in its beta phase. If you have any questions or feedback, please get in touch with [Martin](mailto:martin@sine.foundation) or [Raimundo](mailto:raimundo@sine.foundation).
+Please note that ACT is currently in its beta phase. If you have any questions or feedback, please get in touch with us through [act-feedback@sine.dev](mailto:act-feedback@sine.dev).
 
 ### Demo Data
 
