@@ -86,7 +86,7 @@ The Real-World Testing Phase will be a continuation of the Piloting:
 2. Continuous interoperability testing between independent solutions / software implementing the iLEAP Tech Specs through logistics stakeholders (Shippers, LSPs, Carriers, etc.)
 3. Collecting and incorporating feedback from above community to update the iLEAP Tech Specs
 
-TL;DR: **iLEAP Real-World Testing Phase starts in October 2024 and will last for 3 months**
+TL;DR: **iLEAP Real-World Testing Phase starts in October 2024. We assume this phase to finish at the end of Q1'25**
 
 ## Interoperability Testing
 
