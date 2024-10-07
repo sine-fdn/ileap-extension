@@ -195,7 +195,7 @@ Furthermore, you can find a Swagger UI related to above here: [https://api.ileap
 
 SINE is implementing ACT, an Automated Conformance Testing tool that will allow you to test your implementation against the iLEAP Tech Specs.
 
-The Web version of ACT is available at [https://act.sine.dev](https://act.sine.dev). We also aim to provide the possibility of integrating ACT in your CI/CD pipeline. Please find more information [here](https://github.com/sine-fdn/act).
+The Web version of ACT is available at [https://act.sine.dev](https://act.sine.dev). You can also integrate ACT in your CI/CD pipeline. Please find more information [here](https://github.com/sine-fdn/act).
 
 Please note that ACT is currently in its beta phase. If you have any questions or feedback, please get in touch with [Martin](mailto:martin@sine.foundation) or [Raimundo](mailto:raimundo@sine.foundation).
 
