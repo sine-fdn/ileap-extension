@@ -9,6 +9,8 @@ There are many ways in which you can contribute to the iLEAP Technical Specifica
 
 If you have feedback you would like to raise, we encourage you to [open an issue](https://github.com/sine-fdn/ileap-extension/issues/new).
 
+If your feedback is more general in nature, please refer to [this page](https://sinefoundation.notion.site/Contributing-to-iLEAP-9ad4ee5410234a82b2ad0cb9471e371a), where you can find all details on how to contribute and reach out to the iLEAP team.
+
 ### Bug report
 
 In case you have identified a typo, an error (such as a broken link), etc., in the Technical Specifications, please [open an issue with the bug report template](https://github.com/sine-fdn/ileap-extension/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=).

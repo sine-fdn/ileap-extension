@@ -112,7 +112,7 @@ The iLEAP Tech Specs define 2 core concepts which are the outcome of a series of
 
 The data model defines how to encode data related to ISO14083 plus activity data. The technical details are specified here:
 
-[iLEAP Technical Specifications (Version 0.1.0)](https://sine-fdn.github.io/ileap-extension/#data-model)
+[iLEAP Technical Specifications (Version 0.2.0)](https://sine-fdn.github.io/ileap-extension/#data-model)
 
 **Protocol**
 
@@ -160,7 +160,7 @@ As an implementer, you need to perform the following (as detailed [here](https:/
 
 1. Implement the PACT Tech Specs covering the basic Data Model and HTTP API (see above for resources on this)
 2. Implement the iLEAP Tech Specs:
-    1. Implementing the [TCE](https://wbcsd.github.io/tr/2024/data-exchange-protocol-20240410/), [TOC](https://sine-fdn.github.io/ileap-extension/#dt-toc), and [HOC](https://sine-fdn.github.io/ileap-extension/#dt-hoc) Data Types and the ability to embed this information into the PACT Data Model. The latter is specified in the iLEAP Tech Specs Chapter “[Pathfinder Integration](https://sine-fdn.github.io/ileap-extension/#pcf-mapping)”. Examples are given in the [examples chapter](https://sine-fdn.github.io/ileap-extension/#appendix-a).
+    1. Implementing the [TCE](https://wbcsd.github.io/tr/2024/data-exchange-protocol-20240410/), [TOC](https://sine-fdn.github.io/ileap-extension/#dt-toc), and [HOC](https://sine-fdn.github.io/ileap-extension/#dt-hoc) Data Types and the ability to embed this information into the PACT Data Model. The latter is specified in the iLEAP Tech Specs Chapter “[PACT Integration](https://sine-fdn.github.io/ileap-extension/#pcf-mapping)”. Examples are given in the [examples chapter](https://sine-fdn.github.io/ileap-extension/#appendix-a).
     2. Implementing the exchange of [Transport Activity Data (TAD) Data Type](https://sine-fdn.github.io/ileap-extension/#dt-tad) plus related [HTTP API for the exchange of Transport Activity Data](https://sine-fdn.github.io/ileap-extension/#action-tad).
 
 ### Technical Support Material
@@ -175,7 +175,7 @@ The actual PACT Technical Specifications, written similarly to the iLEAP Tech Sp
 
 As mentioned above, the iLEAP Tech Specs are defined here (and will be updated subsequently during piloting):
 
-[iLEAP Technical Specifications (Version 0.1.0)](https://sine-fdn.github.io/ileap-extension/)
+[iLEAP Technical Specifications (Version 0.2.0)](https://sine-fdn.github.io/ileap-extension/)
 
 ### iLEAP Demo API
 
