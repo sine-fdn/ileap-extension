@@ -2413,7 +2413,7 @@ properties that cannot be derived from `HOC` CAN be populated in a best-effort m
 ## Version 0.2.1-20241105 (2024-11-05) ## {#version-20241105}
 
 - small typo fix in [[#pcf-mapping-toc]]: `fossilGhgEmissions` and `fossilCarbonContent` refer to
-  `pCfExcludingBiogenic`
+    `pCfExcludingBiogenic`
 
 ## Version 0.2.1-20240930 (2024-09-30) ## {#version-20240930}
 
