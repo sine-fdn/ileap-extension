@@ -160,7 +160,7 @@ As an implementer, you need to perform the following (as detailed [here](https:/
 
 1. Implement the PACT Tech Specs covering the basic Data Model and HTTP API (see above for resources on this)
 2. Implement the iLEAP Tech Specs:
-    1. Implementing the [TCE](https://wbcsd.github.io/tr/2024/data-exchange-protocol-20240410/), [TOC](https://sine-fdn.github.io/ileap-extension/#dt-toc), and [HOC](https://sine-fdn.github.io/ileap-extension/#dt-hoc) Data Types and the ability to embed this information into the PACT Data Model. The latter is specified in the iLEAP Tech Specs Chapter “[PACT Integration](https://sine-fdn.github.io/ileap-extension/#pcf-mapping)”. Examples are given in the [examples chapter](https://sine-fdn.github.io/ileap-extension/#appendix-a).
+    1. Implementing the [TCE](https://sine-fdn.github.io/ileap-extension/#dt-tce), [TOC](https://sine-fdn.github.io/ileap-extension/#dt-toc), and [HOC](https://sine-fdn.github.io/ileap-extension/#dt-hoc) Data Types and the ability to embed this information into the PACT Data Model. The latter is specified in the iLEAP Tech Specs Chapter “[PACT Integration](https://sine-fdn.github.io/ileap-extension/#pcf-mapping)”. Examples are given in the [examples chapter](https://sine-fdn.github.io/ileap-extension/#appendix-a).
     2. Implementing the exchange of [Transport Activity Data (TAD) Data Type](https://sine-fdn.github.io/ileap-extension/#dt-tad) plus related [HTTP API for the exchange of Transport Activity Data](https://sine-fdn.github.io/ileap-extension/#action-tad).
 
 ### Technical Support Material
