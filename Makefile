@@ -33,9 +33,6 @@ clean:
 ${MMDC}:
 	npm install @mermaid-js/mermaid-cli
 
-gen/target/doc/ileap_extension/index.html:
-	cd gen && cargo doc --no-deps --document-private-items --all-features
-
 .PHONY: gen/target/doc/ileap_extension/index.html
 
 azure-upload-preview: build
