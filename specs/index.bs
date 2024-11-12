@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20241105)
+Title: iLEAP Technical Specifications (Version 0.2.1-20241113)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2409,6 +2409,10 @@ Any optional property that is not explicitly mentioned above MAY remain unset. A
 properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20241113 (2024-11-13) ## {#version-20241113}
+
+- add appendix [[#ileap-specific-conformance-tests]]
 
 ## Version 0.2.1-20241105 (2024-11-05) ## {#version-20241105}
 
