@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20241105)
+Title: iLEAP Technical Specifications (Version 0.2.1-20241113)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2410,6 +2410,10 @@ properties that cannot be derived from `HOC` CAN be populated in a best-effort m
 
 # Appendix A: Changelog # {#changelog}
 
+## Version 0.2.1-20241113 (2024-11-13) ## {#version-20241113}
+
+- add appendix [[#ileap-specific-conformance-tests]]
+
 ## Version 0.2.1-20241105 (2024-11-05) ## {#version-20241105}
 
 - small typo fix in [[#pcf-mapping-toc]]: `fossilGhgEmissions` and `fossilCarbonContent` refer to
@@ -2744,6 +2748,117 @@ A Product Footprint with a <{HOC}> highlighted:
     }
   </pre>
 </div>
+
+# Appendix C: iLEAP Conformance Testing # {#appendix-c}
+
+Advisement: This appendix is a work in progress. All feedback is welcome.
+
+In order to test the conformance of an iLEAP implementation, the following tests must be performed:
+
+## PACT Conformance Tests ## {#pact-conformance-tests}
+
+Since the iLEAP Technical Specifications were conceived as an extension to the PACT Data Model and
+Data Exchange Protocol, any iLEAP conformant implementation must also be PACT Conformant. For that
+reason, the tests in the [PACT Conformance Testing
+Checklist](https://wbcsd.github.io/pact-conformance-testing/checklist.html) must be performed.
+
+## iLEAP Specific Conformance Tests ## {#ileap-specific-conformance-tests}
+
+The following tests are specific to the iLEAP Technical Specifications:
+
+### Test Case 001: Get ProductFootprint with ShipmentFootprint ### {#test-case-001}
+
+Tests the target host system's ability to return `ProductFootprints` with `ShipmentFootprint`s as
+extensions.
+
+#### Request #### {#test-case-001-request}
+
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
+system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+
+#### Expected Response #### {#test-case-001-response}
+
+The test target host system must respond with 200 OK with a JSON body containing a list of
+`ProductFootprints` (as per the [PACT Tech Specs V2.2
+§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+Those which include `productIds` with [the format specified for ShipmentFootprints](#pcf-mapping-sf)
+must be conformant with the Data Model specified in [[#dt-sf]]. The relevant properties of the
+`ProductFootprint` must also be confomant with the guidance provided in [[#pcf-mapping-sf]].
+
+### Test Case 002: Get ProductFootprint with TOC ### {#test-case-002}
+
+#### Request #### {#test-case-002-request}
+
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
+system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+
+#### Expected Response #### {#test-case-002-response}
+
+The test target host system must respond with 200 OK with a JSON body containing a list of
+`ProductFootprints` (as per the [PACT Tech Specs V2.2
+§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+
+This list must include all the `TOCs` referenced in the `ShipmentFootprint`s returned in
+[[#test-case-001]] (identified through the `productIds` field) and may include others.
+
+All the `ProductFootprints` which include `productIds` with [the format specified for
+TOCs](#pcf-mapping-toc) must be conformant with the Data Model specified in [[#dt-toc]]. The
+relevant properties of the `ProductFootprint` must also be confomant with the guidance provided in
+[[#pcf-mapping-toc]].
+
+### Test Case 003: Get ProductFootprint with HOC ### {#test-case-003}
+
+#### Request #### {#test-case-003-request}
+
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
+system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+
+#### Expected Response #### {#test-case-003-response}
+
+The test target host system must respond with 200 OK with a JSON body containing a list of
+`ProductFootprints` (as per the [PACT Tech Specs V2.2
+§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+
+This list must include all the `HOCs` referenced in the `ShipmentFootprint`s returned in
+[[#test-case-001]] (identified through the `productIds` field) and may include others.
+
+All the `ProductFootprints` which include `productIds` with [the format specified for
+HOCs](#pcf-mapping-hoc) must be conformante with the Data Model specified in [[#dt-hoc]]. The
+relevant properties of the `ProductFootprint` must also be confomant with the guidance provided in
+[[#pcf-mapping-hoc]].
+
+### Test Case 004: Get All TransportActivityData ### {#test-case-004}
+
+#### Request #### {#test-case-004-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test target
+host system with a valid access token and the syntax specified in [[#action-tad-request]].
+
+#### Expected Response #### {#test-case-004-response}
+
+The test target host system must respond with 200 OK and a JSON body containing a list of
+`TransportActivityData`, in conformance with [[#action-tad-response]] and following the data model
+specified at [[#dt-tad]].
+
+### Test Case 005: Get Filtered List of TransportActivityData ### {#test-case-005}
+
+Issue: TBD
+
+### Test Case 006: Get Limited List of TransportActivityData ### {#test-case-006}
+
+Issue: TBD
+
+### Test Case 007: Attempt TransportActivityData with Invalid Token ### {#test-case-007}
+
+Issue: TBD
+
+### Test Case 008: Attempt TransportActivityData with Expired Token ### {#test-case-007}
+
+Issue: TBD
+
 
 <pre class=biblio>
  {
