@@ -27,7 +27,7 @@ clean:
 	${MMDC} -i $< -o $@
 
 ${MMDC}:
-	npm install @mermaid-js/mermaid-cli
+	$(PREFIX) npm install @mermaid-js/mermaid-cli
 
 azure-upload-preview: build
 	az storage blob upload-batch \

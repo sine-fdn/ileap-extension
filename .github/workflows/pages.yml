@@ -35,7 +35,7 @@ jobs:
       - name: Install Bikeshed
         run: pip3 install bikeshed && bikeshed update
       - name: Build docs
-        run: make
+        run: make PREFIX="aa-exec --profile=chrome"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
