@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20241113)
+Title: iLEAP Technical Specifications (Version 0.2.1-20241210)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2484,6 +2484,13 @@ Any optional property that is not explicitly mentioned above MAY remain unset. A
 properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20241210 (2024-12-10) ## {#version-20241210}
+
+- add guidance on how to populate PACT's `DataModelExtension` data type in [[#pcf-mapping-sf]],
+    [[#pcf-mapping-toc]], and [[#pcf-mapping-hoc]]
+- remove outdated advisement from [[#appendix-b]]
+- fix typo in `dataSchema` of [[#appendix-b-hoc-example]]
 
 ## Version 0.2.1-20241113 (2024-11-13) ## {#version-20241113}
 
