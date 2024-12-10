@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20241113)
+Title: iLEAP Technical Specifications (Version 0.2.1-20241210)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2064,7 +2064,31 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
               The relative share of logistics emissions for which primary data has been used for the calculation.
 
               See [[!PACTDX]] and the PACT Framework ([[!PACT-FRAMEWORK]]) for further details.
+      <tr>
+        <td>DataModelExtension
+        <td>`specVersion`
+        <td>
+              MUST be set `"2.0.0"`, the current version of [[DATA-MODEL-EXTENSIONS]].
 
+      <tr>
+        <td>DataModelExtension
+        <td>`dataSchema`
+        <td>
+              MUST be set to `"https://api.ileap.sine.dev/shipment-footprint.json"`, the URL of the JSON schema for <{ShipmentFootprint}>.
+
+              Advisement: The URL of the JSON schema will be updated in future revisions.
+
+      <tr>
+        <td>DataModelExtension
+        <td>`documentation`
+        <td>
+              SHOULD be set. If set, its value MUST be `"https://sine-fdn.github.io/ileap-extension/"`.
+
+      <tr>
+        <td>DataModelExtension
+        <td>`data`
+        <td>
+              MUST contain the <{ShipmentFootprint}> as a JSON object.
     </table>
     <figcaption>Mapping of PACT Data Model properties to <{ShipmentFootprint}> properties</figcaption>
 </figure>
@@ -2217,6 +2241,31 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
               The relative share of logistics emissions for which primary data has been used for the calculation.
 
               See [[!PACTDX]] and the PACT Framework ([[!PACT-FRAMEWORK]]) for further details.
+      <tr>
+        <td>DataModelExtension
+        <td>`specVersion`
+        <td>
+              MUST be set `"2.0.0"`, the current version of [[DATA-MODEL-EXTENSIONS]].
+
+      <tr>
+        <td>DataModelExtension
+        <td>`dataSchema`
+        <td>
+              MUST be set to `"https://api.ileap.sine.dev/toc.json"`, the URL of the JSON schema for <{TOC}>.
+
+              Advisement: The URL of the JSON schema will be updated in future revisions.
+
+      <tr>
+        <td>DataModelExtension
+        <td>`documentation`
+        <td>
+              SHOULD be set. If set, its value MUST be `"https://sine-fdn.github.io/ileap-extension/"`.
+
+      <tr>
+        <td>DataModelExtension
+        <td>`data`
+        <td>
+              MUST contain the <{TOC}> as a JSON object.
   </table>
   <figcaption>Mapping of PACT Data Model properties to <{TOC}> properties</figcaption>
 </figure>
@@ -2373,6 +2422,32 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
               The relative share of logistics emissions for which primary data has been used for the calculation.
 
               See [[!PACTDX]] and the PACT Framework ([[!PACT-FRAMEWORK]]) for further details.
+
+      <tr>
+        <td>DataModelExtension
+        <td>`specVersion`
+        <td>
+              MUST be set `"2.0.0"`, the current version of [[DATA-MODEL-EXTENSIONS]].
+
+      <tr>
+        <td>DataModelExtension
+        <td>`dataSchema`
+        <td>
+              MUST be set to `"https://api.ileap.sine.dev/hoc.json"`, the URL of the JSON schema for <{HOC}>.
+
+              Advisement: The URL of the JSON schema will be updated in future revisions.
+
+      <tr>
+        <td>DataModelExtension
+        <td>`documentation`
+        <td>
+              SHOULD be set. If set, its value MUST be `"https://sine-fdn.github.io/ileap-extension/"`.
+
+      <tr>
+        <td>DataModelExtension
+        <td>`data`
+        <td>
+              MUST contain the <{HOC}> as a JSON object.
   </table>
   <figcaption>Mapping of PACT Data Model properties to <{HOC}> properties</figcaption>
 </figure>
@@ -2409,6 +2484,13 @@ Any optional property that is not explicitly mentioned above MAY remain unset. A
 properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20241210 (2024-12-10) ## {#version-20241210}
+
+- add guidance on how to populate PACT's `DataModelExtension` data type in [[#pcf-mapping-sf]],
+    [[#pcf-mapping-toc]], and [[#pcf-mapping-hoc]]
+- remove outdated advisement from [[#appendix-b]]
+- fix typo in `dataSchema` of [[#appendix-b-hoc-example]]
 
 ## Version 0.2.1-20241113 (2024-11-13) ## {#version-20241113}
 
@@ -2502,9 +2584,6 @@ Summary: Initial release of the specification.
 
 
 # Appendix B: Example PCFs with iLEAP Data embedded # {#appendix-b}
-
-Advisement: In both examples, the value of `dataSchema` is currently placeholder and should not be
-taken as a link to the actual data schema. This will be updated as soon as possible.
 
 ## ShipmentFootprint example ## {#appendix-b-sf-example}
 
@@ -2724,7 +2803,7 @@ A Product Footprint with a <{HOC}> highlighted:
       "extensions": [
         {
           "specVersion": "2.0.0",
-          "dataSchema": "https://api.ileap.sine.dev/toc.json",
+          "dataSchema": "https://api.ileap.sine.dev/hoc.json",
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "hocId": "7890123",
