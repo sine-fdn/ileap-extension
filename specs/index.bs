@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20241210)
+Title: iLEAP Technical Specifications (Version 0.2.1-20241211)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -471,7 +471,7 @@ The highlighted lines show the data exchanged according to the <{ShipmentFootpri
       "extensions": [
         {
           "specVersion": "2.0.0",
-          "dataSchema": "https://catalog.carbon-transparency.com/sfc-ileap/0.0.1/shipmentfootprint.json",
+          "dataSchema": "https://api.ileap.sine.dev/shipment-footprint.json",
           "data": {
             "mass": "87",
             "shipmentId": "1237890",
@@ -553,7 +553,7 @@ The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`
       "extensions": [
         {
           "specVersion": "2.0.0",
-          "dataSchema": "https://catalog.carbon-transparency.com/sfc-ileap/0.0.1/shipmentfootprint.json",
+          "dataSchema": "https://api.ileap.sine.dev/shipment-footprint.json",
           "data": {
             "mass": "87",
             "shipmentId": "1237890",
@@ -2485,12 +2485,12 @@ properties that cannot be derived from `HOC` CAN be populated in a best-effort m
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.1-20241210 (2024-12-10) ## {#version-20241210}
+## Version 0.2.1-20241211 (2024-12-11) ## {#version-20241211}
 
 - add guidance on how to populate PACT's `DataModelExtension` data type in [[#pcf-mapping-sf]],
     [[#pcf-mapping-toc]], and [[#pcf-mapping-hoc]]
 - remove outdated advisement from [[#appendix-b]]
-- fix typo in `dataSchema` of [[#appendix-b-hoc-example]]
+- fix typos in `dataSchema` of [[#example-http]] and [[#appendix-b-hoc-example]]
 
 ## Version 0.2.1-20241113 (2024-11-13) ## {#version-20241113}
 
