@@ -26,7 +26,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
       - name: Install Bikeshed
         run: pip3 install bikeshed && bikeshed update
       - name: Build docs
-        run: make PREFIX="aa-exec --profile=chrome"
+        run: make
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
