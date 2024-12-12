@@ -4,11 +4,11 @@ name: CI
 
 jobs:
   build_and_test:
-    name: Test Rust
+    name: Build Tech Specs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Bikeshed
         run: pip3 install bikeshed && bikeshed update
       - name: Build docs
