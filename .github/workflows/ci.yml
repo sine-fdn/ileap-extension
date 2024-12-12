@@ -12,4 +12,4 @@ jobs:
       - name: Install Bikeshed
         run: pip3 install bikeshed && bikeshed update
       - name: Build docs
-        run: make
+        run: aa-exec --profile=chrome make
