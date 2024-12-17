@@ -90,7 +90,7 @@ status tags are:
 ::
     It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
-: <dfn export>Hub Activity</dfn>
+: Hub Activity
 :: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
 
 : Hub Operation Category (<dfn>HOC</dfn>)
@@ -163,14 +163,14 @@ status tags are:
 :: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
-: <dfn export>Hub Operator</dfn>
+: Hub Operator
 :: A party that is offering hub services, including warehousing and transshipment center services.
 
 : <dfn>PCF</dfn>
 ::
     Product Carbon Footprint. See [PACT Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details
 
-: <dfn export>ShipmentFootprint</dfn>
+: ShipmentFootprint
 :: See [[#dt-sf]] for the definition.
 
 : <dfn>Shipment id</dfn>
@@ -1643,9 +1643,9 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
     </table>
 </figure>
 
-### Data Type <dfn export>EnergyCarrierType</dfn> ### {#dt-energy-carrier-type}
+### Data Type <dfn element>EnergyCarrierType</dfn> ### {#dt-energy-carrier-type}
 
-Data type <dfn element>EnergyCarrierType</dfn> represents the substance used to generate mechanical
+Data type `EnergyCarrierType` represents the substance used to generate mechanical
 movement or heat and to generate chemical or physical processes as per the [[!GLEC]] Framework.
 
 It MUST be encoded as a String using one of the following values:
@@ -1730,9 +1730,9 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
     </table>
 </figure>
 
-### Data Type <dfn export>PackagingOrTrEqType</dfn> ### {#dt-packaging-or-tr-eq-type}
+### Data Type <dfn element>PackagingOrTrEqType</dfn> ### {#dt-packaging-or-tr-eq-type}
 
-Data type <dfn element>PackagingOrTrEqType</dfn> represents the category of relevant packaging or transport equipment
+Data type `PackagingOrTrEqType` represents the category of relevant packaging or transport equipment
 units utilized for the transport of the consignment by the [=Transport Operator=] or [=Transport
 Service Organizer=].
 
@@ -1927,20 +1927,20 @@ Note: The extensions of one `ProductFootprint` CANNOT contain more than one iLEA
         <th>Source
     <tbody>
         <tr>
-          <td><dfn noexport>validityPeriodStart</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>`validityPeriodStart` : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
           <td>String
           <td>O
           <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
           <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
 
         <tr>
-          <td><dfn noexport>validityPeriodEnd</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>`validityPeriodEnd`</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
           <td>String
           <td>O
           <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
           <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend)
         <tr>
-          <td><dfn noexport>assurance</dfn> : [Assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-assurance)
+          <td>`assurance` : [Assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-assurance)
           <td>Object
           <td>O
           <td>If present, the Assurance information in accordance with the [[!PACT-FRAMEWORK]].
