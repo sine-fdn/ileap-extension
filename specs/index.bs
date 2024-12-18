@@ -1624,7 +1624,7 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
             :: for kilograms
 
             : `kWh`
-            :: for kiloWhat/hour
+            :: for kiloWatt-hour
 
             : `MJ`
             :: for MegaJoules
