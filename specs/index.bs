@@ -1953,7 +1953,7 @@ Note: The extensions of one `ProductFootprint` CANNOT contain more than one iLEA
           <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
 
         <tr>
-          <td>`validityPeriodEnd`</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>`validityPeriodEnd` : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
           <td>String
           <td>O
           <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
