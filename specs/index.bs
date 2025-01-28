@@ -1365,6 +1365,17 @@ encoded as a JSON object. See [[#action-tad]] for details.
         <td>Number
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
+
+      <tr>
+        <td><dfn>energyCarriers</dfn>
+        <td><{EnergyCarrier}>[]
+        <td>O
+        <td>If defined, the non-empty array of [=EnergyCarriers=] used to generate mechanical
+              movement or heat and to generate chemical or physical processes.
+
+              This array MAY contain aggregated data from multiple consignments. In this case,
+              the aggregation MUST follow principles from the [[!GLEC]] Framework.
+
       <tr>
         <td><dfn>energyCarrier</dfn>
         <td><{EnergyCarrierType}>
@@ -1374,6 +1385,8 @@ encoded as a JSON object. See [[#action-tad]] for details.
             physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
 
             If <{TAD/energyCarrier}> is not defined, then <{TAD/feedstocks}> MUST be defined. If possible, both SHOULD be defined.
+
+            Advisement: This property is deprecated and will be removed in future revisions. Use <{TAD/energyCarriers}> instead.
       <tr>
         <td><dfn>feedstocks</dfn>
         <td><{Feedstock}>[]
@@ -1382,6 +1395,8 @@ encoded as a JSON object. See [[#action-tad]] for details.
             If defined, the non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
 
             If <{TAD/feedstocks}> is not defined, then <{TAD/energyCarrier}> MUST be defined. If possible, both SHOULD be defined.
+
+            Advisement: This property is deprecated and will be removed in future revisions. Use <{TAD/energyCarriers}> instead.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
@@ -1596,7 +1611,7 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td><dfn>feedstocks</dfn>
         <td><{Feedstock}>[]
         <td>O
-        <td>If defined, theon-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
+        <td>If defined, the non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
       <tr>
         <td><dfn>energyConsumption</dfn> : [=Decimal=]
         <td>String
@@ -1631,15 +1646,19 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
       <tr>
         <td><dfn>emissionFactorWTW</dfn> : [=Decimal=]
         <td>String
-        <td>M
+        <td>O
         <td>
-            The WTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
+            The WTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>).
+
+            This property MUST be defined when <{EnergyCarrier}> is used in the context of a <{TOC}> or <{HOC}>.
       <tr>
         <td><dfn>emissionFactorTTW</dfn> : [=Decimal=]
         <td>String
-        <td>M
+        <td>O
         <td>
-             The TTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>)
+             The TTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>).
+
+            This property MUST be defined when <{EnergyCarrier}> is used in the context of a <{TOC}> or <{HOC}>.
     </table>
 </figure>
 
@@ -1934,7 +1953,7 @@ Note: The extensions of one `ProductFootprint` CANNOT contain more than one iLEA
           <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
 
         <tr>
-          <td>`validityPeriodEnd`</dfn> : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>`validityPeriodEnd` : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
           <td>String
           <td>O
           <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
@@ -2484,6 +2503,13 @@ Any optional property that is not explicitly mentioned above MAY remain unset. A
 properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20250129 (2025-01-29) ## {#version-20250129}
+
+- changes to <{TAD}> data type which are "backwards compatible" with the previous version:
+    1. addition of optional property <{TAD/energyCarriers}> as a replacement for
+    2. the now deprecated properties <{TAD/energyCarrier}> and <{TAD/feedstocks}>
+
 
 ## Version 0.2.1-20241211 (2024-12-11) ## {#version-20241211}
 
