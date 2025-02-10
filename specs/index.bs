@@ -140,6 +140,9 @@ status tags are:
 : <dfn>Transport Service User</dfn>
 :: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
 
+: <dfn>iLEAP Conformant</dfn>
+:: Refers to a software tool that is fully interoperable within the iLEAP ecosystem, constituting a successful
+    implementation of the present Technical Specifications and being recognized as such.
 
 ## Auxillary Definitions ## {#auxillary-definitions}
 
@@ -2964,6 +2967,150 @@ Issue: TBD
 
 Issue: TBD
 
+# Appendix D: iLEAP Conformance Definition # {#appendix-d}
+
+This appendix states the necessary and sufficient conditions for a software tool to be considered
+[=iLEAP Conformant=], i.e., to be conformant with the iLEAP Technical Specifications.
+
+Not all iLEAP Conformant tools are required to implement all [=data transactions=]. iLEAP
+Conformance is, therefore, scoped by the specific data transactions implemented. A tool that
+implements all data transactions is considered <dfn>fully conformant</dfn>.
+
+The iLEAP team is glad to certify your iLEAP conformance and provide you with materials to showcase
+it. Please make sure to read through [[#conformance-certification]] to ensure that your collect the
+necessary data in the process of meeting the requirements below.
+
+## Conformance to Data Transaction 1 ## {#txn1-conformance}
+
+A software tool is considered [=iLEAP Conformant=] with respect to [[#txn1|Data Transaction 1]] if
+and only if it
+
+- has implemented the [[!PACTDX|PACT Data Exchange Protocol v2.1.0]] or above (both the HTTP REST API and
+    the Data Model);
+- passed all [ ACT](https://act.sine.dev) Required Tests, as well as the following Conditional Test:
+    - `iLEAP Test Case 001: Get ProductFootprints with ShipmentFootprints` (enabling option `Validate
+      ShipmentFootprints (if any)`);
+- engaged in bilateral testing with at least one other software tool and (as test target) successfully completed the following Test Case:
+    - [[#test-case-001]].
+
+Please make sure to read through [[#conformance-certification]] prior to engaging in bilateral
+testing.
+
+Note: iLEAP Conformance requires a software tool to have implemented the PACT Protocol, regardless
+of whether it is PACT Conformance. It is nevertheless recommended that iLEAP Conformant tools seek
+[PACT Conformance](https://www.carbon-transparency.org/for-providers)
+
+## Conformance to Data Transaction 2 ## {#txn2-conformance}
+
+A software tool is considered [=iLEAP Conformant=] with respect to [[#txn2|Data Transaction 2]] if and only if it
+- has implemented the [[!PACTDX|PACT Data Exchange Protocol v2.1.0]] or above (both the HTTP REST API and
+    the Data Model);
+- passed all [ ACT](https://act.sine.dev) Required Tests, as well as at least one of the following Conditional Tests:
+    - `iLEAP Test Case 002: Get ProductFootprints with TOCs` (enabling option `Validate TOCs (if any)`);
+    - `iLEAP Test Case 003: Get ProductFootprints with HOCs` (enabling option `Validate HOCs (if
+      any)`);
+- engaged in bilateral testing with at least one other software tool and (as test target)
+    successfully completed at least one of the following Test Cases:
+    - [[#test-case-002]];
+    - [[#test-case-003]].
+
+Please make sure to read through [[#conformance-certification]] prior to engaging in bilateral
+testing.
+
+Note: iLEAP Conformance requires a software tool to have implemented the PACT Protocol, regardless
+of whether it is PACT Conformance. It is nevertheless recommended that iLEAP Conformant tools seek
+[PACT Conformance](https://www.carbon-transparency.org/for-providers)
+
+## Conformance to Data Transaction 3 ## {#txn3-conformance}
+
+A software tool is considered [=iLEAP Conformant=] with respect to [[#txn3|Data Transaction 3]] if and only if it
+- has implemented [Action Authenticate of the PACT Data Exchange Protol v2.1.0](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-auth) or above;
+- passed the following [ ACT](https://act.sine.dev) tests:
+    - `Test Case 001: Authentication against default endpoint`;
+    - `Test Case 002: Authentication with invalid credentials against default endpoint`;
+    - `iLEAP Test Case 004: Get All TransportActivityData` (enabling option `Test action
+        TransportActivityData (2/ileap/tad)`);
+    - `iLEAP Test Case 005: Get Filtered List of TransportActivityData` (enabling option `Test
+        action TransportActivityData (2/ileap/tad)`);
+    - `iLEAP Test Case 006: Get Limited List of TransportActivityData` (enabling option `Test action
+        TransportActivityData (2/ileap/tad)`);
+- engaged in bilateral testing with at least one other software tool and (as test target)
+    successfully completed the following Test Case:
+    - [[#test-case-004]].
+
+Please make sure to read through [[#conformance-certification]] prior to engaging in bilateral
+testing.
+
+## iLEAP Conformance Certification ## {#conformance-certification}
+
+Once all the necessary and sufficient conditions are met, please reach out to the iLEAP team
+(contact details at the top of this document), sending them a `JSON` file with the properties
+specified below:
+
+<figure id="test-result-json">
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Property
+        <th>Type
+        <th>Req
+        <th>Specification
+    <tbody>
+      <tr>
+        <td>conformanceScope
+        <td>String[]
+        <td>M
+        <td>
+            The non-empty array of data transactions for which the tool wishes to be considered iLEAP Conformant. The
+            array MUST contain at least one of the following values:
+            - `"txn1"`
+            - `"txn2"`
+            - `"txn3"`
+
+      <tr>
+        <td>actBasepath
+        <td>String
+        <td>M
+        <td>The URL basepath used in [ ACT](https://act.sine.dev).
+
+      <tr>
+        <td>actBasepath
+        <td>String
+        <td>M
+        <td>The URL basepath used in [ ACT](https://act.sine.dev).
+
+      <tr>
+        <td>actDate
+        <td>String
+        <td>M
+        <td>The date of the successful [ ACT](https://act.sine.dev) test in the format `YYYY-MM-DD`, conforming to ISO 8601.
+
+      <tr>
+        <td>testingHostSystem
+        <td>String
+        <td>M
+        <td>The company name of the testing host system.
+
+      <tr>
+        <td>testDate
+        <td>String
+        <td>M
+        <td>The date of the successful [ ACT](https://act.sine.dev) test in the format `YYYY-MM-DD`, conforming to ISO 8601.
+
+      <tr>
+        <td>iLeapTestCases
+        <td>String[]
+        <td>M
+        <td>
+            The non-empty array of iLEAP tests cases successfully completed during bi-lateral testing. The
+            array MUST contain at least one of the following values:
+            - `"test-case-001"` referring to [[#test-case-001]]
+            - `"test-case-002"` referring to [[#test-case-002]]
+            - `"test-case-003"` referring to [[#test-case-003]]
+            - `"test-case-004"` referring to [[#test-case-004]]
+  </table>
+  <figcaption>Test result JSON properties</figcaption>
+</figure>
 
 <pre class=biblio>
  {
