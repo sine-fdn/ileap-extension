@@ -3013,11 +3013,51 @@ specified at [[#dt-tad]].
 
 ### Test Case 005: Get Filtered List of TransportActivityData ### {#test-case-005}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to return a filtered list of `TransportActivityData`.
+
+#### Request #### {#test-case-005-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with a valid [=access token=] and the syntax specified in [[#action-tad-request]].
+
+The request must include a query parameter [=Filter=]. Any property can be used as a filter, but we
+recomen using {{Transport Mode}}, iterating over all possible values:
+
+- `GET /2/ileap/tad?mode=Road HTTP/1.1`
+- `GET /2/ileap/tad?mode=Rail HTTP/1.1`
+- `GET /2/ileap/tad?mode=Air HTTP/1.1`
+- `GET /2/ileap/tad?mode=Sea HTTP/1.1`
+- `GET /2/ileap/tad?mode=InlandWaterway HTTP/1.1`
+
+The access token must be obtained through the [PACT's Authentication Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested through PACT's Test Cases [001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and [002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-005-response}
+
+For at least one filter, the test [=target host system=] must respond with 200 OK and a JSON body
+containing a list of `TransportActivityData` matching the filter, in conformance with
+[[#action-tad-response]] and following the data model specified at [[#dt-tad]].
 
 ### Test Case 006: Get Limited List of TransportActivityData ### {#test-case-006}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to return a limited list of `TransportActivityData`.
+
+#### Request #### {#test-case-006-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test
+[=target host system=] with a valid [=access token=] and the syntax specified in
+[[#action-tad-request]]. The request must include a query parameter [=Limit=] with value `1`.
+
+The access token must be obtained through the [PACT's Authentication
+Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested
+through PACT's Test Cases
+[001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and
+[002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-006-response}
+
+The test [=target host system=] must respond with 200 OK and a JSON body containing one or less
+`TransportActivityData`, in conformance with [[#action-tad-response]] and following the data model
+specified at [[#dt-tad]].
 
 ### Test Case 007: Attempt TransportActivityData with Invalid Token ### {#test-case-007}
 
