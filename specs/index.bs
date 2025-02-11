@@ -140,10 +140,6 @@ status tags are:
 : <dfn>Transport Service User</dfn>
 :: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
 
-: <dfn>iLEAP Conformant</dfn>
-:: Refers to a software tool that is fully interoperable within the iLEAP ecosystem, constituting a successful
-    implementation of the present Technical Specifications and being recognized as such.
-
 ## Auxillary Definitions ## {#auxillary-definitions}
 
 : <dfn>Access Token</dfn>
@@ -191,6 +187,8 @@ status tags are:
     Provider of software, tools, services, or programs that support companies in
     calculating and reporting logistics GHG emissions conforming to these technical specifications.
 
+: <dfn>Bilateral Test</dfn>
+:: A testing process where two [=host systems=] test their implementations      against each other to ensure interoperability. Of the two parties involved, one acts as <dfn>target host system</dfn> and the other as <dfn>testing host system</dfn>. The latter makes requests to which the former must respond. See also [[#appendix-c]]
 
 # Business Cases # {#business-cases}
 
@@ -2505,6 +2503,59 @@ the links above for further details.
 Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
 properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
+# <dfn>iLEAP Conformance</dfn> # {#conformance}
+
+iLEAP Conformance refers to the status of a software tool that implements these Technical
+Specifications and is interoperable with any other tool in the iLEAP ecosystem.
+
+There are two kinds of iLEAP Conformance:
+- [=iLEAP Emissions Data Conformance=]
+- [=iLEAP Activity Data Conformance=]
+
+We strongly encourage all software tools to strive for both types of conformance.
+
+iLEAP Conformance is achieved by successfully completing the Test Cases indicated below, **both** through [ ACT](https://act.sine.dev) and through [=Bilateral Testing=].
+
+<figure id="ileap-conformance-matrix">
+  <table class="complex data">
+    <thead>
+      <tr>
+        <th style="text-align: left">Test Case
+        <th style="text-align: left">Conformance
+    <tbody >
+      <tr>
+        <td style="text-align: left">All [PACT Required Test Cases](https://wbcsd.github.io/pact-conformance-testing/checklist.html#required-tests)
+        <td rowspan="4"><dfn>iLEAP Emissions Data Conformance</dfn>
+
+      <tr>
+        <td style="text-align: left">[[#test-case-001]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-002]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-003]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-004]]
+        <td rowspan="3"><dfn>iLEAP Activity Data Conformance</dfn>
+
+      <tr>
+        <td style="text-align: left">[[#test-case-005]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-006]]
+
+  </table>
+  <figcaption>iLEAP Conformance Matrix</figcaption>
+</figure>
+
+Once all the relevant tests are successfully completed, we kindly request software providers to
+reach out to the iLEAP team (contacts at the top of this document). We will offer materials to help
+promote the tool as iLEAP Conformant.
+
+Note: iLEAP Emissions Data Conformance requires the software tool to have implemented PACT. [PACT Conformance](https://www.carbon-transparency.org/for-providers) is not required, but we recommend seeking it.
+
 # Appendix A: Changelog # {#changelog}
 
 ## Version 0.2.1-20250129 (2025-01-29) ## {#version-20250129}
@@ -2866,9 +2917,9 @@ In order to test the conformance of an iLEAP implementation, the following tests
 ## PACT Conformance Tests ## {#pact-conformance-tests}
 
 Since the iLEAP Technical Specifications were conceived as an extension to the PACT Data Model and
-Data Exchange Protocol, any iLEAP conformant implementation must also be PACT Conformant. For that
-reason, the tests in the [PACT Conformance Testing
-Checklist](https://wbcsd.github.io/pact-conformance-testing/checklist.html) must be performed.
+Data Exchange Protocol, any iLEAP conformant implementation must also implement [[!PACTDX]] v2.1.0 or above. For that
+reason, the required tests in the [PACT Conformance Testing
+Checklist](https://wbcsd.github.io/pact-conformance-testing/checklist.html#required-tests) should also be performed.
 
 ## iLEAP Specific Conformance Tests ## {#ileap-specific-conformance-tests}
 
@@ -2876,7 +2927,7 @@ The following tests are specific to the iLEAP Technical Specifications:
 
 ### Test Case 001: Get ProductFootprint with ShipmentFootprint ### {#test-case-001}
 
-Tests the target host system's ability to return `ProductFootprints` with `ShipmentFootprint`s as
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `ShipmentFootprint`s as
 extensions.
 
 #### Request #### {#test-case-001-request}
@@ -2887,7 +2938,7 @@ system with a valid access token and the syntax specified in [PACT Tech Specs V2
 
 #### Expected Response #### {#test-case-001-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 Those which include `productIds` with [the format specified for ShipmentFootprints](#pcf-mapping-sf)
@@ -2896,15 +2947,18 @@ must be conformant with the Data Model specified in [[#dt-sf]]. The relevant pro
 
 ### Test Case 002: Get ProductFootprint with TOC ### {#test-case-002}
 
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `TOC`s as
+extensions.
+
 #### Request #### {#test-case-002-request}
 
-A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
+system=] with a valid access token and the syntax specified in [PACT Tech Specs V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-002-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 
@@ -2918,15 +2972,17 @@ relevant properties of the `ProductFootprint` must also be confomant with the gu
 
 ### Test Case 003: Get ProductFootprint with HOC ### {#test-case-003}
 
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `HOC`s as extensions.
+
 #### Request #### {#test-case-003-request}
 
-A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
+system=] with a valid access token and the syntax specified in [PACT Tech Specs V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-003-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 
@@ -2940,14 +2996,18 @@ relevant properties of the `ProductFootprint` must also be confomant with the gu
 
 ### Test Case 004: Get All TransportActivityData ### {#test-case-004}
 
+Tests the [=target host system=]'s ability to return all `TransportActivityData`.
+
 #### Request #### {#test-case-004-request}
 
-A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test target
-host system with a valid access token and the syntax specified in [[#action-tad-request]].
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with a valid [=access token=] and the syntax specified in [[#action-tad-request]].
+
+The access token must be obtained through the [PACT's Authentication Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested through PACT's Test Cases [001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and [002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
 
 #### Expected Response #### {#test-case-004-response}
 
-The test target host system must respond with 200 OK and a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK and a JSON body containing a list of
 `TransportActivityData`, in conformance with [[#action-tad-response]] and following the data model
 specified at [[#dt-tad]].
 
@@ -2966,151 +3026,6 @@ Issue: TBD
 ### Test Case 008: Attempt TransportActivityData with Expired Token ### {#test-case-008}
 
 Issue: TBD
-
-# Appendix D: iLEAP Conformance Definition # {#appendix-d}
-
-This appendix states the necessary and sufficient conditions for a software tool to be considered
-[=iLEAP Conformant=], i.e., to be conformant with the iLEAP Technical Specifications.
-
-Not all iLEAP Conformant tools are required to implement all [=data transactions=]. iLEAP
-Conformance is, therefore, scoped by the specific data transactions implemented. A tool that
-implements all data transactions is considered <dfn>fully conformant</dfn>.
-
-The iLEAP team is glad to certify your iLEAP conformance and provide you with materials to showcase
-it. Please make sure to read through [[#conformance-certification]] to ensure that your collect the
-necessary data in the process of meeting the requirements below.
-
-## Conformance to Data Transaction 1 ## {#txn1-conformance}
-
-A software tool is considered [=iLEAP Conformant=] with respect to [[#txn1|Data Transaction 1]] if
-and only if it
-
-- has implemented the [[!PACTDX|PACT Data Exchange Protocol v2.1.0]] or above (both the HTTP REST API and
-    the Data Model);
-- passed all [ ACT](https://act.sine.dev) Required Tests, as well as the following Conditional Test:
-    - `iLEAP Test Case 001: Get ProductFootprints with ShipmentFootprints` (enabling option `Validate
-      ShipmentFootprints (if any)`);
-- engaged in bilateral testing with at least one other software tool and (as test target) successfully completed the following Test Case:
-    - [[#test-case-001]].
-
-Please make sure to read through [[#conformance-certification]] prior to engaging in bilateral
-testing.
-
-Note: iLEAP Conformance requires a software tool to have implemented the PACT Protocol, regardless
-of whether it is PACT Conformance. It is nevertheless recommended that iLEAP Conformant tools seek
-[PACT Conformance](https://www.carbon-transparency.org/for-providers)
-
-## Conformance to Data Transaction 2 ## {#txn2-conformance}
-
-A software tool is considered [=iLEAP Conformant=] with respect to [[#txn2|Data Transaction 2]] if and only if it
-- has implemented the [[!PACTDX|PACT Data Exchange Protocol v2.1.0]] or above (both the HTTP REST API and
-    the Data Model);
-- passed all [ ACT](https://act.sine.dev) Required Tests, as well as at least one of the following Conditional Tests:
-    - `iLEAP Test Case 002: Get ProductFootprints with TOCs` (enabling option `Validate TOCs (if any)`);
-    - `iLEAP Test Case 003: Get ProductFootprints with HOCs` (enabling option `Validate HOCs (if
-      any)`);
-- engaged in bilateral testing with at least one other software tool and (as test target)
-    successfully completed at least one of the following Test Cases:
-    - [[#test-case-002]];
-    - [[#test-case-003]].
-
-Please make sure to read through [[#conformance-certification]] prior to engaging in bilateral
-testing.
-
-Note: iLEAP Conformance requires a software tool to have implemented the PACT Protocol, regardless
-of whether it is PACT Conformance. It is nevertheless recommended that iLEAP Conformant tools seek
-[PACT Conformance](https://www.carbon-transparency.org/for-providers)
-
-## Conformance to Data Transaction 3 ## {#txn3-conformance}
-
-A software tool is considered [=iLEAP Conformant=] with respect to [[#txn3|Data Transaction 3]] if and only if it
-- has implemented [Action Authenticate of the PACT Data Exchange Protol v2.1.0](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-auth) or above;
-- passed the following [ ACT](https://act.sine.dev) tests:
-    - `Test Case 001: Authentication against default endpoint`;
-    - `Test Case 002: Authentication with invalid credentials against default endpoint`;
-    - `iLEAP Test Case 004: Get All TransportActivityData` (enabling option `Test action
-        TransportActivityData (2/ileap/tad)`);
-    - `iLEAP Test Case 005: Get Filtered List of TransportActivityData` (enabling option `Test
-        action TransportActivityData (2/ileap/tad)`);
-    - `iLEAP Test Case 006: Get Limited List of TransportActivityData` (enabling option `Test action
-        TransportActivityData (2/ileap/tad)`);
-- engaged in bilateral testing with at least one other software tool and (as test target)
-    successfully completed the following Test Case:
-    - [[#test-case-004]].
-
-Please make sure to read through [[#conformance-certification]] prior to engaging in bilateral
-testing.
-
-## iLEAP Conformance Certification ## {#conformance-certification}
-
-Once all the necessary and sufficient conditions are met, please reach out to the iLEAP team
-(contact details at the top of this document), sending them a `JSON` file with the properties
-specified below:
-
-<figure id="test-result-json">
-  <table class="data">
-    <thead>
-      <tr>
-        <th>Property
-        <th>Type
-        <th>Req
-        <th>Specification
-    <tbody>
-      <tr>
-        <td>conformanceScope
-        <td>String[]
-        <td>M
-        <td>
-            The non-empty array of data transactions for which the tool wishes to be considered iLEAP Conformant. The
-            array MUST contain at least one of the following values:
-            - `"txn1"`
-            - `"txn2"`
-            - `"txn3"`
-
-      <tr>
-        <td>actBasepath
-        <td>String
-        <td>M
-        <td>The URL basepath used in [ ACT](https://act.sine.dev).
-
-      <tr>
-        <td>actBasepath
-        <td>String
-        <td>M
-        <td>The URL basepath used in [ ACT](https://act.sine.dev).
-
-      <tr>
-        <td>actDate
-        <td>String
-        <td>M
-        <td>The date of the successful [ ACT](https://act.sine.dev) test in the format `YYYY-MM-DD`, conforming to ISO 8601.
-
-      <tr>
-        <td>testingHostSystem
-        <td>String
-        <td>M
-        <td>The company name of the testing host system.
-
-      <tr>
-        <td>testDate
-        <td>String
-        <td>M
-        <td>The date of the successful [ ACT](https://act.sine.dev) test in the format `YYYY-MM-DD`, conforming to ISO 8601.
-
-      <tr>
-        <td>iLeapTestCases
-        <td>String[]
-        <td>M
-        <td>
-            The non-empty array of iLEAP tests cases successfully completed during bi-lateral testing. The
-            array MUST contain at least one of the following values:
-            - `"test-case-001"` referring to [[#test-case-001]]
-            - `"test-case-002"` referring to [[#test-case-002]]
-            - `"test-case-003"` referring to [[#test-case-003]]
-            - `"test-case-004"` referring to [[#test-case-004]]
-  </table>
-  <figcaption>Test result JSON properties</figcaption>
-</figure>
 
 <pre class=biblio>
  {
