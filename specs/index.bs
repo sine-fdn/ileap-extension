@@ -2538,13 +2538,19 @@ iLEAP Conformance is achieved by successfully completing the Test Cases indicate
 
       <tr>
         <td style="text-align: left">[[#test-case-004]]
-        <td rowspan="3"><dfn>iLEAP Activity Data Conformance</dfn>
+        <td rowspan="5"><dfn>iLEAP Activity Data Conformance</dfn>
 
       <tr>
         <td style="text-align: left">[[#test-case-005]]
 
       <tr>
         <td style="text-align: left">[[#test-case-006]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-007]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-008]]
 
   </table>
   <figcaption>iLEAP Conformance Matrix</figcaption>
@@ -3021,7 +3027,7 @@ A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoin
 host system=] with a valid [=access token=] and the syntax specified in [[#action-tad-request]].
 
 The request must include a query parameter [=Filter=]. Any property can be used as a filter, but we
-recomen using {{Transport Mode}}, iterating over all possible values:
+recomen using {{TransportMode}}, iterating over all possible values:
 
 - `GET /2/ileap/tad?mode=Road HTTP/1.1`
 - `GET /2/ileap/tad?mode=Rail HTTP/1.1`
@@ -3061,11 +3067,37 @@ specified at [[#dt-tad]].
 
 ### Test Case 007: Attempt TransportActivityData with Invalid Token ### {#test-case-007}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to handle a `TransportActivityData` request with an invalid
+access token.
+
+#### Request #### {#test-case-007-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with an invalid access token and the syntax specified in [[#action-tad-request]].
+
+#### Expected Response #### {#test-case-007-response}
+
+The test [=target host system=] must respond with a 401 Unauthorized status code.
 
 ### Test Case 008: Attempt TransportActivityData with Expired Token ### {#test-case-008}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to handle a `TransportActivityData` request with an expired
+access token.
+
+#### Request #### {#test-case-008-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with an expired access token and the syntax specified in [[#action-tad-request]].
+
+The access token must have been obtained through the [PACT's Authentication
+Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested
+through PACT's Test Cases
+[001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and
+[002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-008-response}
+
+The test [=target host system=] must respond with a 401 Unauthorized status code.
 
 <pre class=biblio>
  {
