@@ -187,13 +187,6 @@ status tags are:
     Provider of software, tools, services, or programs that support companies in
     calculating and reporting logistics GHG emissions conforming to these technical specifications.
 
-: <dfn>Bilateral Test</dfn>
-::
-    A testing process where two indepedently developed and operated [=host systems=]
-    test their implementations against each other to ensure interoperability and conformance ([[#conformance]]).
-
-    Of the two parties involved, one acts as <dfn>target host system</dfn> and the
-    other as <dfn>testing host system</dfn>.
 
 # Business Cases # {#business-cases}
 
@@ -2521,7 +2514,7 @@ For each kind of iLEAP Conformance, a host system achieves conformity by
 
 1. realizing the normative statements and relevant test cases referenced
     in [[#ileap-conformance-matrix]] below,
-2. successfully passing [=Bilateral Testing=]
+2. successfully passing Bilateral Testing ([[#conformity-bilateral-testing]])
 3. succesfully passing the [Automated Conformance Testing](https://act.sine.dev)
 
 It is RECOMMENDED for host systems to conform to both kinds of [=iLEAP conformance=].
@@ -2575,6 +2568,21 @@ as shown here.
   </table>
   <figcaption>iLEAP Conformance Matrix</figcaption>
 </figure>
+
+
+## Bilateral Testing ## {#conformity-bilateral-testing}
+
+A Bilateral Test is an interoperability test where two different [=host system=]
+implementations participate to verify conformance ([[#conformance]]) and their
+ability to work together.
+
+One system acts as the [=data owner=]. It is called the <dfn>target host system</dfn> and is the system under test.
+The second system acts as the testing party.
+
+Note:
+  The objective of Bilateral Testing is to ensure that systems can effectively
+  communicate despite having independent codebases.
+
 
 ## Submission ## {#conformity-submission}
 
