@@ -187,8 +187,6 @@ status tags are:
     Provider of software, tools, services, or programs that support companies in
     calculating and reporting logistics GHG emissions conforming to these technical specifications.
 
-: <dfn>Bilateral Test</dfn>
-:: A testing process where two [=host systems=] test their implementations      against each other to ensure interoperability. Of the two parties involved, one acts as <dfn>target host system</dfn> and the other as <dfn>testing host system</dfn>. The latter makes requests to which the former must respond. See also [[#appendix-c]]
 
 # Business Cases # {#business-cases}
 
@@ -2503,20 +2501,35 @@ the links above for further details.
 Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
 properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
-# <dfn>iLEAP Conformance</dfn> # {#conformance}
+# Conformance # {#conformance}
 
-iLEAP Conformance refers to the status of a software tool that implements these Technical
-Specifications and is interoperable with any other tool in the iLEAP ecosystem.
+The iLEAP Technical Specifications are designed to be incrementally adopted and
+realized in [=host systems=] for different stakeholder groups. Therefore,
+there are 2 kinds of <dfn>iLEAP conformance</dfn> defined:
 
-There are two kinds of iLEAP Conformance:
-- [=iLEAP Emissions Data Conformance=]
-- [=iLEAP Activity Data Conformance=]
+1. [=iLEAP Emissions Data Conformance=]
+1. [=iLEAP Activity Data Conformance=]
 
-We strongly encourage all software tools to strive for both types of conformance.
+For each kind of iLEAP Conformance, a host system achieves conformity by
 
-iLEAP Conformance is achieved by successfully completing the Test Cases indicated below, **both** through [ ACT](https://act.sine.dev) and through [=Bilateral Testing=].
+1. realizing the normative statements and relevant test cases referenced
+    in [[#ileap-conformance-matrix]] below,
+2. successfully passing Bilateral Testing ([[#conformity-bilateral-testing]])
+3. succesfully passing the [Automated Conformance Testing](https://act.sine.dev)
 
-<figure id="ileap-conformance-matrix">
+It is RECOMMENDED for host systems to conform to both kinds of [=iLEAP conformance=].
+
+Sections marked as non-normative, all authoring guidelines, diagrams, examples,
+and notes in this specification are non-normative. Everything else in this
+specification is normative.
+
+The key words MAY, MUST, MUST NOT, OPTIONAL, RECOMMENDED, REQUIRED, SHOULD,
+and SHOULD NOT in this document are to be interpreted as described in
+[[!RFC2119]] [[!RFC8174]] when, and only when, they appear in all capitals,
+as shown here.
+
+## Conformance Matrix ## {#ileap-conformance-matrix}
+<figure>
   <table class="complex data">
     <thead>
       <tr>
@@ -2556,11 +2569,29 @@ iLEAP Conformance is achieved by successfully completing the Test Cases indicate
   <figcaption>iLEAP Conformance Matrix</figcaption>
 </figure>
 
-Once all the relevant tests are successfully completed, we kindly request software providers to
-reach out to the iLEAP team (contacts at the top of this document). We will offer materials to help
-promote the tool as iLEAP Conformant.
 
-Note: iLEAP Emissions Data Conformance requires the software tool to have implemented PACT. [PACT Conformance](https://www.carbon-transparency.org/for-providers) is not required, but we recommend seeking it.
+## Bilateral Testing ## {#conformity-bilateral-testing}
+
+A Bilateral Test is an interoperability test where two different [=host system=]
+implementations participate to verify conformance ([[#conformance]]) and their
+ability to work together.
+
+One system acts as the [=data owner=]. It is called the <dfn>target host system</dfn> and is the system under test.
+The second system acts as the testing party.
+
+Note:
+  The objective of Bilateral Testing is to ensure that systems can effectively
+  communicate despite having independent codebases.
+
+
+## Submission ## {#conformity-submission}
+
+Note: non-normative
+
+Once a [=host system=] achieved [=iLEAP conformance=] in 1 or all kinds of iLEAP conformance,
+the implementer is requested to reach out to the authors of this Technical Specifications to
+apply for additional support, materials, and marketing opportunities.
+
 
 # Appendix A: Changelog # {#changelog}
 
