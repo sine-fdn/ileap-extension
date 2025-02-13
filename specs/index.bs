@@ -2517,6 +2517,11 @@ For each kind of iLEAP Conformance, a host system achieves conformity by
 2. successfully passing Bilateral Testing ([[#conformity-bilateral-testing]])
 3. succesfully passing the [Automated Conformance Testing](https://act.sine.dev)
 
+To achieve iLEAP Emissions Data Conformance, [=host systems=] are further REQUIRED to support the
+following features:
+1. fetching <{TAD}> from another host system and
+2. using it to generate <{TOC}>, <{HOC}>, or <{ShipmentFootprint}> data.
+
 It is RECOMMENDED for host systems to conform to both kinds of [=iLEAP conformance=].
 
 Sections marked as non-normative, all authoring guidelines, diagrams, examples,
@@ -2528,7 +2533,12 @@ and SHOULD NOT in this document are to be interpreted as described in
 [[!RFC2119]] [[!RFC8174]] when, and only when, they appear in all capitals,
 as shown here.
 
+Advisement: Currently, iLEAP Conformance ensures interoperability and syntactic correctness. Future
+updates will extend coverage to include semantic correctness, ensuring that emissions calculations
+are performed accurately in end-to-end scenarios.
+
 ## Conformance Matrix ## {#ileap-conformance-matrix}
+
 <figure>
   <table class="complex data">
     <thead>
