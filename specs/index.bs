@@ -140,7 +140,6 @@ status tags are:
 : <dfn>Transport Service User</dfn>
 :: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
 
-
 ## Auxillary Definitions ## {#auxillary-definitions}
 
 : <dfn>Access Token</dfn>
@@ -2502,6 +2501,108 @@ the links above for further details.
 Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
 properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
+# Conformance # {#conformance}
+
+The iLEAP Technical Specifications are designed to be incrementally adopted and
+realized in [=host systems=] for different stakeholder groups. Therefore,
+there are 2 kinds of <dfn>iLEAP conformance</dfn> defined:
+
+1. [=iLEAP Emissions Data Conformance=]
+1. [=iLEAP Activity Data Conformance=]
+
+For each kind of iLEAP Conformance, a host system achieves conformity by
+
+1. realizing the normative statements and relevant test cases referenced
+    in [[#ileap-conformance-matrix]] below,
+2. successfully passing Bilateral Testing ([[#conformity-bilateral-testing]])
+3. succesfully passing the [Automated Conformance Testing](https://act.sine.dev)
+
+To achieve iLEAP Emissions Data Conformance, [=host systems=] are further REQUIRED to support the
+following features:
+1. fetching <{TAD}> from another host system and
+2. using it to generate <{TOC}>, <{HOC}>, or <{ShipmentFootprint}> data.
+
+It is RECOMMENDED for host systems to conform to both kinds of [=iLEAP conformance=].
+
+Sections marked as non-normative, all authoring guidelines, diagrams, examples,
+and notes in this specification are non-normative. Everything else in this
+specification is normative.
+
+The key words MAY, MUST, MUST NOT, OPTIONAL, RECOMMENDED, REQUIRED, SHOULD,
+and SHOULD NOT in this document are to be interpreted as described in
+[[!RFC2119]] [[!RFC8174]] when, and only when, they appear in all capitals,
+as shown here.
+
+Advisement: Currently, iLEAP Conformance ensures interoperability and syntactic correctness. Future
+updates will extend coverage to include semantic correctness, ensuring that emissions calculations
+are performed accurately in end-to-end scenarios.
+
+## Conformance Matrix ## {#ileap-conformance-matrix}
+
+<figure>
+  <table class="complex data">
+    <thead>
+      <tr>
+        <th style="text-align: left">Test Case
+        <th style="text-align: left">Conformance
+    <tbody >
+      <tr>
+        <td style="text-align: left">All [PACT Required Test Cases](https://wbcsd.github.io/pact-conformance-testing/checklist.html#required-tests)
+        <td rowspan="4"><dfn>iLEAP Emissions Data Conformance</dfn>
+
+      <tr>
+        <td style="text-align: left">[[#test-case-001]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-002]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-003]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-004]]
+        <td rowspan="5"><dfn>iLEAP Activity Data Conformance</dfn>
+
+      <tr>
+        <td style="text-align: left">[[#test-case-005]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-006]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-007]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-008]]
+
+  </table>
+  <figcaption>iLEAP Conformance Matrix</figcaption>
+</figure>
+
+
+## Bilateral Testing ## {#conformity-bilateral-testing}
+
+A Bilateral Test is an interoperability test where two different [=host system=]
+implementations participate to verify conformance ([[#conformance]]) and their
+ability to work together.
+
+One system acts as the [=data owner=]. It is called the <dfn>target host system</dfn> and is the system under test.
+The second system acts as the testing party.
+
+Note:
+  The objective of Bilateral Testing is to ensure that systems can effectively
+  communicate despite having independent codebases.
+
+
+## Submission ## {#conformity-submission}
+
+Note: non-normative
+
+Once a [=host system=] achieved [=iLEAP conformance=] in 1 or all kinds of iLEAP conformance,
+the implementer is requested to reach out to the authors of this Technical Specifications to
+apply for additional support, materials, and marketing opportunities.
+
+
 # Appendix A: Changelog # {#changelog}
 
 ## Version 0.2.1-20250129 (2025-01-29) ## {#version-20250129}
@@ -2863,9 +2964,9 @@ In order to test the conformance of an iLEAP implementation, the following tests
 ## PACT Conformance Tests ## {#pact-conformance-tests}
 
 Since the iLEAP Technical Specifications were conceived as an extension to the PACT Data Model and
-Data Exchange Protocol, any iLEAP conformant implementation must also be PACT Conformant. For that
-reason, the tests in the [PACT Conformance Testing
-Checklist](https://wbcsd.github.io/pact-conformance-testing/checklist.html) must be performed.
+Data Exchange Protocol, any iLEAP conformant implementation must also implement [[!PACTDX]] v2.1.0 or above. For that
+reason, the required tests in the [PACT Conformance Testing
+Checklist](https://wbcsd.github.io/pact-conformance-testing/checklist.html#required-tests) should also be performed.
 
 ## iLEAP Specific Conformance Tests ## {#ileap-specific-conformance-tests}
 
@@ -2873,7 +2974,7 @@ The following tests are specific to the iLEAP Technical Specifications:
 
 ### Test Case 001: Get ProductFootprint with ShipmentFootprint ### {#test-case-001}
 
-Tests the target host system's ability to return `ProductFootprints` with `ShipmentFootprint`s as
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `ShipmentFootprint`s as
 extensions.
 
 #### Request #### {#test-case-001-request}
@@ -2884,7 +2985,7 @@ system with a valid access token and the syntax specified in [PACT Tech Specs V2
 
 #### Expected Response #### {#test-case-001-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 Those which include `productIds` with [the format specified for ShipmentFootprints](#pcf-mapping-sf)
@@ -2893,15 +2994,18 @@ must be conformant with the Data Model specified in [[#dt-sf]]. The relevant pro
 
 ### Test Case 002: Get ProductFootprint with TOC ### {#test-case-002}
 
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `TOC`s as
+extensions.
+
 #### Request #### {#test-case-002-request}
 
-A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
+system=] with a valid access token and the syntax specified in [PACT Tech Specs V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-002-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 
@@ -2915,15 +3019,17 @@ relevant properties of the `ProductFootprint` must also be confomant with the gu
 
 ### Test Case 003: Get ProductFootprint with HOC ### {#test-case-003}
 
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `HOC`s as extensions.
+
 #### Request #### {#test-case-003-request}
 
-A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
+system=] with a valid access token and the syntax specified in [PACT Tech Specs V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-003-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 
@@ -2937,33 +3043,102 @@ relevant properties of the `ProductFootprint` must also be confomant with the gu
 
 ### Test Case 004: Get All TransportActivityData ### {#test-case-004}
 
+Tests the [=target host system=]'s ability to return all `TransportActivityData`.
+
 #### Request #### {#test-case-004-request}
 
-A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test target
-host system with a valid access token and the syntax specified in [[#action-tad-request]].
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with a valid [=access token=] and the syntax specified in [[#action-tad-request]].
+
+The access token must be obtained through the [PACT's Authentication Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested through PACT's Test Cases [001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and [002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
 
 #### Expected Response #### {#test-case-004-response}
 
-The test target host system must respond with 200 OK and a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK and a JSON body containing a list of
 `TransportActivityData`, in conformance with [[#action-tad-response]] and following the data model
 specified at [[#dt-tad]].
 
 ### Test Case 005: Get Filtered List of TransportActivityData ### {#test-case-005}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to return a filtered list of `TransportActivityData`.
+
+#### Request #### {#test-case-005-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with a valid [=access token=] and the syntax specified in [[#action-tad-request]].
+
+The request must include a query parameter [=Filter=]. Any property can be used as a filter, but we
+recomen using {{TransportMode}}, iterating over all possible values:
+
+- `GET /2/ileap/tad?mode=Road HTTP/1.1`
+- `GET /2/ileap/tad?mode=Rail HTTP/1.1`
+- `GET /2/ileap/tad?mode=Air HTTP/1.1`
+- `GET /2/ileap/tad?mode=Sea HTTP/1.1`
+- `GET /2/ileap/tad?mode=InlandWaterway HTTP/1.1`
+
+The access token must be obtained through the [PACT's Authentication Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested through PACT's Test Cases [001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and [002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-005-response}
+
+For at least one filter, the test [=target host system=] must respond with 200 OK and a JSON body
+containing a list of `TransportActivityData` matching the filter, in conformance with
+[[#action-tad-response]] and following the data model specified at [[#dt-tad]].
 
 ### Test Case 006: Get Limited List of TransportActivityData ### {#test-case-006}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to return a limited list of `TransportActivityData`.
+
+#### Request #### {#test-case-006-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test
+[=target host system=] with a valid [=access token=] and the syntax specified in
+[[#action-tad-request]]. The request must include a query parameter [=Limit=] with value `1`.
+
+The access token must be obtained through the [PACT's Authentication
+Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested
+through PACT's Test Cases
+[001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and
+[002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-006-response}
+
+The test [=target host system=] must respond with 200 OK and a JSON body containing one or less
+`TransportActivityData`, in conformance with [[#action-tad-response]] and following the data model
+specified at [[#dt-tad]].
 
 ### Test Case 007: Attempt TransportActivityData with Invalid Token ### {#test-case-007}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to handle a `TransportActivityData` request with an invalid
+access token.
+
+#### Request #### {#test-case-007-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with an invalid access token and the syntax specified in [[#action-tad-request]].
+
+#### Expected Response #### {#test-case-007-response}
+
+The test [=target host system=] must respond with a 401 Unauthorized status code.
 
 ### Test Case 008: Attempt TransportActivityData with Expired Token ### {#test-case-008}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to handle a `TransportActivityData` request with an expired
+access token.
 
+#### Request #### {#test-case-008-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with an expired access token and the syntax specified in [[#action-tad-request]].
+
+The access token must have been obtained through the [PACT's Authentication
+Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested
+through PACT's Test Cases
+[001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and
+[002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-008-response}
+
+The test [=target host system=] must respond with a 401 Unauthorized status code.
 
 <pre class=biblio>
  {
