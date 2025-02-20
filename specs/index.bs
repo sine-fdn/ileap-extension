@@ -10,7 +10,7 @@ Editor: Violetta Matzoros, https://www.smartfreightcentre.org, violetta.matzoros
 Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rubiodomingo@smartfreightcentre.org
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
-Repository: sine-fdn/ileap-extension
+Repository: sine-fdn/ileap-extensiondfd
 Abstract: This document outlines the semantics for logistics emissions data exchange as part of the SFC iLEAP Project. Its format is based on the PACT Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the PACT Network. Implementing this specification enables stakeholders within the supply chain to exchange data on logistics emissions. This facilitates the tracking of logistics emissions and the computation of their contribution to product carbon footprints.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
