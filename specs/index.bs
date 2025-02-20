@@ -20,10 +20,10 @@ Local Boilerplate: header yes
 
 # Introduction # {#introduction}
 
-- Companies have a growing need to calculate and report logistics emissions data with greater accuracy and transparency. They want to move from standard and modeled data to primary data that accurately reflects their supply chain emissions.
+- Companies have a growing need to calculate and report logistics emissions with greater accuracy and transparency. They want to move from default and modeled data to primary data that accurately reflects their supply chain emissions.
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
-- Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the PACT Framework and PACT Technical Specifications. It conforms to the basic semantics framework for the [=SFC=] Exchange Network project.
-- Adoption of this specification will enable the exchange of data between different actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
+- Based on the [[!GLEC]] Framework and [[!ISO14083]], these technical specifications adopt the format established by the PACT Framework and PACT Technical Specifications. It conforms to the basic semantics framework for the [=SFC=] Exchange Network project.
+- Adopting these specifications enables the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
 
 Advisement: The iLEAP Technical Specifications will be continuously refined as part of the ongoing iLEAP project. Significant changes may be introduced as the project progresses.
 
@@ -32,17 +32,17 @@ Advisement: The iLEAP Technical Specifications will be continuously refined as p
 
 This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
 
-1. Methodology for the calculation of logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083]].
+1. Methodology for the calculation of logistics-related emissions, specified in the [[!GLEC]] Framework and [[!ISO14083]].
 2. Black Carbon (Accounting).
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others).
 4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project.
 5. How to establish contractual obligations between parties for the provision of data.
 6. How to perform data audits and verification.
 7. Market based approach for electricity emissions accounting.
-8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
-9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is supported, but detailed parameters for modelling are excluded from the current version.
-10. Modes of transport cable car and pipelines. These could be considered for future versions of these technical specifications.
-11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
+8. Book and claim methods for environmental attribute tracking separate from physical delivery. These will be incorporated in future versions of these technical specifications.
+9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
+10. Modes of transport cable car and pipelines. These may be incorporated in future versions of these technical specifications.
+11. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
 
 ## Document Statuses ## {#document-statuses}
 
@@ -94,7 +94,7 @@ status tags are:
 :: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
 
 : Hub Operation Category (<dfn>HOC</dfn>)
-:: A Hub Operation Category is a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
+:: Represents a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Primary Data</dfn>
 ::
@@ -107,12 +107,12 @@ status tags are:
 : <dfn>Shipment</dfn>
 ::
     A shipment refers to the goods in a commercial transaction between a seller and a buyer.
-    It encompasses the consignments transported as part of this transaction via a transport
+    Refers to the consignments transported as part of this transaction via a transport
     chain from the consignor to the consignee. See [[!ISO14083]], Section 3.1.20.
 
 : <dfn>Shortest Feasible Distance</dfn> (SFD)
 ::
-    It represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework.
+    Represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework.
 
 : <dfn>Transport Activity</dfn>
 ::
@@ -123,13 +123,13 @@ status tags are:
 :: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]. A TC corresponds to a shipment.
 
 : <dfn>Transport Chain Element</dfn> (TCE)
-:: A Transport Chain Element is one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
+:: Represents one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
 
 : <dfn>Transport Distance</dfn>
 :: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27.
 
 : Transport Operation Category (<dfn id='toc-dfn'>TOC</dfn>)
-:: A Transport Operation Category is a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
+:: Represents a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Transport Operator</dfn>
 :: Refers to the party that carries out the transport service. See [[!ISO14083]], Section 3.1.30.
@@ -206,7 +206,7 @@ framework for delineating subsequent [[#txns|data transactions]] and the [[#data
 ## Quantification of (Avoided) Emissions ## {#business-case-1}
 
 A [=Transport Service User=] requests its [=Transport Service Organizers=] or [=Transport Operators=] to provide it with the GHG emissions of [=Shipments=].
-The transport service user is particularly interested in having access to accurate emission and emission intensity values based on the measurement of actual data ("primary data").
+The transport service user is interested in accessing accurate emission and emission intensity values based on actual measurements ("primary data").
 
 Accurate logistics emissions values also enable the Transport Service User to compare logistics emissions and the resulting reductions from operational measures.
 
@@ -227,14 +227,14 @@ Data Transaction #2 [[#txn2]] enable this business case.
 
 Consider the scenario where a [=Transport Operator=], and possibly also [=Transport Service Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]].
 
-In such a case, the Party may choose to collect [=Transport Activity Data=], that is, information related to a single shipment including mass or energy carriers used.
+In such a case, the party may choose to collect [=Transport Activity Data=], that is, information related to a single shipment including mass, distance and energy carriers used.
 
-After collecting Transport Activity Data, the Party can then contract a third party, such as a [=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
+After collecting Transport Activity Data, the party can then contract a third party, such as a [=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
 
-This business case is particularly relevant for SMEs to reduce the barrier to entry for logistics emissions reporting.
+This business case is particularly relevant for SMEs to reduce the entry barrier for logistics emissions reporting.
 
 iLEAP generally simplifies data collection efforts for the parties involved in this business case.
-For instance, each party needs to collect the activity data only once. Afterwards, the Party can make the activity data available to multiple parties (see [[#txn3]]) or for different purposes, including business cases beyond emissions calculations.
+For instance, each party needs to collect the activity data only once. This data can be then made available to multiple parties for different purposes, including business cases beyond emissions calculations.
 
 Data Transaction #3 ([[#txn3]]) enables this business case.
 
