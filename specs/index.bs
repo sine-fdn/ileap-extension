@@ -1619,6 +1619,7 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
 
             : `MJ`
             :: For MegaJoules
+
             Advisement: The enumeration of energy consumption units will be evolved in future revisions.
             Account for this when implementing the validation of this property.
       <tr>
@@ -1647,6 +1648,9 @@ movement or heat and to generate chemical or physical processes as per the [[!GL
 
 It MUST be encoded as a String using one of the following values:
 
+Advisement: The enumeration of energy carrier types will be evolved in future revisions.
+Account for this when implementing the validation of this property.
+
 : Diesel
 :: Refers to diesel
 : HVO
@@ -1671,8 +1675,8 @@ It MUST be encoded as a String using one of the following values:
 :: Refers to methanol
 : Electric
 :: Refers to electricity
-Advisement: The enumeration of energy carrier types will be evolved in future revisions.
-Account for this when implementing the validation of this property.
+
+
 
 
 ### Data Type <dfn>Feedstock</dfn> ### {#dt-feedstock}
@@ -1709,6 +1713,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
             :: Refers to renewable sources of electricity
             : Cooking oil
             :: Refers to cooking (e.g., vegetable) oil
+
             Advisement: The enumeration of feedstocks will be evolved in future revisions.
             Account for this when implementing the validation of this property.
 
@@ -2484,7 +2489,7 @@ properties that cannot be derived from `HOC` CAN be populated in a best-effort m
 
 - changes to <{TAD}> data type which are "backwards compatible" with the previous version:
     1. addition of optional property <{TAD/energyCarriers}> as a replacement for
-    2. the now deprecated properties <{TAD/energyCarrier}> and <{TAD/feedstocks}>
+    2. the now deprecated properties `TAD/energyCarrier` and `TAD/feedstocks`
 
 
 ## Version 0.2.1-20241211 (2024-12-11) ## {#version-20241211}
