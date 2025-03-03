@@ -227,7 +227,7 @@ Data Transaction #2 [[#txn2]] enable this business case.
 
 Consider the scenario where a [=Transport Operator=], and possibly also [=Transport Service Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]].
 
-In such a case, the party may choose to collect [=Transport Activity Data=], that is, information related to a single shipment including mass, distance and energy carriers used.
+In such a case, the party may choose to collect [=Transport Activity Data=], that is, information related to a single shipment including mass, distance, and energy carriers used.
 
 After collecting Transport Activity Data, the party can then contract a third party, such as a [=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
 
