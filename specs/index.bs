@@ -1488,7 +1488,7 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>lng</dfn>
         <td>[=Decimal=]
         <td>O
-        <td>Longitude of the location.  If <{Location/lat}> is defined, so <{Location/lng}> MUST be defined.
+        <td>Longitude of the location.  If <{Location/lat}> is defined, <{Location/lng}> MUST be defined.
 
     </table>
     <figcaption><{GLECDistance}> properties</figcaption>
