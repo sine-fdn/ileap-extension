@@ -270,7 +270,7 @@ A <dfn>data transaction</dfn> is an abstraction for the exchange of data between
 It facilitates interoperability between different parties by explaining the context and their intention(s).
 
 Each transaction combines the iLEAP data model ([[#data-model]]) with the PACT
-Data Exchange Protocol ([[#pcf-mapping]]) enabling [=host systems=] interoperability.
+Data Exchange Protocol ([[#pcf-mapping]]), enabling interoperability between [=host systems=].
 
 The following diagram shows how the three data transactions (defined below) are related:
 
