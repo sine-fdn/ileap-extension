@@ -35,7 +35,7 @@ This specifcation does not cover the following topics or aspects as they are cov
 1. Methodology for the calculation of logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083]].
 2. Black Carbon (Accounting).
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others).
-4. Pilot decentralized data exchange following data space governance principles, as covered in the (SFC Data Exchange Network project)[https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network].
+4. Pilot decentralized data exchange following data space governance principles, as covered in the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network).
 5. How to establish contractual obligations between parties for the provision of data.
 6. How to perform data audits and verification.
 7. Market based approach for electricity emissions accounting.
