@@ -239,7 +239,7 @@ For instance, each party needs to collect the activity data only once. Afterward
 Data Transaction #3 ([[#txn3]]) enables this business case.
 
 
-## Potential additional Business Cases ## {#txns-appendix}
+## Additional Business Cases ## {#txns-appendix}
 
 
 : Disclosure of Logistics Emissions as part of PCFs
@@ -411,8 +411,7 @@ can calculate the logistics emissions of the shipment by
 
 1. collecting the <{TCE|TCEs}> from `Z` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database.
 1. `S` can further verify the <{TCE|TCEs}> by collecting the <{TOC|TOCs}> from `Z` using [[#txn2]].
-1. To compute the logistics emissions, `Z` can form the [=TC=] from the collected <{TCE|TCEs}> by taking the <{TCE|TCEs}> of step 1 and
-    calculating the logistics emissions for this shipment, following the [[!GLEC]] Framework and [[!ISO14083]].
+1. To compute the logistics emissions, `Z` can add up the <{TCE|TCEs}> from step 1.
 
 
 ## Example HTTP Calls ## {#example-http}
@@ -622,8 +621,8 @@ Operators=] who cannot yet provide <{ShipmentFootprint|ShipmentFootprints}>, <{T
 or more [=Transport Chain Elements=] (encoded as <{TCE|TCEs}>)
 for a single [=shipment=], from a single entity (a [=Transport Operator=] or a [=Transport Service Organizer=]).
 
-By collecting 1 or more <{TCE|TCEs}> for a shipment from [=Transport Operators=] and [=Transport Service Organizer=],
-a [=Transport Service User=] can construct the <{ShipmentFootprint}>. The <{ShipmentFootprint}> corresponds to the logistics emissions related to a full Transport Chain ([=TC=]).
+By collecting 1 or more <{TCE|TCEs}> for a shipment from [=Transport Operators=] and [=Transport Service Organizers=],
+a [=Transport Service User=] can build the <{ShipmentFootprint}>. The <{ShipmentFootprint}> corresponds to the logistics emissions related to a full Transport Chain ([=TC=]).
 
 To calculate a ShipmentFootprint, the [=Transport Service User=] MUST
 
@@ -657,7 +656,7 @@ A <{ShipmentFootprint}> has the following properties:
         <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and any packaging provided by the [=Transport Service User=].
       <tr>
         <td><dfn>numberOfItems</dfn>
-        <td>String
+        <td>Number
         <td>O
         <td>The number of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of.
       <tr>
@@ -709,9 +708,9 @@ If the property is defined and the array is empty, the current TCE MUST be the f
   A [=Transport Service User=] procured the shipment of 2 containers to Rotterdam through a [=Transport Service Organizer=]. The organizer then makes a
   <{ShipmentFootprint}> available to the [=Transport Service User=], consisting of the following TCEs:
 
-  1. two TCEs with IDs `tce1234` and `tce567` for the first leg of the shipment, which is the transport of the 2 containers from the warehouse to the port.
+  1. Two TCEs with IDs `tce1234` and `tce567` for the first leg of the shipment comprising the transport of the 2 containers from the warehouse to the port.
       For both TCEs, <{TCE/prevTceIds}> must equal `[]` (the empty array).
-  2. one TCE with ID `tce890` for the second leg of the shipment, which is the transport of the 2 containers from the port in Shanghai to the port of Rotterdam.
+  2. One TCE with ID `tce890` for the second leg of the shipment, which is the transport of the 2 containers from the port in Shanghai to the port of Rotterdam.
       For this TCE, <{TCE/prevTceIds}> must equal `["tce1234", "tce567"]`.
   3. And, last but not least, another TCE with ID `tceABC` for the hub operations at Rotterdam. For this TCE, <{TCE/prevTceIds}> must equal `["tce890"]`.
 
@@ -781,7 +780,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td><dfn>consignmentId</dfn>
         <td>String
         <td>O
-        <td>The [=consignment id=] of the consignment of the consignment corresponding to this <{TCE}>.
+        <td>The [=consignment id=] of the consignment of corresponding to this <{TCE}>.
 
       <tr>
         <td><dfn>mass</dfn> : [=Decimal=]
@@ -861,7 +860,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>String
         <td>O
         <td>
-            Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties. Unterstanding who pays for the shipment can help identify the Scope3 Category in which each party has to report their emissions.
+            Incoterms are a set of internationally recognized rules defining the responsbilities of sellers and buyer in relation to the logistics activities between the parties.
 
             If defined, the value of this property MUST be one of the following:
             : EXW
