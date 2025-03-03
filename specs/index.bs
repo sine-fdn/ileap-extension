@@ -364,7 +364,7 @@ The following hypothetical parties are involved:
 ::
     A [=Transport Operator=] responsible for the first leg of the shipment.
 
-    This Operator has a [=host system=] which is capable of calculating <{TCE|TCE}> and <{TOC|TOC}> data.
+    This Operator has a [=host system=] which is capable of calculating <{TCE}> and <{TOC}> data.
 
     Through this, the operator can make [=Transport Chain Element=]-level data available to the
     Transport Service Organizer `Z`, which `Z` can fetch using Transaction 1 ([[#txn1]]).
