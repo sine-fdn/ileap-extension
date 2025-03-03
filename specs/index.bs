@@ -1483,7 +1483,7 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>lat</dfn>
         <td>[=Decimal=]
         <td>O
-        <td>Latitude of the location. If <{Location/lng}> is defined, so <{Location/lat}> MUST be defined.
+        <td>Latitude of the location. If <{Location/lng}> is defined, <{Location/lat}> MUST be defined.
       <tr>
         <td><dfn>lng</dfn>
         <td>[=Decimal=]
