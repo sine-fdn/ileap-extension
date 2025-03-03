@@ -329,7 +329,7 @@ The [=Transport Service Organizer=] or [=Transport Service User=] CAN then retri
 
 Note:
       This data transaction is considered necessary by logistics parties, especially for SMEs, lacking the capabilities to report curated emissions data. 
-      Through this transaction they can provide activity data to their customers
+      Through this transaction they can provide activity data to their customers.
 
 # End-to-End Example # {#example}
 
