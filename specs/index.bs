@@ -157,7 +157,7 @@ status tags are:
 :: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
 
 : Data Transaction
-:: See [[#txns]]
+:: See [[#txns]].
 
 : <dfn>Host System</dfn>
 :: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
