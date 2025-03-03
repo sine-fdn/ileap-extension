@@ -1109,7 +1109,7 @@ The Data Type <{TOC}> has the following properties:
             : `TEUkm`
             :: For sea and inland waterways.
 
-            : tkm
+            : `tkm`
             :: For everything else.
 
             Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
