@@ -3075,7 +3075,7 @@ A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoin
 host system=] with a valid [=access token=] and the syntax specified in [[#action-tad-request]].
 
 The request must include a query parameter [=Filter=]. Any property can be used as a filter, but we
-recomen using {{TransportMode}}, iterating over all possible values:
+recomend using {{TransportMode}}, iterating over all possible values:
 
 - `GET /2/ileap/tad?mode=Road HTTP/1.1`
 - `GET /2/ileap/tad?mode=Rail HTTP/1.1`
