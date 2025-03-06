@@ -1836,6 +1836,7 @@ Upon a [=host system=] returning a [=pagination link=]
 GET <l>[=Subpath=]</l>/2/ileap/tad?<l>[=Filter=]</l>&<l>[=Limit=]</l> HTTP/1.1
 host: <l>[=Hostname=]</l>
 authorization: Bearer <l>[=BearerToken=]</l>
+content-type: application/json
 </pre>
 
 : <dfn>Subpath</dfn>
