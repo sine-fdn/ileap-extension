@@ -3113,6 +3113,15 @@ The test [=target host system=] must respond with 200 OK and a JSON body contain
 `TransportActivityData`, in conformance with [[#action-tad-response]] and following the data model
 specified at [[#dt-tad]].
 
+If a [=pagination link=] is returned, it must conform to the syntax specified in
+[[#action-tad-response]]. Upon calling that link, the [=target host system=] must respond wih 200 OK
+and a JSON body containing one or more `TransportActivityData`.
+
+If no [=pagination link=] is returned, a GET request sent to `/2/ileap/tad` (without query parameter
+[=Limit=]) must respond with 200 OK and a JSON body containing exactly the same number of
+`TransportActivityData` as that returned in the first request (including the query parameter
+[=Limit=] with value `1`).
+
 ### Test Case 007: Attempt TransportActivityData with Invalid Token ### {#test-case-007}
 
 Tests the [=target host system=]'s ability to handle a `TransportActivityData` request with an invalid
