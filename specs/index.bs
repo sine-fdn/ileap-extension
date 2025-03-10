@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20250227)
+Title: iLEAP Technical Specifications (Version 0.2.1-20250311)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2485,7 +2485,7 @@ properties that cannot be derived from `HOC` CAN be populated in a best-effort m
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.120250227 (2025-02-27) ## {#version-20250227}
+## Version 0.2.120250311 (2025-02-27) ## {#version-20250311}
 
 - remove deprecated properties `TAD/energyCarrier` and `TAD/feedstocks`
 - small typo fixes and text improvements
