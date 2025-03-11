@@ -322,14 +322,14 @@ This data transaction enables a [=Transport Service Organizer=] or a [=Transport
 
 To execute this transaction, the [=Transport Operator=] MUST
 
-1. collect Transport Activity Data belonging to a consignment identified by the [=consignment id=]
-2. calculate the <{TAD}> (see [[#dt-tad]]) given the [=consignment id=]
-3. make the resulting <{TAD}> available through the PACT Network API.
+1. collect Transport Activity Data belonging to a consignment identified by the [=consignment id=].
+2. make the <{TAD}> available through [[#action-tad]].
 
 The [=Transport Service Organizer=] or [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
 
-Note: This data transaction is considered necessary by logistics parties, especially for SMEs,
-      lacking the capabilities to report curated emissions data. Through this transaction they can
+Note:
+      This data transaction is considered necessary by logistics parties, especially for SMEs,
+      lacking the capabilities to make emissions data available. Through this transaction they can
       provide activity data to their customers.
 
 # End-to-End Example # {#example}
@@ -343,12 +343,11 @@ The following hypothetical parties are involved:
 
 : Transport Service User `S`
 ::
-    A [=Transport Service User=] which wants to calculate the logistics emissions of a shipment from Rotterdam to Prague.
+    A [=Transport Service User=] wants to calculate the logistics emissions of a shipment from Rotterdam to Prague.
     The shipper has a contract with the Transport Service Organizer `Z`.
 
     `S` operates a [=host system=] which implements Transaction 1 ([[#txn1]]) to collect
-    <{TCE|TCEs}>. Based on the collected <{TCE|TCEs}>, `S` can calculate Transport Chains ([=TCs=]) and
-    thereby calculate and gain logistics emissions transparency.
+    <{TCE|TCEs}>. Based on the collected <{TCE|TCEs}>, `S` can calculate the Transport Chain ([=TC=]) emissions.
 
 : Transport Service Organizer `Z`
 ::
@@ -357,10 +356,9 @@ The following hypothetical parties are involved:
     The Transport Service Organizer contracts Transport Operator A and Transport Operator B to perform the transport.
 
     This operator has a [=host system=] which implements Transaction 1 ([[#txn1]])
-    as well as Transaction 2 ([[#txn2]]).
+    and Transaction 2 ([[#txn2]]).
 
-    Through this, the operator is able to eventually calculate <{TCE|TCEs}> and <{TOC|TOCs}>, so that
-    they can provide data to Transport Service User `S`.
+    Through this, the operator is able to calculate <{TCE|TCEs}> and <{TOC|TOCs}>, and provide data to Transport Service User `S`.
 
 
 : Transport Operator `A`
@@ -376,17 +374,16 @@ The following hypothetical parties are involved:
 ::
     Another [=Transport Operator=] responsible for the second leg of the shipment.
 
-    This [=Transport Operator=] is capable of making <{TAD}> data avialable to the
+    This [=Transport Operator=] is capable of making <{TAD}> data available to the
     [=Transport Service Organizer=] Z.
 
 
 ## Data Transactions Executed ## {#example-txns}
 
-Note: In this hypothetical example, hub operations are currently ommitted.
+Note: This hypothetical example currently ommits hub operations.
 
 Note: In this hypothetical example, when we refer to a party executing a transaction,
-        we implicitly refer to their [=host systems=] which execute
-        the tasks and transactions on their behalf.
+        we implicitly refer to the [=host systems=] executing the tasks and transactions on their behalf.
 
 
 ### Data Collection by Transport Service Organizer `Z` ### {#example-z}
@@ -399,7 +396,7 @@ For this, the Transport Service Organizer `Z` performs the following data transa
     for the first leg of the shipment.
 1. As Transport Operator `B` does not support [[#txn1]], `Z` performs [[#txn3]] with
     Transport Operator `B` to collect the <{TAD}> for the second leg of the shipment.
-1. `Z` then calculates the <{TCE|TCEs}> for the 2nd leg of the shipment based on
+1. `Z` then calculates the <{TCE|TCEs}> for the second leg of the shipment based on
       the <{TAD}> data and modelled or default emission factors.
 
 ### Data Collection by Transport Service User `S` ### {#example-s}
@@ -409,7 +406,7 @@ can calculate the logistics emissions of the shipment by
 
 1. collecting the <{TCE|TCEs}> from `Z` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database.
 1. `S` can further verify the <{TCE|TCEs}> by collecting the <{TOC|TOCs}> from `Z` using [[#txn2]].
-1. To compute the logistics emissions, `Z` can add up the <{TCE|TCEs}> from step 1.
+1. `Z` can form the [=TC=] by adding up the <{TCE|TCEs}> from step 1.
 
 
 ## Example HTTP Calls ## {#example-http}
@@ -419,8 +416,8 @@ can calculate the logistics emissions of the shipment by
 To collect the <{TCE|TCEs}> from Transport Operator `A`, `Z` performs the following HTTP call.
 
 Note: The call to `/footprints` can return several footprints, 1 for each shipment.
-        By filtering, e.g. by the shipment id, `Z` can retrieve the <{TCE|TCEs}> for
-        the shipment of interest (not shown below).
+        By filtering, e.g. by shipment id, `Z` can retrieve the <{TCE|TCEs}> for
+        the shipment of interest. The use of this functionality is not included in the example below.
 
 The highlighted lines show the data exchanged according to the <{ShipmentFootprint}> data model.
 
@@ -500,11 +497,11 @@ The highlighted lines show the data exchanged according to the <{ShipmentFootpri
 
 ### Data Collection by Transport Service User `S` ### {#example-http-s}
 
-To collect the TCEs data related to the shipment from Transport Organizer `Z`, `S` performs the following HTTP call which yields 2 TCEs.
+To collect the TCE data related to the shipment from Transport Organizer `Z`, `S` performs the following HTTP call, which yields 2 TCEs.
 
 Note: The call to `/footprints` can return several footprints, 1 for each shipment.
-        By filtering, e.g. by the shipment id, `Z` can retrieve the <{TCE|TCEs}>
-        for the shipment of interest (not shown below).
+        By filtering, e.g. by shipment id, `Z` can retrieve the <{TCE|TCEs}>
+        for the shipment of interest. The use of this functionality is not included in the example below.
 
 The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`.
 
