@@ -2582,7 +2582,7 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 0.2.120250311 (2025-02-27) ## {#version-20250311}
+## Version 0.2.120250311 (2025-03-11) ## {#version-20250311}
 
 - remove deprecated properties `TAD/energyCarrier` and `TAD/feedstocks`
 - small typo fixes and text improvements
