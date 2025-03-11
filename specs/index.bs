@@ -22,8 +22,8 @@ Local Boilerplate: header yes
 
 - Companies have a growing need to calculate and report logistics emissions with greater accuracy and transparency. They want to move from default and modeled data to primary data that accurately reflects their supply chain emissions.
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
-- Based on the [[!GLEC]] Framework and [[!ISO14083]], these technical specifications adopt the format established by the PACT Framework and PACT Technical Specifications. It conforms to the basic semantics framework for the [=SFC=] Exchange Network project.
-- Adopting these specifications enables the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
+- Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification is built on top of the PACT Technical Specifications. In addition, it is based on the basic semantics and framework developed by the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network) and advances them further.
+- Adopting this specification will enable the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
 
 Advisement: The iLEAP Technical Specifications will be continuously refined as part of the ongoing iLEAP project. Significant changes may be introduced as the project progresses.
 
@@ -35,7 +35,7 @@ This specifcation does not cover the following topics or aspects as they are cov
 1. Methodology for the calculation of logistics-related emissions, specified in the [[!GLEC]] Framework and [[!ISO14083]].
 2. Black Carbon (Accounting).
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others).
-4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project.
+4. Pilot decentralized data exchange following data space governance principles, as covered in the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network).
 5. How to establish contractual obligations between parties for the provision of data.
 6. How to perform data audits and verification.
 7. Market based approach for electricity emissions accounting.
@@ -79,7 +79,7 @@ status tags are:
 
 : <dfn>Consignment</dfn>
 ::
-    A consignment refers to a quantifiable quantity of cargo that can be distinctly
+    Refers to a quantifiable quantity of cargo that can be distinctly
     identified as a single unit. It is transported from a sender or consignor to a
     receiver or consignee, irrespective of the mode of transportation employed. See [[!ISO14083]], Section 3.1.4.
 
@@ -88,7 +88,7 @@ status tags are:
 
 : <dfn>Great Circle Distance</dfn> (GCD)
 ::
-    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
+    The shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
 : Hub Activity
 :: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
@@ -266,10 +266,10 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
 A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
 
-Its function is to facilitate interoperability between different parties by explaining the context and their intention(s).
+It facilitates interoperability between different parties by explaining the context and their intention(s).
 
 Each transaction combines the iLEAP data model ([[#data-model]]) with the PACT
-Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=host systems=].
+Data Exchange Protocol ([[#pcf-mapping]]), enabling interoperability between [=host systems=].
 
 The following diagram shows how the three data transactions (defined below) are related:
 
@@ -285,9 +285,9 @@ Note: A [=Tool Provider=] can assume various roles on behalf of the [=Transport 
 This data transaction enables a [=Transport Service User=] (for example, a [=shipper=]) to receive [=Transport Chain Elements=]' emissions related data (encoded as <{TCE|TCEs}>) from a
 [=Transport Operator=] or a [=Transport Service Organizer=] for a single [=shipment=].
 
-To execute this transaction the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
+To execute this transaction, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 
-1. first calculate 1 or more TCEs' emissions related data in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
+1. calculate 1 or more TCEs' emissions data in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
 2. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the PACT
     Network API (see [[#pcf-mapping-sf]]).
 
@@ -301,10 +301,10 @@ Note: For an example exchange, see [[#example]].
 
 ## Data Transaction 2: TOC or HOC Data Exchange ## {#txn2}
 
-This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] or [=HOC=] emission intensity related data from a [=Transport Operator=].
+This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] or [=HOC=] emission intensity data from a [=Transport Operator=].
 
 The provision of emission intensity data at the [=TOC=] or [=HOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
-It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
+It can also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
 
 To execute this transaction the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
@@ -312,9 +312,8 @@ To execute this transaction the [=Transport Operator=] or [=Transport Service Or
 2. make the resulting <{TOC|TOCs}> or <{HOC|HOCs}> available through the PACT Network API (see [[#pcf-mapping]]).
 
 Note:
-    The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
+    Details on the definition and calculation of [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
     and guidance is provided in the [[!GLEC]] Framework.
-    Details of the calculation method are out of scope of this specification.
 
 
 ## Data Transaction 3: Transport Activity Data Exchange ## {#txn3}
