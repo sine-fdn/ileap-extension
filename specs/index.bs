@@ -325,13 +325,13 @@ This data transaction enables a [=Transport Service Organizer=] or a [=Transport
 To execute this transaction, the [=Transport Operator=] MUST
 
 1. collect Transport Activity Data belonging to a consignment identified by the [=consignment id=].
-2. make the <{TAD}> available through the PACT Network API.
+2. make the <{TAD}> available through [[#action-tad]].
 
 The [=Transport Service Organizer=] or [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
 
 Note:
       This data transaction is considered necessary by logistics parties, especially for SMEs,
-      lacking the capabilities to report curated emissions data. Through this transaction they can
+      lacking the capabilities to make emissions data available. Through this transaction they can
       provide activity data to their customers.
 
 # End-to-End Example # {#example}
