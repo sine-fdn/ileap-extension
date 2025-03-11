@@ -315,7 +315,6 @@ To execute this transaction the [=Transport Operator=] or [=Transport Service Or
 Note:
     Details on the definition and calculation of [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
     and guidance is provided in the [[!GLEC]] Framework.
-    The calculation methodology is outside the scope of this specification.
 
 
 ## Data Transaction 3: Transport Activity Data Exchange ## {#txn3}
