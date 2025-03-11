@@ -1751,11 +1751,11 @@ implementing the validation of this property.
 
 A [=host system=] MUST implement:
 1. The endpoint for the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
-1. The exchange of <{ShipmentFootprint}>, <{TOC}> & <{HOC}> as specified in [[#pcf-mapping]].
+1. The exchange of <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> as specified in [[#pcf-mapping]].
 
 The exchange of logistics emissions data throught the [[#data-model]] presupposes the implementation of the HTTP REST API defined in [[!PACTDX]] (Chapter 6).
 
-Reusing the [[!PACTDX]] data exchange protocol simplifies the integration of logistics emissions data into existing [=host systems=]' software, especially if they are already used by [=Transport Service Users=].
+By relying on [[!PACTDX]] for the data exchange, the integration of logistics emissions data into existing [=host systems=]' software is simplified. In addition, this approach can further enhance and support the convergence of emissions transparency across sectors and initiatives.
 
 They can then use 1 interoperable API for the exchange of different categories of carbon emissions data related to GHG Protocol lifecycle stages (such as material acquisition and transport).
 
