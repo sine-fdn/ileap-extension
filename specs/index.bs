@@ -179,7 +179,7 @@ status tags are:
 : <dfn>Shipper</dfn>
 :: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
 
-: Smart Freight Centre (<dfn>SFC</dfn> )
+: Smart Freight Centre (<dfn data-noexport=true>SFC</dfn> )
 :: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organization.
 
 : <dfn>Tool Provider</dfn>
@@ -3113,7 +3113,8 @@ host system=] with an invalid access token and the syntax specified in [[#action
 
 #### Expected Response #### {#test-case-007-response}
 
-The test [=target host system=] must respond with a 401 Unauthorized status code.
+The test [=target host system=] must respond with a 403 Forbidden status code and an `AccessDenied`
+error response code, as specified in [=TadResponseBody=].
 
 ### Test Case 008: Attempt TransportActivityData with Expired Token ### {#test-case-008}
 
@@ -3133,7 +3134,8 @@ through PACT's Test Cases
 
 #### Expected Response #### {#test-case-008-response}
 
-The test [=target host system=] must respond with a 401 Unauthorized status code.
+The test [=target host system=] must respond with a 401 Unauthorized status code and an
+`ExpiredToken` error response code, as specified in [=TadResponseBody=].
 
 <pre class=biblio>
  {
