@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20250311)
+Title: iLEAP Technical Specifications (Version 0.2.1-20250314)
 Shortname: ileap-extension
 Status: LD
 Status Text: Draft Technical Specification
@@ -2581,6 +2581,10 @@ apply for additional support, materials, and marketing opportunities.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 0.2.1-20250314 (2025-03-14) ## {#version-20250314}
+
+- fix [[#test-case-007]] and [[#test-case-008]] error responses
 
 ## Version 0.2.1-20250311 (2025-03-11) ## {#version-20250311}
 
