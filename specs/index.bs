@@ -1,8 +1,8 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20250314)
+Title: iLEAP Technical Specifications (Version 1.0.0-beta)
 Shortname: ileap-extension
 Status: LD
-Status Text: Draft Technical Specification
+Status Text: Technical Specification Pre-Release
 ED: https://sine-fdn.github.io/ileap-extension/
 TR: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/
 Canonical URL: ED
@@ -2581,6 +2581,10 @@ apply for additional support, materials, and marketing opportunities.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
+
+- pre-release of version 1.0.0 (full release expected in 2025-04)
 
 ## Version 0.2.1-20250314 (2025-03-14) ## {#version-20250314}
 
