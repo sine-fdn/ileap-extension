@@ -1085,13 +1085,13 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityWTW}> as defined in the [[!GLEC]] Framework.
+             The coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework.
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework.
+              The coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework.
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
         <td>String
@@ -1210,13 +1210,13 @@ The Data Type <{HOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity and WTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework.
+             The coefficient relating specified transport activity and WTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework.
  <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity and TTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework.
+              The coefficient relating specified transport activity and TTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
