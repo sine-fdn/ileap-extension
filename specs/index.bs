@@ -327,8 +327,7 @@ Note:
 ## Data Transaction 3: Transport Activity Data Exchange ## {#txn3}
 
 This data transaction enables a [=Transport Service Organizer=] or a [=Transport Service User=] to
-receive [=Transport Activity Data=] from a [=Transport Operator=], as described in
-[[#business-case-3]].
+receive [=Transport Activity Data=] from a [=Transport Operator=], as described in [[#business-case-3]].
 
 To execute this transaction, the [=Transport Operator=] MUST
 
@@ -661,7 +660,7 @@ A <{ShipmentFootprint}> has the following properties:
         <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and any packaging provided by the [=Transport Service User=].
       <tr>
         <td><dfn>numberOfItems</dfn>
-        <td>Number
+        <td>Number `(int)`
         <td>O
         <td>The number of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of.
       <tr>
@@ -801,7 +800,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td>Number `(int)`
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
@@ -1205,7 +1204,7 @@ The Data Type <{HOC}> has the following properties:
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td>Number `(int)`
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
@@ -1358,7 +1357,7 @@ encoded as a JSON object.
         <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td>Number `(int)`
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
@@ -1714,7 +1713,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
 
         <tr>
           <td><dfn>feedstockPercentage</dfn> : [0..1]
-          <td>Number
+          <td>Number `(int)`
           <td>O
           <td>Percentage of the feedstock in the total composition of energy carrier.
         <tr>
