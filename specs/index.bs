@@ -1713,7 +1713,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
 
         <tr>
           <td><dfn>feedstockPercentage</dfn> : [0..1]
-          <td>Number `(int)`
+          <td>[=Decimal=]
           <td>O
           <td>Percentage of the feedstock in the total composition of energy carrier.
         <tr>
