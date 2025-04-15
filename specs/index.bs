@@ -222,18 +222,26 @@ By incorporating emission intensities in procurement processes, the parties are 
 Data Transaction #2 [[#txn2]] enable this business case.
 
 
-## Simplified Emissions Calculation from Transport Activity Data ## {#business-case-3}
+## Emissions Calculation from Transport Activity Data ## {#business-case-3}
 
-Consider the scenario where a [=Transport Operator=], and possibly also [=Transport Service Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]].
+Consider the scenario where a [=Transport Operator=], and possibly also [=Transport Service
+Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]]
+and [[!ISO14083]].
 
-In such a case, the party may choose to collect [=Transport Activity Data=], that is, information related to a single shipment including mass, distance, and energy carriers used.
+In such a case, the party may choose to collect [=Transport Activity Data=], that is, data related
+to a single shipment including mass, distance, and energy carriers used, but excluding emissions
+data.
 
-After collecting Transport Activity Data, the party can then contract a third party, such as a [=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
+After collecting Transport Activity Data, the party can then contract a third party, such as a
+[=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
 
-This business case is particularly relevant for SMEs to reduce the entry barrier for logistics emissions reporting.
+This business case is particularly relevant for SMEs to reduce the entry barrier for logistics
+emissions reporting.
 
 iLEAP generally simplifies data collection efforts for the parties involved in this business case.
-For instance, each party needs to collect the activity data only once. This data can be then made available to multiple parties for different purposes, including business cases beyond emissions calculations.
+For instance, each party needs to collect the activity data only once. This data can be then made
+available to multiple parties for different purposes, including business cases beyond emissions
+calculations.
 
 Data Transaction #3 ([[#txn3]]) enables this business case.
 
@@ -318,7 +326,9 @@ Note:
 
 ## Data Transaction 3: Transport Activity Data Exchange ## {#txn3}
 
-This data transaction enables a [=Transport Service Organizer=] or a [=Transport Service User=] to receive [=Transport Activity Data=] from a [=Transport Operator=].
+This data transaction enables a [=Transport Service Organizer=] or a [=Transport Service User=] to
+receive [=Transport Activity Data=] from a [=Transport Operator=], as described in
+[[#business-case-3]].
 
 To execute this transaction, the [=Transport Operator=] MUST
 
