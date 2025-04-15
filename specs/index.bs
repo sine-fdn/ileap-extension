@@ -86,14 +86,14 @@ status tags are:
 : <dfn>Distance</dfn>
 :: See [=Transport Distance=] and [=Actual Distance=]
 
-: <dfn>Great Circle Distance</dfn> (GCD)
+: <dfn data-lt="Great Circle Distance|GCD">Great Circle Distance (GCD)</dfn>
 ::
     The shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
-: Hub Activity
-:: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
+: <dfn data-noexport>Hub Activity</dfn>
+:: The operations carried out at a hub, measured in the hub's throughput. [[!GLEC]] Framework.
 
-: Hub Operation Category (<dfn>HOC</dfn>)
+: <dfn data-lt="Hub Operation Category|HOC">Hub Operation Category (HOC)</dfn>
 :: Represents a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Primary Data</dfn>
@@ -119,16 +119,16 @@ status tags are:
     Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance.
     It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework.
 
-: Transport Chain (<dfn>TC</dfn> )
+: <dfn data-lt="Transport Chain|TC">Transport Chain (TC)</dfn>
 :: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]. A TC corresponds to a shipment.
 
-: <dfn>Transport Chain Element</dfn> (TCE)
+: <dfn data-lt="Transport Chain Element">Transport Chain Element (TCE)</dfn>
 :: Represents one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
 
 : <dfn>Transport Distance</dfn>
 :: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27.
 
-: Transport Operation Category (<dfn id='toc-dfn'>TOC</dfn>)
+: <dfn data-lt="Transport Operation Category|TOC" id='toc-dfn'>Transport Operation Category (TOC)</dfn>
 :: Represents a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Transport Operator</dfn>
@@ -155,21 +155,21 @@ status tags are:
 : <dfn>Data Recipient</dfn>
 :: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
 
-: Data Transaction
+: <dfn>Data Transaction</dfn>
 :: See [[#txns]].
 
 : <dfn>Host System</dfn>
 :: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
-: Hub Operator
+: <dfn data-noexport>Hub Operator</dfn>
 :: A party that is offering hub services, including warehousing and transshipment center services.
 
 : <dfn>PCF</dfn>
 ::
     Product Carbon Footprint. See [PACT Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details.
 
-: ShipmentFootprint
+: <dfn data-noexport>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
 
 : <dfn>Shipment id</dfn>
@@ -179,7 +179,7 @@ status tags are:
 : <dfn>Shipper</dfn>
 :: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
 
-: Smart Freight Centre (<dfn data-noexport=true>SFC</dfn> )
+: <dfn data-lt="Smart Freight Center|SFC" data-noexport>Smart Freight Centre (SFC)</dfn>
 :: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organization.
 
 : <dfn>Tool Provider</dfn>
@@ -264,7 +264,7 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
 # Data Transactions # {#txns}
 
-A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
+A data transaction is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
 
 It facilitates interoperability between different parties by explaining the context and their intention(s).
 
