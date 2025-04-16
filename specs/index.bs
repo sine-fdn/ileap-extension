@@ -977,13 +977,6 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>Unique id of the [=TOC=] relative to the [=Host system=].
-
-      <tr>
-        <td><dfn>isVerified</dfn>
-        <td>Boolean
-        <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
-
       <tr>
         <td><dfn>accreditations</dfn>
         <td>String[]
@@ -1147,11 +1140,6 @@ The Data Type <{HOC}> has the following properties:
         <td>String
         <td>O
         <td>Text description of the applicable HOC. Including hub type, contract type, equipment type, freight temperature, etc
-      <tr>
-        <td><dfn>isVerified</dfn>
-        <td>Boolean
-        <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
       <tr>
         <td><dfn>accreditations</dfn>
         <td>String[]
@@ -2590,6 +2578,7 @@ apply for additional support, materials, and marketing opportunities.
 ## Version 1.0.0 (2025-05-XX) ## {#version-1.0.0}
 
 - <strong>replace mandatory property `isAccredited` by optional property `accrediations`, in <{HOC/accreditations|HOC}> and <{TOC/accreditations|TOC}></strong>
+- <strong>remove mandatory property `isVerified`</strong>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
@@ -2857,7 +2846,6 @@ A Product Footprint with a <{TOC}> highlighted:
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "tocId": "4561230",
-              "isVerified": true,
               "accreditations": ["ISO14083:2023"],
               "mode": "Road",
               "temperatureControl": "refrigerated",
@@ -2938,7 +2926,6 @@ A Product Footprint with a <{HOC}> highlighted:
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "hocId": "7890123",
-              "isVerified": true,
               "accreditations": ["ISO14083:2023"],
               "hubType": "Warehouse",
               "temperatureControl": "refrigerated",
