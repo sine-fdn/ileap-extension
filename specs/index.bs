@@ -348,44 +348,51 @@ Note: Non-normative section
 This section provides an end-to-end example of how the data transactions ([[#txns]])
 enable logistics emissions transparency for a single shipment.
 
-The following hypothetical parties are involved:
+<figure>
+  <img src="diagrams/example.svg" height="80%" width="80%" >
+  <figcaption>End-to-end example</figcaption>
+</figure>
 
-: Transport Service User `S`
+: Transport Service User `Shipper`
 ::
-    A [=Transport Service User=] wants to calculate the logistics emissions of a shipment from Rotterdam to Prague.
-    The shipper has a contract with the Transport Service Organizer `Z`.
+    A [=Transport Service User=] who wants to calculate the logistics emissions of a shipment from Rotterdam to Prague.
+    The shipper has a contract with the Transport Service Organizer `LSP`.
 
-    `S` operates a [=host system=] which implements Transaction 1 ([[#txn1]]) to collect
-    <{TCE|TCEs}>. Based on the collected <{TCE|TCEs}>, `S` can calculate the Transport Chain ([=TC=]) emissions.
+    Using [[#txn1]] and [[#txn2]], `Shipper` pulls <{TCE}> and <{TOC}> data from `LSP` and calculates the Transport
+    Chain ([=TC=]) emissions.
 
-: Transport Service Organizer `Z`
+    Since no further Transport Service Organizer or Transport Service Operator is involved, no additional calculation is
+    needed.
+
+: Transport Service Organizer `LSP`
 ::
     A [=Transport Service Organizer=] responsible for a shipment from Rotterdam to Prague.
 
-    The Transport Service Organizer contracts Transport Operator A and Transport Operator B to perform the transport.
+    The Transport Service Organizer contracts Transport Operator `Carrier A` and Transport Operator `Carrier B` to
+    perform the transport.
 
-    This operator has a [=host system=] which implements Transaction 1 ([[#txn1]])
-    and Transaction 2 ([[#txn2]]).
+    Using [[#txn1]] and [[#txn2]], `LSP` pulls <{TCE}> and <{TOC}> data from Transport Operator `Carrier A`.
 
-    Through this, the operator is able to calculate <{TCE|TCEs}> and <{TOC|TOCs}>, and provide data to Transport Service User `S`.
+    Using [[#txn3]], `LSP` pulls <{TAD|Transport Activity Data}> from `Carrier B`, which it uses to calculate emissions
+    data for the shipment.
 
+    `LSP` then calculates the consolidated [=ShipmentFootprint=] and provides it to Transport Service User `Shipper`.
 
-: Transport Operator `A`
+: Transport Operator `Carrier A`
 ::
     A [=Transport Operator=] responsible for the first leg of the shipment.
 
     This Operator has a [=host system=] which is capable of calculating <{TCE}> and <{TOC}> data.
 
-    Through this, the operator can make [=Transport Chain Element=]-level data available to the
-    Transport Service Organizer `Z`, which `Z` can fetch using Transaction 1 ([[#txn1]]).
+    Through this, `Carrier A` can make [=Transport Chain Element=]-level data available to the
+    [=Transport Service Organizer=] `LSP`, which `LSP` can fetch using[[#txn1]].
 
-: Transport Operator `B`
+: Transport Operator `Carrier B`
 ::
     Another [=Transport Operator=] responsible for the second leg of the shipment.
 
     This [=Transport Operator=] is capable of making <{TAD}> data available to the
-    [=Transport Service Organizer=] Z.
-
+    [=Transport Service Organizer=] `LSP`.
 
 ## Data Transactions Executed ## {#example-txns}
 
