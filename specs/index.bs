@@ -938,9 +938,28 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>String
         <td>O
         <td>
-              Particulate matter (PM10 and PM2.5) released to atmosphere as a result of vehicle operation.
-              The value MUST be calculated for the TCE with unit `kg`.
+              Particulate matter (PM2.5) released to atmosphere as a result of vehicle operation.
+              The value MUST be calculated for the TCE with unit `kg/tkm`.
 
+              If defined, <{TCE/pmTTWTier}> MUST also be defined.
+      <tr>
+        <td><dfn>pmTTWTier</dfn>
+        <td>String
+        <td>O
+        <td>
+              The tier of the PM2.5 calculation method used to calculate the <{TCE/pmTTW}> value, as specified in [[!BLACK-CARBON]].
+
+              If defined, the value MUST be one of the following:
+              : tier1
+              :: For calculation tier 1
+              : tier2
+              :: For calculation tier 2
+              : tier3
+              :: For calculation tier 3
+
+              Advisement: A new Black Carbon methodology is anticipated in October 2025. While this property will remain
+              unchanged, the reference to the current [[!BLACK-CARBON]] methodology will be updated to cite the
+              forthcoming version.
   </table>
   <figcaption>Properties of data type <{TCE}></figcaption>
 </figure>
@@ -2572,6 +2591,10 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
+## Version 1.0.0-beta2 (2025-04-17) ## {#version-1.0.0-beta2}
+
+- add new property <{TCE/pmTTWTier}> and update the definition of <{TCE/pmTTW}>
+
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
 - remove underspecified property `dataQualityIndex`
@@ -3137,7 +3160,7 @@ The test [=target host system=] must respond with a 401 Unauthorized status code
 `ExpiredToken` error response code, as specified in [=TadResponseBody=].
 
 <pre class=biblio>
- {
+  {
     "GLEC": {
         "authors": [],
         "href": "https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf",
@@ -3175,6 +3198,14 @@ The test [=target host system=] must respond with a 401 Unauthorized status code
       "title": "Technical Specification for Data Model Extensions",
       "status": "LS",
       "publisher": "WBCSD"
+    },
+    "BLACK-CARBON": {
+      "authors": [
+        "Suzanne Greene"
+      ],
+      "href": "https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_BlackCarbonMethodology_-_SFC_Sep2017.pdf",
+      "title": "Black Carbon Methodology for the Logistics Sector",
+      "publisher": "Smart Freight Centre (SFC)"
     }
   }
 </pre>
