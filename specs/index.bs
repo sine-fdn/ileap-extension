@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 1.0.0-beta)
+Title: iLEAP Technical Specifications (Version 1.0.0-beta2)
 Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
@@ -797,7 +797,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
         <td>M
-        <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer, in accordance with the [[!GLEC]] Framework.
+        <td>The freight mass of the consignment (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer, in accordance with the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
@@ -2604,7 +2604,7 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0 (2025-05-XX) ## {#version-1.0.0}
+## Version 1.0.0-beta2 (2025-04-17) ## {#version-1.0.0-beta2}
 
 - small typo fixes and text improvements
 - improve [[#example]], adding a diagram and simplifying the text
@@ -2613,7 +2613,7 @@ apply for additional support, materials, and marketing opportunities.
 - <strong>add optional property <{EnergyCarrier/volumePercentage}> to <{EnergyCarrier}> and update
     the corresponding properties of <{TOC/energyCarriers|TOC}>, <{HOC/energyCarriers|HOC}>, and
     <{TAD/energyCarriers|TAD}></strong>
-- full release of version 1.0.0
+- clarify definition of <{TCE/mass}>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
