@@ -957,9 +957,8 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
               : tier3
               :: For calculation tier 3
 
-              Advisement: A new Black Carbon methodology is anticipated in October 2025. While this property will remain
-              unchanged, the reference to the current [[!BLACK-CARBON]] methodology will be updated to cite the
-              forthcoming version.
+              Advisement: This variable is subject to change as SFC is currently working on a methodology which will be
+              published in Q4 2025.
   </table>
   <figcaption>Properties of data type <{TCE}></figcaption>
 </figure>
