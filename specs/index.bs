@@ -2572,7 +2572,7 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta2 (2025-04-17) ## {#version-1.0.0-beta2}
+## Version 1.0.0-beta2 (2025-04-22) ## {#version-1.0.0-beta2}
 
 - small typo fixes and text improvements
 - improve [[#example]], adding a diagram and simplifying the text
