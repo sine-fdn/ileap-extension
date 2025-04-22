@@ -1085,7 +1085,7 @@ The Data Type <{TOC}> has the following properties:
             The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{TOC/co2eIntensityThroughput}>) of the TOC.
 To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, each feedstock MUST be represented by a separate entry in the [=EnergyCarriers=] array. For each `EnergyCarrier`, the combined value of <{feedstockPercentages}> must be less than or equal to `1`.
             <div class=example>
-              Assuming the TOC represents a fleet where 30% of the transport activity uses `diesel` and the remaining 70% uses electricity (renewable) to generate movements.
+              Assuming the TOC represents a fleet where 30% of the transport activity uses `diesel` and the remaining 70% uses electricity (renewable) to generate movements, the value of <{TOC/energyCarriers}> would be:
 
 
               ```json
@@ -1238,9 +1238,8 @@ The Data Type <{HOC}> has the following properties:
             The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{HOC/co2eIntensityThroughput}>) of the HOC.
 
             <div class=example>
-              Assuming the HOC represents terminal where 75% of the (representative) hub activity uses `diesel` and the remaining 25% uses electricity (grid) to generate movements.
+              Assuming the HOC represents terminal where 75% of the (representative) hub activity uses `diesel` and the remaining 25% uses electricity (grid) to generate movements, the value of <{HOC/energyCarriers}> would be:
 
-              An examplary value of <{HOC/energyCarriers}> is then:
 
               ```json
               [
@@ -1419,7 +1418,7 @@ encoded as a JSON object.
 
               The sum of the relative shares of the energy carriers used in the TAD MUST equal `1`.
               The relative share of each energy carrier MUST be computed relative to (total)
-              transport activity (<{TAD/mass}> and <{TAD/distance}>) of the TAD.
+             [=Transport Activity=] of the TAD.
 
               This array MAY contain aggregated data from multiple consignments. In this case,
               the aggregation MUST follow principles from the [[!GLEC]] Framework.
@@ -1642,8 +1641,8 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
               The relative share of this energy carrier. Its value MUST be between `0` (excluding) and `1` (including).
 
               Note:
-                  See the respective use (<{TOC/energyCarriers|TOC.energyCarriers}>,
-                  <{HOC/energyCarriers|HOC.energyCarriers}>, and <{TAD/energyCarriers|TAD.energyCarriers}>)
+                  See the respective use in (<{TOC/energyCarriers|TOC}>,
+                  <{HOC/energyCarriers|HOC}>, and <{TAD/energyCarriers|TAD}>)
                   for further details.
 
       <tr>
@@ -2649,7 +2648,7 @@ apply for additional support, materials, and marketing opportunities.
 ## Version 1.0.0-beta2 (2025-04-17) ## {#version-1.0.0-beta2}
 
 - addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
-    - addition of further explanations about this new property within the context of <{TAD}>, <{TOC}>, and <{HOC}>
+    - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
