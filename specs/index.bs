@@ -1083,11 +1083,10 @@ The Data Type <{TOC}> has the following properties:
 
             The sum of the relative shares of the energy carriers used in the TOC MUST equal `1`.
             The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{TOC/co2eIntensityThroughput}>) of the TOC.
-
+To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, each feedstock MUST be represented by a separate entry in the [=EnergyCarriers=] array. For each `EnergyCarrier`, the combined value of <{feedstockPercentages}> must be less than or equal to `1`.
             <div class=example>
               Assuming the TOC represents a fleet where 30% of the transport activity uses `diesel` and the remaining 70% uses electricity (renewable) to generate movements.
 
-              An examplary value of <{TOC/energyCarriers}> is then:
 
               ```json
               [
