@@ -978,18 +978,18 @@ The Data Type <{TOC}> has the following properties:
         <td>M
         <td>Unique id of the [=TOC=] relative to the [=Host system=].
       <tr>
-        <td><dfn>accreditations</dfn>
+        <td><dfn>certifications</dfn>
         <td>String[]
         <td>O
         <td>
-            The non-empty array of accreditations of the calculation methodology used to calculate the GHG emissions value and related variables.
+            The non-empty array of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
 
             Elements of the array MUST be one of the following:
 
             : ISO14083:2023
-            :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an certification certificate.
 
-            Advisement: The enumeration of accreditations will be evolved in future revisions. Account for this when implementing the validation of this property.
+            Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>description</dfn>
         <td>String
@@ -1141,18 +1141,18 @@ The Data Type <{HOC}> has the following properties:
         <td>O
         <td>Text description of the applicable HOC. Including hub type, contract type, equipment type, freight temperature, etc
       <tr>
-        <td><dfn>accreditations</dfn>
+        <td><dfn>certifications</dfn>
         <td>String[]
         <td>O
         <td>
-            The non-empty array of accreditations of the calculation methodology used to calculate the GHG emissions value and related variables.
+            The non-empty array of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
 
             Elements of the array MUST be one of the following:
 
             : ISO14083:2023
-            :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an certification certificate.
 
-            Advisement: The enumeration of accreditations will be evolved in future revisions. Account for this when implementing the validation of this property.
+            Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>hubType</dfn>
         <td>{{HubType}}
@@ -2577,7 +2577,7 @@ apply for additional support, materials, and marketing opportunities.
 
 ## Version 1.0.0 (2025-05-XX) ## {#version-1.0.0}
 
-- <strong>replace mandatory property `isAccredited` by optional property `accrediations`, in <{HOC/accreditations|HOC}> and <{TOC/accreditations|TOC}></strong>
+- <strong>replace mandatory property `isAccredited` by optional property `certifications`, in <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}></strong>
 - <strong>remove mandatory property `isVerified`</strong>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
@@ -2846,7 +2846,7 @@ A Product Footprint with a <{TOC}> highlighted:
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "tocId": "4561230",
-              "accreditations": ["ISO14083:2023"],
+              "certifications": ["ISO14083:2023"],
               "mode": "Road",
               "temperatureControl": "refrigerated",
               "truckLoadingSequence": "FTL",
@@ -2926,7 +2926,7 @@ A Product Footprint with a <{HOC}> highlighted:
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "hocId": "7890123",
-              "accreditations": ["ISO14083:2023"],
+              "certifications": ["ISO14083:2023"],
               "hubType": "Warehouse",
               "temperatureControl": "refrigerated",
               "energyCarriers": [
