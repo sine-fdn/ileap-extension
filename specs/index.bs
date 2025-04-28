@@ -1085,15 +1085,15 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityWTW}> as defined in the [[!GLEC]] Framework.
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityDenominator}> as defined in the [[!GLEC]] Framework.
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework.
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityDenominator}> as defined in the [[!GLEC]] Framework.
       <tr>
-        <td><dfn>co2eIntensityThroughput</dfn>
+        <td><dfn>co2eIntensityDenominator</dfn>
         <td>String
         <td>M
         <td>
@@ -1210,16 +1210,16 @@ The Data Type <{HOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity and WTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework.
+             The Coefficient relating specified transport activity and WTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityDenominator}> as defined in the [[!GLEC]] Framework.
  <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity and TTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework.
+              The Coefficient relating specified transport activity and TTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityDenominator}> as defined in the [[!GLEC]] Framework.
 
       <tr>
-        <td><dfn>co2eIntensityThroughput</dfn>
+        <td><dfn>co2eIntensityDenominator</dfn>
         <td>String
         <td>M
         <td>
@@ -2572,6 +2572,11 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
+## Version 1.0.0-beta2 (2025-05-01) ## {#version-1.0.0-beta2}
+
+- rename property `co2eIntensityThroughput` of data types <{HOC}> and <{TOC}> to `co2eIntensityDenominator`
+
+
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
 - remove underspecified property `dataQualityIndex`
@@ -2649,7 +2654,7 @@ apply for additional support, materials, and marketing opportunities.
 - addition of section [[#document-statuses]]
 - rewording of the introduction paragraphs of [[#introduction]]
 - turn definition of <{EnergyCarrier/energyConsumption}> into "open" enumeration
-- turn definition of <{TOC/co2eIntensityThroughput}> and <{HOC/co2eIntensityThroughput}> into "open"
+- turn definition of TOC's `co2eIntensityThroughput` and HOC's `co2eIntensityThroughput` into "open"
     enumeration
 
 ## Version 0.2.0 Release (2024-06-05) ## {#version-20240605}
