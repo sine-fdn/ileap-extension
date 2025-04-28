@@ -898,15 +898,23 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>
               GHG emissions released to atmosphere during the process of producing, storing,
               processing and distributing an energy carrier for vehicle operation + GHG emissions
-              released to atmosphere as a result of vehicle operation.
+              released to atmosphere as a result of vehicle or hub operation.
               The value MUST be calculated for the TCE with unit `kgCO2e`.
-
+      <tr>
+        <td><dfn>co2eWTT</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+              GHG emissions released to atmosphere as a result of producing, storing,
+              processing and distributing an energy carrier for vehicle or hub operation.
+              The value MUST be calculated for the TCE with unit `kgCO2e`.
+      
       <tr>
         <td><dfn>co2eTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              GHG emissions released to atmosphere as a result of vehicle operation
+              GHG emissions released to atmosphere as a result of vehicle or hub operation
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
       <tr>
