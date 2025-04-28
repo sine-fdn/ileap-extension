@@ -1703,10 +1703,11 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
             Account for this when implementing the validation of this property.
 
         <tr>
-          <td><dfn>feedstockPercentage</dfn> : [0..1]
+          <td><dfn>feedstockShare</dfn> : [0..1]
           <td>Number
           <td>O
-          <td>Percentage of the feedstock in the total composition of energy carrier.
+          <td>The share of the feedstock in the total composition of the energy carrier.
+                The value MUST be between `0` (including) and `1` (including).
         <tr>
           <td><dfn>regionProvenance</dfn>
           <td>String
@@ -2571,6 +2572,12 @@ apply for additional support, materials, and marketing opportunities.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 1.0.0-beta2 (2025-05-01) ## {#version-1.0.0-beta2}
+
+- rename <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
+    changing the semantics from "percentage" to "share" also
+
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
