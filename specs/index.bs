@@ -264,6 +264,8 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
 # Data Transactions # {#txns}
 
+Note: Non-normative section
+
 A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
 
 It facilitates interoperability between different parties by explaining the context and their intention(s).
