@@ -941,7 +941,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
               Particulate matter (PM10 and PM2.5) released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kg`.
       <tr>
-        <td><dfn>temperature</dfn>
+        <td><dfn>temperatureControl</dfn>
         <td>String
         <td>O
         <td>
@@ -950,7 +950,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
             If defined, the value of this property MUST be set to one of the following:
             : `ambient`
             :: For TCEs comprising the handling of non-temperature controlled freight only.
-a
+
             : `refrigerated`
             :: For TCEs comprising the handling of refrigerated freight only.
 
@@ -2587,7 +2587,7 @@ apply for additional support, materials, and marketing opportunities.
 
 ## Version 1.0.0-beta2 (2025-04-29) ## {#version-1.0.0-beta2}
 
-- add optional property <{TCE/temperature}> to <{TCE}>
+- add optional property <{TCE/temperatureControl}> to <{TCE}>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
