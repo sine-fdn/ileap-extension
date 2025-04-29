@@ -1096,8 +1096,6 @@ The Data Type <{TOC}> has the following properties:
         <td>M
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
-
-            The sum total of <{EnergyCarrier/volumePercentage|volumePercentages}> must be smaller or equal to `1`.
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
@@ -1223,8 +1221,6 @@ The Data Type <{HOC}> has the following properties:
         <td>M
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
-
-            The sum total of <{EnergyCarrier/volumePercentage|volumePercentages}> must be smaller or equal to `1`.
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
@@ -1382,7 +1378,6 @@ encoded as a JSON object.
               This array MAY contain aggregated data from multiple consignments. In this case,
               the aggregation MUST follow principles from the [[!GLEC]] Framework.
 
-              The sum total of <{EnergyCarrier/volumePercentage|volumePercentages}> must be smaller or equal to `1`.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
@@ -1644,14 +1639,6 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
              The TTW fuel emission factor (certified) with unit `kgCO2e / energy consumption unit` (<{EnergyCarrier/energyConsumptionUnit}>).
 
             This property MUST be defined when <{EnergyCarrier}> is used in the context of a <{TOC}> or <{HOC}>.
-      <tr>
-        <td><dfn>volumePercentage</dfn> : [0..1]
-        <td>[=Decimal=]
-        <td>O
-        <td>
-            Percentage of the energy carrier in the total composition of the transport activity.
-
-            The value of this property MUST be between `0` (excluding) and `1` (including).
     </table>
 </figure>
 
@@ -1735,10 +1722,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
           <td><dfn>feedstockPercentage</dfn> : [0..1]
           <td>[=Decimal=]
           <td>O
-          <td>
-              Percentage of the feedstock in the total composition of energy carrier.
-
-              The value of this property MUST be between `0` (excluding) and `1` (including).
+          <td>Percentage of the feedstock in the total composition of energy carrier.
         <tr>
           <td><dfn>regionProvenance</dfn>
           <td>String
