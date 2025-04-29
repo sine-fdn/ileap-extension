@@ -800,7 +800,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
               A TCE representing the movement of a 40 ft container is encoded as
               ```json
               {
-                "packagingOrTrEqType": "Container",
+                "packagingOrTrEqType": "Container-TEU",
                 "packagingOrTrEqAmount": "2"
               }
               ```
@@ -1739,12 +1739,18 @@ It MUST be encoded as a String using one of the following values:
 :: Refers to boxes
 : Pallet
 :: Refers to pallets
-: Container
+
+: Container-TEU
 :: A standard 20-foot-long intermodal container
-: ContainerHC
+: Container-TEU-HC
 :: A high cube 20-foot-long intermodal container
-: ContainerHH
+: Container-TEU-HH
 :: A half height 20-foot-long intermodal container
+: Container
+:: Refers to an otherwise generic or unknown container.
+
+Note: The use of value `Container` is discouraged, as it does not provide any information about the container type.
+
 
 Advisement:
   The enumeration of packaging or transport equipment units above will be evolved in future revisions.
