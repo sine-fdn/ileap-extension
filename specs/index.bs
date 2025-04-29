@@ -1730,8 +1730,12 @@ implementing the validation of this property.
 :: Refers to boxes
 : Pallet
 :: Refers to pallets
-: Container
-:: Refers to containers
+: 20ftContainer
+:: Refers to 20ft containers
+: 40ftContainer
+:: Refers to 40ft containers
+: Container of unknown size
+:: Refers to containers where the size is unknown
 
 # HTTP REST API # {#http-rest-api}
 
