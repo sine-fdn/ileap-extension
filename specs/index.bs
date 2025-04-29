@@ -785,15 +785,26 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
 
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
-        <td><{PackagingOrTrEqType}>
+        <td>{{PackagingOrTrEqType}}
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type {{PackagingOrTrEqType}} for further information.
 
       <tr>
-        <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td><dfn>packagingOrTrEqAmount</dfn> : [=Decimal=]
+        <td>String
         <td>O
-        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
+        <td>
+            Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
+
+            <div class=example>
+              A TCE representing the movement of a 40 ft container is encoded as
+              ```json
+              {
+                "packagingOrTrEqType": "Container",
+                "packagingOrTrEqAmount": "2"
+              }
+              ```
+            </div>
 
       <tr>
         <td><dfn>distance</dfn>
@@ -1189,13 +1200,13 @@ The Data Type <{HOC}> has the following properties:
         <td>Indicates the transport mode downstream the hub for this HOC.
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
-        <td>String
+        <td>{{PackagingOrTrEqType}}
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type {{PackagingOrTrEqType}} for further information.
 
       <tr>
-        <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td><dfn>packagingOrTrEqAmount</dfn> : =[=Decimal=]
+        <td>String
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
@@ -1343,14 +1354,15 @@ encoded as a JSON object.
         <td>Mode of transport.
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
+        <td>{{PackagingOrTrEqType}}
+        <td>O
+        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type {{PackagingOrTrEqType}} for further information.
+      <tr>
+        <td><dfn>packagingOrTrEqAmount</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
-      <tr>
-        <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
-        <td>O
-        <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
+        <td>
+              Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
       <tr>
         <td><dfn>energyCarriers</dfn>
@@ -1715,7 +1727,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
     </table>
 </figure>
 
-### Data Type <dfn element>PackagingOrTrEqType</dfn> ### {#dt-packaging-or-tr-eq-type}
+### Data Type <dfn enum>PackagingOrTrEqType</dfn> ### {#dt-packaging-or-tr-eq-type}
 
 Data type `PackagingOrTrEqType` represents the category of relevant packaging or transport equipment
 units utilized for the transport of the consignment by the [=Transport Operator=] or [=Transport
@@ -1723,15 +1735,21 @@ Service Organizer=].
 
 It MUST be encoded as a String using one of the following values:
 
-Advisement: The enumeration of packaging or transport equipment units below will be evolved in future revisions. Account for this when
-implementing the validation of this property.
-
 : Box
 :: Refers to boxes
 : Pallet
 :: Refers to pallets
 : Container
-:: Refers to containers
+:: A standard 20-foot-long intermodal container
+: ContainerHC
+:: A high cube 20-foot-long intermodal container
+: ContainerHH
+:: A half height 20-foot-long intermodal container
+
+Advisement:
+  The enumeration of packaging or transport equipment units above will be evolved in future revisions.
+
+
 
 # HTTP REST API # {#http-rest-api}
 
