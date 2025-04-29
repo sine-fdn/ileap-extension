@@ -1690,7 +1690,10 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
           <td><dfn>feedstockPercentage</dfn> : [0..1]
           <td>[=Decimal=]
           <td>O
-          <td>Percentage of the feedstock in the total composition of energy carrier.
+          <td>
+              Percentage of the feedstock in the total composition of energy carrier.
+
+              The value of this property MUST be between `0` (excluding) and `1` (including).
         <tr>
           <td><dfn>regionProvenance</dfn>
           <td>String
