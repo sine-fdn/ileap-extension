@@ -345,10 +345,12 @@ Note:
 
 Note: Non-normative section
 
+## Example Case with 2 Carriers and 1 LSP ## {#example-case-1}
+
 This section provides an end-to-end example of how the data transactions ([[#txns]])
 enable logistics emissions transparency for a single shipment.
 
-<figure>
+<figure id="end-to-end-example-1">
   <img src="diagrams/example.svg" height="80%" width="80%" >
   <figcaption>End-to-end example</figcaption>
 </figure>
@@ -394,45 +396,12 @@ enable logistics emissions transparency for a single shipment.
     This [=Transport Operator=] is capable of making <{TAD}> data available to the
     [=Transport Service Organizer=] `LSP`.
 
-## Data Transactions Executed ## {#example-txns}
+### Data Collection by Transport Service Organizer `LSP` ### {#example-http-z}
 
-Note: This hypothetical example currently ommits hub operations.
+To collect the <{TCE|TCEs}> from Transport Operator `Carrier A`, `LSP` performs the following HTTP call.
 
-Note: In this hypothetical example, when we refer to a party executing a transaction,
-        we implicitly refer to the [=host systems=] executing the tasks and transactions on their behalf.
-
-
-### Data Collection by Transport Service Organizer `Z` ### {#example-z}
-
-As the transport consists of 2 legs, `Z` needs to collect data from the 2 Transport Operators `A` and `B`.
-
-For this, the Transport Service Organizer `Z` performs the following data transactions:
-
-1. `Z` executes [[#txn1]] with Transport Operator `A` to collect the <{TCE|TCEs}>
-    for the first leg of the shipment.
-1. As Transport Operator `B` does not support [[#txn1]], `Z` performs [[#txn3]] with
-    Transport Operator `B` to collect the <{TAD}> for the second leg of the shipment.
-1. `Z` then calculates the <{TCE|TCEs}> for the second leg of the shipment based on
-      the <{TAD}> data and modelled or default emission factors.
-
-### Data Collection by Transport Service User `S` ### {#example-s}
-
-After Transport Service Organizer `Z` has performed its data collection, the Transport Service User `S`
-can calculate the logistics emissions of the shipment by
-
-1. collecting the <{TCE|TCEs}> from `Z` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database.
-1. `S` can further verify the <{TCE|TCEs}> by collecting the <{TOC|TOCs}> from `Z` using [[#txn2]].
-1. `Z` can form the [=TC=] by adding up the <{TCE|TCEs}> from step 1.
-
-
-## Example HTTP Calls ## {#example-http}
-
-### Data Collection by Transport Service Organizer `Z` ### {#example-http-z}
-
-To collect the <{TCE|TCEs}> from Transport Operator `A`, `Z` performs the following HTTP call.
-
-Note: The call to `/footprints` can return several footprints, 1 for each shipment.
-        By filtering, e.g. by shipment id, `Z` can retrieve the <{TCE|TCEs}> for
+Note: The call to `/footprints` can return several footprints, one for each shipment.
+        By filtering, e.g. by shipment id, `LSP` can retrieve the <{TCE|TCEs}> for
         the shipment of interest. The use of this functionality is not included in the example below.
 
 The highlighted lines show the data exchanged according to the <{ShipmentFootprint}> data model.
@@ -510,16 +479,15 @@ The highlighted lines show the data exchanged according to the <{ShipmentFootpri
   </pre>
 </div>
 
+`LSP` can further access the <{TOC|TOCs}> from `Carrier A` through the same endpoint (see [[#txn2]] and [[#pcf-mapping-toc]]).
 
-### Data Collection by Transport Service User `S` ### {#example-http-s}
 
-To collect the TCE data related to the shipment from Transport Organizer `Z`, `S` performs the following HTTP call, which yields 2 TCEs.
 
-Note: The call to `/footprints` can return several footprints, 1 for each shipment.
-        By filtering, e.g. by shipment id, `Z` can retrieve the <{TCE|TCEs}>
-        for the shipment of interest. The use of this functionality is not included in the example below.
+### Data Collection by `LSP` from `Carrier A` ### {#example-http-s}
 
-The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`.
+To collect the TCE data related to the shipment, `LSP` performs the following HTTP call, yielding 2 TCEs in this hypothetical example.
+
+Note: the highlighted lines show 2 <{TCE|TCEs}> which `Carrier A` has collected and calculated for `LSP`.
 
 <div class=example>
   Example HTTP Request (cURL) to collect TCE Data (please note that an actual API call would require authentication):
@@ -2588,7 +2556,7 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta2 (2025-04-17) ## {#version-1.0.0-beta2}
+## Version 1.0.0-beta2 (2025-04-22) ## {#version-1.0.0-beta2}
 
 - small typo fixes and text improvements
 - improve [[#example]], adding a diagram and simplifying the text
@@ -2629,7 +2597,7 @@ apply for additional support, materials, and marketing opportunities.
 - add guidance on how to populate PACT's `DataModelExtension` data type in [[#pcf-mapping-sf]],
     [[#pcf-mapping-toc]], and [[#pcf-mapping-hoc]]
 - remove outdated advisement from [[#appendix-b]]
-- fix typos in `dataSchema` of [[#example-http]] and [[#appendix-b-hoc-example]]
+- fix typos in `dataSchema` of § 5.2 Example HTTP Calls and [[#appendix-b-hoc-example]]
 
 ## Version 0.2.1-20241113 (2024-11-13) ## {#version-20241113}
 
