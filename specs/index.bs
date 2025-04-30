@@ -2654,7 +2654,7 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta2 (2025-04-17) ## {#version-1.0.0-beta2}
+## Version 1.0.0-beta2 (2025-05-06) ## {#version-1.0.0-beta2}
 
 - addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
     - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
