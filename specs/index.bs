@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 1.0.0-beta)
+Title: iLEAP Technical Specifications (Version 1.0.0-beta2)
 Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
@@ -989,6 +989,15 @@ The Data Type <{TOC}> has the following properties:
             : ISO14083:2023
             :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an certification certificate.
 
+            : GLECv2
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v2.0, as declared in an certification certificate.
+
+            : GLECv3
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.0, as declared in an certification certificate.
+
+            : GLECv3.1
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.1, as declared in an certification certificate.
+
             Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>description</dfn>
@@ -1151,6 +1160,15 @@ The Data Type <{HOC}> has the following properties:
 
             : ISO14083:2023
             :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an certification certificate.
+
+            : GLECv2
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v2.0, as declared in an certification certificate.
+
+            : GLECv3
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.0, as declared in an certification certificate.
+
+            : GLECv3.1
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.1, as declared in an certification certificate.
 
             Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
@@ -2575,7 +2593,7 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0 (2025-05-XX) ## {#version-1.0.0}
+## Version 1.0.0-beta2 (2025-04-30) ## {#version-1.0.0-beta2}
 
 - <strong>replace mandatory property `isAccredited` by optional property `certifications`, in <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}></strong>
 - <strong>remove mandatory property `isVerified`</strong>
