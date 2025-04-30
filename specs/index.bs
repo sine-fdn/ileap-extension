@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 1.0.0-beta)
+Title: iLEAP Technical Specifications (Version 1.0.0-beta2)
 Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
@@ -272,6 +272,8 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
 
 # Data Transactions # {#txns}
+
+Note: Non-normative section
 
 A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
 
@@ -659,16 +661,6 @@ A <{ShipmentFootprint}> has the following properties:
         <td>O
         <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and any packaging provided by the [=Transport Service User=].
       <tr>
-        <td><dfn>numberOfItems</dfn>
-        <td>Number
-        <td>O
-        <td>The number of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of.
-      <tr>
-        <td><dfn>typeOfItems</dfn>
-        <td>String
-        <td>O
-        <td>The type of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of. For example, boxes, pallets, bottles, etc.
-      <tr>
         <td><dfn>shipmentId</dfn>
         <td>String
         <td>M
@@ -800,10 +792,25 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td>Decimal
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
-
+        <div class=example>
+              A TCE representing the movement of a 40 ft container is encoded as
+              ```json
+              {
+                "packagingOrTrEqType": "Container-TEU",
+                "packagingOrTrEqAmount": "2"
+              }
+              ```
+              A TCE representing the movement of a 45 ft container is encoded as
+              ```json
+              {
+                "packagingOrTrEqType": "Container-TEU",
+                "packagingOrTrEqAmount": "2.25"
+              }
+              ```
+        </div>
       <tr>
         <td><dfn>distance</dfn>
         <td><{GLECDistance}>
@@ -949,6 +956,19 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>
               Particulate matter (PM10 and PM2.5) released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kg`.
+      <tr>
+        <td><dfn>temperatureControl</dfn>
+        <td>String
+        <td>O
+        <td>
+            Temperature control status of the TCE.
+
+            If defined, the value of this property MUST be set to one of the following:
+            : `ambient`
+            :: For TCEs comprising the handling of non-temperature controlled freight only.
+
+            : `refrigerated`
+            :: For TCEs comprising the handling of refrigerated freight only.
 
   </table>
   <figcaption>Properties of data type <{TCE}></figcaption>
@@ -1089,6 +1109,41 @@ The Data Type <{TOC}> has the following properties:
         <td>M
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
+
+            The sum of the relative shares of the energy carriers used in the TOC MUST equal `1`.
+            The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{TOC/co2eIntensityThroughput}>) of the TOC.
+To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, each feedstock MUST
+            be represented by a separate entry in the [=EnergyCarriers=] array. For each
+              `EnergyCarrier`, the combined value of <{Feedstock/feedstockShare}>s must be less
+              than or equal to `1`. <div class=example> Assuming the TOC represents a fleet where
+              30% of the transport activity uses `diesel` and the remaining 70% uses electricity
+              (renewable) to generate movements, the value of <{TOC/energyCarriers}> would be:
+
+
+              ```json
+              [
+                {
+                  "energyCarrier": "Diesel",
+                  "relativeShare": "0.30",
+                  "emissionFactorWTW": "2.67",
+                  "emissionFactorTTW": "2.80"
+
+                },
+                {
+                  "energyCarrier": "Electric",
+                  "relativeShare": "0.70",
+                  "feedstocks": [
+                    {
+                      "feedstock": "Renewable electricity",
+                      "feedstockPercentage": "1"
+                    }
+                  ]
+                  "emissionFactorWTW": "0.05",
+                  "emissionFactorTTW": "0.05"
+                }
+              ]
+              ```
+            </div>
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
@@ -1214,6 +1269,37 @@ The Data Type <{HOC}> has the following properties:
         <td>M
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
+
+            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{HOC/co2eIntensityThroughput}>) of the HOC.
+
+            <div class=example>
+              Assuming the HOC represents terminal where 75% of the (representative) hub activity uses `diesel` and the remaining 25% uses electricity (grid) to generate movements, the value of <{HOC/energyCarriers}> would be:
+
+
+              ```json
+              [
+                {
+                  "energyCarrier": "Diesel",
+                  "relativeShare": "0.75",
+                  "emissionFactorWTW": "2.67",
+                  "emissionFactorTTW": "2.80"
+
+                },
+                {
+                  "energyCarrier": "Electric",
+                  "relativeShare": "0.25",
+                  "feedstocks": [
+                    {
+                      "feedstock": "Grid",
+                      "feedstockPercentage": "1"
+                    }
+                  ]
+                  "emissionFactorWTW": "0.35",
+                  "emissionFactorTTW": "0.35"
+                }
+              ]
+              ```
+            </div>
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
@@ -1367,6 +1453,10 @@ encoded as a JSON object.
         <td>O
         <td>If defined, the non-empty array of [=EnergyCarriers=] used to generate mechanical
               movement or heat and to generate chemical or physical processes.
+
+              The sum of the relative shares of the energy carriers used in the TAD MUST equal `1`.
+              The relative share of each energy carrier MUST be computed relative to (total)
+             [=Transport Activity=] of the TAD.
 
               This array MAY contain aggregated data from multiple consignments. In this case,
               the aggregation MUST follow principles from the [[!GLEC]] Framework.
@@ -1582,6 +1672,18 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>The substance used to generate mechanical movement or heat and to generate chemical or
         physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
       <tr>
+        <td><dfn>relativeShare</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+              The relative share of this energy carrier. Its value MUST be between `0` (excluding) and `1` (including).
+
+              Note:
+                  See the respective use in (<{TOC/energyCarriers|TOC}>,
+                  <{HOC/energyCarriers|HOC}>, and <{TAD/energyCarriers|TAD}>)
+                  for further details.
+
+      <tr>
         <td><dfn>feedstocks</dfn>
         <td><{Feedstock}>[]
         <td>O
@@ -1702,7 +1804,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
             : Natural gas
             :: Refers to natural gas
             : Grid
-            :: refers to grid electricity
+            :: Refers to grid electricity
             : Renewable electricity
             :: Refers to renewable sources of electricity
             : Cooking oil
@@ -1712,10 +1814,11 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
             Account for this when implementing the validation of this property.
 
         <tr>
-          <td><dfn>feedstockPercentage</dfn> : [0..1]
+          <td><dfn>feedstockShare</dfn> : [0..1]
           <td>Number
           <td>O
-          <td>Percentage of the feedstock in the total composition of energy carrier.
+          <td>The share of the feedstock in the total composition of the energy carrier.
+                The value MUST be between `0` (including) and `1` (including).
         <tr>
           <td><dfn>regionProvenance</dfn>
           <td>String
@@ -1739,8 +1842,18 @@ implementing the validation of this property.
 :: Refers to boxes
 : Pallet
 :: Refers to pallets
+: Container-TEU
+:: Refers to containers as the `PackagingOrTrEqAmount` is in TEU (Twenty-foot Equivalent Unit).
+: Container-FEU
+:: Refers to containers as the `PackagingOrTrEqAmount` is in FEU (Forty-foot Equivalent Unit).
 : Container
-:: Refers to containers
+:: Refers to containers where the size is unknown. `PackagingOrTrEqAmount` will be the number of container.
+
+Note: The use of value `Container` is discouraged, as it does not provide any information about the
+container equivalent unit.
+
+Advisement: The enumeration of packaging or transport equipment units above will be evolved in
+  future revisions.
 
 # HTTP REST API # {#http-rest-api}
 
@@ -2581,14 +2694,21 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta2 (2025-05-01) ## {#version-1.0.0-beta2}
+## Version 1.0.0-beta2 (2025-05-06) ## {#version-1.0.0-beta2}
 
-- Updates and clarifications to chapter [[#out-of-scope]], specifically
+- add optional property <{TCE/temperatureControl}> to <{TCE}>
+- rename <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
+    changing the semantics from "percentage" to "share" also
+- removal of properties `numberOfItems` and `typeOfItems` from <{ShipmentFootprint}>
+- addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
+    - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
+- update <{PackagingOrTrEqType}> and improve guidance on <{TCE/packagingOrTrEqAmount}>
+- add `non-normative` note to [[#txns]]
+- updates and clarifications to chapter [[#out-of-scope]], specifically
     - reference to ISO14083 Chapter 13.3
     - clarification on Black Carbon Accounting Methodology
     - legal-, compliance-, or contractal-relevant aspects
-
-
+          
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
 - remove underspecified property `dataQualityIndex`
@@ -2648,7 +2768,7 @@ apply for additional support, materials, and marketing opportunities.
 
 - improved uniqueness definition in [=consignment id=] and [=shipment id=]
 - use [=Decimal=] data type consistently
-- add issues to <{ShipmentFootprint/numberOfItems}> and <{ShipmentFootprint/typeOfItems}> instead of
+- add issues to <{ShipmentFootprint}> properties `numberOfItems` and `typeOfItems` instead of
     common issue
 
 ## Version 0.2.1-20240716 (2024-07-16) ## {#version-20240716}
