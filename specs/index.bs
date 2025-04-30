@@ -650,16 +650,6 @@ A <{ShipmentFootprint}> has the following properties:
         <td>O
         <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and any packaging provided by the [=Transport Service User=].
       <tr>
-        <td><dfn>numberOfItems</dfn>
-        <td>Number
-        <td>O
-        <td>The number of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of.
-      <tr>
-        <td><dfn>typeOfItems</dfn>
-        <td>String
-        <td>O
-        <td>The type of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of. For example, boxes, pallets, bottles, etc.
-      <tr>
         <td><dfn>shipmentId</dfn>
         <td>String
         <td>M
@@ -940,6 +930,19 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>
               Particulate matter (PM10 and PM2.5) released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kg`.
+      <tr>
+        <td><dfn>temperatureControl</dfn>
+        <td>String
+        <td>O
+        <td>
+            Temperature control status of the TCE.
+
+            If defined, the value of this property MUST be set to one of the following:
+            : `ambient`
+            :: For TCEs comprising the handling of non-temperature controlled freight only.
+
+            : `refrigerated`
+            :: For TCEs comprising the handling of refrigerated freight only.
 
   </table>
   <figcaption>Properties of data type <{TCE}></figcaption>
@@ -1775,7 +1778,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
             : Natural gas
             :: Refers to natural gas
             : Grid
-            :: refers to grid electricity
+            :: Refers to grid electricity
             : Renewable electricity
             :: Refers to renewable sources of electricity
             : Cooking oil
@@ -1785,10 +1788,11 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
             Account for this when implementing the validation of this property.
 
         <tr>
-          <td><dfn>feedstockPercentage</dfn> : [0..1]
+          <td><dfn>feedstockShare</dfn> : [0..1]
           <td>Number
           <td>O
-          <td>Percentage of the feedstock in the total composition of energy carrier.
+          <td>The share of the feedstock in the total composition of the energy carrier.
+                The value MUST be between `0` (including) and `1` (including).
         <tr>
           <td><dfn>regionProvenance</dfn>
           <td>String
@@ -2656,6 +2660,10 @@ apply for additional support, materials, and marketing opportunities.
 
 ## Version 1.0.0-beta2 (2025-05-06) ## {#version-1.0.0-beta2}
 
+- add optional property <{TCE/temperatureControl}> to <{TCE}>
+- rename <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
+    changing the semantics from "percentage" to "share" also
+- removal of properties `numberOfItems` and `typeOfItems` from <{ShipmentFootprint}>
 - addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
     - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
 
@@ -2718,7 +2726,7 @@ apply for additional support, materials, and marketing opportunities.
 
 - improved uniqueness definition in [=consignment id=] and [=shipment id=]
 - use [=Decimal=] data type consistently
-- add issues to <{ShipmentFootprint/numberOfItems}> and <{ShipmentFootprint/typeOfItems}> instead of
+- add issues to <{ShipmentFootprint}> properties `numberOfItems` and `typeOfItems` instead of
     common issue
 
 ## Version 0.2.1-20240716 (2024-07-16) ## {#version-20240716}
