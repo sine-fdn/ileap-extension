@@ -1105,7 +1105,7 @@ The Data Type <{TOC}> has the following properties:
             : tkm
             :: For everything else.
 
-            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
+            Advisement: The enumeration of denominators will be evolved in future revisions. Account for this when implementing the validation of this property.
 
   </table>
   <figcaption>Properties of data type `TOC`</figcaption>
@@ -1231,7 +1231,7 @@ The Data Type <{HOC}> has the following properties:
             : `tonnes`
             :: Leaving the hub.
 
-            Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
+            Advisement: The enumeration of denominators will be evolved in future revisions. Account for this when implementing the validation of this property.
 
   </table>
   <figcaption>Properties of data type `HOC`</figcaption>
