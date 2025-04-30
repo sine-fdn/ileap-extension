@@ -1,8 +1,8 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 0.2.1-20250129)
+Title: iLEAP Technical Specifications (Version 1.0.0-beta)
 Shortname: ileap-extension
 Status: LD
-Status Text: Draft Technical Specification
+Status Text: Technical Specification Pre-Release
 ED: https://sine-fdn.github.io/ileap-extension/
 TR: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/
 Canonical URL: ED
@@ -20,10 +20,10 @@ Local Boilerplate: header yes
 
 # Introduction # {#introduction}
 
-- Companies have a growing need to calculate and report logistics emissions data with greater accuracy and transparency. They want to move from standard and modeled data to primary data that accurately reflects their supply chain emissions.
+- Companies have a growing need to calculate and report logistics emissions with greater accuracy and transparency. They want to move from default and modeled data to primary data that accurately reflects their supply chain emissions.
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
-- Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification adopts the format established by the PACT Framework and PACT Technical Specifications. It conforms to the basic semantics framework for the [=SFC=] Exchange Network project.
-- Adoption of this specification will enable the exchange of data between different actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
+- Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification is built on top of the PACT Technical Specifications. In addition, it is based on the basic semantics and framework developed by the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network) and advances them further.
+- Adopting this specification will enable the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
 
 Advisement: The iLEAP Technical Specifications will be continuously refined as part of the ongoing iLEAP project. Significant changes may be introduced as the project progresses.
 
@@ -32,17 +32,17 @@ Advisement: The iLEAP Technical Specifications will be continuously refined as p
 
 This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
 
-1. Methodology for the calculation of logistics-related emissions which is specified in the [[!GLEC]] Framework and [[!ISO14083]].
+1. Methodology for the calculation of logistics-related emissions, specified in the [[!GLEC]] Framework and [[!ISO14083]].
 2. Black Carbon (Accounting).
 3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others).
-4. Pilot decentralized data exchange following data space governance principles, as covered in the [=SFC=] Data Exchange Network project.
+4. Pilot decentralized data exchange following data space governance principles, as covered in the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network).
 5. How to establish contractual obligations between parties for the provision of data.
 6. How to perform data audits and verification.
 7. Market based approach for electricity emissions accounting.
-8. Book and claim methods to track the environmental attributes of low emission transport solutions separately from the physical delivery. This will be incorporated in later versions of these technical specifications.
-9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model is considered a key enabler for primary data collection, where its main focus lays. The basic use of modelled and default data is supported, but detailed parameters for modelling are excluded from the current version.
-10. Modes of transport cable car and pipelines. These could be considered for future versions of these technical specifications.
-11. Refrigerant emissions, due to leakage of refrigerants used by vehicles and hubs, as described in [[!ISO14083]], Annex I. This will be incorporated in later versions of these technical specifications.
+8. Book and claim methods for environmental attribute tracking separate from physical delivery. These will be incorporated in future versions of these technical specifications.
+9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
+10. Modes of transport cable car and pipelines. These may be incorporated in future versions of these technical specifications.
+11. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
 
 ## Document Statuses ## {#document-statuses}
 
@@ -79,7 +79,7 @@ status tags are:
 
 : <dfn>Consignment</dfn>
 ::
-    A consignment refers to a quantifiable quantity of cargo that can be distinctly
+    Refers to a quantifiable quantity of cargo that can be distinctly
     identified as a single unit. It is transported from a sender or consignor to a
     receiver or consignee, irrespective of the mode of transportation employed. See [[!ISO14083]], Section 3.1.4.
 
@@ -88,13 +88,13 @@ status tags are:
 
 : <dfn>Great Circle Distance</dfn> (GCD)
 ::
-    It is the shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
+    The shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
 : Hub Activity
 :: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
 
 : Hub Operation Category (<dfn>HOC</dfn>)
-:: A Hub Operation Category is a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
+:: Represents a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Primary Data</dfn>
 ::
@@ -107,12 +107,12 @@ status tags are:
 : <dfn>Shipment</dfn>
 ::
     A shipment refers to the goods in a commercial transaction between a seller and a buyer.
-    It encompasses the consignments transported as part of this transaction via a transport
+    Refers to the consignments transported as part of this transaction via a transport
     chain from the consignor to the consignee. See [[!ISO14083]], Section 3.1.20.
 
 : <dfn>Shortest Feasible Distance</dfn> (SFD)
 ::
-    It represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework.
+    Represents the shortest practical route between two places taking into account the real operating conditions. [[!GLEC]] Framework.
 
 : <dfn>Transport Activity</dfn>
 ::
@@ -123,13 +123,13 @@ status tags are:
 :: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]. A TC corresponds to a shipment.
 
 : <dfn>Transport Chain Element</dfn> (TCE)
-:: A Transport Chain Element is one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
+:: Represents one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
 
 : <dfn>Transport Distance</dfn>
 :: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27.
 
 : Transport Operation Category (<dfn id='toc-dfn'>TOC</dfn>)
-:: A Transport Operation Category is a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
+:: Represents a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Transport Operator</dfn>
 :: Refers to the party that carries out the transport service. See [[!ISO14083]], Section 3.1.30.
@@ -139,7 +139,6 @@ status tags are:
 
 : <dfn>Transport Service User</dfn>
 :: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
-
 
 ## Auxillary Definitions ## {#auxillary-definitions}
 
@@ -180,7 +179,7 @@ status tags are:
 : <dfn>Shipper</dfn>
 :: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
 
-: Smart Freight Centre (<dfn>SFC</dfn> )
+: Smart Freight Centre (<dfn data-noexport=true>SFC</dfn> )
 :: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organization.
 
 : <dfn>Tool Provider</dfn>
@@ -206,7 +205,7 @@ framework for delineating subsequent [[#txns|data transactions]] and the [[#data
 ## Quantification of (Avoided) Emissions ## {#business-case-1}
 
 A [=Transport Service User=] requests its [=Transport Service Organizers=] or [=Transport Operators=] to provide it with the GHG emissions of [=Shipments=].
-The transport service user is particularly interested in having access to accurate emission and emission intensity values based on the measurement of actual data ("primary data").
+The transport service user is interested in accessing accurate emission and emission intensity values based on actual measurements ("primary data").
 
 Accurate logistics emissions values also enable the Transport Service User to compare logistics emissions and the resulting reductions from operational measures.
 
@@ -227,14 +226,14 @@ Data Transaction #2 [[#txn2]] enable this business case.
 
 Consider the scenario where a [=Transport Operator=], and possibly also [=Transport Service Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]].
 
-In such a case, the Party may choose to collect [=Transport Activity Data=], that is, information related to a single shipment including mass or energy carriers used.
+In such a case, the party may choose to collect [=Transport Activity Data=], that is, information related to a single shipment including mass, distance, and energy carriers used.
 
-After collecting Transport Activity Data, the Party can then contract a third party, such as a [=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
+After collecting Transport Activity Data, the party can then contract a third party, such as a [=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
 
-This business case is particularly relevant for SMEs to reduce the barrier to entry for logistics emissions reporting.
+This business case is particularly relevant for SMEs to reduce the entry barrier for logistics emissions reporting.
 
 iLEAP generally simplifies data collection efforts for the parties involved in this business case.
-For instance, each party needs to collect the activity data only once. Afterwards, the Party can make the activity data available to multiple parties (see [[#txn3]]) or for different purposes, including business cases beyond emissions calculations.
+For instance, each party needs to collect the activity data only once. This data can be then made available to multiple parties for different purposes, including business cases beyond emissions calculations.
 
 Data Transaction #3 ([[#txn3]]) enables this business case.
 
@@ -267,10 +266,10 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
 A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
 
-Its function is to facilitate interoperability between different parties by explaining the context and their intention(s).
+It facilitates interoperability between different parties by explaining the context and their intention(s).
 
 Each transaction combines the iLEAP data model ([[#data-model]]) with the PACT
-Data Exchange Protocol ([[#pcf-mapping]]) to enable interoperability between [=host systems=].
+Data Exchange Protocol ([[#pcf-mapping]]), enabling interoperability between [=host systems=].
 
 The following diagram shows how the three data transactions (defined below) are related:
 
@@ -286,9 +285,9 @@ Note: A [=Tool Provider=] can assume various roles on behalf of the [=Transport 
 This data transaction enables a [=Transport Service User=] (for example, a [=shipper=]) to receive [=Transport Chain Elements=]' emissions related data (encoded as <{TCE|TCEs}>) from a
 [=Transport Operator=] or a [=Transport Service Organizer=] for a single [=shipment=].
 
-To execute this transaction the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
+To execute this transaction, the [=Transport Operator=] or the [=Transport Service Organizer=] MUST
 
-1. first calculate 1 or more TCEs' emissions related data in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
+1. calculate 1 or more TCEs' emissions data in accordance with the [[!GLEC]] Framework and [[!ISO14083]], and then
 2. make the resulting <{ShipmentFootprint}> available to the [=Transport Service User=] through the PACT
     Network API (see [[#pcf-mapping-sf]]).
 
@@ -302,10 +301,10 @@ Note: For an example exchange, see [[#example]].
 
 ## Data Transaction 2: TOC or HOC Data Exchange ## {#txn2}
 
-This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] or [=HOC=] emission intensity related data from a [=Transport Operator=].
+This data transaction enables a [=Transport Service Organizer=] to receive [=TOC=] or [=HOC=] emission intensity data from a [=Transport Operator=].
 
 The provision of emission intensity data at the [=TOC=] or [=HOC=] level would enable the [=Transport Service Organizer=] to collect the necessary information to calculate emissions according to the GLEC Framework and [[!ISO14083]].
-It could also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
+It can also facilitate the inclusion of emission intensity in procurement processes, allowing for the provision of services that offer carbon-efficiency advantages (see Business Case 2).
 
 To execute this transaction the [=Transport Operator=] or [=Transport Service Organizer=] MUST
 
@@ -313,9 +312,8 @@ To execute this transaction the [=Transport Operator=] or [=Transport Service Or
 2. make the resulting <{TOC|TOCs}> or <{HOC|HOCs}> available through the PACT Network API (see [[#pcf-mapping]]).
 
 Note:
-    The details on how to define and to calculate [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
+    Details on the definition and calculation of [=TOCs=] and [=HOCs=] are specified in [[!ISO14083]]
     and guidance is provided in the [[!GLEC]] Framework.
-    Details of the calculation method are out of scope of this specification.
 
 
 ## Data Transaction 3: Transport Activity Data Exchange ## {#txn3}
@@ -325,13 +323,13 @@ This data transaction enables a [=Transport Service Organizer=] or a [=Transport
 To execute this transaction, the [=Transport Operator=] MUST
 
 1. collect Transport Activity Data belonging to a consignment identified by the [=consignment id=].
-2. make the <{TAD}> available through the PACT Network API.
+2. make the <{TAD}> available through [[#action-tad]].
 
 The [=Transport Service Organizer=] or [=Transport Service User=] CAN then retrieve the <{TAD|TADs}> using the [=consignment ids=].
 
 Note:
       This data transaction is considered necessary by logistics parties, especially for SMEs,
-      lacking the capabilities to report curated emissions data. Through this transaction they can
+      lacking the capabilities to make emissions data available. Through this transaction they can
       provide activity data to their customers.
 
 # End-to-End Example # {#example}
@@ -900,7 +898,15 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>
               GHG emissions released to atmosphere during the process of producing, storing,
               processing and distributing an energy carrier for vehicle operation + GHG emissions
-              released to atmosphere as a result of vehicle operation.
+              released to atmosphere as a result of vehicle or hub operation.
+              The value MUST be calculated for the TCE with unit `kgCO2e`.
+      <tr>
+        <td><dfn>co2eWTT</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+              GHG emissions released to atmosphere as a result of producing, storing,
+              processing and distributing an energy carrier for vehicle or hub operation.
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
       <tr>
@@ -908,7 +914,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>String
         <td>M
         <td>
-              GHG emissions released to atmosphere as a result of vehicle operation
+              GHG emissions released to atmosphere as a result of vehicle or hub operation
               The value MUST be calculated for the TCE with unit `kgCO2e`.
 
       <tr>
@@ -954,12 +960,12 @@ The Data Type <{TOC}> contains transport operation category data.
 
 The [=Transport Operator=] or [=Transport Service Organizer=] MUST calculate the <{TOC}> in accordance with the [[!GLEC]] Framework.
 
-The [=Transport Operator=] or [=Transport Service Organizer=] CAN then make the <{TOC}> available through the PACT Network API as a `ProductFootprint` (see [[#pcf-mapping-toc]]).
+The [=Transport Operator=] or [=Transport Service Organizer=] SHOULD then make the <{TOC}> available through the PACT Network API as a `ProductFootprint` (see [[#pcf-mapping-toc]]).
 
 Transport Operation Category data can be obtained from direct measurement
 (see `primary data` definition of [[!ISO14083]]) or other measurements
 (see `secondary data` definition of [[!ISO14083]]) such as modelled data
-or default value.
+or default values.
 
 ### Data Attributes ### {#toc-attributes}
 
@@ -990,13 +996,13 @@ The Data Type <{TOC}> has the following properties:
         <td><dfn>isAccredited</dfn>
         <td>Boolean
         <td>M
-        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
+        <td>(=certified) Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
 
       <tr>
         <td><dfn>description</dfn>
         <td>String
         <td>O
-        <td>Text description of the applicable TOC. Reflect on mode of transport, contract type, equipment type, vehicle type, freight temperature, LTL/FTL etc
+        <td>Text description of the applicable TOC. Including mode of transport, contract type, equipment type, vehicle type, freight temperature, LTL/FTL etc
 
       <tr>
         <td><dfn>mode</dfn> : {{TransportMode}}
@@ -1019,7 +1025,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>O
         <td>
-            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
+            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level.
 
             The value of this property must be between `0` (including) and `1` (excluding).
 
@@ -1030,13 +1036,15 @@ The Data Type <{TOC}> has the following properties:
         <td>
             Temperature control status of the TOC.
 
-            If defined, the value of this property MUST be set to one of the following values:
+             If defined, the value of this property MUST be set to one of the following:
             : `ambient`
-            :: For non-temperature controlled freight
+            :: For TOCs comprising the handling of non-temperature controlled freight only.
+
             : `refrigerated`
-            :: For refrigerated freight
+            :: For TOCs comprising the handling of refrigerated freight only.
+
             : `mixed`
-            :: For TOCs comprising the handling of both ambient and refrigerated freight
+            :: For TOCs comprising the handling of both ambient and refrigerated freight.
       <tr>
         <td><dfn>truckLoadingSequence</dfn>
         <td>String
@@ -1045,9 +1053,9 @@ The Data Type <{TOC}> has the following properties:
             Only for road. If defined, the value MUST be one of the following:
 
             : LTL
-            :: For less than truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off is PU-PU-DO-DO
+            :: For less than truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off is PU-PU-DO-DO.
             : FTL
-            :: For full truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off is PU-DO-PU-DO
+            :: For full truck load, as defined in the [[!GLEC]] Framework. The sequence of pick-up & drop-off is PU-DO-PU-DO.
 
      <tr>
         <td><dfn>airShippingOption</dfn>
@@ -1058,9 +1066,9 @@ The Data Type <{TOC}> has the following properties:
 
             If defined, the value MUST be one of the following:
             : belly freight
-            :: For freight combined with passanger transport
+            :: For freight combined with passanger transport.
             : freighter
-            :: For freight moved by a dedicated aircraft
+            :: For freight moved by a dedicated aircraft.
      <tr>
         <td><dfn>flightLength</dfn>
         <td>String
@@ -1070,10 +1078,9 @@ The Data Type <{TOC}> has the following properties:
 
             If defined, the value MUST be one of the following:
             : short-haul
-            :: For distances smaller than 1500 km
+            :: For distances smaller than 1500 km.
             : long-haul
-            :: For distances greater than 1500 km
-
+            :: For distances greater than 1500 km.
 
       <tr>
         <td><dfn>energyCarriers</dfn>
@@ -1105,36 +1112,24 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-            Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}> and at the denominator of the <{TOC/co2eIntensityTTW}>. At the TOC level, the possible values are
+            Indicates the freight transport activity unit at the denominator of the <{TOC/co2eIntensityWTW}> and at the denominator of the <{TOC/co2eIntensityTTW}>. The value MUST be one of the following:
 
             : `TEUkm`
-            :: For sea and inland waterways
+            :: For sea and inland waterways.
 
             : tkm
-            :: For everything else
+            :: For everything else.
 
             Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
-      <tr>
-        <td><dfn>glecDataQualityIndex</dfn> : [0..4]
-        <td>Number
-        <td>O
-        <td>
-            The data quality index as defined in the [[!GLEC]] Framework
-
-            The value of this property must be between `0` (including) and `4` (including).
-
-            Issue: the exact calculation rules must be defined
 
   </table>
   <figcaption>Properties of data type `TOC`</figcaption>
 </figure>
 
 
-## Hub Operation Category ( <dfn element>HOC</dfn> ) ## {#dt-hoc}
+## Hub Operation Category (<dfn element>HOC</dfn>) ## {#dt-hoc}
 
 The Data Type <{HOC}> contains [=HOC=] data. It is referenced in a [=Transport Chain Element=] through the <{TCE/hocId}> property.
-
-Advisement: Please, note that variables pertaining to the HOC Data Type have not been validated and are subject to undergo major updates.
 
 [=HOCs=] are the building blocks for the calculation of a [=Transport Chain Element=] with hub operations.
 
@@ -1159,7 +1154,7 @@ The Data Type <{HOC}> has the following properties:
         <td><dfn>description</dfn>
         <td>String
         <td>O
-        <td>Text description of the applicable HOC. Reflect on hub type, contract type, equipment type, freight temperature, etc
+        <td>Text description of the applicable HOC. Including hub type, contract type, equipment type, freight temperature, etc
       <tr>
         <td><dfn>isVerified</dfn>
         <td>Boolean
@@ -1169,12 +1164,12 @@ The Data Type <{HOC}> has the following properties:
         <td><dfn>isAccredited</dfn>
         <td>Boolean
         <td>M
-        <td>(=certified)Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
+        <td>(=certified) Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
       <tr>
         <td><dfn>hubType</dfn>
         <td>{{HubType}}
         <td>M
-        <td>Type of Hub
+        <td>Type of Hub.
       <tr>
         <td><dfn>temperatureControl</dfn>
         <td>String
@@ -1182,13 +1177,15 @@ The Data Type <{HOC}> has the following properties:
         <td>
             Temperature control status of the hub.
 
-            If defined, the value of this property MUST be set to one of the following values:
+            If defined, the value of this property MUST be set to one of the following:
             : `ambient`
-            :: For HOCs comprising the handling of non-temperature controlled freight only
+            :: For HOCs comprising the handling of non-temperature controlled freight only.
+
             : `refrigerated`
-            :: For HOCs comprising the handling of refrigerated freight only
+            :: For HOCs comprising the handling of refrigerated freight only.
+
             : `mixed`
-            :: For HOCs comprising the handling of both ambient and refrigerated freight
+            :: For HOCs comprising the handling of both ambient and refrigerated freight.
 
        <tr>
         <td><dfn>hubLocation</dfn>
@@ -1199,12 +1196,12 @@ The Data Type <{HOC}> has the following properties:
         <td><dfn>inboundTransportMode</dfn>: {{TransportMode}}
         <td>{{TransportMode}}
         <td>O
-        <td>Indicates the transport mode upstream the hub for the hub operations the HOC is defined for.
+        <td>Indicates the transport mode upstream the hub for this HOC.
       <tr>
         <td><dfn>outboundTransportMode</dfn>: {{TransportMode}}
         <td>{{TransportMode}}
         <td>O
-        <td>Indicates the transport mode downstream the hub for the hub operations the HOC is defined for.
+        <td>Indicates the transport mode downstream the hub for this HOC.
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
@@ -1250,10 +1247,10 @@ The Data Type <{HOC}> has the following properties:
             Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}> and at the denominator of the <{HOC/co2eIntensityTTW}>. At the HOC level, the possible values are
 
             : `TEU`
-            :: Leaving the hub for sea and inland waterways as outbound transport mode
+            :: Leaving the hub for sea and inland waterways as outbound transport mode.
 
             : `tonnes`
-            :: Leaving the hub
+            :: Leaving the hub.
 
             Advisement: The enumeration of throughputs will be evolved in future revisions. Account for this when implementing the validation of this property.
 
@@ -1269,7 +1266,7 @@ data, referring to a single consignment, leg, and mode of transport, or to a
 single transshipment within a hub.
 
 Each TAD CAN contain values for attributes which are categorial to the
-operations of a fleet or hub (such as load factor or mix of feedstock(s)).
+operations of a fleet or hub (such as load factor or feedstock mix).
 In this case, the values CAN be calculated from the actual data of more
 than one consignment (“representative” or “average data”).
 
@@ -1316,12 +1313,12 @@ encoded as a JSON object.
         <td><dfn>distance</dfn>
         <td><{GLECDistance}>
         <td>M
-        <td>The Distance between the origin and the destination of the activity
+        <td>The Distance between the origin and the destination of the activity.
       <tr>
         <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>Mass of freight (SI derived Unit `kilograms`)
+        <td>Mass of freight (SI derived Unit `kilograms`).
       <tr>
         <td><dfn>loadFactor</dfn> : [=Decimal=]
         <td>String
@@ -1336,7 +1333,7 @@ encoded as a JSON object.
         <td>String
         <td>O
         <td>
-            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level
+            Ratio of the section of the route of a vehicle during which no freight is transported over the total distance (loaded plus empty distance) of a vehicle on a TOC level.
 
             The value of this property must be between `0` (including) and `1` (excluding).
       <tr>
@@ -1355,7 +1352,6 @@ encoded as a JSON object.
         <td>M
         <td>
               Timestamp of departure. The value MUST be a date and time string conforming to ISO 8601 with timezone UTC.
-              NOTE: the original data model defined this as the "date of loading"
       <tr>
         <td><dfn>arrivalAt</dfn>
         <td>String
@@ -1365,7 +1361,7 @@ encoded as a JSON object.
         <td><dfn>mode</dfn>
         <td>{{TransportMode}}
         <td>M
-        <td>Mode of transport
+        <td>Mode of transport.
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
         <td>String
@@ -1387,27 +1383,6 @@ encoded as a JSON object.
               This array MAY contain aggregated data from multiple consignments. In this case,
               the aggregation MUST follow principles from the [[!GLEC]] Framework.
 
-      <tr>
-        <td><dfn>energyCarrier</dfn>
-        <td><{EnergyCarrierType}>
-        <td>O
-        <td>
-            The substance used to generate mechanical movement or heat and to generate chemical or
-            physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
-
-            If <{TAD/energyCarrier}> is not defined, then <{TAD/feedstocks}> MUST be defined. If possible, both SHOULD be defined.
-
-            Advisement: This property is deprecated and will be removed in future revisions. Use <{TAD/energyCarriers}> instead.
-      <tr>
-        <td><dfn>feedstocks</dfn>
-        <td><{Feedstock}>[]
-        <td>O
-        <td>
-            If defined, the non-empty array of [=Feedstocks=] of the energy carrier. The sum total of the feedstock percentages MUST be smaller than or equal to 1.
-
-            If <{TAD/feedstocks}> is not defined, then <{TAD/energyCarrier}> MUST be defined. If possible, both SHOULD be defined.
-
-            Advisement: This property is deprecated and will be removed in future revisions. Use <{TAD/energyCarriers}> instead.
     </table>
     <figcaption><{TAD}> properties</figcaption>
 </figure>
@@ -1436,18 +1411,18 @@ At least one of the following properties of data type <dfn element>GLECDistance<
         <td><dfn>actual</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>The distance between the origin and the destination of a consignment of
-              freight or a vehicle, along a specified route (or from telematics), as defined in the [[!GLEC]] Framework
+        <td>Distance between the origin and the destination of a consignment of
+              freight or a vehicle, along a specified route (or from telematics), as defined in the [[!GLEC]] Framework.
       <tr>
         <td><dfn>gcd</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>[=Great Circle Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework
+        <td>[=Great Circle Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework.
       <tr>
         <td><dfn>sfd</dfn> : [=Decimal=]
         <td>String
         <td>O
-        <td>[=Shortest Feasible Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework
+        <td>[=Shortest Feasible Distance=] between the origin and the destination, as defined in the [[!GLEC]] Framework.
 
     </table>
     <figcaption><{GLECDistance}> properties</figcaption>
@@ -1472,18 +1447,18 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>street</dfn>
         <td>String
         <td>O
-        <td>Street of the location
+        <td>Street of the location.
 
       <tr>
         <td><dfn>zip</dfn>
         <td>String
         <td>O
-        <td>Postal code of the location
+        <td>Postal code of the location.
       <tr>
         <td><dfn>city</dfn>
         <td>String
         <td>M
-        <td>City of the location
+        <td>City of the location.
       <tr>
         <td><dfn>country</dfn>
         <td>Country
@@ -1494,28 +1469,28 @@ Properties of data type <dfn element>Location</dfn>:
         <td>iataCode
         <td>O
         <td>IATA code of airport. Applies only to (i) <{TCE|TCEs}> referring to a <{TOC}> with <{TOC/mode}> `Air`
-            and (ii) <{TAD}> with <{TAD/mode}> `Air`
+            and (ii) <{TAD}> with <{TAD/mode}> `Air`.
       <tr>
         <td><dfn>locode</dfn>
         <td>locode
         <td>O
-        <td>UN/LOCODE of the location
+        <td>UN/LOCODE of the location.
       <tr>
         <td><dfn>uic</dfn>
         <td>uic
         <td>O
         <td>UIC Code of the location. Applies only to (i) <{TCE|TCEs}> referring to a <{TOC}> with <{TOC/mode}> `Rail`
-            and (ii) <{TAD}> with <{TAD/mode}> `Rail`
+            and (ii) <{TAD}> with <{TAD/mode}> `Rail`.
       <tr>
         <td><dfn>lat</dfn>
         <td>[=Decimal=]
         <td>O
-        <td>Latitude of the location. If <{Location/lng}> is defined, so MUST <{Location/lat}> be defined
+        <td>Latitude of the location. If <{Location/lng}> is defined, so <{Location/lat}> MUST be defined.
       <tr>
         <td><dfn>lng</dfn>
         <td>[=Decimal=]
         <td>O
-        <td>Longitude of the location.  If <{Location/lat}> is defined, so MUST <{Location/lng}> be defined
+        <td>Longitude of the location.  If <{Location/lat}> is defined, so <{Location/lng}> MUST be defined.
 
     </table>
     <figcaption><{GLECDistance}> properties</figcaption>
@@ -1531,23 +1506,23 @@ It MUST be encoded as a String using one of the following values:
 <dl dfn-type="enum-value" dfn-for="TransportMode">
 
 : <dfn>Road</dfn>
-:: for transport mode `road`
+:: For transport mode `road`
 
 : <dfn>Rail</dfn>
-:: for transport mode `rail`
+:: For transport mode `rail`
 
 : <dfn>Air</dfn>
-:: for transport mode `air`
+:: For transport mode `air`
 
 : <dfn>Sea</dfn>
-:: for transport mode `sea`
+:: For transport mode `sea`
 
 : <dfn>InlandWaterway</dfn>
-:: for transport mode `inland waterway`
+:: For transport mode `inland waterway`
 
 </dl>
 
-NOTE: : Hub operations are excluded from here, as these transport modes are defined for TOC, and HOC is defined separately
+NOTE: These transport modes are defined for TOC only. HOC transport modes are defined seperately.
 
 ### Data Type <dfn enum>HubType</dfn> ### {#dt-hub-type}
 
@@ -1558,19 +1533,19 @@ It MUST be encoded as a String using one of the following values:
 <dl dfn-type="enum-value" dfn-for="HubType">
 
 : <dfn>Transshipment</dfn>
-:: refers to hubs where transshipment is the main service (>80% of goods handled)
+:: Refers to hubs where transshipment is the main service (>80% of goods handled)
 
 : <dfn>StorageAndTransshipment</dfn>
-:: refers to hubs where both transshipment and warehousing are relevant services
+:: Refers to hubs where both transshipment and warehousing are relevant services
 
 : <dfn>Warehouse</dfn>
-:: refers to hubs where warehousing is the main service (>80% of goods handled)
+:: Refers to hubs where warehousing is the main service (>80% of goods handled)
 
 : <dfn>LiquidBulkTerminal</dfn>
-:: refers to terminals equiped to handle cargo in liquid and gaseous forms
+:: Refers to terminals equiped to handle cargo in liquid and gaseous forms
 
 : <dfn>MaritimeContainerTerminal</dfn>
-:: refers to hubs where maritime containers are handled
+:: Refers to hubs where maritime containers are handled
 
 </dl>
 
@@ -1580,7 +1555,7 @@ A decimal number.
 
 In JSON, a [=Decimal=] MUST be encoded as a JSON String.
 
-Note: the JSON String encoding is necessary to avoid floating point rounding errors.
+Note: The JSON String encoding is necessary to avoid floating point rounding errors.
 
 
 <div class=example>
@@ -1639,21 +1614,20 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
             <{EnergyCarrier/energyConsumptionUnit}> MUST be defined if <{EnergyCarrier/energyConsumption}> is defined.
 
             Possible values are:
+            : `l`
+            :: For liters
+
+            : `kg`
+            :: For kilograms
+
+            : `kWh`
+            :: For kiloWatt-hour
+
+            : `MJ`
+            :: For MegaJoules
 
             Advisement: The enumeration of energy consumption units will be evolved in future revisions.
             Account for this when implementing the validation of this property.
-
-            : `l`
-            :: for liters
-
-            : `kg`
-            :: for kilograms
-
-            : `kWh`
-            :: for kiloWatt-hour
-
-            : `MJ`
-            :: for MegaJoules
       <tr>
         <td><dfn>emissionFactorWTW</dfn> : [=Decimal=]
         <td>String
@@ -1680,33 +1654,35 @@ movement or heat and to generate chemical or physical processes as per the [[!GL
 
 It MUST be encoded as a String using one of the following values:
 
-Advisement: The enumeration of energy carrier types below will be evolved in future revisions.
+Advisement: The enumeration of energy carrier types will be evolved in future revisions.
 Account for this when implementing the validation of this property.
 
 : Diesel
-:: refers to diesel
+:: Refers to diesel
 : HVO
-:: refers to Hydrotreated Vegetable Oil
+:: Refers to Hydrotreated Vegetable Oil
 : Petrol
-:: refers to petrol
+:: Refers to petrol
 : CNG
-:: refers to Compressed Natural Gas
+:: Refers to Compressed Natural Gas
 : LNG
-:: refers to Liquefied Natural Gas
+:: Refers to Liquefied Natural Gas
 : LPG
-:: refers to Liquefied Petroleum Gas
+:: Refers to Liquefied Petroleum Gas
 : HFO
-:: refers to Heavy Fuel Oil
+:: Refers to Heavy Fuel Oil
 : MGO
-:: refers to Marine Gas Oil
+:: Refers to Marine Gas Oil
 : Aviation fuel
-:: refers to aviation fuel
+:: Refers to aviation fuel
 : Hydrogen
-:: refers to hydrogen
+:: Refers to hydrogen
 : Methanol
-:: refers to methanol
+:: Refers to methanol
 : Electric
-:: refers to electricity
+:: Refers to electricity
+
+
 
 
 ### Data Type <dfn>Feedstock</dfn> ### {#dt-feedstock}
@@ -1733,20 +1709,20 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
           <td>A feedstock of an [=EnergyCarrier=].
 
             The value MUST be one of the following:
-
-            Advisement: The enumeration of feedstocks below will be evolved in future revisions.
-            Account for this when implementing the validation of this property.
-
             : Fossil
-            :: refers to fossil sources
+            :: Refers to fossil sources
             : Natural gas
-            :: refers to natural gas
+            :: Refers to natural gas
             : Grid
             :: refers to grid electricity
             : Renewable electricity
-            :: refers to renewable sources of electricity
+            :: Refers to renewable sources of electricity
             : Cooking oil
-            :: refers to cooking (e.g., vegetable) oil
+            :: Refers to cooking (e.g., vegetable) oil
+
+            Advisement: The enumeration of feedstocks will be evolved in future revisions.
+            Account for this when implementing the validation of this property.
+
         <tr>
           <td><dfn>feedstockPercentage</dfn> : [0..1]
           <td>Number
@@ -1772,21 +1748,21 @@ Advisement: The enumeration of packaging or transport equipment units below will
 implementing the validation of this property.
 
 : Box
-:: refers to boxes
+:: Refers to boxes
 : Pallet
-:: refers to pallets
+:: Refers to pallets
 : Container
-:: refers to containers
+:: Refers to containers
 
 # HTTP REST API # {#http-rest-api}
 
 A [=host system=] MUST implement:
 1. The endpoint for the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
-1. The exchange of <{ShipmentFootprint}> and <{TOC}> as specified in [[#pcf-mapping]].
+1. The exchange of <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> as specified in [[#pcf-mapping]].
 
 The exchange of logistics emissions data throught the [[#data-model]] presupposes the implementation of the HTTP REST API defined in [[!PACTDX]] (Chapter 6).
 
-Reusing the [[!PACTDX]] data exchange protocol simplifies the integration of logistics emissions data into existing [=host systems=] software, especially if they are already used by [=Transport Service Users=].
+By relying on [[!PACTDX]] for the data exchange, the integration of logistics emissions data into existing [=host systems=]' software is simplified. In addition, this approach can further enhance and support the convergence of emissions transparency across sectors and initiatives.
 
 They can then use 1 interoperable API for the exchange of different categories of carbon emissions data related to GHG Protocol lifecycle stages (such as material acquisition and transport).
 
@@ -1810,7 +1786,7 @@ If a [=host system=] implements filtering, it CAN process the filter statement o
 
 1. it CAN ignore the filter statement or parts of the filter statement, or
 1. it CAN return an error response as defined in the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses).
-    For instance, a host system CAN return an error with code `NotImplemented` if it does not support a specific filter pair.
+    For instance, a host system CAN return an error with code `NotImplemented` if it does not support a specific filter pair;
 1. it CAN treat concatenated filters disjunctively, i.e., returning the union of the results of the individual filters.
 
 
@@ -1827,18 +1803,18 @@ If a [=host system=] implements filtering, it CAN process the filter statement o
 
 The target IRI from a pagination `link` header is called a <dfn>pagination link</dfn>.
 
-Upon a [=host system=] returning a [=pagination link=]
+Upon a [=host system=] returning a [=pagination link=]:
 
 1. a data recipient CAN call the pagination link more than once;
-1. upon each call, the host system
+1. upon each call, the host system;
     1. MUST return the same Transport Activity Data upon successful authentication (i.e. a Bearer token authentication as defined in [[!PACTDX]] Section 6.3);
     1. MUST NOT return more data than requested in case [=Limit=] was defined by a [=data recipient=];
-    1. MUST return a `Link` header conforming to the previous description in case there is additional Transport Activity Data  available;
-1. if a response contains a second pagination link, upon the data recipient calling the second pagination link, the previous pagination link MAY no longer work
+    1. MUST return a `Link` header conforming with the previous description in case there is additional Transport Activity Data  available;
+1. if a response contains a second pagination link, upon the data recipient calling the second pagination link, the previous pagination link MAY no longer work.
     - i.e. data recipients MUST NOT assume that previous pagination links continue to return results after advancing in the pagination process;
 1. a pagination link MUST be valid for at least 180 seconds after creation;
-1. a data recipient SHOULD retry calling the pagination link after the server returned an error
-    1. and SHOULD use a randomized exponential back-off strategy when retrying
+1. a data recipient SHOULD retry calling the pagination link after the server returned an error;
+    1. and SHOULD use a randomized exponential back-off strategy when retrying.
 
 ### Request Syntax ### {#action-tad-request}
 
@@ -1876,8 +1852,8 @@ authorization: Bearer <l>[=BearerToken=]</l>
 : <dfn>Limit</dfn>
 ::
     `Limit` is an OPTIONAL request parameter. If defined,
-      1. the name of the HTTP request parameter MUST be `limit`
-      2. and the value MUST be a positive integer.
+      1. the name of the HTTP request parameter MUST be `limit` and
+      2. the value MUST be a positive integer.
 
 ### Response Syntax ### {#action-tad-response}
 
@@ -1932,7 +1908,7 @@ With response parameters
 :: The length of the Body. See [[!rfc9112]].
 
 : <dfn>PaginationLink</dfn>
-:: see [=pagination link=] and [[#pagination]].
+:: See [=pagination link=] and [[#pagination]].
 
 
 ## PACT Integration ## {#pcf-mapping}
@@ -2513,13 +2489,133 @@ the links above for further details.
 Any optional property that is not explicitly mentioned above MAY remain unset. All mandatory
 properties that cannot be derived from `HOC` CAN be populated in a best-effort manner.
 
+# Conformance # {#conformance}
+
+The iLEAP Technical Specifications are designed to be incrementally adopted and
+realized in [=host systems=] for different stakeholder groups. Therefore,
+there are 2 kinds of <dfn>iLEAP conformance</dfn> defined:
+
+1. [=iLEAP Emissions Data Conformance=]
+1. [=iLEAP Activity Data Conformance=]
+
+For each kind of iLEAP Conformance, a host system achieves conformity by
+
+1. realizing the normative statements and relevant test cases referenced
+    in [[#ileap-conformance-matrix]] below,
+2. successfully passing Bilateral Testing ([[#conformity-bilateral-testing]])
+3. succesfully passing the [Automated Conformance Testing](https://act.sine.dev)
+
+To achieve iLEAP Emissions Data Conformance, [=host systems=] are further REQUIRED to support the
+following features:
+1. fetching <{TAD}> from another host system and
+2. using it to generate <{TOC}>, <{HOC}>, or <{ShipmentFootprint}> data.
+
+It is RECOMMENDED for host systems to conform to both kinds of [=iLEAP conformance=].
+
+Sections marked as non-normative, all authoring guidelines, diagrams, examples,
+and notes in this specification are non-normative. Everything else in this
+specification is normative.
+
+The key words MAY, MUST, MUST NOT, OPTIONAL, RECOMMENDED, REQUIRED, SHOULD,
+and SHOULD NOT in this document are to be interpreted as described in
+[[!RFC2119]] [[!RFC8174]] when, and only when, they appear in all capitals,
+as shown here.
+
+Advisement: Currently, iLEAP Conformance ensures interoperability and syntactic correctness. Future
+updates will extend coverage to include semantic correctness, ensuring that emissions calculations
+are performed accurately in end-to-end scenarios.
+
+## Conformance Matrix ## {#ileap-conformance-matrix}
+
+<figure>
+  <table class="complex data">
+    <thead>
+      <tr>
+        <th style="text-align: left">Test Case
+        <th style="text-align: left">Conformance
+    <tbody >
+      <tr>
+        <td style="text-align: left">All [PACT Required Test Cases](https://wbcsd.github.io/pact-conformance-testing/checklist.html#required-tests)
+        <td rowspan="4"><dfn>iLEAP Emissions Data Conformance</dfn>
+
+      <tr>
+        <td style="text-align: left">[[#test-case-001]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-002]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-003]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-004]]
+        <td rowspan="5"><dfn>iLEAP Activity Data Conformance</dfn>
+
+      <tr>
+        <td style="text-align: left">[[#test-case-005]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-006]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-007]]
+
+      <tr>
+        <td style="text-align: left">[[#test-case-008]]
+
+  </table>
+  <figcaption>iLEAP Conformance Matrix</figcaption>
+</figure>
+
+
+## Bilateral Testing ## {#conformity-bilateral-testing}
+
+A Bilateral Test is an interoperability test where two different [=host system=]
+implementations participate to verify conformance ([[#conformance]]) and their
+ability to work together.
+
+One system acts as the [=data owner=]. It is called the <dfn>target host system</dfn> and is the system under test.
+The second system acts as the testing party.
+
+Note:
+  The objective of Bilateral Testing is to ensure that systems can effectively
+  communicate despite having independent codebases.
+
+
+## Submission ## {#conformity-submission}
+
+Note: non-normative
+
+Once a [=host system=] achieved [=iLEAP conformance=] in 1 or all kinds of iLEAP conformance,
+the implementer is requested to reach out to the authors of this Technical Specifications to
+apply for additional support, materials, and marketing opportunities.
+
+
 # Appendix A: Changelog # {#changelog}
+
+## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
+
+- remove underspecified property `dataQualityIndex`
+- pre-release of version 1.0.0 (full release expected in 2025-04)
+
+## Version 0.2.1-20250314 (2025-03-14) ## {#version-20250314}
+
+- fix [[#test-case-007]] and [[#test-case-008]] error responses
+
+## Version 0.2.1-20250311 (2025-03-11) ## {#version-20250311}
+
+- remove deprecated properties `TAD/energyCarrier` and `TAD/feedstocks`
+- small typo fixes and text improvements
+- add [[#conformance]] chapter
+- improve [[#appendix-b]]'s guidance and readability
+- finalize [[#test-case-004]]
+- populate [[#test-case-005]], [[#test-case-006]], [[#test-case-007]], and [[#test-case-008]]
 
 ## Version 0.2.1-20250129 (2025-01-29) ## {#version-20250129}
 
 - changes to <{TAD}> data type which are "backwards compatible" with the previous version:
     1. addition of optional property <{TAD/energyCarriers}> as a replacement for
-    2. the now deprecated properties <{TAD/energyCarrier}> and <{TAD/feedstocks}>
+    2. the now deprecated properties `TAD/energyCarrier` and `TAD/feedstocks`
 
 
 ## Version 0.2.1-20241211 (2024-12-11) ## {#version-20241211}
@@ -2878,9 +2974,9 @@ In order to test the conformance of an iLEAP implementation, the following tests
 ## PACT Conformance Tests ## {#pact-conformance-tests}
 
 Since the iLEAP Technical Specifications were conceived as an extension to the PACT Data Model and
-Data Exchange Protocol, any iLEAP conformant implementation must also be PACT Conformant. For that
-reason, the tests in the [PACT Conformance Testing
-Checklist](https://wbcsd.github.io/pact-conformance-testing/checklist.html) must be performed.
+Data Exchange Protocol, any iLEAP conformant implementation must also implement [[!PACTDX]] v2.1.0 or above. For that
+reason, the required tests in the [PACT Conformance Testing
+Checklist](https://wbcsd.github.io/pact-conformance-testing/checklist.html#required-tests) should also be performed.
 
 ## iLEAP Specific Conformance Tests ## {#ileap-specific-conformance-tests}
 
@@ -2888,7 +2984,7 @@ The following tests are specific to the iLEAP Technical Specifications:
 
 ### Test Case 001: Get ProductFootprint with ShipmentFootprint ### {#test-case-001}
 
-Tests the target host system's ability to return `ProductFootprints` with `ShipmentFootprint`s as
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `ShipmentFootprint`s as
 extensions.
 
 #### Request #### {#test-case-001-request}
@@ -2899,7 +2995,7 @@ system with a valid access token and the syntax specified in [PACT Tech Specs V2
 
 #### Expected Response #### {#test-case-001-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 Those which include `productIds` with [the format specified for ShipmentFootprints](#pcf-mapping-sf)
@@ -2908,15 +3004,18 @@ must be conformant with the Data Model specified in [[#dt-sf]]. The relevant pro
 
 ### Test Case 002: Get ProductFootprint with TOC ### {#test-case-002}
 
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `TOC`s as
+extensions.
+
 #### Request #### {#test-case-002-request}
 
-A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
+system=] with a valid access token and the syntax specified in [PACT Tech Specs V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-002-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 
@@ -2930,15 +3029,17 @@ relevant properties of the `ProductFootprint` must also be confomant with the gu
 
 ### Test Case 003: Get ProductFootprint with HOC ### {#test-case-003}
 
+Tests the [=target host system=]'s ability to return `ProductFootprints` with `HOC`s as extensions.
+
 #### Request #### {#test-case-003-request}
 
-A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
+system=] with a valid access token and the syntax specified in [PACT Tech Specs V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-003-response}
 
-The test target host system must respond with 200 OK with a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Tech Specs V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 
@@ -2952,33 +3053,113 @@ relevant properties of the `ProductFootprint` must also be confomant with the gu
 
 ### Test Case 004: Get All TransportActivityData ### {#test-case-004}
 
+Tests the [=target host system=]'s ability to return all `TransportActivityData`.
+
 #### Request #### {#test-case-004-request}
 
-A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test target
-host system with a valid access token and the syntax specified in [[#action-tad-request]].
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with a valid [=access token=] and the syntax specified in [[#action-tad-request]].
+
+The access token must be obtained through the [PACT's Authentication Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested through PACT's Test Cases [001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and [002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
 
 #### Expected Response #### {#test-case-004-response}
 
-The test target host system must respond with 200 OK and a JSON body containing a list of
+The test [=target host system=] must respond with 200 OK and a JSON body containing a list of
 `TransportActivityData`, in conformance with [[#action-tad-response]] and following the data model
 specified at [[#dt-tad]].
 
 ### Test Case 005: Get Filtered List of TransportActivityData ### {#test-case-005}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to return a filtered list of `TransportActivityData`.
+
+#### Request #### {#test-case-005-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with a valid [=access token=] and the syntax specified in [[#action-tad-request]].
+
+The request must include a query parameter [=Filter=]. Any property can be used as a filter, but we
+recomend using {{TransportMode}}, iterating over all possible values:
+
+- `GET /2/ileap/tad?mode=Road HTTP/1.1`
+- `GET /2/ileap/tad?mode=Rail HTTP/1.1`
+- `GET /2/ileap/tad?mode=Air HTTP/1.1`
+- `GET /2/ileap/tad?mode=Sea HTTP/1.1`
+- `GET /2/ileap/tad?mode=InlandWaterway HTTP/1.1`
+
+The access token must be obtained through the [PACT's Authentication Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested through PACT's Test Cases [001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and [002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-005-response}
+
+For at least one filter, the test [=target host system=] must respond with 200 OK and a JSON body
+containing a list of `TransportActivityData` matching the filter, in conformance with
+[[#action-tad-response]] and following the data model specified at [[#dt-tad]].
 
 ### Test Case 006: Get Limited List of TransportActivityData ### {#test-case-006}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to return a limited list of `TransportActivityData`.
+
+#### Request #### {#test-case-006-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test
+[=target host system=] with a valid [=access token=] and the syntax specified in
+[[#action-tad-request]]. The request must include a query parameter [=Limit=] with value `1`.
+
+The access token must be obtained through the [PACT's Authentication
+Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested
+through PACT's Test Cases
+[001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and
+[002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-006-response}
+
+The test [=target host system=] must respond with 200 OK and a JSON body containing one or less
+`TransportActivityData`, in conformance with [[#action-tad-response]] and following the data model
+specified at [[#dt-tad]].
+
+If a [=pagination link=] is returned, it must conform to the syntax specified in
+[[#action-tad-response]]. Upon calling that link, the [=target host system=] must respond wih 200 OK
+and a JSON body containing one or more `TransportActivityData`.
+
+If no [=pagination link=] is returned, a GET request sent to `/2/ileap/tad` (without query parameter
+[=Limit=]) must respond with 200 OK and a JSON body containing exactly the same number of
+`TransportActivityData` as that returned in the first request (including the query parameter
+[=Limit=] with value `1`).
 
 ### Test Case 007: Attempt TransportActivityData with Invalid Token ### {#test-case-007}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to handle a `TransportActivityData` request with an invalid
+access token.
+
+#### Request #### {#test-case-007-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with an invalid access token and the syntax specified in [[#action-tad-request]].
+
+#### Expected Response #### {#test-case-007-response}
+
+The test [=target host system=] must respond with a 403 Forbidden status code and an `AccessDenied`
+error response code, as specified in [=TadResponseBody=].
 
 ### Test Case 008: Attempt TransportActivityData with Expired Token ### {#test-case-008}
 
-Issue: TBD
+Tests the [=target host system=]'s ability to handle a `TransportActivityData` request with an expired
+access token.
 
+#### Request #### {#test-case-008-request}
+
+A `TransportActivityData` GET request must be sent to the `/2/ileap/tad` endpoint of the test [=target
+host system=] with an expired access token and the syntax specified in [[#action-tad-request]].
+
+The access token must have been obtained through the [PACT's Authentication
+Flow](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-auth). This can be tested
+through PACT's Test Cases
+[001](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc001) and
+[002](https://wbcsd.github.io/pact-conformance-testing/checklist.html#tc002).
+
+#### Expected Response #### {#test-case-008-response}
+
+The test [=target host system=] must respond with a 401 Unauthorized status code and an
+`ExpiredToken` error response code, as specified in [=TadResponseBody=].
 
 <pre class=biblio>
  {
