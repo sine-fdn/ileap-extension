@@ -1083,9 +1083,12 @@ The Data Type <{TOC}> has the following properties:
 
             The sum of the relative shares of the energy carriers used in the TOC MUST equal `1`.
             The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{TOC/co2eIntensityThroughput}>) of the TOC.
-To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, each feedstock MUST be represented by a separate entry in the [=EnergyCarriers=] array. For each `EnergyCarrier`, the combined value of <{feedstockPercentages}> must be less than or equal to `1`.
-            <div class=example>
-              Assuming the TOC represents a fleet where 30% of the transport activity uses `diesel` and the remaining 70% uses electricity (renewable) to generate movements, the value of <{TOC/energyCarriers}> would be:
+To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, each feedstock MUST
+            be represented by a separate entry in the [=EnergyCarriers=] array. For each
+              `EnergyCarrier`, the combined value of <{Feedstock/feedstockPercentage}>s must be less
+              than or equal to `1`. <div class=example> Assuming the TOC represents a fleet where
+              30% of the transport activity uses `diesel` and the remaining 70% uses electricity
+              (renewable) to generate movements, the value of <{TOC/energyCarriers}> would be:
 
 
               ```json
@@ -1101,7 +1104,10 @@ To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, e
                   "energyCarrier": "Electric",
                   "relativeShare": "0.70",
                   "feedstocks": [
-                    { "feedstock": "Renewable electricity", "feedstockPercentage": "1" }
+                    {
+                      "feedstock": "Renewable electricity",
+                      "feedstockPercentage": "1"
+                    }
                   ]
                   "emissionFactorWTW": "0.05",
                   "emissionFactorTTW": "0.05"
@@ -1254,7 +1260,10 @@ The Data Type <{HOC}> has the following properties:
                   "energyCarrier": "Electric",
                   "relativeShare": "0.25",
                   "feedstocks": [
-                    { "feedstock": "Grid", "feedstockPercentage": "1" }
+                    {
+                      "feedstock": "Grid",
+                      "feedstockPercentage": "1"
+                    }
                   ]
                   "emissionFactorWTW": "0.35",
                   "emissionFactorTTW": "0.35"
