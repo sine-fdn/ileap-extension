@@ -2694,6 +2694,7 @@ apply for additional support, materials, and marketing opportunities.
 - addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
     - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
 - update <{PackagingOrTrEqType}> and improve guidance on <{TCE/packagingOrTrEqAmount}>
+- add `non-normative` note to [[#txns]]
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
