@@ -1693,7 +1693,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
             : Natural gas
             :: Refers to natural gas
             : Grid
-            :: refers to grid electricity
+            :: Refers to grid electricity
             : Renewable electricity
             :: Refers to renewable sources of electricity
             : Cooking oil
