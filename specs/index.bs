@@ -2682,7 +2682,7 @@ apply for additional support, materials, and marketing opportunities.
 - small typo fixes and text improvements
 - improve [[#example]], adding a diagram and simplifying the text
 - clarify that the data type `Number` refers to integers, adding `(int)` to the type designation
-- <strong>fix type mistake in <{Feedstock/feedstockPercentage}>, replacing `Number` by [=Decimal=]</strong>
+- <strong>fix type mistake in <{Feedstock/feedstockShare}>, replacing `Number` by [=Decimal=]</strong>
 - clarify definition of <{TCE/mass}>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
