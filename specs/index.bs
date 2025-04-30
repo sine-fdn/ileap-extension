@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 1.0.0-beta)
+Title: iLEAP Technical Specifications (Version 1.0.0-beta2)
 Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
@@ -2562,10 +2562,9 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta2 (2025-05-01) ## {#version-1.0.0-beta2}
+## Version 1.0.0-beta2 (2025-05-06) ## {#version-1.0.0-beta2}
 
 - removal of properties `numberOfItems` and `typeOfItems` from <{ShipmentFootprint}>
-
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
