@@ -791,10 +791,18 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td>Decimal
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
-
+        <div class=example>
+              A TCE representing the movement of a 40 ft container is encoded as
+              ```json
+              {
+                "packagingOrTrEqType": "Container-TEU",
+                "packagingOrTrEqAmount": "2"
+              }
+              ```
+        </div>
       <tr>
         <td><dfn>distance</dfn>
         <td><{GLECDistance}>
@@ -1730,8 +1738,18 @@ implementing the validation of this property.
 :: Refers to boxes
 : Pallet
 :: Refers to pallets
+: Container-TEU
+:: Refers to containers as the `PackagingOrTrEqAmount` is in TEU (Twenty-foot Equivalent Unit).
+: Container-FEU
+:: Refers to containers as the `PackagingOrTrEqAmount` is in FEU (Forty-foot Equivalent Unit).
 : Container
-:: Refers to containers
+:: Refers to containers where the size is unknown. `PackagingOrTrEqAmount` will be the number of container.
+
+Note: The use of value `Container` is discouraged, as it does not provide any information about the
+container equivalent unit.
+
+Advisement: The enumeration of packaging or transport equipment units above will be evolved in
+  future revisions.
 
 # HTTP REST API # {#http-rest-api}
 
@@ -2571,6 +2589,10 @@ apply for additional support, materials, and marketing opportunities.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 1.0.0-beta2 (2025-04-20) ## {#version-1.0.0-beta2}
+
+- update <{PackagingOrTrEqType}>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
