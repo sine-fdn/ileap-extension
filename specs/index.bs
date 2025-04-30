@@ -802,6 +802,13 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
                 "packagingOrTrEqAmount": "2"
               }
               ```
+              A TCE representing the movement of a 45 ft container is encoded as
+              ```json
+              {
+                "packagingOrTrEqType": "Container-TEU",
+                "packagingOrTrEqAmount": "2.25"
+              }
+              ```
         </div>
       <tr>
         <td><dfn>distance</dfn>
@@ -2590,9 +2597,9 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta2 (2025-04-20) ## {#version-1.0.0-beta2}
+## Version 1.0.0-beta2 (2025-05-06) ## {#version-1.0.0-beta2}
 
-- update <{PackagingOrTrEqType}>
+- update <{PackagingOrTrEqType}> and improve guidance on <{TCE/packagingOrTrEqAmount}>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
