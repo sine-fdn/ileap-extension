@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 1.0.0-beta)
+Title: iLEAP Technical Specifications (Version 1.0.0-beta2)
 Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
@@ -1085,15 +1085,15 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityDenominator}> as defined in the [[!GLEC]] Framework.
+             The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{TOC/transportActivityUnit}> as defined in the [[!GLEC]] Framework.
       <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityDenominator}> as defined in the [[!GLEC]] Framework.
+              The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{TOC/transportActivityUnit}> as defined in the [[!GLEC]] Framework.
       <tr>
-        <td><dfn>co2eIntensityDenominator</dfn>
+        <td><dfn>transportActivityUnit</dfn>
         <td>String
         <td>M
         <td>
@@ -1210,20 +1210,20 @@ The Data Type <{HOC}> has the following properties:
         <td>String
         <td>M
         <td>
-             The Coefficient relating specified transport activity and WTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityDenominator}> as defined in the [[!GLEC]] Framework.
+             The Coefficient relating specified transport activity and WTW GHG emissions, with unit `kgCO2e` per <{HOC/hubActivityUnit}> as defined in the [[!GLEC]] Framework.
  <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
-              The Coefficient relating specified transport activity and TTW GHG emissions, with unit `kgCO2e` per <{HOC/co2eIntensityDenominator}> as defined in the [[!GLEC]] Framework.
+              The Coefficient relating specified transport activity and TTW GHG emissions, with unit `kgCO2e` per <{HOC/hubActivityUnit}> as defined in the [[!GLEC]] Framework.
 
       <tr>
-        <td><dfn>co2eIntensityDenominator</dfn>
+        <td><dfn>hubActivityUnit</dfn>
         <td>String
         <td>M
         <td>
-            Indicates the freight transport activity unit at the denominator of the <{HOC/co2eIntensityWTW}> and at the denominator of the <{HOC/co2eIntensityTTW}>. At the HOC level, the possible values are
+            Indicates the freight hub activity unit at the denominator of the <{HOC/co2eIntensityWTW}> and at the denominator of the <{HOC/co2eIntensityTTW}>. At the HOC level, the possible values are
 
             : `TEU`
             :: Leaving the hub for sea and inland waterways as outbound transport mode.
@@ -2572,10 +2572,10 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta2 (2025-05-01) ## {#version-1.0.0-beta2}
+## Version 1.0.0-beta2 (2025-04-30) ## {#version-1.0.0-beta2}
 
-- rename property `co2eIntensityThroughput` of data types <{HOC}> and <{TOC}> to `co2eIntensityDenominator`
-
+- rename property `co2eIntensityThroughput` of data types <{HOC}> and <{TOC}> to
+    <{HOC/hubActivityUnit}> and <{TOC/transportActivityUnit}>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
