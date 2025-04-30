@@ -1094,6 +1094,13 @@ The Data Type <{TOC}> has the following properties:
         <td>
               The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework.
       <tr>
+        <td><dfn>co2eIntensityWTT</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+            The Coefficient relating specified transport activity with WTT GHG emissions with unit `kgCO2e` per <{TOC/co2eIntensityWTT}> as defined in the [[!GLEC]] Framework.
+
+      <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
         <td>String
         <td>M
@@ -1222,12 +1229,18 @@ The Data Type <{HOC}> has the following properties:
         <td>M
         <td>
              The Coefficient relating specified transport activity with WTW GHG emissions with unit `kgCO2e` per <{HOC/co2eIntensityThroughput}> as defined in the [[!GLEC]] Framework
- <tr>
+      <tr>
         <td><dfn>co2eIntensityTTW</dfn> : [=Decimal=]
         <td>String
         <td>M
         <td>
               The Coefficient relating specified transport activity with TTW GHG emissions with unit `kgCO2e` per <{HOC/co2eIntensityTTW}> as defined in the [[!GLEC]] Framework
+      <tr>
+        <td><dfn>co2eIntensityWTT</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+            The Coefficient relating specified transport activity with WTT GHG emissions with unit `kgCO2e` per <{HOC/co2eIntensityWTT}> as defined in the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>co2eIntensityThroughput</dfn>
@@ -2681,7 +2694,8 @@ A Product Footprint with a <{ShipmentFootprint}> highlighted:
                       },
                       "transportActivity": "3.6801",
                       "co2eWTW": "3.6801",
-                      "co2eTTW": "3.2801"
+                      "co2eTTW": "3.2801",
+                      "co2eWTT": "0.4000",
                   }
               ]
           }
@@ -2758,12 +2772,14 @@ A Product Footprint with a <{TOC}> highlighted:
               "energyCarriers": [
                   {
                       "energyCarrier": "Diesel",
-                      "co2eIntensityWTW": "3.6801",
-                      "co2eIntensityTTW": "3.2801"
+                      "emissionFactorWTW": "3.6801",
+                      "emissionFactorTTW": "3.2801"
+
                   }
               ],
               "co2eIntensityWTW": "3.6801",
               "co2eIntensityTTW": "3.2801",
+              "co2eIntensityWTT": "0.4000"
               "co2eIntensityThroughput": "tkm"
           }
         }
@@ -2838,12 +2854,13 @@ A Product Footprint with a <{HOC}> highlighted:
               "energyCarriers": [
                   {
                       "energyCarrier": "Diesel",
-                      "co2eIntensityWTW": "3.6801",
-                      "co2eIntensityTTW": "3.2801"
+                      "emissionFactorWTW": "3.6801",
+                      "emissionFactorTTW": "3.2801"
                   }
               ],
               "co2eIntensityWTW": "3.6801",
               "co2eIntensityTTW": "3.2801",
+              "co2eIntensityWTT": "0.4000",
               "co2eIntensityThroughput": "tonnes"
           }
         }
