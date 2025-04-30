@@ -1083,6 +1083,41 @@ The Data Type <{TOC}> has the following properties:
         <td>M
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
+
+            The sum of the relative shares of the energy carriers used in the TOC MUST equal `1`.
+            The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{TOC/co2eIntensityThroughput}>) of the TOC.
+To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, each feedstock MUST
+            be represented by a separate entry in the [=EnergyCarriers=] array. For each
+              `EnergyCarrier`, the combined value of <{Feedstock/feedstockShare}>s must be less
+              than or equal to `1`. <div class=example> Assuming the TOC represents a fleet where
+              30% of the transport activity uses `diesel` and the remaining 70% uses electricity
+              (renewable) to generate movements, the value of <{TOC/energyCarriers}> would be:
+
+
+              ```json
+              [
+                {
+                  "energyCarrier": "Diesel",
+                  "relativeShare": "0.30",
+                  "emissionFactorWTW": "2.67",
+                  "emissionFactorTTW": "2.80"
+
+                },
+                {
+                  "energyCarrier": "Electric",
+                  "relativeShare": "0.70",
+                  "feedstocks": [
+                    {
+                      "feedstock": "Renewable electricity",
+                      "feedstockPercentage": "1"
+                    }
+                  ]
+                  "emissionFactorWTW": "0.05",
+                  "emissionFactorTTW": "0.05"
+                }
+              ]
+              ```
+            </div>
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
@@ -1208,6 +1243,37 @@ The Data Type <{HOC}> has the following properties:
         <td>M
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
+
+            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{HOC/co2eIntensityThroughput}>) of the HOC.
+
+            <div class=example>
+              Assuming the HOC represents terminal where 75% of the (representative) hub activity uses `diesel` and the remaining 25% uses electricity (grid) to generate movements, the value of <{HOC/energyCarriers}> would be:
+
+
+              ```json
+              [
+                {
+                  "energyCarrier": "Diesel",
+                  "relativeShare": "0.75",
+                  "emissionFactorWTW": "2.67",
+                  "emissionFactorTTW": "2.80"
+
+                },
+                {
+                  "energyCarrier": "Electric",
+                  "relativeShare": "0.25",
+                  "feedstocks": [
+                    {
+                      "feedstock": "Grid",
+                      "feedstockPercentage": "1"
+                    }
+                  ]
+                  "emissionFactorWTW": "0.35",
+                  "emissionFactorTTW": "0.35"
+                }
+              ]
+              ```
+            </div>
       <tr>
         <td><dfn>co2eIntensityWTW</dfn> : [=Decimal=]
         <td>String
@@ -1361,6 +1427,10 @@ encoded as a JSON object.
         <td>O
         <td>If defined, the non-empty array of [=EnergyCarriers=] used to generate mechanical
               movement or heat and to generate chemical or physical processes.
+
+              The sum of the relative shares of the energy carriers used in the TAD MUST equal `1`.
+              The relative share of each energy carrier MUST be computed relative to (total)
+             [=Transport Activity=] of the TAD.
 
               This array MAY contain aggregated data from multiple consignments. In this case,
               the aggregation MUST follow principles from the [[!GLEC]] Framework.
@@ -1575,6 +1645,18 @@ The following properties are defined for data type <dfn element>EnergyCarrier</d
         <td>M
         <td>The substance used to generate mechanical movement or heat and to generate chemical or
         physical processes as per the [[!GLEC]] Framework. See data type <{EnergyCarrierType}> for further information.
+      <tr>
+        <td><dfn>relativeShare</dfn> : [=Decimal=]
+        <td>String
+        <td>M
+        <td>
+              The relative share of this energy carrier. Its value MUST be between `0` (excluding) and `1` (including).
+
+              Note:
+                  See the respective use in (<{TOC/energyCarriers|TOC}>,
+                  <{HOC/energyCarriers|HOC}>, and <{TAD/energyCarriers|TAD}>)
+                  for further details.
+
       <tr>
         <td><dfn>feedstocks</dfn>
         <td><{Feedstock}>[]
@@ -2582,6 +2664,8 @@ apply for additional support, materials, and marketing opportunities.
 - rename <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
     changing the semantics from "percentage" to "share" also
 - removal of properties `numberOfItems` and `typeOfItems` from <{ShipmentFootprint}>
+- addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
+    - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
