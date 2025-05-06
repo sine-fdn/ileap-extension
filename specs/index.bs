@@ -23,26 +23,33 @@ Local Boilerplate: header yes
 - Companies have a growing need to calculate and report logistics emissions with greater accuracy and transparency. They want to move from default and modeled data to primary data that accurately reflects their supply chain emissions.
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
 - Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification is built on top of the PACT Technical Specifications. In addition, it is based on the basic semantics and framework developed by the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network) and advances them further.
-- Adopting this specification will enable the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|TCE=] and [=TOC=] levels, and the integration of these calculations at the [=PCF=] level.
+- Adopting this specification will enable the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|Transport Chain Element (TCE)=] and [=TOC|Transport Operation Category (TOC)=] or [=HOC|Hub Operation Category (HOC)=] levels, and the integration of these calculations at the [=PCF=] level.
 
 Advisement: The iLEAP Technical Specifications will be continuously refined as part of the ongoing iLEAP project. Significant changes may be introduced as the project progresses.
 
 
 ## Out of Scope ## {#out-of-scope}
 
+Note: Non-normative section
+
 This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
 
-1. Methodology for the calculation of logistics-related emissions, specified in the [[!GLEC]] Framework and [[!ISO14083]].
-2. Black Carbon (Accounting).
-3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others).
-4. Pilot decentralized data exchange following data space governance principles, as covered in the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network).
-5. How to establish contractual obligations between parties for the provision of data.
-6. How to perform data audits and verification.
-7. Market based approach for electricity emissions accounting.
-8. Book and claim methods for environmental attribute tracking separate from physical delivery. These will be incorporated in future versions of these technical specifications.
-9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
-10. Modes of transport cable car and pipelines. These may be incorporated in future versions of these technical specifications.
-11. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
+1. Methodology for the calculation of logistics-related emissions. The technical specifications' normative foundations are the [[!GLEC]] Framework and [[!ISO14083]].
+1. Black Carbon Methodological and Accounting principles.
+1. Technical details on capturing necessary data for primary data-based calculations approaches, such as data collection with or through telematics systems, TMS, etc.
+1. Contracts or legal aspect of data exchange between parties, including third party entities offering digital services or tools.
+1. Auditing and verification of actual emissions calculations beyond systems-level accreditation.
+      Verification-related properties are expected to be included in future versions of these technical specifications.
+1. Transparency relating to market-based or project accounting approaches and measures.
+      Book and claim-related approaches are expected to be included in future versions of these technical specifications.
+1. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
+1. Modes of transport "cable car" and "pipeline".
+1. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
+1. Reporting with per-modality transparency as defined in Section 13.3 of [[!ISO14083]].
+    The key difference between this approach and iLEAP is that the former also <i>allows</i> for a) aggregating over more than 1 shipment, and b) disclosing emissions per modality.
+    The iLEAP Tech Specs operate on a per-shipment and per-TCE basis.
+    However, <i>transparency at this level is implicitly assumed by ISO14083 Chapter 13.3 (when aggregating over multiple shipments)</i>.
+    Comprehensive Chapter 13.3 reporting is expected to be included in future versions of these technical specifications.
 
 ## Document Statuses ## {#document-statuses}
 
@@ -86,14 +93,14 @@ status tags are:
 : <dfn>Distance</dfn>
 :: See [=Transport Distance=] and [=Actual Distance=]
 
-: <dfn>Great Circle Distance</dfn> (GCD)
+: <dfn data-lt="Great Circle Distance|GCD">Great Circle Distance (GCD)</dfn>
 ::
     The shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
-: Hub Activity
-:: The operations carried out at a hub, measured in the hub’s throughput. [[!GLEC]] Framework.
+: <dfn data-noexport>Hub Activity</dfn>
+:: The operations carried out at a hub, measured in the hub's throughput. [[!GLEC]] Framework.
 
-: Hub Operation Category (<dfn>HOC</dfn>)
+: <dfn data-lt="Hub Operation Category|HOC">Hub Operation Category (HOC)</dfn>
 :: Represents a grouping of hub operations sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Primary Data</dfn>
@@ -119,16 +126,16 @@ status tags are:
     Transport activity for each consignment is calculated by multiplying the consignment's mass by the TCE distance.
     It is measured with unit `ton kilometer`. See [[!ISO14083]] Section 3.1.24 and the [[!GLEC]] Framework.
 
-: Transport Chain (<dfn>TC</dfn> )
+: <dfn data-lt="Transport Chain|TC">Transport Chain (TC)</dfn>
 :: A Transport Chain as defined in the [[!GLEC]] Framework. A TC consists of 1 or more [=Transport Chain Elements=]. A TC corresponds to a shipment.
 
-: <dfn>Transport Chain Element</dfn> (TCE)
+: <dfn data-lt="Transport Chain Element">Transport Chain Element (TCE)</dfn>
 :: Represents one element of the transport chain. It can consist of a transport activity or a hub activity. [[!GLEC]] Framework.
 
 : <dfn>Transport Distance</dfn>
 :: Refers to the distance covered from the consignor to the consignee during the transportation of the freight. [[!GLEC]] Framework. See also [[!ISO14083]] 3.1.27.
 
-: Transport Operation Category (<dfn id='toc-dfn'>TOC</dfn>)
+: <dfn data-lt="Transport Operation Category|TOC" id='toc-dfn'>Transport Operation Category (TOC)</dfn>
 :: Represents a grouping of transport services sharing similar characteristics.  [[!GLEC]] Framework.
 
 : <dfn>Transport Operator</dfn>
@@ -155,21 +162,21 @@ status tags are:
 : <dfn>Data Recipient</dfn>
 :: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
 
-: Data Transaction
+: <dfn>Data Transaction</dfn>
 :: See [[#txns]].
 
 : <dfn>Host System</dfn>
 :: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
-: Hub Operator
+: <dfn data-noexport>Hub Operator</dfn>
 :: A party that is offering hub services, including warehousing and transshipment center services.
 
 : <dfn>PCF</dfn>
 ::
     Product Carbon Footprint. See [PACT Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details.
 
-: ShipmentFootprint
+: <dfn data-noexport>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
 
 : <dfn>Shipment id</dfn>
@@ -179,7 +186,7 @@ status tags are:
 : <dfn>Shipper</dfn>
 :: An entity which sends goods for transport; e.g. buying transport services from [=Transport Service Organizers=] or [=Transport Operators=]. See [[!GLEC]] Framework.
 
-: Smart Freight Centre (<dfn data-noexport=true>SFC</dfn> )
+: <dfn data-lt="Smart Freight Center|SFC" data-noexport>Smart Freight Centre (SFC)</dfn>
 :: The [Smart Freight Centre](https://www.smartfreightcentre.org) Organization.
 
 : <dfn>Tool Provider</dfn>
@@ -222,18 +229,26 @@ By incorporating emission intensities in procurement processes, the parties are 
 Data Transaction #2 [[#txn2]] enable this business case.
 
 
-## Simplified Emissions Calculation from Transport Activity Data ## {#business-case-3}
+## Emissions Calculation from Transport Activity Data ## {#business-case-3}
 
-Consider the scenario where a [=Transport Operator=], and possibly also [=Transport Service Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]].
+Consider the scenario where a [=Transport Operator=], and possibly also [=Transport Service
+Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]]
+and [[!ISO14083]].
 
-In such a case, the party may choose to collect [=Transport Activity Data=], that is, information related to a single shipment including mass, distance, and energy carriers used.
+In such a case, the party may choose to collect [=Transport Activity Data=], that is, data related
+to a single shipment including mass, distance, and energy carriers used, but excluding emissions
+data.
 
-After collecting Transport Activity Data, the party can then contract a third party, such as a [=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
+After collecting Transport Activity Data, the party can then contract a third party, such as a
+[=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
 
-This business case is particularly relevant for SMEs to reduce the entry barrier for logistics emissions reporting.
+This business case is particularly relevant for SMEs to reduce the entry barrier for logistics
+emissions reporting.
 
 iLEAP generally simplifies data collection efforts for the parties involved in this business case.
-For instance, each party needs to collect the activity data only once. This data can be then made available to multiple parties for different purposes, including business cases beyond emissions calculations.
+For instance, each party needs to collect the activity data only once. This data can be then made
+available to multiple parties for different purposes, including business cases beyond emissions
+calculations.
 
 Data Transaction #3 ([[#txn3]]) enables this business case.
 
@@ -266,7 +281,7 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
 Note: Non-normative section
 
-A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
+A data transaction is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
 
 It facilitates interoperability between different parties by explaining the context and their intention(s).
 
@@ -320,7 +335,8 @@ Note:
 
 ## Data Transaction 3: Transport Activity Data Exchange ## {#txn3}
 
-This data transaction enables a [=Transport Service Organizer=] or a [=Transport Service User=] to receive [=Transport Activity Data=] from a [=Transport Operator=].
+This data transaction enables a [=Transport Service Organizer=] or a [=Transport Service User=] to
+receive [=Transport Activity Data=] from a [=Transport Operator=], as described in [[#business-case-3]].
 
 To execute this transaction, the [=Transport Operator=] MUST
 
@@ -338,87 +354,63 @@ Note:
 
 Note: Non-normative section
 
+## Example Case with 2 Carriers and 1 LSP ## {#example-case-1}
+
 This section provides an end-to-end example of how the data transactions ([[#txns]])
 enable logistics emissions transparency for a single shipment.
 
-The following hypothetical parties are involved:
+<figure id="end-to-end-example-1">
+  <img src="diagrams/example.svg" height="80%" width="80%" >
+  <figcaption>End-to-end example</figcaption>
+</figure>
 
-: Transport Service User `S`
+: Transport Service User `Shipper`
 ::
-    A [=Transport Service User=] wants to calculate the logistics emissions of a shipment from Rotterdam to Prague.
-    The shipper has a contract with the Transport Service Organizer `Z`.
+    A [=Transport Service User=] who wants to calculate the logistics emissions of a shipment from Rotterdam to Prague.
+    The shipper has a contract with the Transport Service Organizer `LSP`.
 
-    `S` operates a [=host system=] which implements Transaction 1 ([[#txn1]]) to collect
-    <{TCE|TCEs}>. Based on the collected <{TCE|TCEs}>, `S` can calculate the Transport Chain ([=TC=]) emissions.
+    Using [[#txn1]] and [[#txn2]], `Shipper` pulls <{TCE}> and <{TOC}> data from `LSP` and calculates the Transport
+    Chain ([=TC=]) emissions.
 
-: Transport Service Organizer `Z`
+    Since no further Transport Service Organizer or Transport Service Operator is involved, no additional calculation is
+    needed.
+
+: Transport Service Organizer `LSP`
 ::
     A [=Transport Service Organizer=] responsible for a shipment from Rotterdam to Prague.
 
-    The Transport Service Organizer contracts Transport Operator A and Transport Operator B to perform the transport.
+    The Transport Service Organizer contracts Transport Operator `Carrier A` and Transport Operator `Carrier B` to
+    perform the transport.
 
-    This operator has a [=host system=] which implements Transaction 1 ([[#txn1]])
-    and Transaction 2 ([[#txn2]]).
+    Using [[#txn1]] and [[#txn2]], `LSP` pulls <{TCE}> and <{TOC}> data from Transport Operator `Carrier A`.
 
-    Through this, the operator is able to calculate <{TCE|TCEs}> and <{TOC|TOCs}>, and provide data to Transport Service User `S`.
+    Using [[#txn3]], `LSP` pulls <{TAD|Transport Activity Data}> from `Carrier B`, which it uses to calculate emissions
+    data for the shipment.
 
+    `LSP` then calculates the consolidated [=ShipmentFootprint=] and provides it to Transport Service User `Shipper`.
 
-: Transport Operator `A`
+: Transport Operator `Carrier A`
 ::
     A [=Transport Operator=] responsible for the first leg of the shipment.
 
     This Operator has a [=host system=] which is capable of calculating <{TCE}> and <{TOC}> data.
 
-    Through this, the operator can make [=Transport Chain Element=]-level data available to the
-    Transport Service Organizer `Z`, which `Z` can fetch using Transaction 1 ([[#txn1]]).
+    Through this, `Carrier A` can make [=Transport Chain Element=]-level data available to the
+    [=Transport Service Organizer=] `LSP`, which `LSP` can fetch using[[#txn1]].
 
-: Transport Operator `B`
+: Transport Operator `Carrier B`
 ::
     Another [=Transport Operator=] responsible for the second leg of the shipment.
 
     This [=Transport Operator=] is capable of making <{TAD}> data available to the
-    [=Transport Service Organizer=] Z.
+    [=Transport Service Organizer=] `LSP`.
 
+### Data Collection by Transport Service Organizer `LSP` ### {#example-http-z}
 
-## Data Transactions Executed ## {#example-txns}
+To collect the <{TCE|TCEs}> from Transport Operator `Carrier A`, `LSP` performs the following HTTP call.
 
-Note: This hypothetical example currently ommits hub operations.
-
-Note: In this hypothetical example, when we refer to a party executing a transaction,
-        we implicitly refer to the [=host systems=] executing the tasks and transactions on their behalf.
-
-
-### Data Collection by Transport Service Organizer `Z` ### {#example-z}
-
-As the transport consists of 2 legs, `Z` needs to collect data from the 2 Transport Operators `A` and `B`.
-
-For this, the Transport Service Organizer `Z` performs the following data transactions:
-
-1. `Z` executes [[#txn1]] with Transport Operator `A` to collect the <{TCE|TCEs}>
-    for the first leg of the shipment.
-1. As Transport Operator `B` does not support [[#txn1]], `Z` performs [[#txn3]] with
-    Transport Operator `B` to collect the <{TAD}> for the second leg of the shipment.
-1. `Z` then calculates the <{TCE|TCEs}> for the second leg of the shipment based on
-      the <{TAD}> data and modelled or default emission factors.
-
-### Data Collection by Transport Service User `S` ### {#example-s}
-
-After Transport Service Organizer `Z` has performed its data collection, the Transport Service User `S`
-can calculate the logistics emissions of the shipment by
-
-1. collecting the <{TCE|TCEs}> from `Z` using the [=shipment id=] and [[#txn1]], storing the resulting <{TCE|TCEs}> in e.g. its database.
-1. `S` can further verify the <{TCE|TCEs}> by collecting the <{TOC|TOCs}> from `Z` using [[#txn2]].
-1. `Z` can form the [=TC=] by adding up the <{TCE|TCEs}> from step 1.
-
-
-## Example HTTP Calls ## {#example-http}
-
-### Data Collection by Transport Service Organizer `Z` ### {#example-http-z}
-
-To collect the <{TCE|TCEs}> from Transport Operator `A`, `Z` performs the following HTTP call.
-
-Note: The call to `/footprints` can return several footprints, 1 for each shipment.
-        By filtering, e.g. by shipment id, `Z` can retrieve the <{TCE|TCEs}> for
+Note: The call to `/footprints` can return several footprints, one for each shipment.
+        By filtering, e.g. by shipment id, `LSP` can retrieve the <{TCE|TCEs}> for
         the shipment of interest. The use of this functionality is not included in the example below.
 
 The highlighted lines show the data exchanged according to the <{ShipmentFootprint}> data model.
@@ -496,16 +488,15 @@ The highlighted lines show the data exchanged according to the <{ShipmentFootpri
   </pre>
 </div>
 
+`LSP` can further access the <{TOC|TOCs}> from `Carrier A` through the same endpoint (see [[#txn2]] and [[#pcf-mapping-toc]]).
 
-### Data Collection by Transport Service User `S` ### {#example-http-s}
 
-To collect the TCE data related to the shipment from Transport Organizer `Z`, `S` performs the following HTTP call, which yields 2 TCEs.
 
-Note: The call to `/footprints` can return several footprints, 1 for each shipment.
-        By filtering, e.g. by shipment id, `Z` can retrieve the <{TCE|TCEs}>
-        for the shipment of interest. The use of this functionality is not included in the example below.
+### Data Collection by `LSP` from `Carrier A` ### {#example-http-s}
 
-The highlighted lines show 2 TCEs which `Z` has collected and calculated for `S`.
+To collect the TCE data related to the shipment, `LSP` performs the following HTTP call, yielding 2 TCEs in this hypothetical example.
+
+Note: the highlighted lines show 2 <{TCE|TCEs}> which `Carrier A` has collected and calculated for `LSP`.
 
 <div class=example>
   Example HTTP Request (cURL) to collect TCE Data (please note that an actual API call would require authentication):
@@ -773,7 +764,7 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
         <td>M
-        <td>The freight mass (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer, in accordance with the [[!GLEC]] Framework.
+        <td>The freight mass of the consignment (SI derived Unit `kilograms`) and the packaging provided for transport by the Transport Service user, excluding any additional packaging or handling equipment used by the Transport Operator or Transport Service Organizer, in accordance with the [[!GLEC]] Framework.
 
       <tr>
         <td><dfn>packagingOrTrEqType</dfn>
@@ -997,19 +988,28 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>Unique id of the [=TOC=] relative to the [=Host system=].
-
       <tr>
-        <td><dfn>isVerified</dfn>
-        <td>Boolean
-        <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
+        <td><dfn>certifications</dfn>
+        <td>String[]
+        <td>O
+        <td>
+            The non-empty set (without duplicates) of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
 
-      <tr>
-        <td><dfn>isAccredited</dfn>
-        <td>Boolean
-        <td>M
-        <td>(=certified) Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
+            Elements of the array MUST be one of the following:
 
+            : ISO14083:2023
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an certification certificate.
+
+            : GLECv2
+            :: Indicates that the calculation methodology has been evaluated as compliant with GLEC Framework v2.0, as declared in an certification certificate.
+
+            : GLECv3
+            :: Indicates that the calculation methodology has been evaluated as compliant with [GLEC Framework v3](https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf), as declared in an certification certificate.
+
+            : GLECv3.1
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] Framework v3.1, as declared in an certification certificate.
+
+            Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>description</dfn>
         <td>String
@@ -1196,15 +1196,27 @@ The Data Type <{HOC}> has the following properties:
         <td>O
         <td>Text description of the applicable HOC. Including hub type, contract type, equipment type, freight temperature, etc
       <tr>
-        <td><dfn>isVerified</dfn>
-        <td>Boolean
-        <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
-      <tr>
-        <td><dfn>isAccredited</dfn>
-        <td>Boolean
-        <td>M
-        <td>(=certified) Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
+        <td><dfn>certifications</dfn>
+        <td>String[]
+        <td>O
+        <td>
+            The non-empty set (without duplicates) of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
+
+            Elements of the array MUST be one of the following:
+
+            : ISO14083:2023
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an certification certificate.
+
+            : GLECv2
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v2.0, as declared in an certification certificate.
+
+            : GLECv3
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.0, as declared in an certification certificate.
+
+            : GLECv3.1
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.1, as declared in an certification certificate.
+
+            Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>hubType</dfn>
         <td>{{HubType}}
@@ -1250,7 +1262,7 @@ The Data Type <{HOC}> has the following properties:
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td>Number `(int)`
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
@@ -1434,7 +1446,7 @@ encoded as a JSON object.
         <td>Category of relevant packaging or transport equipment units utilized for the transport of the consignment. See data type <{PackagingOrTrEqType}> for further information.
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
-        <td>Number
+        <td>Number `(int)`
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
 
@@ -1806,7 +1818,7 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
 
         <tr>
           <td><dfn>feedstockShare</dfn> : [0..1]
-          <td>Number
+          <td>[=Decimal=]
           <td>O
           <td>The share of the feedstock in the total composition of the energy carrier.
                 The value MUST be between `0` (including) and `1` (including).
@@ -2697,6 +2709,17 @@ apply for additional support, materials, and marketing opportunities.
 - add `non-normative` note to [[#txns]]
 - rename property `co2eIntensityThroughput` of data types <{HOC}> and <{TOC}> to
     <{HOC/hubActivityUnit}> and <{TOC/transportActivityUnit}>
+- updates and clarifications to chapter [[#out-of-scope]], specifically
+    - reference to ISO14083 Chapter 13.3
+    - clarification on Black Carbon Accounting Methodology
+    - legal-, compliance-, or contractal-relevant aspects
+- small typo fixes and text improvements
+- improve [[#example]], adding a diagram and simplifying the text
+- clarify that the data type `Number` refers to integers, adding `(int)` to the type designation
+- <strong>fix type mistake in <{Feedstock/feedstockShare}>, replacing `Number` by [=Decimal=]</strong>
+- clarify definition of <{TCE/mass}>
+- <strong>replace mandatory property `isAccredited` by optional property `certifications`, in <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}></strong>
+- <strong>remove mandatory property `isVerified`</strong>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
@@ -2728,7 +2751,7 @@ apply for additional support, materials, and marketing opportunities.
 - add guidance on how to populate PACT's `DataModelExtension` data type in [[#pcf-mapping-sf]],
     [[#pcf-mapping-toc]], and [[#pcf-mapping-hoc]]
 - remove outdated advisement from [[#appendix-b]]
-- fix typos in `dataSchema` of [[#example-http]] and [[#appendix-b-hoc-example]]
+- fix typos in `dataSchema` of § 5.2 Example HTTP Calls and [[#appendix-b-hoc-example]]
 
 ## Version 0.2.1-20241113 (2024-11-13) ## {#version-20241113}
 
@@ -2964,8 +2987,7 @@ A Product Footprint with a <{TOC}> highlighted:
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "tocId": "4561230",
-              "isVerified": true,
-              "isAccredited": true,
+              "certifications": ["ISO14083:2023"],
               "mode": "Road",
               "temperatureControl": "refrigerated",
               "truckLoadingSequence": "FTL",
@@ -3045,8 +3067,7 @@ A Product Footprint with a <{HOC}> highlighted:
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "hocId": "7890123",
-              "isVerified": true,
-              "isAccredited": true,
+              "certifications": ["ISO14083:2023"],
               "hubType": "Warehouse",
               "temperatureControl": "refrigerated",
               "energyCarriers": [
