@@ -3263,9 +3263,13 @@ The test [=target host system=] must respond with a 401 Unauthorized status code
 <pre class=biblio>
  {
     "GLEC": {
-        "authors": [],
-        "href": "https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf",
-        "title": "Global Logistics Emissions Council Framework for Logistics Emissions Accounting and Reporting; v3.0 edition, revised and updated (2023).",
+        "authors": [
+          "Alan Lewis",
+          "Verena Ehrler",
+          "Andrea Schön"
+        ],
+        "href": "https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3.1_March_2025_1-3.pdf",
+        "title": "Global Logistics Emissions Council Framework; V3.1 (2025)",
         "status": "LS",
         "publisher": "Smart Freight Centre (SFC)"
     },
