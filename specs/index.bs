@@ -1102,7 +1102,7 @@ The Data Type <{TOC}> has the following properties:
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
 
             The sum of the relative shares of the energy carriers used in the TOC MUST equal `1`.
-            The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{TOC/co2eIntensityThroughput}>) of the TOC.
+            The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit at the denominator of <{TOC/transportActivityUnit}>)) of the TOC.
 To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, each feedstock MUST
             be represented by a separate entry in the [=EnergyCarriers=] array. For each
               `EnergyCarrier`, the combined value of <{Feedstock/feedstockShare}>s must be less
@@ -1261,7 +1261,7 @@ The Data Type <{HOC}> has the following properties:
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
 
-            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{HOC/co2eIntensityThroughput}>) of the HOC.
+            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit at the demoninator of <{HOC/hubActivityUnit}>) of the HOC.
 
             <div class=example>
               Assuming the HOC represents terminal where 75% of the (representative) hub activity uses `diesel` and the remaining 25% uses electricity (grid) to generate movements, the value of <{HOC/energyCarriers}> would be:
