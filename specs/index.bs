@@ -1002,7 +1002,7 @@ The Data Type <{TOC}> has the following properties:
         <td>String[]
         <td>O
         <td>
-            The non-empty array of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
+            The non-empty set (without duplicates) of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
 
             Elements of the array MUST be one of the following:
 
@@ -1209,7 +1209,7 @@ The Data Type <{HOC}> has the following properties:
         <td>String[]
         <td>O
         <td>
-            The non-empty array of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
+            The non-empty set (without duplicates) of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
 
             Elements of the array MUST be one of the following:
 
