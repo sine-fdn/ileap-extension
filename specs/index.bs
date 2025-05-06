@@ -30,19 +30,26 @@ Advisement: The iLEAP Technical Specifications will be continuously refined as p
 
 ## Out of Scope ## {#out-of-scope}
 
+Note: Non-normative section
+
 This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
 
-1. Methodology for the calculation of logistics-related emissions, specified in the [[!GLEC]] Framework and [[!ISO14083]].
-2. Black Carbon (Accounting).
-3. How to exactly capture necessary primary activity data for the calculation of [=HOCs=] or [=TOCs=] (i.e. through telematics systems, TMS, or others).
-4. Pilot decentralized data exchange following data space governance principles, as covered in the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network).
-5. How to establish contractual obligations between parties for the provision of data.
-6. How to perform data audits and verification.
-7. Market based approach for electricity emissions accounting.
-8. Book and claim methods for environmental attribute tracking separate from physical delivery. These will be incorporated in future versions of these technical specifications.
-9. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
-10. Modes of transport cable car and pipelines. These may be incorporated in future versions of these technical specifications.
-11. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
+1. Methodology for the calculation of logistics-related emissions. The technical specifications' normative foundations are the [[!GLEC]] Framework and [[!ISO14083]].
+1. Black Carbon Methodological and Accounting principles.
+1. Technical details on capturing necessary data for primary data-based calculations approaches, such as data collection with or through telematics systems, TMS, etc.
+1. Contracts or legal aspect of data exchange between parties, including third party entities offering digital services or tools.
+1. Auditing and verification of actual emissions calculations beyond systems-level accreditation.
+      Verification-related properties are expected to be included in future versions of these technical specifications.
+1. Transparency relating to market-based or project accounting approaches and measures.
+      Book and claim-related approaches are expected to be included in future versions of these technical specifications.
+1. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
+1. Modes of transport "cable car" and "pipeline".
+1. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
+1. Reporting with per-modality transparency as defined in Section 13.3 of [[!ISO14083]].
+    The key difference between this approach and iLEAP is that the former also <i>allows</i> for a) aggregating over more than 1 shipment, and b) disclosing emissions per modality.
+    The iLEAP Tech Specs operate on a per-shipment and per-TCE basis.
+    However, <i>transparency at this level is implicitly assumed by ISO14083 Chapter 13.3 (when aggregating over multiple shipments)</i>.
+    Comprehensive Chapter 13.3 reporting is expected to be included in future versions of these technical specifications.
 
 ## Document Statuses ## {#document-statuses}
 
@@ -2700,6 +2707,10 @@ apply for additional support, materials, and marketing opportunities.
     - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
 - update <{PackagingOrTrEqType}> and improve guidance on <{TCE/packagingOrTrEqAmount}>
 - add `non-normative` note to [[#txns]]
+- updates and clarifications to chapter [[#out-of-scope]], specifically
+    - reference to ISO14083 Chapter 13.3
+    - clarification on Black Carbon Accounting Methodology
+    - legal-, compliance-, or contractal-relevant aspects
 - small typo fixes and text improvements
 - improve [[#example]], adding a diagram and simplifying the text
 - clarify that the data type `Number` refers to integers, adding `(int)` to the type designation
@@ -2707,6 +2718,7 @@ apply for additional support, materials, and marketing opportunities.
 - clarify definition of <{TCE/mass}>
 - <strong>replace mandatory property `isAccredited` by optional property `certifications`, in <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}></strong>
 - <strong>remove mandatory property `isVerified`</strong>
+
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
