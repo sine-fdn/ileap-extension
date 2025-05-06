@@ -39,7 +39,7 @@ This specifcation does not cover the following topics or aspects as they are cov
 1. Technical details on capturing necessary data for primary data-based calculations approaches, such as data collection with or through telematics systems, TMS, etc.
 1. Contracts or legal aspect of data exchange between parties, including third party entities offering digital services or tools.
 1. Auditing and verification of actual emissions calculations beyond systems-level accreditation.
-    1. Verification-related are expected to be included in future versions of these technical specifications.
+    1. Verification-related [[[data]]] are expected to be included in future versions of these technical specifications.
 1. Transparency relating to market-based or project accounting approaches and measures.
     1. Book and claim-related approaches are expected to be included in future versions of these technical specifications.
 1. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
@@ -47,9 +47,9 @@ This specifcation does not cover the following topics or aspects as they are cov
 1. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
 1. Reporting with per-modality transparency as defined in Section 13.3 of [[!ISO14083]].
     The key difference between this approach and iLEAP is that the former also <i>allows</i> for a) aggregating over more than 1 shipment, and b) disclosing emissions per modality.
-    The iLEAP Tech Specs however operate on a per-shipment and per-TCE basis.
-    However, <i>Transparency at this level is implicitly assumed by ISO14083 Chapter 13.3 (when aggregating over multiple shipments)</i>
-    which this technical specifications support.
+    The iLEAP Tech Specs operate on a per-shipment and per-TCE basis.
+    However, <i>transparency at this level is implicitly assumed by ISO14083 Chapter 13.3 (when aggregating over multiple shipments)</i>
+.
 
     1. Support for emissions reporting with per-modality transparency (Chapter 13.3) is expected to be included in future versions of these technical specifications.
 
