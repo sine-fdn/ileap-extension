@@ -981,19 +981,28 @@ The Data Type <{TOC}> has the following properties:
         <td>String
         <td>M
         <td>Unique id of the [=TOC=] relative to the [=Host system=].
-
       <tr>
-        <td><dfn>isVerified</dfn>
-        <td>Boolean
-        <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
+        <td><dfn>certifications</dfn>
+        <td>String[]
+        <td>O
+        <td>
+            The non-empty set (without duplicates) of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
 
-      <tr>
-        <td><dfn>isAccredited</dfn>
-        <td>Boolean
-        <td>M
-        <td>(=certified) Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
+            Elements of the array MUST be one of the following:
 
+            : ISO14083:2023
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an certification certificate.
+
+            : GLECv2
+            :: Indicates that the calculation methodology has been evaluated as compliant with GLEC Framework v2.0, as declared in an certification certificate.
+
+            : GLECv3
+            :: Indicates that the calculation methodology has been evaluated as compliant with [GLEC Framework v3](https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf), as declared in an certification certificate.
+
+            : GLECv3.1
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] Framework v3.1, as declared in an certification certificate.
+
+            Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>description</dfn>
         <td>String
@@ -1180,15 +1189,27 @@ The Data Type <{HOC}> has the following properties:
         <td>O
         <td>Text description of the applicable HOC. Including hub type, contract type, equipment type, freight temperature, etc
       <tr>
-        <td><dfn>isVerified</dfn>
-        <td>Boolean
-        <td>M
-        <td>Indicates that the truthfulness of the GHG emissions value and related variables has been confirmed by a Validation and Verification Body (VVB), as declared in a Verification Statement. The VVB must follow a widely recognized standard for their GHG verification services (example: the ISO or ISAE standards). Verification should use [[!ISO14083]] as audit criteria.
-      <tr>
-        <td><dfn>isAccredited</dfn>
-        <td>Boolean
-        <td>M
-        <td>(=certified) Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an Accreditation (=Certification) certificate.
+        <td><dfn>certifications</dfn>
+        <td>String[]
+        <td>O
+        <td>
+            The non-empty set (without duplicates) of certifications of the calculation methodology used to calculate the GHG emissions value and related variables.
+
+            Elements of the array MUST be one of the following:
+
+            : ISO14083:2023
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in an certification certificate.
+
+            : GLECv2
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v2.0, as declared in an certification certificate.
+
+            : GLECv3
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.0, as declared in an certification certificate.
+
+            : GLECv3.1
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.1, as declared in an certification certificate.
+
+            Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
         <td><dfn>hubType</dfn>
         <td>{{HubType}}
@@ -2684,6 +2705,8 @@ apply for additional support, materials, and marketing opportunities.
 - clarify that the data type `Number` refers to integers, adding `(int)` to the type designation
 - <strong>fix type mistake in <{Feedstock/feedstockShare}>, replacing `Number` by [=Decimal=]</strong>
 - clarify definition of <{TCE/mass}>
+- <strong>replace mandatory property `isAccredited` by optional property `certifications`, in <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}></strong>
+- <strong>remove mandatory property `isVerified`</strong>
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
@@ -2951,8 +2974,7 @@ A Product Footprint with a <{TOC}> highlighted:
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "tocId": "4561230",
-              "isVerified": true,
-              "isAccredited": true,
+              "certifications": ["ISO14083:2023"],
               "mode": "Road",
               "temperatureControl": "refrigerated",
               "truckLoadingSequence": "FTL",
@@ -3032,8 +3054,7 @@ A Product Footprint with a <{HOC}> highlighted:
           "documentation": "https://sine-fdn.github.io/ileap-extension/",
           "data": {
               "hocId": "7890123",
-              "isVerified": true,
-              "isAccredited": true,
+              "certifications": ["ISO14083:2023"],
               "hubType": "Warehouse",
               "temperatureControl": "refrigerated",
               "energyCarriers": [
