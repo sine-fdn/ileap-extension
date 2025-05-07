@@ -2697,7 +2697,7 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta2 (2025-05-06) ## {#version-1.0.0-beta2}
+## Version 1.0.0-beta2 (2025-05-07) ## {#version-1.0.0-beta2}
 
 - add optional property <{TCE/temperatureControl}> to <{TCE}>
 - rename <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
