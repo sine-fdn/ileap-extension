@@ -1208,13 +1208,13 @@ The Data Type <{HOC}> has the following properties:
             :: Indicates that the calculation methodology has been evaluated as compliant with [[!ISO14083]]:2023, as declared in a certification certificate.
 
             : GLECv2
-            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v2.0, as declared in a certification certificate.
+            :: Indicates that the calculation methodology has been evaluated as compliant with GLEC Framework v2.0, as declared in a certification certificate.
 
             : GLECv3
-            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.0, as declared in a certification certificate.
+            :: Indicates that the calculation methodology has been evaluated as compliant with [GLEC Framework v3](https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf), as declared in a certification certificate.
 
             : GLECv3.1
-            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] v3.1, as declared in a certification certificate.
+            :: Indicates that the calculation methodology has been evaluated as compliant with [[!GLEC]] Framework v3.1, as declared in a certification certificate.
 
             Advisement: The enumeration of certifications will be evolved in future revisions. Account for this when implementing the validation of this property.
       <tr>
