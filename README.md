@@ -1,13 +1,16 @@
-# iLEAP Data Model Extension – version 0.2.0
+# iLEAP Data Model Extension
 
-This repository contains the SCF iLEAP [Data Model
-Extension](https://wbcsd.github.io/data-model-extensions/) to the [PACT Data
-Model](https://wbcsd.github.io/tr/data-exchange-protocol/#data-model). This extension enables the integration of Logistics Emissions Data Exchange into the Pathfinder Network.
+This repository contains the iLEAP Data Model and protocol for logistics emissions transparency.
 
-## Technical Specifications
+It is realized as a so-called [Data Model Extension](https://wbcsd.github.io/data-model-extensions/)
+to the [PACT Data Model](https://wbcsd.github.io/tr/data-exchange-protocol/#data-model).
 
-The technical foundations of the iLEAP Data Model Extension, including considerations about its
-motivation and use, can be found [here](https://sine-fdn.github.io/ileap-extension/).
+This extension enables
+
+1. transparency over logistics emissions and intensity data, based on the GLEC Framework v3.1 and ISO14083:2023
+2. interoperable flow of such data between IT systems
+3. interoperability with the PACT Data Model and protocol of Version 2
+
 
 ## SQL-based Data Model
 
@@ -16,6 +19,7 @@ You can access a SQL-based realization of the iLEAP data model in the file [ilea
 ## Rust Implementation
 
 SINE provides also Rust implementations of
+
 - the PACT Data Model,
 - the iLEAP Data Model, and
 - a [demo API](https://api.ileap.sine.dev) conforming to the iLEAP Technical Specifications.
