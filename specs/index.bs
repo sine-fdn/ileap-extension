@@ -4,7 +4,7 @@ Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
 ED: https://sine-fdn.github.io/ileap-extension/
-TR: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/
+TR: https://sine-fdn.github.io/ileap-extension/TR/2025/ileap-extension-20250319/
 Canonical URL: ED
 Editor: Violetta Matzoros, https://www.smartfreightcentre.org, violetta.matzoros@smartfreightcentre.org
 Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rubiodomingo@smartfreightcentre.org
