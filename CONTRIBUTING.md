@@ -9,7 +9,7 @@ There are many ways in which you can contribute to the iLEAP Technical Specifica
 
 If you have feedback you would like to raise, we encourage you to [open an issue](https://github.com/sine-fdn/ileap-extension/issues/new).
 
-If your feedback is more general in nature, please refer to [this page](https://sinefoundation.notion.site/Contributing-to-iLEAP-9ad4ee5410234a82b2ad0cb9471e371a), where you can find all details on how to contribute and reach out to the iLEAP team.
+If your feedback is more general in nature, please refer to [this page](https://sinefoundation.notion.site/Contributing-to-iLEAP-15a407933aab81a48d04e2cf776c4a99), where you can find all details on how to contribute and reach out to the iLEAP team.
 
 ### Bug report
 
