@@ -1459,7 +1459,7 @@ encoded as a JSON object.
             :: The consignment comprises the handling of non-temperature controlled freight only.
 
             : `refrigerated`
-            :: For consignment comprising the handling of refrigerated freight only.
+            :: The consignment comprises the handling of refrigerated freight only.
 
     </table>
     <figcaption><{TAD}> properties</figcaption>
