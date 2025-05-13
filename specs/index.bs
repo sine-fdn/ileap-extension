@@ -1456,7 +1456,7 @@ encoded as a JSON object.
 
             If defined, the value of this property MUST be set to one of the following:
             : `ambient`
-            :: For consignments comprising the handling of non-temperature controlled freight only.
+            :: The consignment comprises the handling of non-temperature controlled freight only.
 
             : `refrigerated`
             :: For consignment comprising the handling of refrigerated freight only.
