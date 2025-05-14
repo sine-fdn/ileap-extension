@@ -277,9 +277,18 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
 # Data Transactions # {#txns}
 
+<<<<<<< Updated upstream
 Note: Non-normative section
 
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes
 A data transaction is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
+=======
+Note: Non-normative section
+
+A <dfn>data transaction</dfn> is an abstraction for the exchange of data between two parties, serving one or more business cases ([[#business-cases]]).
+>>>>>>> main
 
 It facilitates interoperability between different parties by explaining the context and their intention(s).
 
@@ -641,6 +650,22 @@ A <{ShipmentFootprint}> has the following properties:
         <td>O
         <td>The volume of the freight (SI Unit `cubic metre (CBM)`) and any packaging provided by the [=Transport Service User=].
       <tr>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        <td><dfn>numberOfItems</dfn>
+        <td>Number `(int)`
+        <td>O
+        <td>The number of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of.
+      <tr>
+        <td><dfn>typeOfItems</dfn>
+        <td>String
+        <td>O
+        <td>The type of units the shipment, including the goods transported and any packaging provided by the [=Transport Service User=], is composed of. For example, boxes, pallets, bottles, etc.
+      <tr>
+=======
+>>>>>>> main
+>>>>>>> Stashed changes
         <td><dfn>shipmentId</dfn>
         <td>String
         <td>M
@@ -772,7 +797,15 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
 
       <tr>
         <td><dfn>packagingOrTrEqAmount</dfn>
+<<<<<<< Updated upstream
         <td>Decimal
+=======
+<<<<<<< HEAD
+        <td>Number `(int)`
+=======
+        <td>Decimal
+>>>>>>> main
+>>>>>>> Stashed changes
         <td>O
         <td>Number of packaging or transport equipment units utilized to transport the related consignment by the [=Transport Operator=] or [=Transport Service Organizer=].
         <div class=example>
@@ -936,6 +969,23 @@ Note: The properties `tocId` and `hocId` are mutually exclusive, but one of them
         <td>
               Particulate matter (PM10 and PM2.5) released to atmosphere as a result of vehicle operation.
               The value MUST be calculated for the TCE with unit `kg`.
+<<<<<<< Updated upstream
+=======
+      <tr>
+        <td><dfn>temperatureControl</dfn>
+        <td>String
+        <td>O
+        <td>
+            Temperature control status of the TCE.
+
+            If defined, the value of this property MUST be set to one of the following:
+            : `ambient`
+            :: For TCEs comprising the handling of non-temperature controlled freight only.
+
+            : `refrigerated`
+            :: For TCEs comprising the handling of refrigerated freight only.
+
+>>>>>>> Stashed changes
   </table>
   <figcaption>Properties of data type <{TCE}></figcaption>
 </figure>
@@ -1086,7 +1136,11 @@ The Data Type <{TOC}> has the following properties:
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
 
             The sum of the relative shares of the energy carriers used in the TOC MUST equal `1`.
+<<<<<<< Updated upstream
             The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit at the denominator of <{TOC/transportActivityUnit}>)) of the TOC.
+=======
+            The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{TOC/co2eIntensityThroughput}>) of the TOC.
+>>>>>>> Stashed changes
 To represent a single <{EnergyCarrierType}> produced from multiple feedstocks, each feedstock MUST
             be represented by a separate entry in the [=EnergyCarriers=] array. For each
               `EnergyCarrier`, the combined value of <{Feedstock/feedstockShare}>s must be less
@@ -1257,7 +1311,11 @@ The Data Type <{HOC}> has the following properties:
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
 
+<<<<<<< Updated upstream
             The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit at the demoninator of <{HOC/hubActivityUnit}>) of the HOC.
+=======
+            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit <{HOC/co2eIntensityThroughput}>) of the HOC.
+>>>>>>> Stashed changes
 
             <div class=example>
               Assuming the HOC represents terminal where 75% of the (representative) hub activity uses `diesel` and the remaining 25% uses electricity (grid) to generate movements, the value of <{HOC/energyCarriers}> would be:
@@ -1460,6 +1518,9 @@ encoded as a JSON object.
 
             : `refrigerated`
             :: The consignment comprises the handling of refrigerated freight only.
+
+            Advisement: The enumeration of temperature control status will be evolved in future revisions. Account for
+            this when implementing the validation of this property.
 
     </table>
     <figcaption><{TAD}> properties</figcaption>
@@ -1814,11 +1875,29 @@ The following properties are defined for data type <dfn element>Feedstock</dfn>:
             Account for this when implementing the validation of this property.
 
         <tr>
+<<<<<<< Updated upstream
           <td><dfn>feedstockShare</dfn> : [0..1]
           <td>[=Decimal=]
           <td>O
           <td>The share of the feedstock in the total composition of the energy carrier.
                 The value MUST be between `0` (including) and `1` (including).
+=======
+<<<<<<< HEAD
+          <td><dfn>feedstockPercentage</dfn> : [0..1]
+          <td>[=Decimal=]
+          <td>O
+          <td>
+              Percentage of the feedstock in the total composition of energy carrier.
+
+              The value of this property MUST be between `0` (excluding) and `1` (including).
+=======
+          <td><dfn>feedstockShare</dfn> : [0..1]
+          <td>Number
+          <td>O
+          <td>The share of the feedstock in the total composition of the energy carrier.
+                The value MUST be between `0` (including) and `1` (including).
+>>>>>>> main
+>>>>>>> Stashed changes
         <tr>
           <td><dfn>regionProvenance</dfn>
           <td>String
@@ -2694,7 +2773,12 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
+<<<<<<< Updated upstream
 ## Version 1.0.0-beta2 (2025-05-07) ## {#version-1.0.0-beta2}
+=======
+<<<<<<< HEAD
+## Version 1.0.0-beta2 (2025-04-22) ## {#version-1.0.0-beta2}
+>>>>>>> Stashed changes
 
 - add optional property <{TAD/temperatureControl}> to <{TAD}>
 - rename <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
@@ -2715,8 +2799,23 @@ apply for additional support, materials, and marketing opportunities.
 - clarify that the data type `Number` refers to integers, adding `(int)` to the type designation
 - <strong>fix type mistake in <{Feedstock/feedstockShare}>, replacing `Number` by [=Decimal=]</strong>
 - clarify definition of <{TCE/mass}>
+<<<<<<< Updated upstream
 - <strong>replace mandatory property `isAccredited` by optional property `certifications`, in <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}></strong>
 - <strong>remove mandatory property `isVerified`</strong>
+=======
+=======
+## Version 1.0.0-beta2 (2025-05-06) ## {#version-1.0.0-beta2}
+
+- add optional property <{TCE/temperatureControl}> to <{TCE}>
+- rename <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
+    changing the semantics from "percentage" to "share" also
+- removal of properties `numberOfItems` and `typeOfItems` from <{ShipmentFootprint}>
+- addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
+    - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
+- update <{PackagingOrTrEqType}> and improve guidance on <{TCE/packagingOrTrEqAmount}>
+- add `non-normative` note to [[#txns]]
+>>>>>>> main
+>>>>>>> Stashed changes
 
 ## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
 
