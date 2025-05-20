@@ -11,7 +11,7 @@ Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rub
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
 Repository: sine-fdn/ileap-extension
-Abstract: This document outlines the semantics for logistics emissions data exchange as part of the [iLEAP Project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/ileap-integrating-logistics-emissions-and-pcfs/). Its format is based on the PACT Technical Specifications and supports the integration of Logistics Emissions Data Exchange into the PACT Network. Implementing this specification enables stakeholders within the supply chain to exchange data on logistics emissions. This facilitates the tracking of logistics emissions and the computation of their contribution to product carbon footprints.
+Abstract: This document outlines the semantics for logistics emissions data exchange as part of the [iLEAP Project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/ileap-integrating-logistics-emissions-and-pcfs/). Its format is based on the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses) and supports the integration of Logistics Emissions Data Exchange into the [PACT Network](https://www.carbon-transparency.org/network). Implementing these specifications enables stakeholders within the supply chain to exchange data on logistics emissions. This facilitates the tracking of logistics emissions and the computation of their contribution to product carbon footprints.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
 Previous Version: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/
@@ -22,15 +22,15 @@ Local Boilerplate: header yes
 
 - Companies have a growing need to calculate and report logistics emissions with greater accuracy and transparency. They want to move from default and modeled data to primary data that accurately reflects their supply chain emissions.
 - This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
-- Based on the [[!GLEC]] Framework and [[!ISO14083]], this technical specification is built on top of the PACT Technical Specifications. In addition, it is based on the basic semantics and framework developed by the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network) and advances them further.
-- Adopting this specification will enable the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|Transport Chain Element (TCE)=] and [=TOC|Transport Operation Category (TOC)=] or [=HOC|Hub Operation Category (HOC)=] levels, and the integration of these calculations at the [=PCF=] level.
+- Based on the [[!GLEC]] Framework and [[!ISO14083]], these technical specifications are built on top of the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responsesm). In addition, it is based on the basic semantics and framework developed by the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network) and advance them further.
+- Adopting these specifications will enable the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|Transport Chain Element (TCE)=] and [=TOC|Transport Operation Category (TOC)=] or [=HOC|Hub Operation Category (HOC)=] levels, and the integration of these calculations at the [=PCF=] level.
 
 
 ## Out of Scope ## {#out-of-scope}
 
 Note: Non-normative section
 
-This specifcation does not cover the following topics or aspects as they are covered elsewhere or declared as out of scope of this specification:
+These specifications do not cover the following topics or aspects, as they are covered elsewhere or declared as out of scope of this specification:
 
 1. Methodology for the calculation of logistics-related emissions. The technical specifications' normative foundations are the [[!GLEC]] Framework and [[!ISO14083]].
 1. Black Carbon Methodological and Accounting principles.
@@ -45,9 +45,9 @@ This specifcation does not cover the following topics or aspects as they are cov
 1. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
 1. Reporting with per-modality transparency as defined in Section 13.3 of [[!ISO14083]].
     The key difference between this approach and iLEAP is that the former also <i>allows</i> for a) aggregating over more than 1 shipment, and b) disclosing emissions per modality.
-    The iLEAP Tech Specs operate on a per-shipment and per-TCE basis.
+    The iLEAP Technical Specifications operate on a per-shipment and per-TCE basis.
     However, <i>transparency at this level is implicitly assumed by ISO14083 Chapter 13.3 (when aggregating over multiple shipments)</i>.
-    Comprehensive Chapter 13.3 reporting is expected to be included in future versions of these technical specifications.
+    Comprehensive reporting according to [[!ISO14083]] Chapter 13.3 is expected to be included in future versions of these technical specifications.
 
 ## Document Statuses ## {#document-statuses}
 
@@ -93,7 +93,7 @@ status tags are:
 
 : <dfn data-lt="Great Circle Distance|GCD">Great Circle Distance (GCD)</dfn>
 ::
-    The shortest distance between two points by crow-line, including the curving of the earth. It is an approach used in air transport. [[!GLEC]] Framework.
+    The shortest distance between two points by crow-line, including the curving of the Earth. It is an approach used in air transport. [[!GLEC]] Framework.
 
 : <dfn data-noexport>Hub Activity</dfn>
 :: The operations carried out at a hub, measured in the hub's throughput. [[!GLEC]] Framework.
@@ -148,23 +148,23 @@ status tags are:
 ## Auxillary Definitions ## {#auxillary-definitions}
 
 : <dfn>Access Token</dfn>
-:: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
+:: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
 
 : <dfn>Consignment id</dfn>
 ::
     A digital identifier which uniquely identifies a [=Consignment=] relative to the [=Host system=] and to the [=Data recipient=].
 
 : <dfn>Data Owner</dfn>
-:: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-owner) for the definition.
+:: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-owner) for the definition.
 
 : <dfn>Data Recipient</dfn>
-:: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
+:: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
 
 : <dfn>Data Transaction</dfn>
 :: See [[#txns]].
 
 : <dfn>Host System</dfn>
-:: See [PACT Tech Specs](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
+:: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
 
 : <dfn data-noexport>Hub Operator</dfn>
@@ -172,7 +172,7 @@ status tags are:
 
 : <dfn>PCF</dfn>
 ::
-    Product Carbon Footprint. See [PACT Tech Specs](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details.
+    Product Carbon Footprint. See [PACT Technical Specifications](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details.
 
 : <dfn data-noexport>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
@@ -197,13 +197,13 @@ status tags are:
 
 Note: Non-normative section
 
-This specification shall serve the general need of businesses for logistics GHG emissions
+These specifications shall serve the general need of businesses for logistics GHG emissions
 accounting and reporting, conforming to the [[!GLEC]] Framework and [[!ISO14083]].
 
-Given the nature of the logistics industry, and in order to reduce costs overall, this specification aims at
+Given the nature of the logistics industry, and in order to reduce costs overall, these specifications aims at
 enabling interoperability in the exchange of emissions data between different parties in the logistics value chain.
 
-To achieve this objective, the specification is guided by a set of business cases which provide the
+To achieve this objective, the specifications are guided by a set of business cases which provide the
 framework for delineating subsequent [[#txns|data transactions]] and the [[#data-model|iLEAP data model]].
 
 
@@ -259,9 +259,9 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
     A [=Transport Service User=] is requested to disclose logistics emissions as part of a [=PCF=].
     A Transport Service User can disclose this data as a data model extension (see [[#pcf-mapping-sf]]).
 
-    This is enabled through the usage of the PACT Technical Specifications
+    This is enabled through the usage of the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses)
     and disclosing through so-called Data Model Extensions based on the iLEAP
-    Data Model ([[#data-model]]) . See the PACT [[!DATA-MODEL-EXTENSIONS]] specification.
+    Data Model ([[#data-model]]) . See the PACT [[!DATA-MODEL-EXTENSIONS]] specifications.
 
 
 : Forecasting
@@ -307,8 +307,8 @@ To execute this transaction, the [=Transport Operator=] or the [=Transport Servi
     Network API (see [[#pcf-mapping-sf]]).
 
 The [=Transport Service User=] CAN then derive the Transport Chain ([=TC=]) using the [=shipment id=], by
-1. collecting the <{TCE|TCEs}> from all the [=Transport Operators=] and the [=Transport Service Organizers=] involved in the shipment
-2. forming the [=TC=] from the collected TCEs
+1. collecting the <{TCE|TCEs}> from all the [=Transport Operators=] and the [=Transport Service Organizers=] involved in the shipment;
+2. forming the [=TC=] from the collected TCEs;
 3. calculating the logistics emissions of the shipment in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
 Note: For an example exchange, see [[#example]].
@@ -354,7 +354,7 @@ Note: Non-normative section
 
 ## Example Case with 2 Carriers and 1 LSP ## {#example-case-1}
 
-This section provides an end-to-end example of how the data transactions ([[#txns]])
+This section provides an end-to-end example of how the ([[#txns]])
 enable logistics emissions transparency for a single shipment.
 
 <figure id="end-to-end-example-1">
@@ -494,7 +494,7 @@ The highlighted lines show the data exchanged according to the <{ShipmentFootpri
 
 To collect the TCE data related to the shipment, `LSP` performs the following HTTP call, yielding 2 TCEs in this hypothetical example.
 
-Note: the highlighted lines show 2 <{TCE|TCEs}> which `Carrier A` has collected and calculated for `LSP`.
+Note: The highlighted lines show 2 <{TCE|TCEs}> which `Carrier A` has collected and calculated for `LSP`.
 
 <div class=example>
   Example HTTP Request (cURL) to collect TCE Data (please note that an actual API call would require authentication):
@@ -586,7 +586,7 @@ Note: the highlighted lines show 2 <{TCE|TCEs}> which `Carrier A` has collected 
 
 # Data Model # {#data-model}
 
-The iLEAP data model of this chapter together with the data transactions ([[#txns]]) build on top of the [[!ISO14083|ISO 14083]] concepts of TOC, HOC, TCE, TC.
+The iLEAP data model of this chapter together with the data transactions ([[#txns]]) build on top of the [[!ISO14083|ISO 14083]] concepts of [=TOC=], [=HOC=], [=TCE=], [=TC=].
 
 Additionally, the concept of transport activity data ([[#dt-tad|TAD]]) is added to facilitate reporting in case of missing data or limited emissions calculation capabilities from e.g. [=Transport Operators=].
 
@@ -1375,7 +1375,7 @@ encoded as a JSON object.
         <td><dfn>distance</dfn>
         <td><{GLECDistance}>
         <td>M
-        <td>The Distance between the origin and the destination of the activity.
+        <td>The distance between the origin and the destination of the activity.
       <tr>
         <td><dfn>mass</dfn> : [=Decimal=]
         <td>String
@@ -1871,7 +1871,7 @@ By relying on [[!PACTDX]] for the data exchange, the integration of logistics em
 
 They can then use 1 interoperable API for the exchange of different categories of carbon emissions data related to GHG Protocol lifecycle stages (such as material acquisition and transport).
 
-Additionally, by mapping the GLEC Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
+Additionally, by mapping the iLEAP Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
 ## Action TransportActivityData ## {#action-tad}
 
@@ -2101,7 +2101,7 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
         <td>CarbonFootprint
         <td>`declaredUnit`
         <td>
-              MUST be set to `ton kilometer` conforming to the PACT Tech Specs.
+              MUST be set to `ton kilometer` conforming to the PACT PACT Technical Specifications.
 
               See [[!PACTDX]] Chapter 4 for further details.
 
@@ -2277,7 +2277,7 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
         <td>CarbonFootprint
         <td>`declaredUnit`
         <td>
-              MUST be set to `ton kilometer` conforming to the PACT Tech Specs.
+              MUST be set to `ton kilometer` conforming to the PACT PACT Technical Specifications.
 
               See [[!PACTDX]] Chapter 4 for further details.
 
@@ -2455,7 +2455,7 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
         <td>CarbonFootprint
         <td>`declaredUnit`
         <td>
-              MUST be set to `kilogram` conforming to the PACT Tech Specs.
+              MUST be set to `kilogram` conforming to the PACT PACT Technical Specifications.
 
               See [[!PACTDX]] Chapter 4 for further details.
 
@@ -2618,8 +2618,8 @@ following features:
 It is RECOMMENDED for host systems to conform to both kinds of [=iLEAP conformance=].
 
 Sections marked as non-normative, all authoring guidelines, diagrams, examples,
-and notes in this specification are non-normative. Everything else in this
-specification is normative.
+and notes in these specifications are non-normative. Everything else in these
+specifications is normative.
 
 The key words MAY, MUST, MUST NOT, OPTIONAL, RECOMMENDED, REQUIRED, SHOULD,
 and SHOULD NOT in this document are to be interpreted as described in
@@ -2692,7 +2692,7 @@ Note:
 Note: non-normative
 
 Once a [=host system=] achieved [=iLEAP conformance=] in 1 or all kinds of iLEAP conformance,
-the implementer is requested to reach out to the authors of this Technical Specifications to
+the implementer is requested to reach out to the authors of these Technical Specifications to
 apply for additional support, materials, and marketing opportunities.
 
 
@@ -3113,13 +3113,13 @@ extensions.
 #### Request #### {#test-case-001-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+system with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-001-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT Tech Specs V2.2
+`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 Those which include `productIds` with [the format specified for ShipmentFootprints](#pcf-mapping-sf)
 must be conformant with the Data Model specified in [[#dt-sf]]. The relevant properties of the
@@ -3133,13 +3133,13 @@ extensions.
 #### Request #### {#test-case-002-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
-system=] with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+system=] with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-002-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT Tech Specs V2.2
+`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 
 This list must include all the `TOCs` referenced in the `ShipmentFootprint`s returned in
@@ -3157,13 +3157,13 @@ Tests the [=target host system=]'s ability to return `ProductFootprints` with `H
 #### Request #### {#test-case-003-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
-system=] with a valid access token and the syntax specified in [PACT Tech Specs V2.2
+system=] with a valid access token and the syntax specified in [PACT Technical Specifications V2.2
 §api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
 
 #### Expected Response #### {#test-case-003-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT Tech Specs V2.2
+`ProductFootprints` (as per the [PACT Technical Specifications V2.2
 §api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
 
 This list must include all the `HOCs` referenced in the `ShipmentFootprint`s returned in
