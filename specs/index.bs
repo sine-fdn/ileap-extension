@@ -197,9 +197,6 @@ The authors would like to thank the numerous individuals and organizations for t
 : <dfn>Data Recipient</dfn>
 :: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
 
-: <dfn>Data Transaction</dfn>
-:: See [[#txns]].
-
 : <dfn>Host System</dfn>
 :: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
@@ -209,7 +206,7 @@ The authors would like to thank the numerous individuals and organizations for t
 
 : <dfn>PCF</dfn>
 ::
-    Product Carbon Footprint. See [PACT Technical Specifications](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details.
+    Product Carbon Footprint. See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#dt-carbonfootprint) for further details.
 
 : <dfn data-noexport>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
