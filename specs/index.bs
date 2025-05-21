@@ -620,7 +620,7 @@ Note: The highlighted lines show 2 <{TCE|TCEs}> which `Carrier A` has collected 
 
 # Data Model # {#data-model}
 
-The iLEAP data model of this chapter together with the data transactions ([[#txns]]) build on top of the [[!ISO14083|ISO 14083]] concepts of [=TOC=], [=HOC=], [=TCE=], [=TC=].
+The iLEAP data model of this chapter together with the data transactions ([[#txns]]) build on top of the [[!ISO14083|ISO 14083]] concepts of [=TOC=], [=HOC=], [=Transport Chain Element|TCE=], [=TC=].
 
 Additionally, the concept of transport activity data ([[#dt-tad|TAD]]) is added to facilitate reporting in case of missing data or limited emissions calculation capabilities from e.g. [=Transport Operators=].
 
@@ -1579,7 +1579,7 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>country</dfn>
         <td>Country
         <td>M
-        <td>An ISO 3166-2 alpha-2 country code. See [https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc](https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc) for details.
+        <td>An ISO 3166-2 alpha-2 country code. See the [https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#iso3166cc](ISO3166CC) data type for details.
       <tr>
         <td><dfn>iata</dfn>
         <td>iataCode
@@ -2072,24 +2072,24 @@ Note: The extensions of one `ProductFootprint` CANNOT contain more than one iLEA
         <th>Source
     <tbody>
         <tr>
-          <td>`validityPeriodStart` : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>`validityPeriodStart` : [DateTime](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#datetime)
           <td>String
           <td>O
           <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
-          <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
+          <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-validityperiodstart)
 
         <tr>
-          <td>`validityPeriodEnd` : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>`validityPeriodEnd` : [DateTime](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#datetime)
           <td>String
           <td>O
           <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
-          <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend)
+          <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-validityperiodend)
         <tr>
-          <td>`assurance` : [Assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-assurance)
+          <td>`assurance` : [Assurance](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#dt-assurance)
           <td>Object
           <td>O
           <td>If present, the Assurance information in accordance with the [[!PACT-FRAMEWORK]].
-          <td>[CarbonFootprint/assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-carbonfootprint-assurance)
+          <td>[CarbonFootprint/assurance](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-assurance)
     </table>
 </figure>
 
@@ -2239,29 +2239,29 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
 </figure>
 
 The `ProductFootprint` mandatory properties
-[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
-[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
-[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
-[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
-[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
-[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
-[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+[id](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productdescription),
 and
-[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+[productNameCompany](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productnamecompany)
 cannot be derived from the `ShipmentFootprint` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
 The `CarbonFootprint` mandatory properties
-[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
-[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
-[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
-[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
-[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
-[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
-[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
-[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+[characterizationFactors](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionspercent),
 and
-[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+[exemptedEmissionsDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
 cannot be derived from the `ShipmentFootprint` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
@@ -2417,29 +2417,29 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 
 The `ProductFootprint` mandatory properties
-[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
-[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
-[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
-[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
-[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
-[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
-[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+[id](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productdescription),
 and
-[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+[productNameCompany](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productnamecompany)
 cannot be derived from the `TOC` and MUST be provided by the data owner. Please follow the links
 above for further details.
 
 The `CarbonFootprint` mandatory properties
-[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
-[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
-[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
-[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
-[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
-[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
-[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
-[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+[characterizationFactors](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionspercent),
 and
-[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+[exemptedEmissionsDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
 cannot be derived from the `TOC` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
@@ -2599,29 +2599,29 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
 
 The `ProductFootprint` mandatory properties
-[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
-[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
-[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
-[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
-[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
-[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
-[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+[id](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productdescription),
 and
-[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+[productNameCompany](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productnamecompany)
 cannot be derived from the `HOC` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
 The `CarbonFootprint` mandatory properties
-[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
-[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
-[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
-[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
-[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
-[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
-[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
-[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+[characterizationFactors](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionspercent),
 and
-[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+[exemptedEmissionsDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
 cannot be derived from the `HOC` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
@@ -3153,13 +3153,13 @@ extensions.
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
 system with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.2
-§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+§api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-001-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT PACT Technical Specifications V2.2
-§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+§api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 Those which include `productIds` with [the format specified for ShipmentFootprints](#pcf-mapping-sf)
 must be conformant with the Data Model specified in [[#dt-sf]]. The relevant properties of the
 `ProductFootprint` must also be confomant with the guidance provided in [[#pcf-mapping-sf]].
@@ -3173,13 +3173,13 @@ extensions.
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
 system=] with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.2
-§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+§api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-002-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT PACT Technical Specifications V2.2
-§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+§api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 
 This list must include all the `TOCs` referenced in the `ShipmentFootprint`s returned in
 [[#test-case-001]] (identified through the `productIds` field) and may include others.
@@ -3197,13 +3197,13 @@ Tests the [=target host system=]'s ability to return `ProductFootprints` with `H
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
 system=] with a valid access token and the syntax specified in [PACT Technical Specifications V2.2
-§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+§api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-003-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
 `ProductFootprints` (as per the [PACT Technical Specifications V2.2
-§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+§api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 
 This list must include all the `HOCs` referenced in the `ShipmentFootprint`s returned in
 [[#test-case-001]] (identified through the `productIds` field) and may include others.
