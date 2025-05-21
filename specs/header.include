@@ -1546,8 +1546,6 @@ pre .property::before, pre .property::after {
     font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
     font-size: .9em;
 }
-[data-link-type=element]::before { content: "<" }
-[data-link-type=element]::after  { content: ">" }
 
 [data-link-type=biblio] {
     white-space: pre;
