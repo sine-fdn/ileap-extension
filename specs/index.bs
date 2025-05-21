@@ -3156,13 +3156,13 @@ extensions.
 #### Request #### {#test-case-001-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.2
+system with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.1
 §api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-001-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.2
+`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.1
 §api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 Those which include `productIds` with [the format specified for ShipmentFootprints](#pcf-mapping-sf)
 must be conformant with the Data Model specified in [[#dt-sf]]. The relevant properties of the
@@ -3176,13 +3176,13 @@ extensions.
 #### Request #### {#test-case-002-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
-system=] with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.2
+system=] with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.1
 §api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-002-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.2
+`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.1
 §api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 
 This list must include all the `TOCs` referenced in the `ShipmentFootprint`s returned in
@@ -3200,13 +3200,13 @@ Tests the [=target host system=]'s ability to return `ProductFootprints` with `H
 #### Request #### {#test-case-003-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
-system=] with a valid access token and the syntax specified in [PACT Technical Specifications V2.2
+system=] with a valid access token and the syntax specified in [PACT Technical Specifications V2.1
 §api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-003-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT Technical Specifications V2.2
+`ProductFootprints` (as per the [PACT Technical Specifications V2.1
 §api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 
 This list must include all the `HOCs` referenced in the `ShipmentFootprint`s returned in
