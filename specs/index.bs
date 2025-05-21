@@ -11,7 +11,7 @@ Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rub
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
 Repository: sine-fdn/ileap-extension
-Abstract: The iLEAP Technical Specifications build on the [[!ISO14083|ISO14083:2023]] and the [[!GLEC|GLEC Framework V3.1]], introducing a data model and protocol for the interoperable flow of emissions data, emission intensity data, as well as transport activity data. The iLEAP Technical Specifications are designed to facilitate the flow of logistics emissions data among different parties in the logistics value chain, enabling accurate and transparent reporting of logistics emissions.
+Abstract: The iLEAP Technical Specifications are based on [[!ISO14083|ISO14083:2023]] and the [[!GLEC|GLEC Framework V3.1]]. They introduce a data model and protocol for the interoperable flow of emissions and emission intensity data, as well as transport activity data. Designed to facilitate the flow of logistics emissions data among different parties in the logistics value chain, the iLEAP Technical Specifications enable accurate and transparent reporting of logistics emissions.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
 Previous Version: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/
