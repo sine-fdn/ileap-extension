@@ -301,12 +301,6 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 : Forecasting
 :: A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or [=Transport Operator=]) to share GHG emissions at the TOC or HOC level. This enables the Transport Service User to forecast emissions related to specific activities or services, before these take place.
 
-: Integration of Book & Claim
-::
-    Note: This business case is currently out of scope. It may be supported in the future, when book & claim attributes are included in these technical specifications.
-
-    A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share with them emissions attributes according to a book & claim scheme.
-
 
 
 # Data Transactions # {#txns}
