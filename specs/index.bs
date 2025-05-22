@@ -2745,7 +2745,7 @@ Summary of changes:
 - removal of properties `numberOfItems` and `typeOfItems` from <{ShipmentFootprint}>
 - addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
     - addition of further explanations about this new property within the context of
-      <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
+        <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
 - updated <{PackagingOrTrEqType}> and improved guidance on <{TCE/packagingOrTrEqAmount}>
 - addition of `non-normative` note to [[#txns]]
 - renaming of property `co2eIntensityThroughput` in <{HOC}> and <{TOC}> to <{HOC/hubActivityUnit}>
@@ -2756,11 +2756,11 @@ Summary of changes:
     - legal-, compliance-, or contractual-relevant aspects
 - improvement of [[#example]], adding a diagram and simplifying the text
 - clarification that the data type `Number` refers to integers, adding `(int)` to the type
-  designation
+    designation
 - fixed type mistake in <{Feedstock/feedstockShare}>, replacing `Number` by [=Decimal=]
 - clarification of <{TCE/mass}> definition
 - replacement of mandatory property `isAccredited` by optional property `certifications`, in
-  <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}>
+    <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}>
 - removal of mandatory property `isVerified`
 - removal of underspecified property `dataQualityIndex`
 - consolidated changelog
@@ -2795,7 +2795,7 @@ Summary of changes:
 - consolidated American spelling
 - consolidated terminology in [[#txns]] diagram
 - renaming of `co2eIntensityWTW` and `co2eIntensityTTW` in <{EnergyCarrier}> to
-  <{EnergyCarrier/emissionFactorWTW}> and <{EnergyCarrier/emissionFactorTTW}>
+    <{EnergyCarrier/emissionFactorWTW}> and <{EnergyCarrier/emissionFactorTTW}>
 - renaming of `ServiceFootprint` to `ShipmentFootprint`
 - updated the mapping of <{ShipmentFootprint}> and <{TOC}> ids onto the PACT Data Model
 
