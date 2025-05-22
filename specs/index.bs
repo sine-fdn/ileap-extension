@@ -11,7 +11,7 @@ Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rub
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
 Repository: sine-fdn/ileap-extension
-Abstract: The iLEAP Technical Specifications are designed to facilitate the automated, digital flow of accurate logistics emissions data among different parties in the global logistics value chain, following [[!ISO14083|ISO 14083:2023]] and the [[!GLEC|GLEC Framework V3.1]]. 
+Abstract: The iLEAP Technical Specifications are designed to facilitate the automated, digital flow of accurate logistics emissions data among different parties in the global logistics value chain, following [[!ISO14083|ISO 14083:2023]] and the [[!GLEC|GLEC Framework V3.1]].
 Abstract: They introduce a data model and protocol for the interoperable exchange of emissions, emission intensity, and transport activity data.
 Abstract: The iLEAP Technical Specifications are interoperable with the [[!PACTDX|PACT Data Exchange Protocol]] and its PCF data model.
 Markup Shorthands: markdown yes
@@ -2731,157 +2731,77 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0-beta3 (2025-05-21) ## {#version-1.0.0-beta3}
+## Version 1.0.0 (2025-05-27) ## {#version-1.0.0-beta2}
+
+Stable release of Version 1.0.0
+
+Summary of changes:
 - editing and improvements to section [[#introduction]]
 - addition of section [[#acknowledgements]]
-
-
-## Version 1.0.0-beta2 (2025-05-07) ## {#version-1.0.0-beta2}
-
-- add optional property <{TAD/temperatureControl}> to <{TAD}>
-- rename <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
-    changing the semantics from "percentage" to "share" also
+- several typo fixes, text improvements, and clarifications
+- addition of optional property <{TAD/temperatureControl}> to <{TAD}>
+- renaming of <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
+    changing the semantics accordingly
 - removal of properties `numberOfItems` and `typeOfItems` from <{ShipmentFootprint}>
 - addition of property <{EnergyCarrier/relativeShare}> to <{EnergyCarrier}>
-    - addition of further explanations about this new property within the context of <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
-- update <{PackagingOrTrEqType}> and improve guidance on <{TCE/packagingOrTrEqAmount}>
-- add `non-normative` note to [[#txns]]
-- rename property `co2eIntensityThroughput` of data types <{HOC}> and <{TOC}> to
-    <{HOC/hubActivityUnit}> and <{TOC/transportActivityUnit}>
-- updates and clarifications to chapter [[#out-of-scope]], specifically
+    - addition of further explanations about this new property within the context of
+      <{TAD/energyCarriers|TAD}>, <{TOC/energyCarriers|TOC}>, and <{HOC/energyCarriers|HOC}>
+- updated <{PackagingOrTrEqType}> and improved guidance on <{TCE/packagingOrTrEqAmount}>
+- addition of `non-normative` note to [[#txns]]
+- renaming of property `co2eIntensityThroughput` in <{HOC}> and <{TOC}> to <{HOC/hubActivityUnit}>
+    and <{TOC/transportActivityUnit}>
+- clarifications to chapter [[#out-of-scope]]:
     - reference to ISO14083 Chapter 13.3
     - clarification on Black Carbon Accounting Methodology
-    - legal-, compliance-, or contractal-relevant aspects
-- small typo fixes and text improvements
-- improve [[#example]], adding a diagram and simplifying the text
-- clarify that the data type `Number` refers to integers, adding `(int)` to the type designation
-- <strong>fix type mistake in <{Feedstock/feedstockShare}>, replacing `Number` by [=Decimal=]</strong>
-- clarify definition of <{TCE/mass}>
-- <strong>replace mandatory property `isAccredited` by optional property `certifications`, in <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}></strong>
-- <strong>remove mandatory property `isVerified`</strong>
+    - legal-, compliance-, or contractual-relevant aspects
+- improvement of [[#example]], adding a diagram and simplifying the text
+- clarification that the data type `Number` refers to integers, adding `(int)` to the type
+  designation
+- fixed type mistake in <{Feedstock/feedstockShare}>, replacing `Number` by [=Decimal=]
+- clarification of <{TCE/mass}> definition
+- replacement of mandatory property `isAccredited` by optional property `certifications`, in
+  <{HOC/certifications|HOC}> and <{TOC/certifications|TOC}>
+- removal of mandatory property `isVerified`
+- removal of underspecified property `dataQualityIndex`
+- consolidated changelog
 
-## Version 1.0.0-beta (2025-03-19) ## {#version-1.0.0-beta}
+## Version 0.2.1 (2025-03-14) ## {#version-20250314}
 
-- remove underspecified property `dataQualityIndex`
-- pre-release of version 1.0.0 (full release expected in 2025-04)
-
-## Version 0.2.1-20250314 (2025-03-14) ## {#version-20250314}
-
-- fix [[#test-case-007]] and [[#test-case-008]] error responses
-
-## Version 0.2.1-20250311 (2025-03-11) ## {#version-20250311}
-
-- remove deprecated properties `TAD/energyCarrier` and `TAD/feedstocks`
-- small typo fixes and text improvements
-- add [[#conformance]] chapter
-- improve [[#appendix-b]]'s guidance and readability
-- finalize [[#test-case-004]]
-- populate [[#test-case-005]], [[#test-case-006]], [[#test-case-007]], and [[#test-case-008]]
-
-## Version 0.2.1-20250129 (2025-01-29) ## {#version-20250129}
-
-- changes to <{TAD}> data type which are "backwards compatible" with the previous version:
-    1. addition of optional property <{TAD/energyCarriers}> as a replacement for
-    2. the now deprecated properties `TAD/energyCarrier` and `TAD/feedstocks`
-
-
-## Version 0.2.1-20241211 (2024-12-11) ## {#version-20241211}
-
-- add guidance on how to populate PACT's `DataModelExtension` data type in [[#pcf-mapping-sf]],
-    [[#pcf-mapping-toc]], and [[#pcf-mapping-hoc]]
-- remove outdated advisement from [[#appendix-b]]
-- fix typos in `dataSchema` of § 5.2 Example HTTP Calls and [[#appendix-b-hoc-example]]
-
-## Version 0.2.1-20241113 (2024-11-13) ## {#version-20241113}
-
-- add appendix [[#ileap-specific-conformance-tests]]
-
-## Version 0.2.1-20241105 (2024-11-05) ## {#version-20241105}
-
-- small typo fix in [[#pcf-mapping-toc]]: `fossilGhgEmissions` and `fossilCarbonContent` refer to
-    `pCfExcludingBiogenic`
-
-## Version 0.2.1-20240930 (2024-09-30) ## {#version-20240930}
-
-- provide better guidance on [[#pcf-mapping]]
-
-## Version 0.2.1-20240903 (2024-09-03) ## {#version-20240903}
-
-- make application of <{Location/iata}> and <{Location/uic}> more explicit
-
-## Version 0.2.1-20240813 (2024-08-13) ## {#version-20240813}
-
-- add mentions to `HOC`s in [[#txn2]]
-- add note to [[#pcf-mapping]] stating that one footprint cannot contain more than one iLEAP data type
-- update note on `TEU` averages in [[#pcf-mapping-hoc]]
-
-## Version 0.2.1-20240807 (2024-08-07) ## {#version-20240807}
-
-- improved uniqueness definition in [=consignment id=] and [=shipment id=]
-- use [=Decimal=] data type consistently
-- add issues to <{ShipmentFootprint}> properties `numberOfItems` and `typeOfItems` instead of
-    common issue
-
-## Version 0.2.1-20240716 (2024-07-16) ## {#version-20240716}
-
+Summary of changes:
+- several typo fixes, text improvements, and clarifications
+- addition of [[#conformance]]
+- addition of [[#appendix-c]]
+- improvement of [[#appendix-b]]'s guidance and readability
+- replacement of the deprecated properties `TAD/energyCarrier` and `TAD/feedstocks` by <{TAD/energyCarriers}>
+- improvements on guidance provided in [[#pcf-mapping]]
 - addition of section [[#pcf-mapping-hoc]] and corresponding example [[#appendix-b-hoc-example]]
-- small typo fixes (broken link in [[#pcf-mapping-toc]] and wrong highlights in [[#appendix-b]])
-
-## Version 0.2.1-20240708 (2024-07-08) ## {#version-20240708}
-
-- New "feature": OPTIONAL happened-before relationship between <{TCE|TCEs}> relative to a single shipment and <{ShipmentFootprint}>, enabled through the new property <{TCE/prevTceIds}>.
-- Addition of the guidance chapter [[#tce-ordering]] to define the <{TCE/prevTceIds}> semantics
-
-## Version 0.2.1-20240611 (2024-06-11) ## {#version-20240611}
-
-- addition of section [[#document-statuses]]
-- rewording of the introduction paragraphs of [[#introduction]]
+- improvement on uniqueness definition in [=consignment id=] and [=shipment id=]
+- addition of the <{TCE/prevTceIds}> and corresponding guidance chapter [[#tce-ordering]]
+- addition of [[#document-statuses]]
+- rewording of [[#introduction]]
 - turn definition of <{EnergyCarrier/energyConsumption}> into "open" enumeration
 - turn definition of TOC's `co2eIntensityThroughput` and HOC's `co2eIntensityThroughput` into "open"
     enumeration
 
-## Version 0.2.0 Release (2024-06-05) ## {#version-20240605}
-
-Stable Release including the following changes:
-
-- reorganized and reworded chapter [[#business-cases]]
-- updated introduction to the [[#dt-tad]] chapter
-- replaced property `consignmentId` in <{TAD}> by an array of strings <{TAD/consignmentIds}>
-    achieving coherence with introductory text
-- rewording of chapter [[#business-cases]] and splitting of the business cases into individual subchapters
-    - scope of business case 3 [[#business-case-3]] changed towards more clarity on use of TAD data
-- reworded introduction at chapter [[#dt-tad]]
-- updated the introduction to the [[#data-model]] chapter
-- Consolidate American spelling
-- Consolidate terminology in [[#txns]] diagram
-- Renamed 2 properties in <{EnergyCarrier}>
-    - `co2eIntensityWTW` renamed to <{EnergyCarrier/emissionFactorWTW}>
-    - `co2eIntensityTTW` renamed to <{EnergyCarrier/emissionFactorTTW}>
-
-## Version 0.2.0 Draft (2024-05-21) ## {#version-20240501}
-
-Release Consultation Draft
-
-- fixed typos and incorrect `productId` in examples
-- `ServiceFootprint` renamed to `ShipmentFootprint` throughout this document
-
-## Version 0.2.0-20240514 (2024-05-14) ## {#version-20240514}
-
-- minor cleanups in section [[#dt-sf]]
-- removal of stale `issues`
-
-## Version 0.2.0-20240513 (2024-05-13) ## {#version-20240513}
+## Version 0.2.0 (2024-06-05) ## {#version-20240605}
 
 Summary of changes:
-
-- updated the mapping of a shipment id of a <{ShipmentFootprint}> into the PACT Data Model
-- updated the mapping of a shipment id of a <{TOC}> into the PACT Data Model
-
+- rewording of chapter [[#business-cases]] and splitting of the business cases into individual subchapters
+    - scope of business case 3 [[#business-case-3]] changed towards more clarity on use of TAD data
+- rewording of introduction at chapter [[#dt-tad]]
+- replacement of property `consignmentId` in <{TAD}> by an array of strings <{TAD/consignmentIds}>
+    achieving coherence with introductory text
+- updated the introduction to the [[#data-model]] chapter
+- consolidated American spelling
+- consolidated terminology in [[#txns]] diagram
+- renaming of `co2eIntensityWTW` and `co2eIntensityTTW` in <{EnergyCarrier}> to
+  <{EnergyCarrier/emissionFactorWTW}> and <{EnergyCarrier/emissionFactorTTW}>
+- renaming of `ServiceFootprint` to `ShipmentFootprint`
+- updated the mapping of <{ShipmentFootprint}> and <{TOC}> ids onto the PACT Data Model
 
 ## Version 0.1.0 (2024-05-13) ## {#version-0-1-0}
 
-Summary: Initial release of the specification.
-
+Initial release of the specification.
 
 # Appendix B: Example PCFs with iLEAP Data embedded # {#appendix-b}
 
