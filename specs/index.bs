@@ -30,25 +30,22 @@ that has been achieved with [[!ISO14083|ISO14083:2023]] and the [[!GLEC|GLEC Fra
 data access processes remain predominantly manual and differ between companies.
 
 Because of this, accessing and exchanging logistics emissions data based on
-primary data is challenging and costly while companies need to repeatedly
-prepare data differently. This results in unnecessarily high reporting costs
-and data quality concerns.
+primary data is unnecessarily challenging and costly.
 
 The iLEAP Technical Specifications address these challenges by
 
-1. "working backwards" from business cases ([[#business-cases]]), addressing
-      above challenges
+1. "working backwards" from business cases ([[#business-cases]])
 2. translating business cases into related data transactions ([[#txns]])
-    towards their realization through independent software
-    implementations, called [=host systems=]
-3. enabling the interoperable flow of data between such [=host systems=] by
+    enabling their realization through independent software
+    implementations, known as [=host systems=]
+3. enabling the interoperable flow of data between [=host systems=] by
     defining a data exchange protocol ([[#http-rest-api]]) and a data model
     ([[#data-model]]) that is rooted in the [[!ISO14083|ISO 14083]] and the
     [[!GLEC|GLEC Framework V3.1]].
 
 This document also introduces the interoperable flow of activity data,
-as defined further in Data Transaction 3 ([[#txn3]]) to support the
-calculation of emissions from standardized activity data and its exchange.
+defined in [[#txn3]], to support the
+exchange of standardized activity data and the calculation of emissions.
 
 ## PACT interoperability ## {#pact-interop}
 
@@ -118,9 +115,9 @@ status tags are:
 
 ## Acknowledgements ## {#acknowledgements}
 
-The iLEAP Technical Specifications are the result of a collaborative effort by numerious iLEAP project participants.
+The iLEAP Technical Specifications are the result of a collaborative effort by numerous iLEAP project participants.
 
-The authors would like to thank the numerous individuals and organizations for their contributions and commitments to iLEAP in the various phases of its development.
+The authors would like to thank the many individuals and organizations for their contributions and their commitment to iLEAP in the various phases of its development.
 
 
 # Definitions # {#definitions}
@@ -624,7 +621,7 @@ Note: The highlighted lines show 2 <{TCE|TCEs}> which `Carrier A` has collected 
 
 # Data Model # {#data-model}
 
-The iLEAP data model of this chapter together with the data transactions ([[#txns]]) build on top of the [[!ISO14083|ISO 14083]] concepts of [=TOC=], [=HOC=], [=Transport Chain Element|TCE=], [=TC=].
+The iLEAP data model of this chapter together with the data transactions ([[#txns]]) are built upon top of the [[!ISO14083|ISO 14083]] concepts of [=TOC=], [=HOC=], [=Transport Chain Element|TCE=], [=TC=].
 
 Additionally, the concept of transport activity data ([[#dt-tad|TAD]]) is added to facilitate reporting in case of missing data or limited emissions calculation capabilities from e.g. [=Transport Operators=].
 
@@ -1583,7 +1580,7 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>country</dfn>
         <td>Country
         <td>M
-        <td>An ISO 3166-2 alpha-2 country code. See the [https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#iso3166cc](ISO3166CC) data type for details.
+        <td>An ISO 3166-2 alpha-2 country code. See the [ISO3166CC](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#iso3166cc) data type for details.
       <tr>
         <td><dfn>iata</dfn>
         <td>iataCode
