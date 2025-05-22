@@ -1582,7 +1582,7 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>country</dfn>
         <td>Country
         <td>M
-        <td>An ISO 3166-2 alpha-2 country code. See the [ISO3166CC](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#iso3166cc) data type for details.
+        <td>An ISO 3166-2 alpha-2 country code. See the [`ISO3166CC`](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#iso3166cc) data type for details.
       <tr>
         <td><dfn>iata</dfn>
         <td>iataCode
