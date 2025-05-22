@@ -11,7 +11,9 @@ Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rub
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
 Repository: sine-fdn/ileap-extension
-Abstract: The iLEAP Technical Specifications are based on [[!ISO14083|ISO14083:2023]] and the [[!GLEC|GLEC Framework V3.1]]. They introduce a data model and protocol for the interoperable flow of emissions and emission intensity data, as well as transport activity data. Designed to facilitate the flow of logistics emissions data among different parties in the logistics value chain, the iLEAP Technical Specifications enable accurate and transparent reporting of logistics emissions. The iLEAP Technical Specifications are fully interoperable with the [PACT Data Exchange Protocol](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/) and its PCF data model.
+Abstract: The iLEAP Technical Specifications are designed to facilitate the automated, digital flow of accurate logistics emissions data among different parties in the global logistics value chain, following [[!ISO14083|ISO 14083:2023]] and the [[!GLEC|GLEC Framework V3.1]]. 
+Abstract: They introduce a data model and protocol for the interoperable exchange of emissions, emission intensity, and transport activity data.
+Abstract: The iLEAP Technical Specifications are interoperable with the [[!PACTDX|PACT Data Exchange Protocol]] and its PCF data model.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
 Previous Version: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/
@@ -47,21 +49,21 @@ This document also introduces the interoperable flow of activity data,
 defined in [[#txn3]], to support the
 exchange of standardized activity data and the calculation of emissions.
 
+
 ## PACT interoperability ## {#pact-interop}
 
-Following the methodological interoperability of the GLEC Framework with the [[!PACT-FRAMEWORK|PACT
-Framework]], the iLEAP Technical Specifications are designed to be interoperable with the
+Following the methodological alignment of the GLEC Framework with the
+[[!PACT-FRAMEWORK|PACT Framework]], the iLEAP Technical Specifications are
+designed to be interoperable with the
 [[!PACTDX|PACT Data Exchange Protocol]] and its PCF data model.
 
-This ensures that logistics emissions data can reach manufaturers without any additional friction,
-enabling their integration into the calculation of PCFs. Furthermore, it avoids unnecessary
-repetitions that would otherwise occur.
+This integration reduces the friction between [=host systems=]
+used by [=Transport Service Organizers=] or [=Transport Operators=] and those used by
+[=Transport Service Users=], enabling a holistic flow and approach to
+the management of carbon emissions.
 
-To achieve this, [[#txn1]] and [[#txn2]] were construed as extensions to the PACT PCF Data Model
-(see [[!DATA-MODEL-EXTENSIONS]]). Implementing PACT is, therefore, a prerequisit for implementing
-iLEAP. [[#txn3]] is independent from PACT, but presupposes that authentication is implemented as
-specified there.
-
+Implementing PACT is, therefore, a prerequisit for implementing these specifications,
+specifically the authentication flows.
 
 ## Out of Scope ## {#out-of-scope}
 
