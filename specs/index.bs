@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 1.0.0-beta2)
+Title: iLEAP Technical Specifications (Version 1.0.0-beta3)
 Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
@@ -11,7 +11,9 @@ Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rub
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
 Repository: sine-fdn/ileap-extension
-Abstract: This document outlines the semantics for logistics emissions data exchange as part of the [iLEAP Project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/ileap-integrating-logistics-emissions-and-pcfs/). Its format is based on the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses) and supports the integration of Logistics Emissions Data Exchange into the [PACT Network](https://www.carbon-transparency.org/network). Implementing these specifications enables stakeholders within the supply chain to exchange data on logistics emissions. This facilitates the tracking of logistics emissions and the computation of their contribution to product carbon footprints.
+Abstract: The iLEAP Technical Specifications are designed to facilitate the automated, digital flow of accurate logistics emissions data among different parties in the global logistics value chain, following [[!ISO14083|ISO 14083:2023]] and the [[!GLEC|GLEC Framework V3.1]]. 
+Abstract: They introduce a data model and protocol for the interoperable exchange of emissions, emission intensity, and transport activity data.
+Abstract: The iLEAP Technical Specifications are interoperable with the [[!PACTDX|PACT Data Exchange Protocol]] and its PCF data model.
 Markup Shorthands: markdown yes
 Boilerplate: omit conformance, omit copyright
 Previous Version: https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240521/
@@ -20,11 +22,48 @@ Local Boilerplate: header yes
 
 # Introduction # {#introduction}
 
-- Companies have a growing need to calculate and report logistics emissions with greater accuracy and transparency. They want to move from default and modeled data to primary data that accurately reflects their supply chain emissions.
-- This document specifies a [[#data-model]] and the [=data transactions=] necessary for the interoperable exchange of primary logistics emissions data, ensuring that they are structured to facilitate the calculation of Product Carbon Footprints (PCFs).
-- Based on the [[!GLEC]] Framework and [[!ISO14083]], these technical specifications are built on top of the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responsesm). In addition, it is based on the basic semantics and framework developed by the [SFC Data Exchange Network project](https://www.smartfreightcentre.org/en/our-programs/emissions-accounting/global-logistics-emissions-council/digitalization-program/sfc-exchange-network) and advance them further.
-- Adopting these specifications will enable the exchange of data between all actors in the logistics value chain, facilitating the calculation of emissions at the [=shipment=], [=Transport Chain Element|Transport Chain Element (TCE)=] and [=TOC|Transport Operation Category (TOC)=] or [=HOC|Hub Operation Category (HOC)=] levels, and the integration of these calculations at the [=PCF=] level.
+[=Transport Service Users=], [=Transport Service Organizers=], and [=Transport Operators=]
+have a growing need to calculate and report logistics emissions with
+greater accuracy and transparency. They want to transition from default and modeled
+data to primary data that accurately reflects the emissions of their operations.
 
+However, despite the methodological interoperability
+that has been achieved with [[!ISO14083|ISO14083:2023]] and the [[!GLEC|GLEC Framework]],
+data access processes remain predominantly manual and differ between companies.
+
+Because of this, accessing and exchanging logistics emissions data based on
+primary data is unnecessarily challenging and costly.
+
+The iLEAP Technical Specifications address these challenges by
+
+1. "working backwards" from business cases ([[#business-cases]])
+2. translating business cases into related data transactions ([[#txns]])
+    enabling their realization through independent software
+    implementations, known as [=host systems=]
+3. enabling the interoperable flow of data between [=host systems=] by
+    defining a data exchange protocol ([[#http-rest-api]]) and a data model
+    ([[#data-model]]) that is rooted in the [[!ISO14083|ISO 14083]] and the
+    [[!GLEC|GLEC Framework V3.1]].
+
+This document also introduces the interoperable flow of activity data,
+defined in [[#txn3]], to support the
+exchange of standardized activity data and the calculation of emissions.
+
+
+## PACT interoperability ## {#pact-interop}
+
+Following the methodological alignment of the GLEC Framework with the
+[[!PACT-FRAMEWORK|PACT Framework]], the iLEAP Technical Specifications are
+designed to be interoperable with the
+[[!PACTDX|PACT Data Exchange Protocol]] and its PCF data model.
+
+This integration reduces the friction between [=host systems=]
+used by [=Transport Service Organizers=] or [=Transport Operators=] and those used by
+[=Transport Service Users=], enabling a holistic flow and approach to
+the management of carbon emissions.
+
+Implementing PACT is, therefore, a prerequisite for implementing these specifications,
+specifically the authentication flows.
 
 ## Out of Scope ## {#out-of-scope}
 
@@ -40,7 +79,7 @@ These specifications do not cover the following topics or aspects, as they are c
       Verification-related properties are expected to be included in future versions of these technical specifications.
 1. Transparency relating to market-based or project accounting approaches and measures.
       Book and claim-related approaches are expected to be included in future versions of these technical specifications.
-1. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
+1. Variables for detailed GHG emissions modeling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
 1. Modes of transport "cable car" and "pipeline".
 1. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
 1. Reporting with per-modality transparency as defined in Section 13.3 of [[!ISO14083]].
@@ -76,6 +115,13 @@ status tags are:
     [https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/](https://sine-fdn.github.io/ileap-extension/TR/2024/ileap-extension-20240605/).
 
 
+## Acknowledgements ## {#acknowledgements}
+
+The iLEAP Technical Specifications are the result of a collaborative effort by numerous iLEAP project participants.
+
+The authors would like to thank the many individuals and organizations for their contributions and their commitment to iLEAP in the various phases of its development.
+
+
 # Definitions # {#definitions}
 
 ## ISO14083- and GLEC-Framework-related Definitions ## {#iso14083-definitions}
@@ -107,7 +153,7 @@ status tags are:
 
 : <dfn>Secondary Data</dfn>
 ::
-    Any data that is not primary data. It applies to modelled and default data. [[!GLEC]] Framework.
+    Any data that is not primary data. It applies to modeled and default data. [[!GLEC]] Framework.
 
 : <dfn>Shipment</dfn>
 ::
@@ -140,12 +186,12 @@ status tags are:
 :: Refers to the party that carries out the transport service. See [[!ISO14083]], Section 3.1.30.
 
 : <dfn>Transport Service Organizer</dfn>
-:: Refers to the party providing transport services, where some of the operations are subcontrated to a third party, usually a Transport Operator. See [[!ISO14083]], Section 3.1.32.
+:: Refers to the party providing transport services, where some of the operations are subcontracted to a third party, usually a Transport Operator. See [[!ISO14083]], Section 3.1.32.
 
 : <dfn>Transport Service User</dfn>
-:: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
+:: Refers to the party that purchases and/or utilizes a transport service. It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
 
-## Auxillary Definitions ## {#auxillary-definitions}
+## Auxiliary Definitions ## {#auxiliary-definitions}
 
 : <dfn>Access Token</dfn>
 :: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
@@ -160,9 +206,6 @@ status tags are:
 : <dfn>Data Recipient</dfn>
 :: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#data-recipient) for the definition.
 
-: <dfn>Data Transaction</dfn>
-:: See [[#txns]].
-
 : <dfn>Host System</dfn>
 :: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#host-system) for the definition.
     Here, a host system additionally implements support for 1 or more data transactions ([[#txns]]).
@@ -172,7 +215,7 @@ status tags are:
 
 : <dfn>PCF</dfn>
 ::
-    Product Carbon Footprint. See [PACT Technical Specifications](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-carbonfootprint) for further details.
+    Product Carbon Footprint. See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#dt-carbonfootprint) for further details.
 
 : <dfn data-noexport>ShipmentFootprint</dfn>
 :: See [[#dt-sf]] for the definition.
@@ -200,7 +243,7 @@ Note: Non-normative section
 These specifications shall serve the general need of businesses for logistics GHG emissions
 accounting and reporting, conforming to the [[!GLEC]] Framework and [[!ISO14083]].
 
-Given the nature of the logistics industry, and in order to reduce costs overall, these specifications aims at
+Given the nature of the logistics industry, and in order to reduce costs overall, these specifications aim at
 enabling interoperability in the exchange of emissions data between different parties in the logistics value chain.
 
 To achieve this objective, the specifications are guided by a set of business cases which provide the
@@ -261,17 +304,11 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
     This is enabled through the usage of the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses)
     and disclosing through so-called Data Model Extensions based on the iLEAP
-    Data Model ([[#data-model]]) . See the PACT [[!DATA-MODEL-EXTENSIONS]] specifications.
+    Data Model ([[#data-model]]). See the PACT [[!DATA-MODEL-EXTENSIONS]] specifications.
 
 
 : Forecasting
 :: A [=Transport Service User=] requests their service provider ([=Transport Service Organizer=] or [=Transport Operator=]) to share GHG emissions at the TOC or HOC level. This enables the Transport Service User to forecast emissions related to specific activities or services, before these take place.
-
-: Integration of Book & Claim
-::
-    Note: This business case is currently out of scope. It may be supported in the future, when book & claim attributes are included in these technical specifications.
-
-    A [=Transport Service Organizer=] requests their service provider ([=Transport Operator=]) to share with them emissions attributes according to a book & claim scheme.
 
 
 
@@ -586,7 +623,7 @@ Note: The highlighted lines show 2 <{TCE|TCEs}> which `Carrier A` has collected 
 
 # Data Model # {#data-model}
 
-The iLEAP data model of this chapter together with the data transactions ([[#txns]]) build on top of the [[!ISO14083|ISO 14083]] concepts of [=TOC=], [=HOC=], [=TCE=], [=TC=].
+The iLEAP data model of this chapter together with the data transactions ([[#txns]]) are built upon top of the [[!ISO14083|ISO 14083]] concepts of [=TOC=], [=HOC=], [=Transport Chain Element|TCE=], [=TC=].
 
 Additionally, the concept of transport activity data ([[#dt-tad|TAD]]) is added to facilitate reporting in case of missing data or limited emissions calculation capabilities from e.g. [=Transport Operators=].
 
@@ -952,7 +989,7 @@ The [=Transport Operator=] or [=Transport Service Organizer=] SHOULD then make t
 
 Transport Operation Category data can be obtained from direct measurement
 (see `primary data` definition of [[!ISO14083]]) or other measurements
-(see `secondary data` definition of [[!ISO14083]]) such as modelled data
+(see `secondary data` definition of [[!ISO14083]]) such as modeled data
 or default values.
 
 ### Data Attributes ### {#toc-attributes}
@@ -1258,7 +1295,7 @@ The Data Type <{HOC}> has the following properties:
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
 
-            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit at the demoninator of <{HOC/hubActivityUnit}>) of the HOC.
+            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit at the denominator of <{HOC/hubActivityUnit}>) of the HOC.
 
             <div class=example>
               Assuming the HOC represents terminal where 75% of the (representative) hub activity uses `diesel` and the remaining 25% uses electricity (grid) to generate movements, the value of <{HOC/energyCarriers}> would be:
@@ -1545,7 +1582,7 @@ Properties of data type <dfn element>Location</dfn>:
         <td><dfn>country</dfn>
         <td>Country
         <td>M
-        <td>An ISO 3166-2 alpha-2 country code. See [https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc](https://wbcsd.github.io/data-exchange-protocol/v2/#iso3166cc) for details.
+        <td>An ISO 3166-2 alpha-2 country code. See the [`ISO3166CC`](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#iso3166cc) data type for details.
       <tr>
         <td><dfn>iata</dfn>
         <td>iataCode
@@ -1861,17 +1898,13 @@ Advisement: The enumeration of packaging or transport equipment units above will
 
 # HTTP REST API # {#http-rest-api}
 
-A [=host system=] MUST implement:
-1. The endpoint for the exchange of [=Transport Activity Data=] (see [[#action-tad]]); and
-1. The exchange of <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> as specified in [[#pcf-mapping]].
+The iLEAP Technical Specifications are designed to be interoperable with the [[!PACTDX]] Protocol.
 
-The exchange of logistics emissions data throught the [[#data-model]] presupposes the implementation of the HTTP REST API defined in [[!PACTDX]] (Chapter 6).
+Therefore, a [=host system=] MUST implement
+1. the authentication flow as defined in [[!PACTDX]] Chapter 6.3
+1. the exchange of <{ShipmentFootprint}>, <{TOC}>, and <{HOC}> as specified in [[#pcf-mapping]]
+1. the endpoint for the exchange of [=Transport Activity Data=] (see [[#action-tad]])
 
-By relying on [[!PACTDX]] for the data exchange, the integration of logistics emissions data into existing [=host systems=]' software is simplified. In addition, this approach can further enhance and support the convergence of emissions transparency across sectors and initiatives.
-
-They can then use 1 interoperable API for the exchange of different categories of carbon emissions data related to GHG Protocol lifecycle stages (such as material acquisition and transport).
-
-Additionally, by mapping the iLEAP Data model into the [[!PACTDX]] data model, existing [=host systems=] can be gradually extended to support calculation of logistics emissions in accordance with the [[!GLEC]] Framework and [[!ISO14083]].
 
 ## Action TransportActivityData ## {#action-tad}
 
@@ -2038,24 +2071,24 @@ Note: The extensions of one `ProductFootprint` CANNOT contain more than one iLEA
         <th>Source
     <tbody>
         <tr>
-          <td>`validityPeriodStart` : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>`validityPeriodStart` : [DateTime](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#datetime)
           <td>String
           <td>O
-          <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
-          <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodstart)
+          <td>Determines the start of the validity period, i.e., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+          <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-validityperiodstart)
 
         <tr>
-          <td>`validityPeriodEnd` : [DateTime](https://wbcsd.github.io/tr/data-exchange-protocol/#datetime)
+          <td>`validityPeriodEnd` : [DateTime](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#datetime)
           <td>String
           <td>O
-          <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
-          <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-productfootprint-validityperiodend)
+          <td>Determines the end (excluding) of the validity period, i.e., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+          <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-validityperiodend)
         <tr>
-          <td>`assurance` : [Assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#dt-assurance)
+          <td>`assurance` : [Assurance](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#dt-assurance)
           <td>Object
           <td>O
           <td>If present, the Assurance information in accordance with the [[!PACT-FRAMEWORK]].
-          <td>[CarbonFootprint/assurance](https://wbcsd.github.io/tr/data-exchange-protocol/#element-attrdef-carbonfootprint-assurance)
+          <td>[CarbonFootprint/assurance](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-assurance)
     </table>
 </figure>
 
@@ -2205,29 +2238,29 @@ Note: Section [[#appendix-b-sf-example]] contains an example.
 </figure>
 
 The `ProductFootprint` mandatory properties
-[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
-[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
-[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
-[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
-[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
-[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
-[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+[id](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productdescription),
 and
-[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+[productNameCompany](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productnamecompany)
 cannot be derived from the `ShipmentFootprint` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
 The `CarbonFootprint` mandatory properties
-[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
-[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
-[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
-[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
-[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
-[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
-[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
-[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+[characterizationFactors](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionspercent),
 and
-[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+[exemptedEmissionsDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
 cannot be derived from the `ShipmentFootprint` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
@@ -2383,29 +2416,29 @@ Note: Section [[#appendix-b-toc-example]] contains an example.
 
 
 The `ProductFootprint` mandatory properties
-[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
-[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
-[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
-[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
-[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
-[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
-[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+[id](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productdescription),
 and
-[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+[productNameCompany](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productnamecompany)
 cannot be derived from the `TOC` and MUST be provided by the data owner. Please follow the links
 above for further details.
 
 The `CarbonFootprint` mandatory properties
-[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
-[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
-[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
-[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
-[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
-[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
-[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
-[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+[characterizationFactors](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionspercent),
 and
-[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+[exemptedEmissionsDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
 cannot be derived from the `TOC` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
@@ -2565,29 +2598,29 @@ Note: Section [[#appendix-b-hoc-example]] contains an example.
 
 
 The `ProductFootprint` mandatory properties
-[id](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-id),
-[specVersion](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-specversion),
-[version](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-version),
-[status](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-status),
-[companyName](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyname),
-[companyIds](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-companyids),
-[productDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productdescription),
+[id](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-id),
+[specVersion](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-specversion),
+[version](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-version),
+[status](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-status),
+[companyName](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyname),
+[companyIds](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-companyids),
+[productDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productdescription),
 and
-[productNameCompany](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-productfootprint-productnamecompany)
+[productNameCompany](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-productnamecompany)
 cannot be derived from the `HOC` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
 The `CarbonFootprint` mandatory properties
-[characterizationFactors](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-characterizationfactors),
-[ipccCharacterizationFactorsSources](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
-[crossSectoralStandardsUsed](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
-[crossSectoralStandars](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-crosssectoralstandards),
-[boundaryProcessesDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
-[referencePeriodStart](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodstart),
-[referencePeriodEnd](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-referenceperiodend),
-[exemptedEmissionsPercent](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionspercent),
+[characterizationFactors](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-characterizationfactors),
+[ipccCharacterizationFactorsSources](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-ipcccharacterizationfactorssources),
+[crossSectoralStandardsUsed](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandardsused),
+[crossSectoralStandars](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-crosssectoralstandards),
+[boundaryProcessesDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-boundaryprocessesdescription),
+[referencePeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodstart),
+[referencePeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-referenceperiodend),
+[exemptedEmissionsPercent](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionspercent),
 and
-[exemptedEmissionsDescription](https://wbcsd.github.io/data-exchange-protocol/v2/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
+[exemptedEmissionsDescription](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-carbonfootprint-exemptedemissionsdescription)
 cannot be derived from the `HOC` and MUST be provided by the data owner. Please follow
 the links above for further details.
 
@@ -2697,6 +2730,11 @@ apply for additional support, materials, and marketing opportunities.
 
 
 # Appendix A: Changelog # {#changelog}
+
+## Version 1.0.0-beta3 (2025-05-21) ## {#version-1.0.0-beta3}
+- editing and improvements to section [[#introduction]]
+- addition of section [[#acknowledgements]]
+
 
 ## Version 1.0.0-beta2 (2025-05-07) ## {#version-1.0.0-beta2}
 
@@ -3113,14 +3151,14 @@ extensions.
 #### Request #### {#test-case-001-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test target host
-system with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.2
-§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+system with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.1
+§api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-001-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.2
-§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.1
+§api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 Those which include `productIds` with [the format specified for ShipmentFootprints](#pcf-mapping-sf)
 must be conformant with the Data Model specified in [[#dt-sf]]. The relevant properties of the
 `ProductFootprint` must also be confomant with the guidance provided in [[#pcf-mapping-sf]].
@@ -3133,14 +3171,14 @@ extensions.
 #### Request #### {#test-case-002-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
-system=] with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.2
-§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+system=] with a valid access token and the syntax specified in [PACT PACT Technical Specifications V2.1
+§api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-002-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.2
-§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+`ProductFootprints` (as per the [PACT PACT Technical Specifications V2.1
+§api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 
 This list must include all the `TOCs` referenced in the `ShipmentFootprint`s returned in
 [[#test-case-001]] (identified through the `productIds` field) and may include others.
@@ -3157,14 +3195,14 @@ Tests the [=target host system=]'s ability to return `ProductFootprints` with `H
 #### Request #### {#test-case-003-request}
 
 A `ListFootprints` GET request must be sent to the `/2/footprints` endpoint of the test [=target host
-system=] with a valid access token and the syntax specified in [PACT Technical Specifications V2.2
-§api-action-list-request](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-request).
+system=] with a valid access token and the syntax specified in [PACT Technical Specifications V2.1
+§api-action-list-request](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-request).
 
 #### Expected Response #### {#test-case-003-response}
 
 The test [=target host system=] must respond with 200 OK with a JSON body containing a list of
-`ProductFootprints` (as per the [PACT Technical Specifications V2.2
-§api-action-list-response](https://wbcsd.github.io/data-exchange-protocol/v2/#api-action-list-response)).
+`ProductFootprints` (as per the [PACT Technical Specifications V2.1
+§api-action-list-response](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-action-list-response)).
 
 This list must include all the `HOCs` referenced in the `ShipmentFootprint`s returned in
 [[#test-case-001]] (identified through the `productIds` field) and may include others.
