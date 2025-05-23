@@ -1,5 +1,5 @@
 <pre class='metadata'>
-Title: iLEAP Technical Specifications (Version 1.0.0-beta3)
+Title: iLEAP Technical Specifications (Version 1.0.0)
 Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
@@ -2731,7 +2731,7 @@ apply for additional support, materials, and marketing opportunities.
 
 # Appendix A: Changelog # {#changelog}
 
-## Version 1.0.0 (2025-05-27) ## {#version-1.0.0-beta2}
+## Version 1.0.0 (2025-05-27) ## {#version-1.0.0}
 
 Stable release of Version 1.0.0
 
