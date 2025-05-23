@@ -62,7 +62,7 @@ used by [=Transport Service Organizers=] or [=Transport Operators=] and those us
 [=Transport Service Users=], enabling a holistic flow and approach to
 the management of carbon emissions.
 
-Implementing PACT is, therefore, a prerequisit for implementing these specifications,
+Implementing PACT is, therefore, a prerequisite for implementing these specifications,
 specifically the authentication flows.
 
 ## Out of Scope ## {#out-of-scope}
@@ -79,7 +79,7 @@ These specifications do not cover the following topics or aspects, as they are c
       Verification-related properties are expected to be included in future versions of these technical specifications.
 1. Transparency relating to market-based or project accounting approaches and measures.
       Book and claim-related approaches are expected to be included in future versions of these technical specifications.
-1. Variables for detailed GHG emissions modelling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
+1. Variables for detailed GHG emissions modeling, as described in [[!ISO14083]], Section 13.4.3 and Annex M. The current data model focuses on enabling primary data collection. Basic use of modeled and default data is supported, but detailed parameters remain excluded.
 1. Modes of transport "cable car" and "pipeline".
 1. Refrigerant emissions, as described in [[!ISO14083]], Annex I. These will be incorporated in future versions of these technical specifications.
 1. Reporting with per-modality transparency as defined in Section 13.3 of [[!ISO14083]].
@@ -153,7 +153,7 @@ The authors would like to thank the many individuals and organizations for their
 
 : <dfn>Secondary Data</dfn>
 ::
-    Any data that is not primary data. It applies to modelled and default data. [[!GLEC]] Framework.
+    Any data that is not primary data. It applies to modeled and default data. [[!GLEC]] Framework.
 
 : <dfn>Shipment</dfn>
 ::
@@ -186,12 +186,12 @@ The authors would like to thank the many individuals and organizations for their
 :: Refers to the party that carries out the transport service. See [[!ISO14083]], Section 3.1.30.
 
 : <dfn>Transport Service Organizer</dfn>
-:: Refers to the party providing transport services, where some of the operations are subcontrated to a third party, usually a Transport Operator. See [[!ISO14083]], Section 3.1.32.
+:: Refers to the party providing transport services, where some of the operations are subcontracted to a third party, usually a Transport Operator. See [[!ISO14083]], Section 3.1.32.
 
 : <dfn>Transport Service User</dfn>
-:: Refers to the party that purchases and or utilizes a transport service.  It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
+:: Refers to the party that purchases and/or utilizes a transport service. It could be a [=shipper=] or a [=Transport Service Organizer=]. See [[!ISO14083]], Section 3.1.33.
 
-## Auxillary Definitions ## {#auxillary-definitions}
+## Auxiliary Definitions ## {#auxiliary-definitions}
 
 : <dfn>Access Token</dfn>
 :: See [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#access-token) for the definition.
@@ -243,7 +243,7 @@ Note: Non-normative section
 These specifications shall serve the general need of businesses for logistics GHG emissions
 accounting and reporting, conforming to the [[!GLEC]] Framework and [[!ISO14083]].
 
-Given the nature of the logistics industry, and in order to reduce costs overall, these specifications aims at
+Given the nature of the logistics industry, and in order to reduce costs overall, these specifications aim at
 enabling interoperability in the exchange of emissions data between different parties in the logistics value chain.
 
 To achieve this objective, the specifications are guided by a set of business cases which provide the
@@ -304,7 +304,7 @@ Data Transaction #3 ([[#txn3]]) enables this business case.
 
     This is enabled through the usage of the [PACT Technical Specifications](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#api-error-responses)
     and disclosing through so-called Data Model Extensions based on the iLEAP
-    Data Model ([[#data-model]]) . See the PACT [[!DATA-MODEL-EXTENSIONS]] specifications.
+    Data Model ([[#data-model]]). See the PACT [[!DATA-MODEL-EXTENSIONS]] specifications.
 
 
 : Forecasting
@@ -989,7 +989,7 @@ The [=Transport Operator=] or [=Transport Service Organizer=] SHOULD then make t
 
 Transport Operation Category data can be obtained from direct measurement
 (see `primary data` definition of [[!ISO14083]]) or other measurements
-(see `secondary data` definition of [[!ISO14083]]) such as modelled data
+(see `secondary data` definition of [[!ISO14083]]) such as modeled data
 or default values.
 
 ### Data Attributes ### {#toc-attributes}
@@ -1295,7 +1295,7 @@ The Data Type <{HOC}> has the following properties:
         <td>
             The non-empty array of [=EnergyCarriers=] used to generate mechanical movement or heat and to generate chemical or physical processes, as defined in the [[!GLEC]] Framework.
 
-            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit at the demoninator of <{HOC/hubActivityUnit}>) of the HOC.
+            The sum of the relative shares of the energy carriers used in the HOC MUST equal `1`. The relative share of each energy carrier MUST be computed relative to (total) transport activity (with unit at the denominator of <{HOC/hubActivityUnit}>) of the HOC.
 
             <div class=example>
               Assuming the HOC represents terminal where 75% of the (representative) hub activity uses `diesel` and the remaining 25% uses electricity (grid) to generate movements, the value of <{HOC/energyCarriers}> would be:
@@ -2074,14 +2074,14 @@ Note: The extensions of one `ProductFootprint` CANNOT contain more than one iLEA
           <td>`validityPeriodStart` : [DateTime](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#datetime)
           <td>String
           <td>O
-          <td>Determines the start of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+          <td>Determines the start of the validity period, i.e., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
           <td>[ProductFootprint/validityPeriodStart](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-validityperiodstart)
 
         <tr>
           <td>`validityPeriodEnd` : [DateTime](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#datetime)
           <td>String
           <td>O
-          <td>Determines the end (excluding) of the validity period, ie., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
+          <td>Determines the end (excluding) of the validity period, i.e., the time interval during which the ProductFootprint is declared as valid for use by a receiving data recipient.
           <td>[ProductFootprint/validityPeriodEnd](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#element-attrdef-productfootprint-validityperiodend)
         <tr>
           <td>`assurance` : [Assurance](https://wbcsd.github.io/tr/2023/data-exchange-protocol-20231207/#dt-assurance)
