@@ -11,7 +11,7 @@ Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rub
 Editor: Martin Pompéry, https://sine.foundation, martin@sine.foundation
 Editor: Raimundo Henriques, https://sine.foundation, raimundo@sine.foundation
 Repository: sine-fdn/ileap-extension
-Abstract: The iLEAP Technical Specifications are designed to facilitate the automated, digital flow of accurate logistics emissions data among different parties in the global logistics value chain, following [[!ISO14083|ISO 14083:2023]] and the [[!GLEC|GLEC Framework V3.1]]. 
+Abstract: The iLEAP Technical Specifications are designed to facilitate the automated, digital flow of accurate logistics emissions data among different parties in the global logistics value chain, following [[!ISO14083|ISO 14083:2023]] and the [[!GLEC|GLEC Framework V3.1]].
 Abstract: They introduce a data model and protocol for the interoperable exchange of emissions, emission intensity, and transport activity data.
 Abstract: The iLEAP Technical Specifications are interoperable with the [[!PACTDX|PACT Data Exchange Protocol]] and its PCF data model.
 Markup Shorthands: markdown yes
@@ -272,16 +272,17 @@ Data Transaction #2 [[#txn2]] enable this business case.
 
 ## Emissions Calculation from Transport Activity Data ## {#business-case-3}
 
-Consider the scenario where a [=Transport Operator=], and possibly also [=Transport Service
-Organizer=], is not yet able to calculate GHG emissions according to the [[!GLEC|GLEC Framework]]
-and [[!ISO14083]].
+Consider the two following scenarios:
+    - A [=Transport Operator=], and possibly also [=Transport Service Organizer=], is not yet able to calculate GHG
+        emissions according to the [[!GLEC|GLEC Framework]] and [[!ISO14083]].
+    - A stakeholder collects primary data related to transport
+        activity but is not in the business of calculating emissions data.
 
-In such a case, the party may choose to collect [=Transport Activity Data=], that is, data related
-to a single shipment including mass, distance, and energy carriers used, but excluding emissions
-data.
+In each case, the party can collect [=Transport Activity Data=], that is, data related to a
+single shipment including mass, distance, and energy carriers used, but excluding emissions data.
 
-After collecting Transport Activity Data, the party can then contract a third party, such as a
-[=Tool Provider=], to calculate TOC and HOC level data from its Transport Activity Data.
+After collecting Transport Activity Data, the party can calculate TOC and HOC level data from its
+Transport Activity Data, either inhouse or by contracting a third party (such as a Tool Provider).
 
 This business case is particularly relevant for SMEs to reduce the entry barrier for logistics
 emissions reporting.
