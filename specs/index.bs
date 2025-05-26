@@ -2737,8 +2737,8 @@ apply for additional support, materials, and marketing opportunities.
 Stable release of Version 1.0.0
 
 Summary of changes:
-- editing and improvements to section [[#introduction]]
 - addition of section [[#acknowledgements]]
+- editing and improvements to sections [[#introduction]] and [[#business-case-3]]
 - several typo fixes, text improvements, and clarifications
 - addition of optional property <{TAD/temperatureControl}> to <{TAD}>
 - renaming of <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
