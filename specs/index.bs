@@ -32,7 +32,7 @@ that has been achieved with [[!ISO14083|ISO14083:2023]] and the [[!GLEC|GLEC Fra
 data access processes remain predominantly manual and differ between companies.
 
 Because of this, accessing and exchanging logistics emissions data based on
-primary data is unnecessarily challenging and costly.
+primary data is challenging and costly.
 
 The iLEAP Technical Specifications address these challenges by
 
