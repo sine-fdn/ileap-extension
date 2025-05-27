@@ -1,7 +1,7 @@
 specs/*.html
 gen/target
 out/
-example.svg
-tex-ordering.svg
+*/example.svg
+*/tce-ordering.svg
 node_modules/
 package*.json
