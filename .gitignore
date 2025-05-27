@@ -1,6 +1,7 @@
 specs/*.html
 gen/target
 out/
-*.svg
+example.svg
+tex-ordering.svg
 node_modules/
 package*.json
