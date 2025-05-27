@@ -45,4 +45,4 @@ release: clean build
 	cp specs/index.html specs/faq.html TR/$(YEAR)/ileap-extension-$(DATE)/
 	cp specs/diagrams/*.svg TR/$(YEAR)/ileap-extension-$(DATE)/diagrams/
 
-.PHONY: serve build azure-upload-preview clean
+.PHONY: serve build azure-upload-preview clean release
