@@ -4,7 +4,7 @@ Shortname: ileap-extension
 Status: LD
 Status Text: Technical Specification Pre-Release
 ED: https://sine-fdn.github.io/ileap-extension/
-TR: https://sine-fdn.github.io/ileap-extension/TR/2025/ileap-extension-20250319/
+TR: https://sine-fdn.github.io/ileap-extension/TR/2025/ileap-extension-20250527/
 Canonical URL: ED
 Editor: Violetta Matzoros, https://www.smartfreightcentre.org, violetta.matzoros@smartfreightcentre.org
 Editor: Gabriela Rubio Domingo, https://www.smartfreightcentre.org, gabriela.rubiodomingo@smartfreightcentre.org
@@ -269,7 +269,6 @@ By incorporating emission intensities in procurement processes, the parties are 
 
 Data Transaction #2 [[#txn2]] enable this business case.
 
-
 ## Emissions Calculation from Transport Activity Data ## {#business-case-3}
 
 Consider the two following scenarios:
@@ -327,7 +326,7 @@ Data Exchange Protocol ([[#pcf-mapping]]), enabling interoperability between [=h
 The following diagram shows how the three data transactions (defined below) are related:
 
 <figure id="figure-data-transactions">
-  <img src="diagrams/transactions.png" width="30%" >
+  <img src="diagrams/transactions.svg" width="90%" >
   <figcaption>Transactions diagram</figcaption>
 </figure>
 
@@ -2737,8 +2736,9 @@ apply for additional support, materials, and marketing opportunities.
 Stable release of Version 1.0.0
 
 Summary of changes:
-- editing and improvements to section [[#introduction]]
 - addition of section [[#acknowledgements]]
+- editing and improvements to sections [[#introduction]] and [[#business-case-3]]
+- replacement of transactions diagram in [[#txns]].
 - several typo fixes, text improvements, and clarifications
 - addition of optional property <{TAD/temperatureControl}> to <{TAD}>
 - renaming of <{Feedstock}> property `feedstockPercentage` to <{Feedstock/feedstockShare}>,
