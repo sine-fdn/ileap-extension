@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>[TITLE]</title>
+<!doctype html><html lang="en">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <title>FAQ iLEAP Technical Specifications</title>
 <style data-fill-with="stylesheet">/******************************************************************************
  *                   Style sheet for the W3C specifications                   *
  *
@@ -1546,6 +1545,8 @@ pre .property::before, pre .property::after {
     font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
     font-size: .9em;
 }
+[data-link-type=element]::before { content: "<" }
+[data-link-type=element]::after  { content: ">" }
 
 [data-link-type=biblio] {
     white-space: pre;
@@ -2173,22 +2174,651 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
 }
 </style>
-<script defer data-domain="sine-fdn.github.io" src="https://plausible.io/js/script.js"></script>
-<meta name="google-site-verification" content="zMvwNZ9CuODLE0NpZXzIUGsoaa6JNP8_aeXLX26Ujq8" />
-</head>
-<body class="h-entry">
-<div class="head">
-  <p data-fill-with="logo"></p>
-  <h1 id="title" class="p-name no-ref">[TITLE]</h1>
-  <h2 id="subtitle" class="no-num no-toc no-ref">Stable Release</h2>
-  <div data-fill-with="spec-metadata"></div>
-  <div data-fill-with="warning"></div>
-  <p class='copyright' data-fill-with='copyright'></p>
-  <hr title="Separator for header">
-</div>
+  <script data-domain="sine-fdn.github.io" defer src="https://plausible.io/js/script.js"></script>
+  <meta content="zMvwNZ9CuODLE0NpZXzIUGsoaa6JNP8_aeXLX26Ujq8" name="google-site-verification">
+  <meta content="Bikeshed version d765c696b, updated Fri Mar 8 15:58:52 2024 -0800" name="generator">
+  <link href="https://sine-fdn.github.io/ileap-extension/faq" rel="canonical">
+  <meta content="89abf874107b3d8358f6caa75f62cc20c0db4f80" name="revision">
+  <meta content="dark light" name="color-scheme">
+<style>/* Boilerplate: style-autolinks */
+.css.css, .property.property, .descriptor.descriptor {
+    color: var(--a-normal-text);
+    font-size: inherit;
+    font-family: inherit;
+}
+.css::before, .property::before, .descriptor::before {
+    content: "‘";
+}
+.css::after, .property::after, .descriptor::after {
+    content: "’";
+}
+.property, .descriptor {
+    /* Don't wrap property and descriptor names */
+    white-space: nowrap;
+}
+.type { /* CSS value <type> */
+    font-style: italic;
+}
+pre .property::before, pre .property::after {
+    content: "";
+}
+[data-link-type="property"]::before,
+[data-link-type="propdesc"]::before,
+[data-link-type="descriptor"]::before,
+[data-link-type="value"]::before,
+[data-link-type="function"]::before,
+[data-link-type="at-rule"]::before,
+[data-link-type="selector"]::before,
+[data-link-type="maybe"]::before {
+    content: "‘";
+}
+[data-link-type="property"]::after,
+[data-link-type="propdesc"]::after,
+[data-link-type="descriptor"]::after,
+[data-link-type="value"]::after,
+[data-link-type="function"]::after,
+[data-link-type="at-rule"]::after,
+[data-link-type="selector"]::after,
+[data-link-type="maybe"]::after {
+    content: "’";
+}
 
-<div class="p-summary" data-fill-with="abstract"></div>
-<div data-fill-with="at-risk"></div>
+[data-link-type].production::before,
+[data-link-type].production::after,
+.prod [data-link-type]::before,
+.prod [data-link-type]::after {
+    content: "";
+}
 
-<nav data-fill-with="table-of-contents" id="toc"></nav>
-<main>
+[data-link-type=element],
+[data-link-type=element-attr] {
+    font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    font-size: .9em;
+}
+[data-link-type=element]::before { content: "<" }
+[data-link-type=element]::after  { content: ">" }
+
+[data-link-type=biblio] {
+    white-space: pre;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
+/* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
+:root {
+    color-scheme: light dark;
+
+    --text: black;
+    --bg: white;
+
+    --unofficial-watermark: url(https://www.w3.org/StyleSheets/TR/2016/logos/UD-watermark);
+
+    --logo-bg: #1a5e9a;
+    --logo-active-bg: #c00;
+    --logo-text: white;
+
+    --tocnav-normal-text: #707070;
+    --tocnav-normal-bg: var(--bg);
+    --tocnav-hover-text: var(--tocnav-normal-text);
+    --tocnav-hover-bg: #f8f8f8;
+    --tocnav-active-text: #c00;
+    --tocnav-active-bg: var(--tocnav-normal-bg);
+
+    --tocsidebar-text: var(--text);
+    --tocsidebar-bg: #f7f8f9;
+    --tocsidebar-shadow: rgba(0,0,0,.1);
+    --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+    --toclink-text: var(--text);
+    --toclink-underline: #3980b5;
+    --toclink-visited-text: var(--toclink-text);
+    --toclink-visited-underline: #054572;
+
+    --heading-text: #005a9c;
+
+    --hr-text: var(--text);
+
+    --algo-border: #def;
+
+    --del-text: red;
+    --del-bg: transparent;
+    --ins-text: #080;
+    --ins-bg: transparent;
+
+    --a-normal-text: #034575;
+    --a-normal-underline: #bbb;
+    --a-visited-text: var(--a-normal-text);
+    --a-visited-underline: #707070;
+    --a-hover-bg: rgba(75%, 75%, 75%, .25);
+    --a-active-text: #c00;
+    --a-active-underline: #c00;
+
+    --blockquote-border: silver;
+    --blockquote-bg: transparent;
+    --blockquote-text: currentcolor;
+
+    --issue-border: #e05252;
+    --issue-bg: #fbe9e9;
+    --issue-text: var(--text);
+    --issueheading-text: #831616;
+
+    --example-border: #e0cb52;
+    --example-bg: #fcfaee;
+    --example-text: var(--text);
+    --exampleheading-text: #574b0f;
+
+    --note-border: #52e052;
+    --note-bg: #e9fbe9;
+    --note-text: var(--text);
+    --noteheading-text: hsl(120, 70%, 30%);
+    --notesummary-underline: silver;
+
+    --assertion-border: #aaa;
+    --assertion-bg: #eee;
+    --assertion-text: black;
+
+    --advisement-border: orange;
+    --advisement-bg: #fec;
+    --advisement-text: var(--text);
+    --advisementheading-text: #b35f00;
+
+    --warning-border: red;
+    --warning-bg: hsla(40,100%,50%,0.95);
+    --warning-text: var(--text);
+
+    --amendment-border: #330099;
+    --amendment-bg: #F5F0FF;
+    --amendment-text: var(--text);
+    --amendmentheading-text: #220066;
+
+    --def-border: #8ccbf2;
+    --def-bg: #def;
+    --def-text: var(--text);
+    --defrow-border: #bbd7e9;
+
+    --datacell-border: silver;
+
+    --indexinfo-text: #707070;
+
+    --indextable-hover-text: black;
+    --indextable-hover-bg: #f7f8f9;
+
+    --outdatedspec-bg: rgba(0, 0, 0, .5);
+    --outdatedspec-text: black;
+    --outdated-bg: maroon;
+    --outdated-text: white;
+    --outdated-shadow: red;
+
+    --editedrec-bg: darkorange;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #ddd;
+        --bg: black;
+
+        --unofficial-watermark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cg fill='%23100808' transform='translate(200 200) rotate(-45) translate(-200 -200)' stroke='%23100808' stroke-width='3'%3E%3Ctext x='50%25' y='220' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EUNOFFICIAL%3C/text%3E%3Ctext x='50%25' y='305' style='font: bold 70px sans-serif; text-anchor: middle; letter-spacing: 6px;'%3EDRAFT%3C/text%3E%3C/g%3E%3C/svg%3E");
+
+        --logo-bg: #1a5e9a;
+        --logo-active-bg: #c00;
+        --logo-text: white;
+
+        --tocnav-normal-text: #999;
+        --tocnav-normal-bg: var(--bg);
+        --tocnav-hover-text: var(--tocnav-normal-text);
+        --tocnav-hover-bg: #080808;
+        --tocnav-active-text: #f44;
+        --tocnav-active-bg: var(--tocnav-normal-bg);
+
+        --tocsidebar-text: var(--text);
+        --tocsidebar-bg: #080808;
+        --tocsidebar-shadow: rgba(255,255,255,.1);
+        --tocsidebar-heading-text: hsla(203,20%,40%,.7);
+
+        --toclink-text: var(--text);
+        --toclink-underline: #6af;
+        --toclink-visited-text: var(--toclink-text);
+        --toclink-visited-underline: #054572;
+
+        --heading-text: #8af;
+
+        --hr-text: var(--text);
+
+        --algo-border: #456;
+
+        --del-text: #f44;
+        --del-bg: transparent;
+        --ins-text: #4a4;
+        --ins-bg: transparent;
+
+        --a-normal-text: #6af;
+        --a-normal-underline: #555;
+        --a-visited-text: var(--a-normal-text);
+        --a-visited-underline: var(--a-normal-underline);
+        --a-hover-bg: rgba(25%, 25%, 25%, .2);
+        --a-active-text: #f44;
+        --a-active-underline: var(--a-active-text);
+
+        --borderedblock-bg: rgba(255, 255, 255, .05);
+
+        --blockquote-border: silver;
+        --blockquote-bg: var(--borderedblock-bg);
+        --blockquote-text: currentcolor;
+
+        --issue-border: #e05252;
+        --issue-bg: var(--borderedblock-bg);
+        --issue-text: var(--text);
+        --issueheading-text: hsl(0deg, 70%, 70%);
+
+        --example-border: hsl(50deg, 90%, 60%);
+        --example-bg: var(--borderedblock-bg);
+        --example-text: var(--text);
+        --exampleheading-text: hsl(50deg, 70%, 70%);
+
+        --note-border: hsl(120deg, 100%, 35%);
+        --note-bg: var(--borderedblock-bg);
+        --note-text: var(--text);
+        --noteheading-text: hsl(120, 70%, 70%);
+        --notesummary-underline: silver;
+
+        --assertion-border: #444;
+        --assertion-bg: var(--borderedblock-bg);
+        --assertion-text: var(--text);
+
+        --advisement-border: orange;
+        --advisement-bg: #222218;
+        --advisement-text: var(--text);
+        --advisementheading-text: #f84;
+
+        --warning-border: red;
+        --warning-bg: hsla(40,100%,20%,0.95);
+        --warning-text: var(--text);
+
+        --amendment-border: #330099;
+        --amendment-bg: #080010;
+        --amendment-text: var(--text);
+        --amendmentheading-text: #cc00ff;
+
+        --def-border: #8ccbf2;
+        --def-bg: #080818;
+        --def-text: var(--text);
+        --defrow-border: #136;
+
+        --datacell-border: silver;
+
+        --indexinfo-text: #aaa;
+
+        --indextable-hover-text: var(--text);
+        --indextable-hover-bg: #181818;
+
+        --outdatedspec-bg: rgba(255, 255, 255, .5);
+        --outdatedspec-text: black;
+        --outdated-bg: maroon;
+        --outdated-text: white;
+        --outdated-shadow: red;
+
+        --editedrec-bg: darkorange;
+    }
+    /* In case a transparent-bg image doesn't expect to be on a dark bg,
+       which is quite common in practice... */
+    img { background: white; }
+}
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
+
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
+</style>
+ <body class="h-entry">
+  <div class="head">
+   <p data-fill-with="logo"></p>
+   <h1 class="p-name no-ref" id="title">FAQ iLEAP Technical Specifications</h1>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Living Document, 6 March 2025</span></h2>
+   <div data-fill-with="spec-metadata">
+    <dl>
+     <dt>This version:
+     <dd><a class="u-url" href="https://sine-fdn.github.io/ileap-extension/faq">https://sine-fdn.github.io/ileap-extension/faq</a>
+     <dt>Issue Tracking:
+     <dd><a href="https://github.com/sine-fdn/ileap-extension/issues/">GitHub</a>
+     <dt class="editor">Editors:
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://www.smartfreightcentre.org">Violetta Matzoros</a> <a class="u-email email" href="mailto:violetta.matzoros@smartfreightcentre.org">violetta.matzoros@smartfreightcentre.org</a>
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://www.smartfreightcentre.org">Gabriela Rubio Domingo</a> <a class="u-email email" href="mailto:gabriela.rubiodomingo@smartfreightcentre.org">gabriela.rubiodomingo@smartfreightcentre.org</a>
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://sine.foundation">Martin Pompéry</a> <a class="u-email email" href="mailto:martin@sine.foundation">martin@sine.foundation</a>
+     <dd class="editor p-author h-card vcard"><a class="p-name fn u-url url" href="https://sine.foundation">Raimundo Henriques</a> <a class="u-email email" href="mailto:raimundo@sine.foundation">raimundo@sine.foundation</a>
+    </dl>
+   </div>
+   <div data-fill-with="warning"></div>
+   <hr title="Separator for header">
+  </div>
+  <div class="p-summary" data-fill-with="abstract">
+   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
+   <p>The <a href="https://sine-fdn.github.io/ileap-extension/specs/">iLEAP Technical Specifications</a> outline the the semantics for logistics emissions data exchange, thereby promoting a seamless exchange of logistics emissions data. They were conceived as an extension to the <a href="https://wbcsd.github.io/data-exchange-protocol/v2/">PACT Data Model and Data Exchange Protocol</a>, thereby levereging its network effects. This document provides answers to frequently asked questions about the iLEAP Technical Specifications, including their integration with the PACT Tech Specs.</p>
+  </div>
+  <div data-fill-with="at-risk"></div>
+  <nav data-fill-with="table-of-contents" id="toc">
+   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
+   <ol class="toc" role="directory">
+    <li>
+     <a href="#on-selecting-pact"><span class="secno">1</span> <span class="content">On Selecting the PACT Tech Specs as a Foundation for iLEAP</span></a>
+     <ol class="toc">
+      <li><a href="#what-is-pact"><span class="secno">1.1</span> <span class="content">What is PACT?</span></a>
+      <li>
+       <a href="#what-are-pact-tech-specs"><span class="secno">1.2</span> <span class="content">What are the PACT Tech Specs?</span></a>
+       <ol class="toc">
+        <li><a href="#pact-tech-specs-details"><span class="secno">1.2.1</span> <span class="content">Technical details of the PACT Tech Specs</span></a>
+       </ol>
+      <li><a href="#ileap-pact-relation"><span class="secno">1.3</span> <span class="content">How do the iLEAP Tech Specs relate to the PACT Tech Specs?</span></a>
+      <li><a href="#why-choose-pact"><span class="secno">1.4</span> <span class="content">Why did iLEAP choose PACT Tech Specs as a protocol and foundation?</span></a>
+     </ol>
+   </ol>
+  </nav>
+  <main>
+   <h2 class="heading settled" data-level="1" id="on-selecting-pact"><span class="secno">1. </span><span class="content">On Selecting the PACT Tech Specs as a Foundation for iLEAP</span><a class="self-link" href="#on-selecting-pact"></a></h2>
+   <p>This section explains the choice made by SINE and the Smart Freight Centre to base the work of
+iLEAP on some of the technical work of the <a href="https://www.carbon-transparency.org/">WBCSD PACT
+Project</a>, in particular the <a href="https://wbcsd.github.io/data-exchange-protocol/v2/">PACT Technical
+Specifications</a>.</p>
+   <h3 class="heading settled" data-level="1.1" id="what-is-pact"><span class="secno">1.1. </span><span class="content">What is PACT?</span><a class="self-link" href="#what-is-pact"></a></h3>
+   <p>PACT (Partnership for Carbon Transparency) is a WBCSD-led project that aims to enable emissions
+transparency at the product and service level. To achieve this, PACT has both a methodological focus
+("how to calculate the carbon footprints of products and services") and a technological focus ("how
+to make such data available in a seamless and automated way").</p>
+   <p>What sets PACT apart from other initiatives is its industry-agnostic and global focus. This means
+that the methodological and technological approaches are designed to be used on a global scale and
+by companies of different sizes, profiles, and specializations.</p>
+   <h3 class="heading settled" data-level="1.2" id="what-are-pact-tech-specs"><span class="secno">1.2. </span><span class="content">What are the PACT Tech Specs?</span><a class="self-link" href="#what-are-pact-tech-specs"></a></h3>
+   <p>The PACT Technical Specifications (or simply "PACT Tech Specs") are an interoperability
+quasi-standard to enable the seamless (and interoperable) exchange of carbon footprint data, often
+referred to as Product Carbon Footprints (PCFs).</p>
+   <p>To achieve interoperability, the PACT Tech Specs consist of a data model and a data exchange
+protocol. The data model is designed to be extensible, i.e., it is possible to add additional
+information for further transparency when receiving emissions data.</p>
+   <p>This feature of the PACT Tech Specs is specifically designed to enable the exchange of
+industry-specific data, such as logistics emissions data.</p>
+   <h4 class="heading settled" data-level="1.2.1" id="pact-tech-specs-details"><span class="secno">1.2.1. </span><span class="content">Technical details of the PACT Tech Specs</span><a class="self-link" href="#pact-tech-specs-details"></a></h4>
+   <p>On a technical level, the PACT data exchange protocol is a minimal HTTP REST API that allows one
+party to make carbon emissions data available to another party, as well as to asynchronously request
+specific data to be made available.</p>
+   <p>When 2 parties (the party that "owns" the emissions data, plus the party that wants to retrieve the
+data) implement the PACT Tech Specs, they can seamlessly and fully automatically exchange
+information between <strong>independent</strong> software solutions and systems - i.e. achieve interoperability
+at a technical level.</p>
+   <h3 class="heading settled" data-level="1.3" id="ileap-pact-relation"><span class="secno">1.3. </span><span class="content">How do the iLEAP Tech Specs relate to the PACT Tech Specs?</span><a class="self-link" href="#ileap-pact-relation"></a></h3>
+   <p>In addition to the PACT Tech Specs, the iLEAP Tech Specs define what is necessary to achieve <strong>logistics</strong> emissions transparency.</p>
+   <p>For this purpose, the iLEAP Tech Specs define a data model that is aligned and based on the
+principles of ISO14083 and the <a href="https://smart-freight-centre-media.s3.amazonaws.com/documents/GLEC_FRAMEWORK_v3_UPDATED_12_10.pdf">GLEC Framework
+v3</a>.</p>
+   <p>On a very technical and software implementation level, the iLEAP data model is designed as a
+so-called "Data Model Extension" to the PACT data model.</p>
+   <p>This means that the logistic emissions data being exchanged are treated as a Product Carbon
+Footprint (a "logistics product" / logistics service footprint) in order to achieve interoperability
+with any system implementing the PACT Tech Specs.</p>
+   <p>The iLEAP Tech Specs provide further <a href="https://sine-fdn.github.io/ileap-extension/#pcf-mapping">guidance</a> on how to integrate the iLEAP
+data into the PACT data model.</p>
+   <h3 class="heading settled" data-level="1.4" id="why-choose-pact"><span class="secno">1.4. </span><span class="content">Why did iLEAP choose PACT Tech Specs as a protocol and foundation?</span><a class="self-link" href="#why-choose-pact"></a></h3>
+   <p>Carbon emissions transparency, especially at Scope 3, is a global challenge. Without
+interoperability and global adoption of 1 (or at least very very few) approaches, the cost and
+effort to achieve carbon transparency based on actual and primary data, will be significantly
+higher.</p>
+   <p>By adopting PACT’s approaches and technical foundations, iLEAP is contributing to the realization of
+an  "Internet of Emissions Data" through interoperability. Several synergies will be achieved:</p>
+   <ol>
+    <li data-md>
+     <p><strong>the effort to add iLEAP support to existing systems and implementations is significantly
+reduced</strong>, increasing the likelihood that they will also implement the iLEAP Tech Specs;</p>
+    <li data-md>
+     <p><strong>iLEAP contributes to achieving a single Internet of Emissions Data,</strong> avoiding further
+fragmentation of what should be a global data ecosystem;</p>
+    <li data-md>
+     <p>Tool providers and their customers and users will benefit from synergistic network effects:
+implementers of the iLEAP Tech Specs will be interoperable with a growing ecosystem of solution
+providers from day one - that’s 25+ solutions in the <a href="https://www.carbon-transparency.org/network">PACT
+ecosystem</a> alone as of today.</p>
+   </ol>
+   <p>In this sense, iLEAP can potentially benefit from the network effects of PACT, increasing the
+chances of global adoption for both iLEAP and PACT at the same time.</p>
+   <p>Furthermore, this option is much more attractive for shippers, as they can use the same software to
+collect the emissions data for both the products and their shipment.</p>
+   <p>But using PACT’s data model also has advantages for iLEAP. For example, PACT already implements
+verification and accreditation related data in its data model. Since the logistics emissions will be
+embedded in this data model, iLEAP will be able to re-use the work instead of developing a different
+and non-interoperable approach.</p>
+  </main>
+<script>
+(function() {
+  "use strict";
+  var collapseSidebarText = '<span aria-hidden="true">←</span> '
+                          + '<span>Collapse Sidebar</span>';
+  var expandSidebarText   = '<span aria-hidden="true">→</span> '
+                          + '<span>Pop Out Sidebar</span>';
+  var tocJumpText         = '<span aria-hidden="true">↑</span> '
+                          + '<span>Jump to Table of Contents</span>';
+
+  var sidebarMedia = window.matchMedia('screen and (min-width: 78em)');
+  var autoToggle   = function(e){ toggleSidebar(e.matches) };
+  if(sidebarMedia.addListener) {
+    sidebarMedia.addListener(autoToggle);
+  }
+
+  function toggleSidebar(on) {
+    if (on == undefined) {
+      on = !document.body.classList.contains('toc-sidebar');
+    }
+
+    /* Don't scroll to compensate for the ToC if we're above it already. */
+    var headY = 0;
+    var head = document.querySelector('.head');
+    if (head) {
+      // terrible approx of "top of ToC"
+      headY += head.offsetTop + head.offsetHeight;
+    }
+    var skipScroll = window.scrollY < headY;
+
+    var toggle = document.getElementById('toc-toggle');
+    var tocNav = document.getElementById('toc');
+    if (on) {
+      var tocHeight = tocNav.offsetHeight;
+      document.body.classList.add('toc-sidebar');
+      document.body.classList.remove('toc-inline');
+      toggle.innerHTML = collapseSidebarText;
+      if (!skipScroll) {
+        window.scrollBy(0, 0 - tocHeight);
+      }
+      tocNav.focus();
+      sidebarMedia.addListener(autoToggle); // auto-collapse when out of room
+    }
+    else {
+      document.body.classList.add('toc-inline');
+      document.body.classList.remove('toc-sidebar');
+      toggle.innerHTML = expandSidebarText;
+      if (!skipScroll) {
+        window.scrollBy(0, tocNav.offsetHeight);
+      }
+      if (toggle.matches(':hover')) {
+        /* Unfocus button when not using keyboard navigation,
+           because I don't know where else to send the focus. */
+        toggle.blur();
+      }
+    }
+  }
+
+  function createSidebarToggle() {
+    /* Create the sidebar toggle in JS; it shouldn't exist when JS is off. */
+    var toggle = document.createElement('a');
+      /* This should probably be a button, but appearance isn't standards-track.*/
+    toggle.id = 'toc-toggle';
+    toggle.class = 'toc-toggle';
+    toggle.href = '#toc';
+    toggle.innerHTML = collapseSidebarText;
+
+    sidebarMedia.addListener(autoToggle);
+    var toggler = function(e) {
+      e.preventDefault();
+      sidebarMedia.removeListener(autoToggle); // persist explicit off states
+      toggleSidebar();
+      return false;
+    }
+    toggle.addEventListener('click', toggler, false);
+
+
+    /* Get <nav id=toc-nav>, or make it if we don't have one. */
+    var tocNav = document.getElementById('toc-nav');
+    if (!tocNav) {
+      tocNav = document.createElement('p');
+      tocNav.id = 'toc-nav';
+      /* Prepend for better keyboard navigation */
+      document.body.insertBefore(tocNav, document.body.firstChild);
+    }
+    /* While we're at it, make sure we have a Jump to Toc link. */
+    var tocJump = document.getElementById('toc-jump');
+    if (!tocJump) {
+      tocJump = document.createElement('a');
+      tocJump.id = 'toc-jump';
+      tocJump.href = '#toc';
+      tocJump.innerHTML = tocJumpText;
+      tocNav.appendChild(tocJump);
+    }
+
+    tocNav.appendChild(toggle);
+  }
+
+  var toc = document.getElementById('toc');
+  if (toc) {
+    createSidebarToggle();
+    toggleSidebar(sidebarMedia.matches);
+
+    /* If the sidebar has been manually opened and is currently overlaying the text
+       (window too small for the MQ to add the margin to body),
+       then auto-close the sidebar once you click on something in there. */
+    toc.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() == "a" && document.body.classList.contains('toc-sidebar') && !sidebarMedia.matches) {
+        toggleSidebar(false);
+      }
+    }, false);
+  }
+  else {
+    console.warn("Can't find Table of Contents. Please use <nav id='toc'> around the ToC.");
+  }
+
+  /* Wrap tables in case they overflow */
+  var tables = document.querySelectorAll(':not(.overlarge) > table.data, :not(.overlarge) > table.index');
+  var numTables = tables.length;
+  for (var i = 0; i < numTables; i++) {
+    var table = tables[i];
+    var wrapper = document.createElement('div');
+    wrapper.className = 'overlarge';
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  }
+
+})();
+</script>
